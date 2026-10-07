@@ -1,0 +1,32 @@
+#!/bin/sh
+# Bloquea el push si algun commit a subir tiene coautor o menciona a Claude/Anthropic.
+
+zero=$(printf '0%.0s' $(seq 1 40))
+patron='co-authored-by|claude|anthropic'
+bloqueado=0
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+    # Borrado de rama remota: no hay commits que revisar
+    [ "$local_sha" = "$zero" ] && continue
+
+    if [ "$remote_sha" = "$zero" ]; then
+        # Rama nueva en el remoto: revisar todo lo que aun no esta en ningun remoto
+        commits=$(git rev-list "$local_sha" --not --remotes)
+    else
+        commits=$(git rev-list "$remote_sha..$local_sha")
+    fi
+
+    for c in $commits; do
+        if git log -1 --format=%B "$c" | grep -qiE "$patron"; then
+            echo "PUSH BLOQUEADO: el commit $(git log -1 --format='%h %s' "$c")" >&2
+            echo "  contiene coautor o una mencion a Claude/Anthropic en su mensaje." >&2
+            bloqueado=1
+        fi
+    done
+done
+
+if [ "$bloqueado" -ne 0 ]; then
+    echo "Corrige el mensaje del commit (por ejemplo con git commit --amend) y vuelve a intentar." >&2
+    exit 1
+fi
+exit 0
