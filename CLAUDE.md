@@ -1,6 +1,8 @@
 # Image Bio Pro
 
-Sitio web bilingüe (español/inglés) con un clasificador de imágenes de microscopio de espermatozoides: conteo, tamaño, distribución de tamaños y clasificación de células por color. La comparación control contra tratamiento es una posible extensión, fuera del alcance actual. Backend en Flask con PyTorch, desplegado en un VPS.
+Sitio web bilingüe (español/inglés) con un clasificador de imágenes de fluorescencia de espermatozoides: detección de cabezas, conteo, tamaño, distribución de tamaños y clasificación por color (rojo o anaranjado). La comparación control contra tratamiento es una posible extensión, fuera del alcance actual.
+
+Pila: Flask con plantillas Jinja2 y Bootstrap, SQLite, y una sola red de segmentación por instancias en PyTorch (YOLO-seg o Mask R-CNN) entrenada en Google Colab. El color y el tamaño se miden dentro de cada contorno, no los decide la red. Desplegado en un VPS con Nginx y Gunicorn; el servidor solo hace inferencia en CPU. Detalles y pendientes en `README.md`.
 
 Desarrollador: Ing. Angel Frausto Robles.
 
