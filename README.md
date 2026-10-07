@@ -4,7 +4,27 @@ Sitio web bilingüe (español/inglés) con un clasificador de imágenes de micro
 
 Proyecto desarrollado para un grupo de investigación de la UAM Unidad Xochimilco.
 
-> **Estado:** en planeación. Aún no hay código. El primer entregable (sitio en línea y avances del clasificador con un modelo de muestra) está previsto para el 29 o 30 de octubre de 2026.
+> **Estado:** propuesta aceptada; el desarrollo inicia el 8 de octubre de 2026. La entrega del sitio web con la versión inicial de la red neuronal es el **28 de octubre de 2026**.
+
+## Calendario
+
+| Fechas (2026) | Actividad |
+|---|---|
+| 8 al 16 de octubre | Construcción: modelo esqueleto, sitio, integración y despliegue |
+| 17 al 27 de octubre | Capacitación (5 sesiones de 2 horas), ajustes y pruebas en paralelo |
+| 28 de octubre | Entrega del sitio web con la versión inicial de la red neuronal |
+| Hasta marzo de 2027 | Etapas posteriores (ver más abajo) |
+
+### Construcción
+
+| Días | Qué |
+|---|---|
+| 8 y 9 de octubre | Entorno de trabajo, anotación de las imágenes y entrenamiento del modelo esqueleto en Colab |
+| 10 al 12 de octubre | Medición de tamaño y color; sitio en Flask con páginas en Lorem Ipsum |
+| 13 y 14 de octubre | Carga de imagen, análisis y resultados; cuentas, gráfica, CSV y PDF |
+| 15 y 16 de octubre | Despliegue en el VPS y pruebas |
+
+Depende del cliente: las imágenes a más tardar el 10 de octubre y el VPS contratado a más tardar el 13 de octubre.
 
 ## Qué hace
 
@@ -80,7 +100,7 @@ Navegador  ->  Flask (páginas, cuentas, carga de imagen)  ->  Red de segmentaci
 
 Los contrata el cliente, con la recomendación del desarrollador para no pagar de más.
 
-- **VPS:** unos 100 a 250 MXN al mes, según el proveedor.
+- **VPS en Hostinger:** un plan VPS (por ejemplo KVM 2), no el hosting web normal, que no puede correr el modelo. Unos 100 a 250 MXN al mes.
 - **Dominio:** unos 200 a 400 MXN al año.
 - **Google Colab:** con este tamaño de datos basta el plan económico (unos 300 MXN). Solo si se queda corto se pasa al de unos 1,100 MXN al mes.
 
@@ -88,22 +108,27 @@ Los contrata el cliente, con la recomendación del desarrollador para no pagar d
 
 - Hasta ahora el cliente solo ha compartido una imagen de ejemplo, en JPEG por WhatsApp: comprimida y sin escala.
 - Primera entrega: un modelo esqueleto entrenado con unas 10 imágenes. Sirve para mostrar el flujo completo y **no tiene validez científica**.
-- Entrenamiento real: con un siguiente lote de unas 50 imágenes que generará el cliente, probablemente hacia enero de 2027.
+- Entrenamiento real: con un siguiente lote de unas 50 imágenes que generará el cliente. Forma parte de la actualización de la red neuronal, con fecha flexible hasta marzo de 2027.
 - Las imágenes del cliente no se suben a este repositorio.
 
 ## Capacitación
 
-El proyecto incluye 10 horas de capacitación en línea para el cliente y de 5 a 10 alumnos: uso del sistema, cómo se construyó y cómo reentrenar el modelo. El temario y los materiales están en [`docs/capacitacion/`](docs/capacitacion/README.md).
+El proyecto incluye 10 horas de capacitación en línea para el cliente y de 5 a 10 alumnos: uso del sistema, cómo se construyó y cómo reentrenar el modelo. Son 5 sesiones de 2 horas, a partir de las 18:00, del 17 al 27 de octubre de 2026 (fechas propuestas al cliente, por confirmar). El temario y los materiales están en [`docs/capacitacion/`](docs/capacitacion/README.md).
 
-## Posibles extensiones
+## Etapas posteriores
 
-Fuera del alcance actual. El cliente las plantea como perspectiva.
+Acordadas con el cliente para después de la primera entrega. Salvo la actualización de la red, aún no tienen fecha.
 
-- **Control contra tratamiento:** una CNN de clasificación binaria que distinga muestras de control (sanas) de muestras con tratamiento, según la forma, el tamaño y la distribución de tamaños de las células.
-- **Modelo multimodal:** combinar las imágenes con datos numéricos de la misma muestra (AnnData/Scanpy). Sería un proyecto aparte, solo el modelo, sin plataforma. El cliente pidió saber si es viable y qué tan difícil sería.
+- **Entrenamiento en IA:** 30 horas adicionales de capacitación.
+- **Red neuronal convolucional B:** probablemente la clasificación de control contra tratamiento, que distingue muestras de control (sanas) de muestras con tratamiento según la forma, el tamaño y la distribución de tamaños de las células. Falta confirmarlo.
+- **Red neuronal multimodal:** combinar las imágenes con datos numéricos de la misma muestra (AnnData/Scanpy). Solo el modelo, sin plataforma. Primero hay que confirmar que es viable con sus datos.
+- **Actualización de la red neuronal:** reentrenar con el lote real de imágenes. Fecha flexible hasta marzo de 2027.
 
 ## Pendientes por definir
 
+- **Las tres variables:** cuáles son exactamente las tres variables del modelo acordadas en la propuesta (probablemente conteo, tamaño y color).
+- **Capacitación:** confirmar fechas, hora de inicio, número de participantes y plataforma de videollamada.
+- **Red neuronal B:** confirmar que es la clasificación de control contra tratamiento.
 - **Tinciones:** qué marca el rojo y qué marca el verde.
 - **Significado del anaranjado:** qué indica biológicamente una cabeza anaranjada. En la imagen de ejemplo las anaranjadas se concentran donde hay muchas colas encimadas, así que parte del color podría ser mezcla por superposición.
 - **Imágenes originales:** archivos del microscopio (por ejemplo TIFF) sin compresión, con el aumento usado o una barra de escala para convertir píxeles a µm.
