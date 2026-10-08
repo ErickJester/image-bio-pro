@@ -51,3 +51,4 @@ Nombre del archivo: `AAAA-MM-DD-tema.md`, por ejemplo `2026-10-08-entorno.md`.
 | Fecha | Módulo | Nota |
 |---|---|---|
 | 7 oct 2026 | 1 — Entorno de trabajo | [Python 3.12 y entorno virtual](2026-10-07-entorno.md) |
+| 7 oct 2026 | Transversal | [Ingeniería de software: qué hacer después del boceto](2026-10-07-ingenieria-de-software.md) |
