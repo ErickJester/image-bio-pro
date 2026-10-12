@@ -7,14 +7,16 @@ Notas personales para aprender el proyecto a la par que se construye. Cada módu
 | # | Días (2026) | Lo que se construye | Lo que se aprende | Sesión de capacitación |
 |---|---|---|---|---|
 | 1 | 8 oct | Entorno de trabajo | Terminal, Python, entornos virtuales (`venv`), `pip`, Git | — |
-| 2 | 8 y 9 oct | Abrir y explorar la imagen de ejemplo | Imagen digital: píxeles, canales RGB, arreglos de numpy, OpenCV | 2 |
-| 3 | 9 y 10 oct | Medición de cabezas: contornos, área, longitud y color | Umbrales, contornos, escala en µm, proporción de rojo y verde | 2 |
-| 4 | 9 y 10 oct | Anotación de imágenes y entrenamiento del modelo esqueleto | Redes neuronales, CNN, transfer learning, YOLO, CVAT | 3 y 4 |
-| 5 | 10 oct | Evaluación del modelo | Entrenamiento, validación y prueba; épocas; métricas; sobreajuste | 4 |
-| 6 | 11 y 12 oct | Paso del boceto a Flask | Rutas, plantillas Jinja, archivos estáticos | 5 |
-| 7 | 13 oct | Cuentas y base de datos | SQLite, SQLAlchemy, Flask-Login, contraseñas cifradas | 5 |
-| 8 | 13 y 14 oct | Carga de imagen, análisis y resultados; CSV y PDF | Formularios, modelo en el servidor, generación de archivos | 1 y 5 |
-| 9 | 15 y 16 oct | Despliegue en el VPS | Linux, SSH, Nginx, Gunicorn, HTTPS | 5 |
+| 2 | 11 y 12 oct | Paso del boceto a Flask: sitio informativo bilingüe | Rutas, plantillas Jinja, archivos estáticos, traducciones ES/EN | 5 |
+| 3 | 13 oct | Cuentas y base de datos | SQLite, SQLAlchemy, Flask-Login, contraseñas cifradas | 5 |
+| 4 | 14 y 15 oct | Carga de imagen y resultados con análisis provisional; CSV y PDF | Formularios, subida de archivos, generación de archivos | 1 y 5 |
+| 5 | 16 oct | Despliegue en el VPS | Linux, SSH, Nginx, Gunicorn, HTTPS | 5 |
+| 6 | Cuando haya datos del cliente | Abrir y explorar la imagen de ejemplo | Imagen digital: píxeles, canales RGB, arreglos de numpy, OpenCV | 2 |
+| 7 | Cuando haya datos del cliente | Medición de cabezas: contornos, área, longitud y color | Umbrales, contornos, escala en µm, proporción de rojo y verde | 2 |
+| 8 | Cuando haya datos del cliente | Anotación de imágenes y entrenamiento del modelo esqueleto | Redes neuronales, CNN, transfer learning, Mask R-CNN, CVAT | 3 y 4 |
+| 9 | Cuando haya datos del cliente | Evaluación del modelo y conexión con el sitio | Entrenamiento, validación y prueba; épocas; métricas; sobreajuste | 4 |
+
+Los módulos 6 a 9 (la red neuronal) esperan a tener las respuestas del cliente sobre tinciones, escala y significado del color. Mientras tanto, el módulo 4 usa un análisis provisional (resultados de ejemplo) para que el flujo completo del sitio ya funcione.
 
 ## Cómo se trabaja cada módulo
 

@@ -74,7 +74,7 @@ Navegador  ->  Flask (páginas, cuentas, carga de imagen)  ->  Red de segmentaci
 
 ### Modelo
 
-- **Una sola red neuronal de segmentación por instancias**, partiendo de un modelo preentrenado y ajustándolo con las imágenes del cliente (*transfer learning*). Opción principal: YOLO de segmentación (Ultralytics). Alternativa: Mask R-CNN de torchvision, según la licencia (ver pendientes).
+- **Una sola red neuronal de segmentación por instancias**, partiendo de un modelo preentrenado y ajustándolo con las imágenes del cliente (*transfer learning*). Modelo elegido: Mask R-CNN de torchvision (licencia BSD). Se descartó YOLO de Ultralytics porque su licencia AGPL-3.0 obliga a publicar el código del sitio si se sirve en línea.
 - La red detecta solo la clase "cabeza". El color y el tamaño se **miden** dentro de cada contorno con OpenCV y numpy, para que el resultado sea verificable. Si el cliente define un criterio de clasificación que no sea solo el color, la red se reentrena con dos clases.
 - **Datos para entrenar:** cada imagen tiene del orden de 150 cabezas, así que 10 imágenes ya dan más de mil ejemplos anotados.
 - **Anotación:** con CVAT o Label Studio, que no publican los datos. Alguien del grupo valida las anotaciones.
@@ -135,8 +135,6 @@ Acordadas con el cliente para después de la primera entrega. Salvo la actualiza
 - **Significado del anaranjado:** qué indica biológicamente una cabeza anaranjada. En la imagen de ejemplo las anaranjadas se concentran donde hay muchas colas encimadas, así que parte del color podría ser mezcla por superposición.
 - **Imágenes originales:** archivos del microscopio (por ejemplo TIFF) sin compresión, con el aumento usado o una barra de escala para convertir píxeles a µm.
 - **Tamaño:** si se reporta el área, la longitud a lo largo de la curva o ambas. Confirmar que la unidad es µm.
-- **Licencia:** Ultralytics es AGPL-3.0, que obliga a publicar el código del sitio si se sirve en línea. Si el cliente no lo acepta, se usa Mask R-CNN (licencia BSD).
-- **Traducción:** el cliente pidió la API de Google Traductor. Como son pocos textos, se propone un archivo de traducciones ES/EN, que traduce mejor los términos científicos y no tiene costo.
 - Correo al que llegarán los mensajes del formulario de contacto.
 - Dominio definitivo del sitio.
 

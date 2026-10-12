@@ -23,7 +23,7 @@ La capacitación se da después de construir el sistema (del 8 al 16 de octubre)
 |---|---|---|---|
 | 1 | Sábado 17 de octubre | Panorama del proyecto y uso del sistema: cuentas, carga de imagen, lectura de resultados, exportación a CSV y PDF. Límites: calidad de imagen, escala en µm y validez del modelo. | Cada participante analiza imágenes en el sitio y exporta resultados. |
 | 2 | Martes 20 de octubre | Imágenes digitales y medición: píxeles, canales de color, fluorescencia, escala en µm, contornos, área, longitud y color rojo/verde. Repaso breve de Python y Colab. | Medir cabezas en un notebook. |
-| 3 | Jueves 22 de octubre | Redes neuronales: qué es una red convolucional, explicada con intuición. Transfer learning y segmentación por instancias con YOLO. | Correr el modelo y revisar qué detecta y qué no. |
+| 3 | Jueves 22 de octubre | Redes neuronales: qué es una red convolucional, explicada con intuición. Transfer learning y segmentación por instancias con Mask R-CNN. | Correr el modelo y revisar qué detecta y qué no. |
 | 4 | Sábado 24 de octubre | Datos y entrenamiento: anotación en CVAT, conjuntos de entrenamiento, validación y prueba, métricas y sobreajuste. Por qué importa la cantidad de imágenes. | Anotar imágenes y reentrenar el modelo siguiendo la guía. |
 | 5 | Martes 27 de octubre | Construcción del sitio y cierre: arquitectura (navegador, Flask, modelo y base de datos), servidor y actualización del modelo en producción. Etapas posteriores del proyecto. | Recorrido por el código y preguntas abiertas. |
 
