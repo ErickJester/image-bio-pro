@@ -14,7 +14,7 @@ Al final hay una sección con lo que ya está decidido y no se pregunta.
 ## 2. Imágenes y análisis (RF-10, RF-15 a RF-19)
 
 5. ⭐ ¿Cómo viene la imagen cuando sale del microscopio y cuál es su escala?
-   - **Formato:** ¿TIFF u otro formato sin compresión, o JPEG? ¿Cuánto pesa una imagen típica?
+   - **Formato:** las de entrenamiento vienen en BMP. ¿Las que subirán los usuarios del sitio también serán BMP, o TIFF, o a veces JPEG? ¿Cuánto pesa una imagen típica?
    - **Escala:** ¿el archivo la trae guardada, hay una barra de escala dibujada en la imagen, o solo se sabe por el aumento del objetivo (por ejemplo, 40x)? ¿Cuál es?
    - ¿Pueden mandarme una imagen original directo del microscopio, sin pasar por WhatsApp?
 6. ¿Se analiza una imagen a la vez o varias juntas en un mismo análisis?

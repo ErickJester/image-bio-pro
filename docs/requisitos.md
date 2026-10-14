@@ -147,6 +147,7 @@ Hablante 1 es el cliente; hablante 2, el desarrollador. Solo se toma como requis
 
 - **Fecha:** el sitio web y los avances de la red neuronal, para finales de octubre: "como por ahí del 29 o 30 de octubre". El correo posterior del cliente lo fijó el 28 de octubre.
 - **Datos:** por ahora hay una sola imagen ("Es la única que me han compartido de momento"). El modelo inicial se arma con unas 10 imágenes y solo sirve como esqueleto ("de antemano no nos va a servir como de mucho"). El entrenamiento real será con unas 50 imágenes.
+- **Formato de las imágenes de entrenamiento:** vienen en BMP, sin ninguna en JPG (dato del desarrollador, 14 de octubre; no lo dijo el cliente en las reuniones). Falta saber en qué formato subirán imágenes los usuarios del sitio (ver Pendientes).
 - **Las imágenes de ejemplo** son de espermatozoides teñidos "más o menos" en rojo, amarillo y naranja. El tono de las imágenes oficiales puede ser "mucho más sutil".
 - **El modelo no aprende solo** una vez en línea: hay que reentrenarlo aparte.
 
@@ -161,7 +162,7 @@ Lo que sigue sin respuesta o ambiguo, de ambas reuniones:
 
 | Pendiente | Qué se dijo | Requisitos afectados |
 |---|---|---|
-| Imágenes originales: formato, escala, peso y cantidad | El cliente las pidió por correo; fecha límite jueves o viernes, confirma el miércoles. Si no llegan, "volvemos a platicar sobre las fechas". | RF-22 a RF-30, RNF-07 |
+| Imágenes originales: formato, escala, peso y cantidad | Las de entrenamiento vienen en BMP. Falta confirmar el formato que usarán las personas al subir imágenes al sitio, la escala, el peso y la cantidad. El cliente las pidió por correo; fecha límite jueves o viernes, confirma el miércoles. Si no llegan, "volvemos a platicar sobre las fechas". | RF-22 a RF-30, RNF-07 |
 | Unidad de las medidas: ¿píxeles o micrómetros? | El cliente habló de píxeles para el área y de micrómetros para el radio de la cabeza y la escala. | RF-22 a RF-27, RF-30 |
 | ¿Se confirma el correo y se recupera la contraseña? | "esa parte ya no es tan necesaria, pero… es un tema de ventas"; el desarrollador habló del enlace de confirmación y el cliente no se opuso. | RF-14, RF-49, RF-50 |
 | ¿Hay administrador con panel para ver y dar de baja usuarios? | El desarrollador lo preguntó; el cliente solo respondió que no requiere aprobación. "le llegaría la confirmación de que alguien ingresó" no aclara a quién. | RF-50 |
