@@ -23,3 +23,8 @@ Términos nuevos del proyecto, definidos con mis palabras. En orden alfabético.
 | Suposición | Algo que el programador decide o da por hecho sin que el cliente lo haya dicho; no es un requisito | Ingeniería de software |
 | Terminal | Ventana para dar órdenes escritas a la computadora; en Windows es PowerShell | Módulo 1 |
 | Validación de requisitos | Confirmar con el cliente que lo entendido es lo que quiere | Ingeniería de software |
+| Flask | Librería de Python para hacer sitios web: recibe peticiones del navegador y devuelve respuestas | Módulo 2 |
+| Función fábrica (`crear_app`) | Función que crea y devuelve la aplicación, para poder crearla con distinta configuración | Módulo 2 |
+| Paquete de Python | Carpeta con un archivo `__init__.py` que se puede importar | Módulo 2 |
+| `__pycache__` | Carpeta que Python genera sola con código compilado (`.pyc`); no se sube a Git | Módulo 2 |
+| Ruta (`@app.route`) | Une una dirección del sitio con la función que responde cuando se visita | Módulo 2 |
