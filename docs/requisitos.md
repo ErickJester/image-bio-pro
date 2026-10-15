@@ -59,15 +59,17 @@ Versión del 7 de octubre de 2026 (primera reunión), ampliada el 12 de octubre 
 
 Hablante 1 es el cliente; hablante 2, el desarrollador. Solo se toma como requisito lo que dijo o aceptó el cliente. Entre corchetes va el minuto de la transcripción.
 
+Además del audio, se usa la descripción de lo que el cliente dibujó en la pizarra durante la reunión (las medidas sobre tres espermatozoides de ejemplo, la gráfica de distribución, la escala y el radio de la cabeza). Aclara lo que en el audio solo se dice como "este punto" o "esta distancia".
+
 ### Mediciones y estadística
 
 | ID | Requisito | Lo que se dijo |
 |---|---|---|
 | RF-22 | Medida 1: la distancia que abarca la cabeza. | "El primer parámetro sería la distancia que hay de este punto a este punto" [04:37, "De cabeza"] |
-| RF-23 | Medida 2: de la punta de la cabeza a la cola, siguiendo la forma de la célula aunque esté doblada. | "este está como doblado… Entonces puede ser que mida más… ¿se puede medir esta sección así?" [05:17]; "quedaría súper bien si se puede" [06:05] |
-| RF-24 | Medida 3: la "distancia real", en línea recta. | "sería esta distancia que está acá… la tercera distancia. Digamos la distancia real" [06:05] |
+| RF-23 | Medida 2: de la punta de la cabeza a la punta de la cola, en línea recta. | En la pizarra la traza como una recta de la cabeza a la cola. "este está como doblado… Entonces puede ser que mida más" [05:17] |
+| RF-24 | Medida 3: la "distancia real", siguiendo la forma de la cola aunque esté doblada. En una célula doblada, la línea recta da un dato engañoso. | "la tercera distancia. Digamos la distancia real" [06:05]; en la pizarra la traza como una curva que sigue la cola doblada y después dibuja la recta sobre la misma célula para mostrar el problema. "quedaría súper bien si se puede" [06:05] |
 | RF-25 | Medida 4: el área de la cabeza en píxeles. | "toda esta parte… tiene un cierto nivel de píxeles… 300 píxeles… 260 píxeles" [06:05, 07:41] |
-| RF-26 | Por imagen, gráfica de distribución del tamaño de cabeza: eje horizontal el tamaño, eje vertical el número de células. | "una gráfica de distribución… N contra N, o sea número de datos… una frecuencia" [07:41, 10:39] |
+| RF-26 | Por imagen, gráfica de distribución del tamaño de cabeza: eje horizontal el tamaño (área en píxeles), con el mínimo y el máximo tomados de cada imagen; eje vertical el número de células. La forma de la distribución no se supone: puede salir como campana, con dos picos u otra forma. | "una gráfica de distribución… N contra N, o sea número de datos… una frecuencia" [07:41, 10:39]; en la pizarra escribe "min y max determinadas en cada imagen", valores de 200 a 300, y dibuja una campana, una curva de dos picos y otra forma como posibles resultados |
 | RF-27 | Con varias imágenes, una segunda gráfica con promedios: por cada tamaño, el promedio entre imágenes, usando el mínimo y el máximo encontrados en todas. | "a las de 200 hiciera un promedio… con base al mínimo y máximo que encuentre en todas las imágenes… Ya la gráfica con promedios" [11:08] |
 | RF-28 | El sistema cuenta las células. | "el conteo de células… aquí son 4 células" [21:21]; "con el conteo de celdas cinco datos" [21:45] |
 | RF-29 | El PDF y la pantalla muestran la media y la desviación estándar. | "la gráfica de distribución… Y la media. ¿Es posible que podamos imprimir la desviación estándar?" — "Sí, también" [36:40] |
@@ -139,7 +141,7 @@ Hablante 1 es el cliente; hablante 2, el desarrollador. Solo se toma como requis
 | Antes | Ahora |
 |---|---|
 | RF-19: contar "anaranjadas" y "rojas". | RF-31 a RF-34: rojo = sano, amarillo = enfermo, 10 grados ordinales; el cliente dejó de hablar de "anaranjado" como categoría. |
-| RF-17: "cuánto mide cada célula" (sin definir). | RF-22 a RF-25: cuatro medidas (cabeza, punta a cola doblada, distancia real, área en píxeles). |
+| RF-17: "cuánto mide cada célula" (sin definir). | RF-22 a RF-25: cuatro medidas (cabeza, punta a cola en línea recta, distancia real siguiendo la cola, área en píxeles). |
 | RF-14: la cuenta sirve solo para acceso. | RF-46 y RF-48: ahora hay historial de PDF en el perfil. |
 | RF-11: parámetro ajustable "si hace falta". | RF-42: solo el botón de ejecutar. |
 
@@ -163,7 +165,8 @@ Lo que sigue sin respuesta o ambiguo, de ambas reuniones:
 | Pendiente | Qué se dijo | Requisitos afectados |
 |---|---|---|
 | Imágenes originales: formato, escala, peso y cantidad | Las de entrenamiento vienen en BMP. Falta confirmar el formato que usarán las personas al subir imágenes al sitio, la escala, el peso y la cantidad. El cliente las pidió por correo; fecha límite jueves o viernes, confirma el miércoles. Si no llegan, "volvemos a platicar sobre las fechas". | RF-22 a RF-30, RNF-07 |
-| Unidad de las medidas: ¿píxeles o micrómetros? | El cliente habló de píxeles para el área y de micrómetros para el radio de la cabeza y la escala. | RF-22 a RF-27, RF-30 |
+| Unidad de las medidas: ¿píxeles o micrómetros? | El cliente habló de píxeles para el área y de micrómetros para el radio de la cabeza y la escala. En la pizarra dibujó la escala como una barra con "2 µm" en una esquina de la imagen; falta confirmar que así vienen las imágenes reales. | RF-22 a RF-27, RF-30 |
+| Resumen escrito por el cliente | Al final de la reunión el cliente escribió en un bloc de notas el resumen de los requerimientos. Conviene pedírselo para compararlo con este documento. | Todos |
 | ¿Se confirma el correo y se recupera la contraseña? | "esa parte ya no es tan necesaria, pero… es un tema de ventas"; el desarrollador habló del enlace de confirmación y el cliente no se opuso. | RF-14, RF-49, RF-50 |
 | ¿Hay administrador con panel para ver y dar de baja usuarios? | El desarrollador lo preguntó; el cliente solo respondió que no requiere aprobación. "le llegaría la confirmación de que alguien ingresó" no aclara a quién. | RF-50 |
 | ¿Los análisis de cada usuario son privados? | "mis análisis" lo planteó el desarrollador y el cliente lo aceptó, pero no habló de si otros los ven. | RF-48 |
