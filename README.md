@@ -150,7 +150,39 @@ La estructura puede cambiar al empezar el desarrollo.
 
 ## Desarrollo
 
-Instrucciones de instalación y ejecución: pendientes, se agregan cuando exista el primer código.
+En Windows, con PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+flask --app app run --debug
+```
+
+El sitio queda en `http://127.0.0.1:5000`. La base de datos, los PDF y las imágenes marcadas se guardan en `instance/`, que no se sube a Git. En el servidor hay que definir la variable de entorno `SECRET_KEY`.
+
+Pruebas: `python -m pytest`.
+
+### Estado del análisis
+
+Mientras no exista el modelo entrenado, la detección es **provisional**: separa las cabezas por umbral de color con OpenCV (`app/analisis/medicion.py`, función `detectar_cabezas`). La pantalla y el PDF lo avisan. Cuando el modelo esté listo solo cambia esa función; la medición, la clasificación por color, la estadística, el CSV y el PDF se quedan igual.
+
+Ya funciona:
+
+- Conteo, área de la cabeza en píxeles (RF-25) y largo de la cabeza (RF-22), con media y desviación estándar.
+- Gráfica de distribución por imagen y, con varias imágenes, la de promedios (RF-26, RF-27).
+- Color en 10 grados entre el mínimo y el máximo de cada imagen, con conteo y porcentaje (RF-32 a RF-34).
+- Hasta 10 imágenes por análisis, barra de progreso, avisos y un solo PDF (RF-35 a RF-46).
+- Las imágenes subidas se borran al terminar (RF-47). Se guarda el PDF y una copia reducida con las cabezas marcadas, para volver a ver el análisis desde "Mis análisis" (RF-48).
+- Imagen de prueba sintética, generada con `scripts/generar_imagen_prueba.py` (RF-52).
+
+Falta:
+
+- El modelo Mask R-CNN y, con él, las medidas de cabeza a cola (RF-23, RF-24) y el aviso de imagen que no es de espermatozoides (RF-37).
+- Convertir píxeles a µm cuando se conozca la escala.
+- Confirmar qué extremo de la escala de color es el sano (`GRADO_ALTO_ES_ROJO` en `medicion.py`).
+- Enviar por correo los mensajes de contacto. Por ahora se guardan en la base de datos.
+- Textos, fotos, infografías, videos, logotipo y aviso de privacidad del cliente.
 
 ## Autor
 
