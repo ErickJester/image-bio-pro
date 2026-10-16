@@ -32,7 +32,7 @@ Depende del cliente: las imágenes a más tardar el 10 de octubre y el VPS contr
 
 ### Las imágenes
 
-Microscopía de fluorescencia sobre fondo negro, probablemente de espermatozoides de roedor (cabeza en forma de gancho, de unos 8 µm en ratón). En cada imagen aparecen:
+Microscopía de fluorescencia sobre fondo negro de espermatozoides. En cada imagen aparecen:
 
 - **Cabezas** en rojo o anaranjado. Son lo que se cuenta y se mide.
 - **Colas (flagelos)** en verde-amarillo, como líneas largas. No se cuentan.
@@ -45,7 +45,7 @@ Microscopía de fluorescencia sobre fondo negro, probablemente de espermatozoide
 - **Conteo:** número de cabezas en la imagen.
 - **Tamaño:** mide cada cabeza en micrómetros (µm), la unidad habitual en espermatozoides. Como las cabezas son curvas, se reportan el área y la longitud a lo largo de la curva hasta acordar cuál usar.
 - **Distribución de tamaños:** gráfica tipo campana de Gauss con la frecuencia de cada tamaño.
-- **Clasificación por color:** cuenta cuántas cabezas son rojas y cuántas anaranjadas, a partir de la proporción de rojo y verde medida dentro de cada contorno.
+- **Clasificación por color:** el color es una variable ordinal de 10 grados, de rojo a amarillo, medida a partir de la proporción de rojo y verde dentro de cada contorno. El anaranjado no es una categoría aparte: es un grado intermedio de la escala. El resultado es el conteo y el porcentaje de cabezas en cada grado.
 - **Exportación:** resultados descargables en CSV y PDF, con el conteo y las medidas de cada cabeza.
 
 ### Sitio web
@@ -132,7 +132,6 @@ Acordadas con el cliente para después de la primera entrega. Salvo la actualiza
 - **Capacitación:** confirmar fechas, hora de inicio, número de participantes y plataforma de videollamada.
 - **Red neuronal B:** confirmar que es la clasificación de control contra tratamiento.
 - **Tinciones:** qué marca el rojo y qué marca el verde.
-- **Significado del anaranjado:** qué indica biológicamente una cabeza anaranjada. En la imagen de ejemplo las anaranjadas se concentran donde hay muchas colas encimadas, así que parte del color podría ser mezcla por superposición.
 - **Imágenes originales:** archivos del microscopio (por ejemplo TIFF) sin compresión, con el aumento usado o una barra de escala para convertir píxeles a µm.
 - **Tamaño:** si se reporta el área, la longitud a lo largo de la curva o ambas. Confirmar que la unidad es µm.
 - Correo al que llegarán los mensajes del formulario de contacto.
@@ -180,7 +179,6 @@ Falta:
 
 - El modelo Mask R-CNN y, con él, las medidas de cabeza a cola (RF-23, RF-24) y el aviso de imagen que no es de espermatozoides (RF-37).
 - Convertir píxeles a µm cuando se conozca la escala.
-- Confirmar qué extremo de la escala de color es el sano (`GRADO_ALTO_ES_ROJO` en `medicion.py`).
 - Enviar por correo los mensajes de contacto. Por ahora se guardan en la base de datos.
 - Textos, fotos, infografías, videos, logotipo y aviso de privacidad del cliente.
 

@@ -80,7 +80,7 @@ Además del audio, se usa la descripción de lo que el cliente dibujó en la piz
 | ID | Requisito | Lo que se dijo |
 |---|---|---|
 | RF-31 | Hay dos tipos de espermatozoides por color; rojo es sano y amarillo es enfermo. | "uno es… amarillo y otro es rojo" [24:32]; "rojo está sano y amarillo está enfermo" [48:59] |
-| RF-32 | El color es una variable ordinal: el sistema reparte el color, del mínimo al máximo, en 10 grados equidistantes entre rojo y amarillo, y cada célula cae en uno. El grado 10 es completamente sano y el 1 completamente enfermo (el cliente dijo "o al revés"). | "dividir en 10 regiones de color, que va del amarillo al rojo… equidistantes" [57:12]; "categoría 10 es completamente sano… la categoría 1 es enfermo" [58:08] |
+| RF-32 | El color es una variable ordinal: el sistema reparte el color, del mínimo al máximo, en 10 grados equidistantes entre rojo y amarillo, y cada célula cae en uno. El grado 10 es completamente sano y el 1 completamente enfermo (el cliente dijo "o al revés"). *Nota (15-oct-2026): el desarrollador resuelve con el cliente qué extremo es el sano; no bloquea la construcción. El anaranjado no es una categoría aparte: es un grado intermedio de esta escala.* | "dividir en 10 regiones de color, que va del amarillo al rojo… equidistantes" [57:12]; "categoría 10 es completamente sano… la categoría 1 es enfermo" [58:08] |
 | RF-33 | El color se mide solo en la cabeza. Si dos cabezas se juntan, su color se promedia, con cierto error asociado. | "A partir de la cabeza solamente… ese color lo podemos promediar" [54:29, 54:45] |
 | RF-34 | El resultado de color es el conteo y el porcentaje de células en cada grado. | "70 cabezas rojas, 30 amarillo rojizo… 70 entre 200…" [54:45]; "categoría 10, sano, sería por ejemplo 30%. Aquí 20%…" [58:56] |
 
@@ -171,7 +171,7 @@ Lo que sigue sin respuesta o ambiguo, de ambas reuniones:
 | ¿Hay administrador con panel para ver y dar de baja usuarios? | El desarrollador lo preguntó; el cliente solo respondió que no requiere aprobación. "le llegaría la confirmación de que alguien ingresó" no aclara a quién. | RF-50 |
 | ¿Los análisis de cada usuario son privados? | "mis análisis" lo planteó el desarrollador y el cliente lo aceptó, pero no habló de si otros los ven. | RF-48 |
 | Cuántas imágenes de prueba y cuáles | "con una imagen o con dos, tres imágenes de prueba". | RF-52 |
-| Qué extremo de la escala de 10 es el sano | "O al revés". | RF-32 |
+| Qué extremo de la escala de 10 es el sano | "O al revés". El desarrollador lo resuelve con el cliente; no bloquea. | RF-32 |
 | Imágenes de "basura" para reconocer lo que no es espermatozoide | El desarrollador las pidió como opcionales. | RF-37 |
 | ¿Dónde van los videos? | "más abajo de esto, o sea, de esta infografía… o en Contacto, o en Aliados" | RF-09 |
 | ¿Contacto lleva solo el formulario o también los datos del área? | "El formulario clásico que viene, ¿no? Correo y así." | RF-05 |
