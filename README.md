@@ -173,6 +173,7 @@ Ya funciona:
 - Gráfica de distribución por imagen y, con varias imágenes, la de promedios (RF-26, RF-27).
 - Hasta 10 imágenes por análisis, barra de progreso, avisos y un solo PDF (RF-35 a RF-46).
 - Las imágenes subidas se borran al terminar (RF-47). Se guarda el PDF y una copia reducida con los espermatozoides marcados y una regla de escala, para volver a ver el análisis desde "Mis análisis" (RF-48).
+- En los resultados, la imagen marcada se puede ampliar con zoom (clic en la imagen) y, al pasar el mouse sobre cada espermatozoide, sale su número, área y largo, tanto en la página como en el visor.
 - Imagen de prueba sintética, generada con `scripts/generar_imagen_prueba.py` (RF-52).
 - El color se sigue calculando y guardando, pero ya no se muestra (indicación del cliente del 16 de octubre, por chat).
 
