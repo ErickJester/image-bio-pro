@@ -95,7 +95,7 @@ Navegador  ->  Flask (páginas, cuentas, carga de imagen)  ->  Red de segmentaci
 
 - **VPS** con Ubuntu, Nginx como proxy inverso, Gunicorn y HTTPS con Certbot. El hosting compartido no sirve, porque no puede correr Flask con PyTorch.
 - Tamaño recomendado: 2 vCPU y 2 a 4 GB de RAM.
-- Ajustes necesarios: timeout de Gunicorn de unos 120 s, `client_max_body_size` de Nginx de unos 20 MB, y limitar los hilos de PyTorch por proceso.
+- Ajustes necesarios (ya en `Dockerfile`, `docker-compose.yml` y `deploy/nginx.conf`): timeout de 1800 s en Gunicorn y Nginx, `client_max_body_size` de 300 MB (10 imágenes BMP), un solo proceso de Gunicorn con 4 hilos para cargar los modelos una sola vez, y los hilos de PyTorch limitados con `TORCH_HILOS`.
 - Capacidad estimada: cientos de visitantes navegando y varios análisis a la vez. Para un grupo de investigación sobra. Se confirma midiendo en el servidor.
 
 ## Servicios
@@ -141,11 +141,10 @@ Acordadas con el cliente para después de la primera entrega. Salvo la actualiza
 
 ```
 app/         sitio en Flask: rutas, plantillas, estilos y lógica de análisis
-model/       notebooks de entrenamiento y pesos del modelo
+model/       los dos modelos entrenados (.pt, fuera de Git; ver model/README.md)
+entrenamiento/  cuaderno de Colab con el que se entrenan los modelos
 docs/        documentación del proyecto y material de capacitación
 ```
-
-La estructura puede cambiar al empezar el desarrollo.
 
 ## Desarrollo
 
@@ -160,25 +159,27 @@ flask --app app run --debug
 
 El sitio queda en `http://127.0.0.1:5000`. La base de datos, los PDF y las imágenes marcadas se guardan en `instance/`, que no se sube a Git. En el servidor hay que definir la variable de entorno `SECRET_KEY`.
 
-Pruebas: `python -m pytest`.
+Pruebas: `python -m pytest`. Corren sin PyTorch ni modelos. La prueba con los modelos reales solo corre si están instalados PyTorch (`requirements-modelo.txt`) y los dos `.pt` en `model/`, con `PROBAR_MODELOS=1`.
 
 ### Estado del análisis
 
-Mientras no exista el modelo entrenado, la detección es **provisional**: separa las cabezas por umbral de color con OpenCV (`app/analisis/medicion.py`, función `detectar_cabezas`). La pantalla y el PDF lo avisan. Cuando el modelo esté listo solo cambia esa función; la medición, la clasificación por color, la estadística, el CSV y el PDF se quedan igual.
+Los espermatozoides los detectan dos modelos Mask R-CNN entrenados en Colab (`app/analisis/modelo.py`): uno para fotos de fondo oscuro (fluorescencia) y otro para fotos de fondo claro (campo claro). El sitio mide el brillo de cada foto y elige el modelo. Los archivos van en `model/` y no están en Git; ver `model/README.md`. Son modelos **preliminares**, entrenados con pocas imágenes, y los resultados lo avisan.
+
+Si faltan los archivos o PyTorch, el sitio usa la detección **provisional** por umbral de color con OpenCV (`app/analisis/medicion.py`, función `detectar_cabezas`) y lo avisa. La medición, la estadística, el CSV y el PDF son los mismos en los dos casos. El plan y sus pendientes están en [`docs/integracion-modelos.md`](docs/integracion-modelos.md).
 
 Ya funciona:
 
-- Conteo, área de la cabeza en píxeles (RF-25) y largo de la cabeza (RF-22), con media y desviación estándar.
+- Detección con los modelos, conteo, área y largo del espermatozoide visible completo (cabeza y parte de la cola), con media y desviación estándar.
 - Gráfica de distribución por imagen y, con varias imágenes, la de promedios (RF-26, RF-27).
-- Color en 10 grados entre el mínimo y el máximo de cada imagen, con conteo y porcentaje (RF-32 a RF-34).
 - Hasta 10 imágenes por análisis, barra de progreso, avisos y un solo PDF (RF-35 a RF-46).
-- Las imágenes subidas se borran al terminar (RF-47). Se guarda el PDF y una copia reducida con las cabezas marcadas, para volver a ver el análisis desde "Mis análisis" (RF-48).
+- Las imágenes subidas se borran al terminar (RF-47). Se guarda el PDF y una copia reducida con los espermatozoides marcados y una regla de escala, para volver a ver el análisis desde "Mis análisis" (RF-48).
 - Imagen de prueba sintética, generada con `scripts/generar_imagen_prueba.py` (RF-52).
+- El color se sigue calculando y guardando, pero ya no se muestra (indicación del cliente del 16 de octubre, por chat).
 
 Falta:
 
-- El modelo Mask R-CNN y, con él, las medidas de cabeza a cola (RF-23, RF-24) y el aviso de imagen que no es de espermatozoides (RF-37).
-- Convertir píxeles a µm cuando se conozca la escala.
+- La escala en micras es **provisional** (60 px = 1 micra, sin calibrar). Hace falta una calibración medida; ver la sección "Escala en micras" de `docs/integracion-modelos.md`.
+- Las medidas de cabeza a cola (RF-23, RF-24) y el aviso de imagen que no es de espermatozoides (RF-37), que el modelo actual no distingue.
 - Enviar por correo los mensajes de contacto. Por ahora se guardan en la base de datos.
 - Textos, fotos, infografías, videos, logotipo y aviso de privacidad del cliente.
 

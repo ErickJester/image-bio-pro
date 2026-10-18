@@ -1,6 +1,6 @@
 # Integración de los modelos al sitio
 
-Plan del 17 de octubre de 2026. Estado: **por aprobar**, no se ha escrito código del sitio.
+Plan del 17 de octubre de 2026. Estado: **pasos 1 a 6 hechos el 17 de octubre**, probados en una computadora de escritorio con fotos reales. **Falta medir en el VPS real** (tiempos y memoria) y la tabla de escalas.
 
 ## Punto de partida
 
@@ -62,13 +62,22 @@ Plan del 17 de octubre de 2026. Estado: **por aprobar**, no se ha escrito códig
 >
 > Con eso queda resuelto, y los usuarios no tendrán que conocer ni escribir la escala. Gracias.
 
-## Decisiones pendientes
+## Decisiones
 
-1. Aprobar el plan o cambiarlo.
-2. Análisis largos: limitar fotos y tamaño por subida (más simple) o procesar en segundo plano (más trabajo). Recomendación: empezar limitando y dejar el segundo plano como mejora.
-3. Cambiar "cabeza" por "espermatozoide" en pantalla, CSV y PDF.
-4. Enviar el mensaje a Saúl y, con la respuesta, armar la tabla de escalas y la herramienta de calibración.
+1. Plan aprobado el 17 de octubre.
+2. **Análisis largos: no se limitó el número de imágenes.** El cliente pidió poder subir 10 imágenes a la vez (RF-35) y una barra de progreso (RF-36), así que se mantienen los dos y se resolvió con tiempos de espera altos (1800 s en Gunicorn y Nginx), un solo proceso con 4 hilos que carga los modelos una vez, y análisis de uno en uno (los demás esperan turno). Si en el VPS 10 imágenes tardan demasiado, se limita por subida o se pasa a segundo plano.
+3. "Cabeza" cambió a "espermatozoide" en pantalla, CSV y PDF. Dentro de los datos guardados la lista sigue llamándose `cabezas`, para que los análisis ya guardados se abran.
+4. Color: se sigue calculando y guardando, pero ya no se muestra (resultados, CSV y PDF). Sale de la indicación de Saúl del 16 de octubre.
+5. **Pendiente:** enviar el mensaje a Saúl y, con la respuesta, armar la tabla de escalas y la herramienta de calibración.
+
+## Qué quedó hecho
+
+- `app/analisis/modelo.py`: elige el modelo por el brillo de la foto, la prepara igual que en el entrenamiento, analiza por teselas, junta y limpia. Se comprobó que da los mismos conteos que el cuaderno (114, 9, 2, 1 y 43 contornos en cinco fotos).
+- `app/analisis/medicion.py`: usa el modelo si está disponible y, si no, la detección provisional; cada imagen guarda con qué detector se analizó.
+- Resultados, CSV y PDF: textos nuevos, sin el color, con aviso de modelo preliminar o de detección provisional.
+- Servidor: `requirements-modelo.txt`, `Dockerfile`, `docker-compose.yml` (volumen `model/`), Nginx y la guía `docs/despliegue.md`.
+- Pruebas: 27 pasan sin PyTorch; con PyTorch y los modelos, 28.
 
 ## Tiempo estimado
 
-De 2 a 3 días de trabajo, dejando el último tramo antes del 28 de octubre para probar en el servidor.
+La integración se hizo en un día. El tiempo que queda hasta el 28 de octubre es para probar en el servidor real, afinar los tiempos de espera y calibrar la escala.
