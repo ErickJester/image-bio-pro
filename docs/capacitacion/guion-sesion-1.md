@@ -8,12 +8,12 @@ Ritmo de lectura considerado: **250 palabras por minuto**. Solo cuentan como pal
 
 | Tema | Meta | Palabras (meta) | Palabras escritas | Minutos de lectura |
 |---|---|---|---|---|
-| 1. Introducción | 15 min | 3,750 | 3,686 | 14.7 |
-| 2. El sitio web en funcionamiento | 30 min | 7,500 | 7,449 | 29.8 |
-| 3. ¿Qué es una red neuronal? | 50 min | 12,500 | 12,469 | 49.9 |
-| **Total** | **95 min** | **23,750** | **23,604** | **94.4** |
+| 1. Introducción | 15 min | 3,750 | 3,545 | 14.2 |
+| 2. El sitio web en funcionamiento | 30 min | 7,500 | 7,296 | 29.2 |
+| 3. ¿Qué es una red neuronal? | 50 min | 12,500 | 12,391 | 49.6 |
+| **Total** | **95 min** | **23,750** | **23,232** | **92.9** |
 
-A los 95 minutos de contenido se suman la pausa de 10 minutos (entre el tema 2 y el tema 3) y 15 minutos de preguntas al final, hasta completar las 2 horas.
+A los 95 minutos de contenido se suman 15 minutos de preguntas al final.
 
 ## Notas para quien presenta
 
@@ -21,7 +21,8 @@ Estas notas no se leen en voz alta. Son puntos que conviene resolver o comprobar
 
 1. Demostración en vivo. El guion supone que el análisis termina en menos de un minuto. En una computadora de escritorio, una foto de fluorescencia de 1792 px tardó unos 40 s; en el VPS no se ha medido. Conviene ensayar en el servidor real y, si tarda mucho, tener preparado un análisis ya hecho en "Mis análisis" para abrirlo.
 2. Lote de tres imágenes (sección "Un lote de varias imágenes y los dos modelos"). Preparar con anticipación dos fotos de fluorescencia y una de fondo claro. Las imágenes de entrenamiento no se suben al repositorio; usar las copias locales.
-3. Escala. El guion la presenta como provisional (60 px = 1 µm) y pide al grupo tres datos de calibración. Si antes de la sesión llega la respuesta, actualizar la sección "La escala en micras".
+3. Escala. El guion la presenta como escala de referencia (60 px = 1 µm) en proceso de calibración y pide al grupo tres datos. Si antes de la sesión llega la respuesta, actualizar la sección "La escala en micras".
+3b. Enfoque. Por indicación del cliente, el guion presenta el sistema como terminado y las limitaciones como retos. No afirma nada que no exista: las medidas de cabeza a cola, la calibración de la escala y el aviso de imagen ajena a la muestra aparecen como retos de la siguiente etapa. Ojo: el sitio en pantalla todavía muestra los recuadros «modelo preliminar» y «escala provisional»; el guion los llama avisos de contexto, pero si se quiere un lenguaje uniforme conviene ajustar también esos textos en el sitio.
 4. Datos del entrenamiento. Las cifras (4 fotos y 258 etiquetas en fluorescencia; 4 fotos y 45 en fondo claro; 85 de cada 100 en zonas amontonadas; conteos 114, 9, 2, 1 y 43) salen de docs/integracion-modelos.md. Si cambian los modelos, revisar las secciones de alcance, de los dos modelos y de transferencia.
 5. Precios. Las cifras de servidor, dominio y Colab de la sección de servicios son estimaciones del README; confirmarlas antes de decirlas.
 6. COCO. Las cifras del conjunto de referencia (más de 300 mil fotografías, más de un millón de objetos, ochenta categorías) son de conocimiento general, no del repositorio. Verificarlas si se quiere citarlas con exactitud.
@@ -35,29 +36,29 @@ Estas notas no se leen en voz alta. Son puntos que conviene resolver o comprobar
 
 ## Tema 1. Introducción
 
-*3,686 palabras · 14.7 min a 250 palabras por minuto (meta: 15 min, 3,750 palabras)*
+*3,545 palabras · 14.2 min a 250 palabras por minuto (meta: 15 min, 3,750 palabras)*
 
 ### 1.1 Bienvenida y propósito de la sesión
 
-*347 palabras · 1.4 min*
+*294 palabras · 1.2 min*
 
 [Pantalla: diapositiva de título. "Image Bio Pro · Sesión 1 de 5".]
 
-Buenas tardes a todas y a todos, y gracias por conectarse. Soy Angel Frausto Robles, desarrollador de Image Bio Pro. En las próximas cinco sesiones vamos a recorrer el proyecto completo: qué hace el sitio, cómo funciona la red neuronal que lo sostiene, cómo se entrenó y cómo está construido por dentro. Al final, el grupo debería poder usarlo, entender sus resultados y reentrenar el modelo sin depender de mí.
+Buenas tardes a todas y a todos, y gracias por conectarse. Soy Angel Frausto Robles, desarrollador de Image Bio Pro. En las próximas cinco sesiones vamos a recorrer el proyecto completo: qué hace el sitio, cómo funciona la red neuronal que lo sostiene, cómo se entrenó y cómo está construido por dentro. La idea es que el grupo pueda usarlo, entender sus resultados y reentrenar el modelo sin depender de mí.
 
-Primero, unos acuerdos prácticos. La sesión se está grabando, como quedamos, así que quien no pueda conectarse a alguna podrá verla después. Las diapositivas y el material de apoyo se comparten al terminar la capacitación, cuando ya hayamos incorporado los comentarios de ustedes. Y como esta primera sesión también sirve para que el grupo revise la presentación, les pido que anoten cualquier duda, corrección o sugerencia. Habrá un espacio para preguntas al final de cada bloque y otro más largo al cierre.
+Primero, unos acuerdos prácticos. La sesión se está grabando, como quedamos, así que quien no pueda conectarse a alguna podrá verla después. Las diapositivas y el material de apoyo se comparten al terminar la capacitación, cuando ya hayamos incorporado los comentarios de ustedes. Y como esta primera sesión también sirve para que el grupo revise la presentación, pueden anotar cualquier duda, corrección o sugerencia. Habrá un espacio de preguntas y comentarios al cierre de la sesión.
 
-La sesión dura dos horas y se reparte así. Los primeros quince minutos son esta introducción: objetivo, alcance acordado, lo que se entrega el 28 de octubre y lo que queda para después. Luego, treinta minutos de demostración del sitio funcionando: crearemos una cuenta, subiremos una imagen, leeremos los resultados y descargaremos los archivos. Después, una pausa breve. En la última parte, cincuenta minutos, hablaremos de qué es una red neuronal, con una explicación pensada para que la idea se entienda bien y sin matemáticas pesadas.
+La sesión dura dos horas y se reparte así. Los primeros quince minutos son esta introducción: objetivo, alcance acordado, lo que se entrega el 28 de octubre y lo que queda para después. Luego, treinta minutos de demostración del sitio funcionando: crearemos una cuenta, subiremos una imagen, leeremos los resultados y descargaremos los archivos. En la última parte, cincuenta minutos, hablaremos de qué es una red neuronal, con una explicación pensada para que la idea se entienda bien y sin matemáticas pesadas.
 
-Sobre el nivel. Sé que el grupo reúne perfiles distintos: gente con mucha experiencia en programación y análisis de datos, y gente para quien algunos de estos conceptos serán más nuevos. Voy a explicar cada idea desde su base, con ejemplos concretos, y con el vocabulario técnico correcto. Si algún punto les parece demasiado básico o demasiado rápido, díganmelo y ajusto sobre la marcha.
+Sobre el nivel. El grupo reúne trayectorias distintas, así que voy a explicar cada idea desde su base, con ejemplos concretos y con el vocabulario técnico correcto. Lo que necesite más detalle se retoma en las sesiones siguientes y en el material de apoyo.
 
-Para las preguntas puntuales, escríbanlas en el chat y las voy atendiendo en cada pausa, o levanten la mano. Las que necesiten más tiempo las dejamos para los espacios de preguntas, que existen justamente para eso.
+Las preguntas se atienden al final, en el espacio previsto para eso.
 
 Empecemos por lo básico: para qué existe este proyecto.
 
 ### 1.2 Objetivo del proyecto
 
-*623 palabras · 2.5 min*
+*604 palabras · 2.4 min*
 
 [Pantalla: diapositiva "Objetivo". Una sola frase en grande.]
 
@@ -67,11 +68,11 @@ El proyecto se desarrolla para un grupo de investigación de la UAM, Unidad Xoch
 
 Esta división de tareas atraviesa todo el diseño, así que la explico con calma. La red neuronal tiene un solo trabajo: decidir dónde hay un espermatozoide y trazar su contorno. Todo lo demás sale de código convencional, con OpenCV y numpy, a partir de esos contornos: cuántos son, cuánto mide el área de cada uno, cuánto mide su largo, la media y la desviación estándar. En la práctica, si alguien quiere comprobar un resultado, abre la imagen marcada, mira el contorno que trazó la red y recalcula la medida por su cuenta. La red hace una propuesta, y la medición se puede auditar.
 
-También hay un objetivo a más largo plazo. El modelo que se entrega el 28 de octubre es una primera versión. Lo hemos dicho desde el principio: se entrenó con pocas imágenes y sus resultados son aproximados. La idea es que el grupo pueda mejorarlo con sus propias imágenes, y por eso la capacitación no se limita a enseñar a usar el sitio. También cubre cómo se entrena el modelo, cómo se anotan las imágenes y cómo se sube un modelo nuevo al servidor. Un modelo así no aprende solo una vez que está en línea. Si llegan imágenes nuevas, otras tinciones u otro tipo de célula, hay que reentrenarlo aparte y cambiar el archivo del modelo. Dominar ese ciclo le da independencia al grupo, y es buena parte de la razón de estas diez horas.
+También hay un objetivo a más largo plazo. El modelo que se entrega el 28 de octubre está pensado para crecer: el grupo podrá mejorarlo con sus propias imágenes, y por eso la capacitación no se limita a enseñar a usar el sitio. También cubre cómo se entrena el modelo, cómo se anotan las imágenes y cómo se sube un modelo nuevo al servidor. Un modelo así no aprende solo una vez que está en línea. Si llegan imágenes nuevas, otras tinciones u otro tipo de célula, se reentrena aparte y se cambia el archivo del modelo. Dominar ese ciclo le da independencia al grupo, y es buena parte de la razón de estas diez horas.
 
 Dicho en una frase, el objetivo es un sitio que convierta una fotografía de microscopio en datos descargables y confiables, y un grupo capaz de mantener y mejorar lo que hay detrás.
 
-Un comentario sobre cómo se tomaron las decisiones, porque ayuda a entender lo que van a ver. Los requisitos del sitio salen de las reuniones con el grupo, y cada uno quedó anotado junto a la frase que lo originó. Lo que no se dijo en esas reuniones no lo supuse: lo dejé como pendiente para preguntarlo. Más adelante, con la escala en micras, van a ver un ejemplo claro.
+Un comentario sobre cómo se tomaron las decisiones, porque ayuda a entender lo que van a ver. Los requisitos del sitio salen de las reuniones con el grupo, y cada uno quedó anotado junto a la frase que lo originó. Lo que no se dijo en esas reuniones no lo supuse: lo dejé por definir con el grupo. Más adelante, con la escala en micras, van a ver un ejemplo claro.
 
 Para terminar este bloque, qué tipo de trabajo es este: un sistema que sigue vivo después de la entrega. Tiene una parte web que se mantiene como cualquier sitio, y una parte de aprendizaje automático que se mejora con datos. Cada una necesita cuidados distintos, y las dos están documentadas en el repositorio del proyecto para que el grupo pueda retomarlas aunque pase tiempo. Cuando lleguemos a las sesiones de código van a ver que muchos comentarios indican qué requisito de las reuniones está cumpliendo cada fragmento, para que el vínculo entre lo que se pidió y lo que se programó no se pierda.
 
@@ -101,29 +102,29 @@ Una última cosa sobre el alcance, que se suele pasar por alto: el sitio no inte
 
 ### 1.4 Qué se entrega el 28 de octubre y qué queda para después
 
-*692 palabras · 2.8 min*
+*636 palabras · 2.5 min*
 
 [Pantalla: diapositiva "Calendario". Línea de tiempo de octubre de 2026 a marzo de 2027.]
 
-Hablemos de fechas. El desarrollo empezó el 8 de octubre y la construcción se hizo entre el 8 y el 16. Del 17 al 27 se da la capacitación, y en paralelo se hacen ajustes y pruebas. El 28 de octubre se entrega el sitio con la versión inicial de la red neuronal.
+Hablemos de fechas. El desarrollo empezó el 8 de octubre y la construcción se hizo entre el 8 y el 16. Del 17 al 27 se da la capacitación, y en paralelo se hacen ajustes y pruebas. El 28 de octubre se entrega el sitio con la red neuronal entrenada.
 
-Veamos qué significa «versión inicial». Lo que se entrega es un sitio completo y en línea, con cuentas, carga de imágenes, análisis, resultados, gráficas, exportación a CSV y PDF, y dos modelos entrenados: uno para fotografías de fondo oscuro, que son las de fluorescencia, y otro para fotografías de fondo claro. El sitio mide el brillo de cada fotografía y elige solo el modelo que le toca.
+Veamos qué se entrega. Un sitio completo y en línea, con cuentas, carga de imágenes, análisis, resultados, gráficas, exportación a CSV y PDF, y dos modelos entrenados: uno para fotografías de fondo oscuro, que son las de fluorescencia, y otro para fotografías de fondo claro. El sitio mide el brillo de cada fotografía y elige solo el modelo que le toca.
 
-Lo que todavía no existe es un modelo con validez científica definitiva, y prefiero decirlo claro. Los dos modelos actuales se entrenaron con muy pocas imágenes: cuatro fotografías en fluorescencia, con 258 espermatozoides etiquetados, y cuatro en fondo claro, con 45. Con tan poco material funcionan razonablemente en escenas parecidas a las del entrenamiento, pero no sabemos cómo responderán con otras muestras, otras tinciones o imágenes con compresión. En zonas con muchos espermatozoides juntos, el modelo puede repetir o partir contornos y dejar algunos sin detectar, así que ahí los conteos son aproximados. El sitio lo avisa en cada resultado con un mensaje que dice que el modelo es preliminar y se entrenó con pocas imágenes. Es una condición conocida de esta primera entrega, declarada a la vista, y es la razón de que exista la etapa posterior de actualización de la red.
+Ahora, los retos de esta etapa, que son parte natural de cualquier modelo de aprendizaje automático. El primero es el volumen de datos. Los dos modelos se entrenaron con cuatro fotografías en fluorescencia, con 258 espermatozoides etiquetados, y cuatro en fondo claro, con 45. Con ese material funcionan bien en escenas parecidas a las del entrenamiento, y el reto es ampliar la variedad: otras muestras, otras tinciones, imágenes con compresión. El segundo es la aglomeración: donde hay muchos espermatozoides juntos, el modelo puede repetir o partir contornos, así que ahí los conteos se leen como estimaciones. El sitio acompaña cada resultado con un aviso de contexto sobre el modelo. Los dos retos tienen un camino definido: la etapa posterior de actualización de la red.
 
-Hay además dos pendientes técnicos que afectan lo que van a ver en la demostración. El primero es la escala en micras. Las fotografías que el grupo ha compartido no traen barra de escala ni regla impresa, y los archivos tampoco guardan esa información. Mientras no haya una calibración medida, el sitio usa una equivalencia provisional de sesenta píxeles por micra, que sale de una referencia que nos dieron: una raya de 300 píxeles equivale a cinco micras. Cada resultado avisa que la escala es provisional. La solución definitiva necesita datos que solo el grupo puede dar: con qué cámara y programa se toman las fotos y, de preferencia, una fotografía de una regla de calibración hecha con el mismo equipo. Ya tengo preparado el mensaje para pedirlo. Con esa información se arma una tabla de escalas que se edita sin tocar el código.
+Hay además dos retos técnicos que se ven en la demostración. El primero es la escala en micras. Las fotografías que el grupo ha compartido no traen barra de escala ni regla impresa, y los archivos tampoco guardan esa información. Mientras llega una calibración medida, el sitio trabaja con una equivalencia de referencia de sesenta píxeles por micra, que sale de una raya de 300 píxeles que equivale a cinco micras, y cada resultado indica la escala que se usó. Calibrarla con el equipo del grupo requiere dos datos: con qué cámara y programa se toman las fotos y, de preferencia, una fotografía de una regla de calibración hecha con el mismo equipo. Con eso se arma una tabla de escalas que se edita sin tocar el código.
 
-El segundo pendiente es el tiempo de análisis en el servidor definitivo. En una computadora de escritorio, sin otros procesos, una fotografía grande de fluorescencia tarda unos cuarenta segundos y una de fondo claro entre diez y veinte. En el servidor contratado el tiempo puede ser distinto, quizá varias veces mayor, y falta medirlo. En las reuniones se dijo que dos o tres minutos de espera son aceptables, así que hay margen, y el sitio tiene tiempos de espera amplios y una barra de progreso. Aun así, es una medición que debo confirmar en el servidor real antes de la entrega.
+El segundo reto es el tiempo de análisis en el servidor definitivo. En una computadora de escritorio, sin otros procesos, una fotografía grande de fluorescencia tarda unos cuarenta segundos y una de fondo claro entre diez y veinte. En el servidor contratado el tiempo puede ser distinto, y se mide ahí para ajustar la configuración. En las reuniones se dijo que dos o tres minutos de espera son aceptables, así que hay margen, y el sitio tiene tiempos de espera amplios y una barra de progreso.
 
-Pasemos a las etapas posteriores, acordadas con el grupo para después de la primera entrega. Salvo la actualización de la red, todavía no tienen fecha.
+Pasemos a las etapas posteriores, acordadas con el grupo para después de la primera entrega. Salvo la actualización de la red, se programarán más adelante.
 
-La primera es una capacitación adicional de treinta horas en inteligencia artificial. La segunda es la red neuronal convolucional B, que probablemente será la clasificación de control contra tratamiento que mencioné hace un momento; falta confirmarlo. La tercera es la red multimodal, que combinaría imágenes con datos numéricos y que antes necesita una verificación de viabilidad con sus datos. La cuarta es la actualización de la red actual: reentrenarla con un lote real de unas cincuenta imágenes que generará el grupo, con fecha flexible hasta marzo de 2027.
+La primera es una capacitación adicional de treinta horas en inteligencia artificial. La segunda es la red neuronal convolucional B, que probablemente será la clasificación de control contra tratamiento que mencioné hace un momento; se confirmará con el grupo. La tercera es la red multimodal, que combinaría imágenes con datos numéricos y que antes necesita una verificación de viabilidad con sus datos. La cuarta es la actualización de la red actual: reentrenarla con un lote real de unas cincuenta imágenes que generará el grupo, con fecha flexible hasta marzo de 2027.
 
 Entre la primera entrega y la actualización hay una relación que conviene tener presente. El sitio se entrega funcionando y el modelo se mejora después, con más datos. Mejorar el modelo no obliga a reconstruir el sitio, porque el sitio lee toda su configuración del propio archivo del modelo: cambiar un modelo por otro más nuevo no requiere tocar código. Por eso una parte grande de la capacitación trata del entrenamiento.
 
 ### 1.5 Qué podrá hacer el grupo al terminar la capacitación
 
-*332 palabras · 1.3 min*
+*335 palabras · 1.3 min*
 
 [Pantalla: diapositiva "Al terminar". Lista corta de capacidades.]
 
@@ -131,9 +132,9 @@ Antes del mapa de las sesiones, quiero fijar una meta concreta: qué debería po
 
 Primero, usar el sitio de principio a fin: crear una cuenta, subir imágenes, interpretar cada elemento de los resultados y descargar los archivos para trabajar con ellos. Eso queda claro con la demostración de hoy.
 
-Segundo, leer los resultados con criterio. Un número solo no basta; hay que saber de dónde sale, qué puede distorsionarlo y cuándo desconfiar. Por ejemplo, que el conteo en una zona muy poblada es aproximado, o que una medida en micras depende de una escala que todavía es provisional. Un resultado bien interpretado vale más que uno impecable pero mal entendido.
+Segundo, leer los resultados con criterio. Un número solo no basta; hay que saber de dónde sale, qué puede distorsionarlo y cuándo tomarlo con cautela. Por ejemplo, que el conteo en una zona muy poblada es una estimación, o que una medida en micras depende de la escala con que se calibró. Un resultado bien interpretado vale más que uno impecable pero mal entendido.
 
-Tercero, comprender qué hace la red y qué no. Tener un modelo mental lo bastante claro como para explicárselo a otra persona, prever en qué casos va a fallar y decidir qué datos nuevos le harían falta. A eso dedicamos la última parte de hoy y buena parte de la segunda sesión.
+Tercero, comprender qué hace la red y qué no. Tener un modelo mental lo bastante claro como para explicárselo a otra persona, prever en qué casos tendrá más dificultad y decidir qué datos nuevos le harían falta. A eso dedicamos la última parte de hoy y buena parte de la segunda sesión.
 
 Cuarto, participar en el ciclo de mejora del modelo: anotar imágenes en CVAT, entender cómo se prepara el conjunto de entrenamiento, ejecutar el entrenamiento en Google Colab y evaluar si el modelo nuevo mejora al anterior. Esta es la capacidad que da independencia al grupo.
 
@@ -143,7 +144,7 @@ Para que nada de esto dependa de la memoria, todo lo que veamos queda documentad
 
 ### 1.6 Principios con los que se trabajó
 
-*260 palabras · 1.0 min*
+*262 palabras · 1.0 min*
 
 [Pantalla: diapositiva "Principios". Cuatro viñetas.]
 
@@ -151,7 +152,7 @@ Les cuento también los principios con los que trabajé, porque explican varias 
 
 El primero es la trazabilidad. Cada requisito tiene un origen: una frase de una reunión, con el minuto aproximado de la grabación cuando se pudo. Si alguien pregunta por qué el sitio hace algo, la respuesta debería llevar hasta una decisión del grupo o hasta una decisión técnica documentada.
 
-El segundo es no suponer. Cuando faltaba un dato, como la escala de las imágenes o lo que marca cada tinción, no lo inventé: lo dejé como pendiente y lo señalé en pantalla. Por eso el sitio avisa que la escala es provisional y presenta el modelo como preliminar. Prefiero un aviso honesto a un número que parezca más seguro de lo que es.
+El segundo es no suponer. Cuando faltaba un dato, como la escala de las imágenes o lo que marca cada tinción, no lo inventé: lo dejé por definir con el grupo y lo indiqué en pantalla. Por eso cada resultado señala la escala que se usó y el estado del modelo. Prefiero un aviso claro a un número que parezca más seguro de lo que es.
 
 El tercero es separar lo que decide la red de lo que se mide. Lo mencioné antes y lo repito porque es lo que más pesa en la confianza del sistema: la red localiza y el código mide, así que cualquier medida se verifica sin abrir la red.
 
@@ -161,7 +162,7 @@ Cuando el modelo mejore, el resto del sistema tiene que seguir siendo confiable,
 
 ### 1.7 Servicios que contrata el grupo y capacidad del sitio
 
-*386 palabras · 1.5 min*
+*383 palabras · 1.5 min*
 
 [Pantalla: diapositiva «Servicios». Tres filas: servidor, dominio, Google Colab.]
 
@@ -169,17 +170,17 @@ Una parte del alcance que no se ve en pantalla pero que sostiene todo lo demás 
 
 El primero es el servidor. El sitio corre en un VPS, un servidor virtual privado, con Ubuntu, Nginx como intermediario, Gunicorn como servidor de la aplicación y HTTPS con certificado gratuito. Un hosting compartido normal no sirve, porque no puede ejecutar Flask junto con PyTorch. El plan que recomiendo tiene dos procesadores virtuales y entre dos y cuatro gigabytes de memoria; con un proveedor como Hostinger, la estimación del proyecto para un plan de ese nivel es de entre cien y doscientos cincuenta pesos al mes. Son cifras aproximadas, y el precio final lo da el proveedor al contratar.
 
-El segundo es el dominio, la dirección del sitio. Cuesta del orden de doscientos a cuatrocientos pesos al año, y falta que el grupo defina cuál quiere.
+El segundo es el dominio, la dirección del sitio. Cuesta del orden de doscientos a cuatrocientos pesos al año, y se define con el grupo.
 
 El tercero es Google Colab, donde se entrenan los modelos. Con el tamaño de datos actual alcanza el plan económico, de unos trescientos pesos. Solo si el entrenamiento se queda corto, por ejemplo cuando lleguen las cincuenta imágenes, conviene pasar al plan más caro. Esa fue la lógica que se acordó en la reunión: pagar el plan barato mientras hay unas diez imágenes y el más caro cuando haya cincuenta.
 
-¿Cuánta gente puede usar el sitio a la vez? La estimación es que soporta cientos de visitantes navegando y varios análisis simultáneos, que para un grupo de investigación sobra. Lo importante es la palabra «estimación»: se confirma midiendo en el servidor real, y esa medición forma parte de lo que falta antes de la entrega. Un detalle técnico que explica el límite: los análisis se atienden de uno en uno, y los demás esperan su turno. Con pocos usuarios no se nota; con muchos, la espera se acumularía.
+¿Cuánta gente puede usar el sitio a la vez? La estimación es que soporta cientos de visitantes navegando y varios análisis simultáneos, que para un grupo de investigación sobra. Lo importante es la palabra «estimación»: se confirma midiendo en el servidor real, y esa medición forma parte de las pruebas previas a la entrega. Un detalle técnico que explica el límite: los análisis se atienden de uno en uno, y los demás esperan su turno. Con pocos usuarios no se nota; con muchos, la espera se acumularía.
 
 Dos cosas más sobre el servidor. Primero, el sitio funciona en un contenedor de Docker, de modo que reconstruirlo en otro servidor es repetir unos cuantos comandos documentados en la guía de despliegue. Segundo, los archivos de los modelos no están en el repositorio de código, porque pesan unos ciento setenta y seis megabytes cada uno; se copian a mano al servidor. Lo veremos con detalle en la tercera sesión.
 
 ### 1.8 Cómo está organizada la presentación
 
-*444 palabras · 1.8 min*
+*429 palabras · 1.7 min*
 
 [Pantalla: diapositiva "Las cinco sesiones". Tabla con una fila por sesión.]
 
@@ -199,17 +200,17 @@ Sobre el formato: las sesiones son para explicar y mostrar ejemplos. El código 
 
 Entre sesiones la comunicación sigue abierta. Si al revisar la grabación o los documentos surge una duda, escríbanme, y la respuesta se incorporará al material para que la pregunta de uno sirva a todos. Cada sesión arranca con un repaso breve de la anterior, útil para quien no pudo asistir y para fijar los conceptos que se usan enseguida.
 
-Eso es todo para la introducción. Antes de pasar a la demostración, ¿hay alguna pregunta o comentario sobre el objetivo, el alcance o el calendario?
+Eso es todo para la introducción. Pasemos a la demostración.
 
-[Pausa de 1 minuto para preguntas. Si no hay, continuar.]
+[Cambiar al navegador.]
 
 ## Tema 2. El sitio web en funcionamiento
 
-*7,449 palabras · 29.8 min a 250 palabras por minuto (meta: 30 min, 7,500 palabras)*
+*7,296 palabras · 29.2 min a 250 palabras por minuto (meta: 30 min, 7,500 palabras)*
 
 ### 2.1 Recorrido por el sitio informativo
 
-*588 palabras · 2.4 min*
+*574 palabras · 2.3 min*
 
 [Pantalla: navegador con el sitio abierto en la página de inicio, sin sesión iniciada. Zoom del navegador al 125 % para que se lea bien en la videollamada.]
 
@@ -221,7 +222,7 @@ La página de inicio es sencilla a propósito. Hay un espacio para una imagen pr
 
 Recorro las secciones rápido. En Nosotros irá solamente la explicación de qué es Image Bio Pro, con el texto que prepare el grupo. En Aliados hay una tarjeta por persona, con nombre y fotografía. Infografías y videos tiene dos partes. Arriba están las infografías, como cuadros; al hacer clic en uno se abre una ventana grande con la imagen y su texto, igual que en un blog, y el título de cada infografía va fuera de la imagen, como se pidió. Más abajo irán unos cuatro videos de YouTube que se reproducen en la misma página, sin sacar al visitante del sitio. Y Contacto tiene un formulario con nombre, correo y mensaje.
 
-Sobre ese formulario: funciona y guarda cada mensaje en la base de datos del sitio, pero el envío por correo todavía no está activo, porque falta que el grupo nos diga a qué dirección deben llegar. Es uno de los pendientes, y lo menciono para que no parezca un olvido.
+Sobre ese formulario: funciona y guarda cada mensaje en la base de datos del sitio. La dirección de correo a la que deben llegar se define con el grupo, y con eso el envío queda configurado.
 
 Ahora el selector de idioma. Si hago clic en EN, el sitio completo se traduce al inglés. La traducción la hace el servicio de Google, integrado en la página, así que no mantenemos dos versiones del sitio ni dos juegos de textos. Cuando el grupo cambie un texto en español, la versión en inglés se actualiza sola. A cambio, la calidad es la de un traductor automático, y por eso los nombres propios, como el del proyecto y los nombres de archivo, están marcados para que no se traduzcan. Vuelvo a ES para seguir.
 
@@ -233,7 +234,7 @@ Con eso queda la parte informativa. Lo que sigue es la parte que justifica el pr
 
 ### 2.2 Crear una cuenta e iniciar sesión
 
-*604 palabras · 2.4 min*
+*595 palabras · 2.4 min*
 
 [Pantalla: hacer clic en «Iniciar sesión» en la barra superior. Se abre la página «Mi cuenta».]
 
@@ -247,7 +248,7 @@ Al hacer clic en «Registrarme», el sitio revisa que los tres campos estén lle
 
 Hay tres decisiones de diseño detrás de esto.
 
-La primera: cualquiera puede registrarse sin que un administrador lo apruebe. Así se planteó en las reuniones, como un trámite sencillo. No hay panel de administración para aprobar o dar de baja usuarios. Si más adelante el grupo lo necesita se puede agregar, pero hoy no está en el alcance.
+La primera: cualquiera puede registrarse sin que un administrador lo apruebe. Así se planteó en las reuniones, como un trámite sencillo. Un panel de administración para aprobar o dar de baja usuarios es una ampliación posible si el grupo lo necesita.
 
 La segunda: las contraseñas. El sitio no guarda la que uno escribe, sino una versión cifrada, calculada con una función de resumen que no se puede invertir. Nadie, ni quien administre el servidor, puede ver la contraseña original. Al iniciar sesión, el sitio calcula otra vez el resumen de lo escrito y compara. Las sesiones las maneja una biblioteca estándar de Flask hecha para eso, para no inventar una parte delicada.
 
@@ -265,7 +266,7 @@ Ya estoy dentro, y el sitio me lleva directo a la página de análisis, que es a
 
 ### 2.3 Subir las imágenes y esperar el análisis
 
-*766 palabras · 3.1 min*
+*746 palabras · 3.0 min*
 
 [Pantalla: página «Inteligencia Artificial», con el título «Analizar imagen», el recuadro de carga y el botón.]
 
@@ -273,17 +274,17 @@ Estamos en la página de Inteligencia Artificial. El título es «Analizar image
 
 En el recuadro hay solo lo necesario: un campo para elegir archivos, un botón «Analizar» y otro que dice «Probar con la imagen de ejemplo». Nada más. No hay parámetros ajustables ni opciones avanzadas, y es a propósito: en las reuniones se acordó que la interfaz de análisis tuviera únicamente el botón de ejecutar. Así, dos personas que analicen la misma imagen obtienen el mismo resultado, sin depender de una configuración que alguien movió sin querer.
 
-Fíjense en el texto sobre el campo: «Sube tus imágenes (hasta 10)». Se pueden subir de una a diez imágenes en una sola operación. Debajo hay una nota sobre los formatos aceptados: BMP, PNG o TIFF, y también JPG, con una advertencia, porque el JPG pierde calidad al comprimirse. Esa advertencia pesa más de lo que parece. En las reuniones se insistió en que las imágenes lleguen con la mayor calidad posible, tal como salen del microscopio y sin pasar por aplicaciones de mensajería, que las comprimen. Una imagen comprimida puede alterar los bordes de las células, y con ellos los contornos y las medidas. Siempre que se pueda, conviene subir los archivos originales.
+El texto sobre el campo dice: «Sube tus imágenes (hasta 10)». Se pueden subir de una a diez imágenes en una sola operación. Debajo hay una nota sobre los formatos aceptados: BMP, PNG o TIFF, y también JPG, con una advertencia, porque el JPG pierde calidad al comprimirse. Esa advertencia pesa más de lo que parece. En las reuniones se insistió en que las imágenes lleguen con la mayor calidad posible, tal como salen del microscopio y sin pasar por aplicaciones de mensajería, que las comprimen. Una imagen comprimida puede alterar los bordes de las células, y con ellos los contornos y las medidas. Siempre que se pueda, conviene subir los archivos originales.
 
 [Acción: hacer clic en «Probar con la imagen de ejemplo». Si se prefiere mostrar una fotografía real, usar el campo de carga con una de las imágenes preparadas para la demostración.]
 
 Para la demostración uso el botón de la imagen de ejemplo. Es una imagen sintética, generada con un programa pequeño que forma parte del proyecto, y existe para que cualquiera pruebe el sitio completo sin una fotografía propia. En producción se dejará una sola, como se acordó. Más adelante muestro también resultados de una fotografía real, para que vean cómo se comporta con material de verdad.
 
-Al hacer clic aparece una cubierta que dice «Analizando las imágenes…», con una barra de progreso animada y la indicación «No cierres esta página». Es la barra que se pidió, y es una barra de actividad, no de porcentaje. El análisis de una imagen es una sola operación larga en el servidor, y el navegador no recibe información intermedia hasta que termina. Se podría haber construido algo más sofisticado, con consultas periódicas del avance, pero para esta primera entrega elegí algo simple y robusto: la barra confirma que el sistema está trabajando y que la petición no se perdió.
+Al hacer clic aparece una cubierta que dice «Analizando las imágenes…», con una barra de progreso animada y la indicación «No cierres esta página». Es la barra que se pidió, y es una barra de actividad, no de porcentaje. El análisis de una imagen es una sola operación en el servidor, y el navegador recibe el resultado cuando termina. Para esta entrega elegí una solución simple y robusta: la barra confirma que el sistema está trabajando y que la petición no se perdió.
 
 Mientras esperamos, cuento qué pasa del otro lado, aunque lo veremos con detalle después. La imagen viajó por internet hasta el servidor, que comprobó que su extensión es una de las permitidas. Luego midió el brillo de la fotografía para saber si es de fondo oscuro o claro, y con eso eligió uno de los dos modelos. Preparó la imagen igual que se prepararon las del entrenamiento, la dividió en recortes pequeños llamados teselas, que se solapan entre sí, y pasó cada tesela por la red. La red devolvió un contorno por cada espermatozoide que encontró. Esos contornos se juntaron, se eliminaron los que quedaron repetidos en las zonas de solape y, al final, se midieron. Todo ocurre en el procesador del servidor, sin tarjeta gráfica.
 
-Sobre el tiempo, hablo con franqueza. En mi computadora de desarrollo, una fotografía grande de fluorescencia tarda unos cuarenta segundos, y una de fondo claro entre diez y veinte. En el servidor definitivo los tiempos pueden ser mayores y todavía no los medimos allí. Si suben diez imágenes, el sistema las analiza una tras otra, así que el tiempo total es la suma. Por eso el sitio tiene tiempos de espera amplios, de hasta media hora, y la nota bajo el campo dice que el análisis puede tardar de unos segundos a varios minutos por imagen. En las reuniones se dijo que dos o tres minutos de espera eran aceptables, incluso deseables por percepción comercial. Si en el servidor real el tiempo resulta excesivo hay dos salidas previstas: limitar el número de imágenes por envío, o pasar el análisis a segundo plano con una página de espera.
+Sobre el tiempo. En mi computadora de desarrollo, una fotografía grande de fluorescencia tarda unos cuarenta segundos, y una de fondo claro entre diez y veinte. En el servidor definitivo los tiempos pueden variar, y se miden ahí para ajustar la configuración. Si suben diez imágenes, el sistema las analiza una tras otra, así que el tiempo total es la suma. Por eso el sitio tiene tiempos de espera amplios, de hasta media hora, y la nota bajo el campo dice que el análisis puede tardar de unos segundos a varios minutos por imagen. En las reuniones se dijo que dos o tres minutos de espera eran aceptables, incluso deseables por percepción comercial. Si en algún momento el tiempo resultara excesivo, hay dos salidas previstas: limitar el número de imágenes por envío, o pasar el análisis a segundo plano con una página de espera.
 
 Un detalle más: los modelos se cargan en memoria una sola vez, la primera vez que se usan, y no en cada análisis. Por eso el primer análisis después de reiniciar el servidor tarda un poco más que los siguientes. También explica por qué el servidor corre un solo proceso con varios hilos: cada modelo pesa unos ciento setenta y seis megabytes, y con varios procesos se duplicarían en memoria.
 
@@ -293,7 +294,7 @@ Ya terminó. El sitio me lleva solo a la página de resultados, y es hora de lee
 
 ### 2.4 Leer la página de resultados
 
-*831 palabras · 3.3 min*
+*814 palabras · 3.3 min*
 
 [Pantalla: página «Resultados del análisis». Recorrer de arriba hacia abajo, sin hacer todavía zoom ni descargas.]
 
@@ -301,7 +302,7 @@ Esta es la página de resultados. La voy a leer con ustedes de arriba hacia abaj
 
 El encabezado dice «Resultados del análisis» y, debajo, el nombre de quien hizo el análisis con la fecha y la hora exactas, hasta los segundos. Eso se pidió expresamente en las reuniones; se dijo que era muy importante. Tiene lógica: cuando se acumulan decenas de análisis, la fecha y la hora son lo que permite distinguirlos.
 
-Enseguida hay dos recuadros de aviso, y conviene leerlos porque son parte del resultado. El primero, en amarillo, dice que el modelo es preliminar, entrenado con pocas imágenes, que los resultados son aproximados y que donde hay muchos espermatozoides juntos el conteo puede ser menos exacto. El segundo, en azul, dice que la escala es provisional: se usan sesenta píxeles por micra para todas las imágenes, y las medidas en micras son aproximadas. Los dos avisos se repiten en el PDF. Fue una decisión consciente: quien reciba un informe sin haber visto esta pantalla sabrá con qué cautela leerlo.
+Enseguida hay dos recuadros de contexto, y conviene leerlos porque son parte del resultado. El primero, en amarillo, señala el estado del modelo: está entrenado con un número acotado de imágenes y donde hay muchos espermatozoides juntos el conteo se lee como una estimación. El segundo, en azul, indica la escala que se usó: sesenta píxeles por micra para todas las imágenes. Los dos se repiten en el PDF. Fue una decisión consciente: quien reciba un informe sin haber visto esta pantalla sabrá con qué contexto leerlo.
 
 Ahora el bloque de cada imagen. Con diez imágenes habría diez bloques, cada uno encabezado por el nombre del archivo. Empieza con los mensajes del análisis; aquí aparece uno verde, «La imagen fue analizada con éxito». Pero no es el único posible. El sistema puede avisar que la imagen está en un formato con compresión y que los bordes pueden alterarse; que se contaron muy pocos espermatozoides y la distribución de tamaños no es confiable; o, en el caso extremo, que no se encontraron espermatozoides o que la imagen es de mala calidad y no es factible analizarla. En ese último caso el sitio no entrega números dudosos, sino que dice claramente que no analizó la imagen. Fue una petición explícita: preferir un «no se pudo» honesto a un resultado engañoso que lleve a pensar que la red no sirve.
 
@@ -311,11 +312,11 @@ A la izquierda está la fotografía analizada, con cada espermatozoide marcado y
 
 Los tres recuadros grandes son los datos principales. El primero es el conteo: cuántos espermatozoides se detectaron. El segundo es el área media de los contornos, en píxeles. El tercero es la desviación estándar de esas áreas. Con la media y la desviación estándar se cumplió una petición de la segunda reunión, cuando el grupo preguntó si se podía imprimir la desviación estándar junto con la media.
 
-Debajo, en letra más pequeña, hay dos líneas de texto. La primera describe el largo del espermatozoide: media y desviación estándar en píxeles, con el mínimo y el máximo observados. La segunda pasa el área y el largo a micras con la escala provisional, y por eso lleva la leyenda «escala provisional».
+Debajo, en letra más pequeña, hay dos líneas de texto. La primera describe el largo del espermatozoide: media y desviación estándar en píxeles, con el mínimo y el máximo observados. La segunda pasa el área y el largo a micras con la escala de referencia, y por eso lleva esa leyenda.
 
-Aquí hay un cambio de vocabulario que conviene conocer. Al principio las medidas se llamaban «área de la cabeza» y «largo de la cabeza». Pero los contornos que traza el modelo cubren el espermatozoide visible completo, es decir, la cabeza y el primer tramo de la cola, no solo la cabeza. Por eso la pantalla, el CSV y el PDF dicen hoy «espermatozoide», que es lo que realmente se mide. Las medidas de cabeza a cola (la recta y la distancia real siguiendo la cola doblada) que el grupo pidió en la segunda reunión todavía no están, porque el modelo actual no distingue la frontera entre cabeza y cola. Está en la lista de pendientes, y es una de las razones para actualizar la red con más imágenes.
+Aquí hay un cambio de vocabulario que conviene conocer. Al principio las medidas se llamaban «área de la cabeza» y «largo de la cabeza». Pero los contornos que traza el modelo cubren el espermatozoide visible completo, es decir, la cabeza y el primer tramo de la cola, no solo la cabeza. Por eso la pantalla, el CSV y el PDF dicen hoy «espermatozoide», que es lo que realmente se mide. Las medidas de cabeza a cola (la recta y la distancia real siguiendo la cola doblada) que el grupo pidió en la segunda reunión son uno de los retos de la siguiente etapa: requieren que el modelo distinga la frontera entre cabeza y cola, y por eso la actualización de la red las incluye.
 
-Falta la gráfica, «Distribución de tamaños». Es un histograma: en el eje horizontal está el área del espermatozoide en píxeles, dividida en intervalos, y en el vertical cuántas células cayeron en cada intervalo. El mínimo y el máximo del eje se toman de cada imagen, como se acordó, de modo que la gráfica siempre aprovecha todo su ancho. El sitio no supone ninguna forma para esta distribución: puede salir como campana, con dos picos o de otra manera, lo que digan los datos. Solo dibujamos lo que se midió, sin compararlo con tamaños de referencia de ninguna especie, porque esa interpretación le corresponde al grupo.
+Queda la gráfica, «Distribución de tamaños». Es un histograma: en el eje horizontal está el área del espermatozoide en píxeles, dividida en intervalos, y en el vertical cuántas células cayeron en cada intervalo. El mínimo y el máximo del eje se toman de cada imagen, como se acordó, de modo que la gráfica siempre aprovecha todo su ancho. El sitio no supone ninguna forma para esta distribución: puede salir como campana, con dos picos o de otra manera, lo que digan los datos. Solo dibujamos lo que se midió, sin compararlo con tamaños de referencia de ninguna especie, porque esa interpretación le corresponde al grupo.
 
 Si hubiera subido varias imágenes, al final aparecería una segunda gráfica con los promedios. Para armarla, el sistema toma el mínimo y el máximo de todas las imágenes, divide ese rango en intervalos y calcula, para cada uno, el promedio de células entre las imágenes. Es la forma de resumir un lote entero en una sola figura.
 
@@ -345,7 +346,7 @@ Una nota sobre la forma de medir, porque alguien con formación en análisis de 
 
 ### 2.6 Un ejemplo de lectura de resultados
 
-*528 palabras · 2.1 min*
+*531 palabras · 2.1 min*
 
 [Pantalla: una tabla con números inventados, rotulada «Ejemplo hipotético». Mostrar dos imágenes lado a lado.]
 
@@ -363,15 +364,15 @@ Pero aquí debemos ser cuidadosos. La diferencia entre novecientos y mil cien, �
 
 El histograma. Aunque dos imágenes tengan la misma media, pueden verse muy distintas. Una puede tener todos los tamaños agrupados alrededor de la media, y otra puede tener dos grupos, uno de tamaños chicos y otro de grandes, con una media que cae en medio donde casi no hay células. Por eso nunca hay que leer la media sin mirar la gráfica. El sitio no supone que la distribución sea una campana: dibuja lo que se midió.
 
-Los píxeles y las micras. Si la misma comparación se hiciera en micras, con la escala provisional de sesenta píxeles por micra, los números serían proporcionales y las conclusiones relativas no cambiarían, porque el mismo factor se aplica a todo. Lo que sí cambiaría es cualquier comparación contra un valor externo, por ejemplo uno publicado en micras. Para esas comparaciones la escala debe estar calibrada. Mientras no lo esté, las comparaciones entre imágenes del sitio son válidas y las comparaciones contra la literatura no.
+Los píxeles y las micras. Si la misma comparación se hiciera en micras, con la escala de referencia de sesenta píxeles por micra, los números serían proporcionales y las conclusiones relativas no cambiarían, porque el mismo factor se aplica a todo. Lo que sí cambiaría es cualquier comparación contra un valor externo, por ejemplo uno publicado en micras. Para esas comparaciones la escala debe estar calibrada. Con la escala de referencia, las comparaciones entre imágenes del sitio son válidas; las comparaciones contra la literatura requieren la calibración.
 
-Y la calidad del análisis. Antes de comparar nada, hay que mirar los avisos y la imagen marcada de cada fotografía. Si una de las dos tuvo mucha aglomeración, su conteo es el menos confiable. Eso se ve en el zoom en un minuto, y evita sacar conclusiones de un número que el propio modelo califica como aproximado.
+Y la calidad del análisis. Antes de comparar nada, hay que mirar los avisos y la imagen marcada de cada fotografía. Si una de las dos tuvo mucha aglomeración, su conteo es el menos confiable. Eso se ve en el zoom en un minuto, y evita sacar conclusiones de un número que el propio sitio señala como estimación.
 
 Con este ejemplo quiero mostrar un hábito: leer los resultados del sitio como se lee cualquier medición, preguntando qué tan precisa es, qué la puede alterar y con qué se puede comparar.
 
 ### 2.7 Avisos y casos que conviene conocer
 
-*521 palabras · 2.1 min*
+*477 palabras · 1.9 min*
 
 [Pantalla: volver a la página de análisis. Mostrar, uno por uno, los avisos de error más frecuentes si se desea. Si la demostración en vivo se complica, usar capturas preparadas.]
 
@@ -383,17 +384,17 @@ La segunda es subir un archivo con una extensión no admitida, por ejemplo un do
 
 La tercera es un archivo con extensión válida que no se puede abrir como imagen, por ejemplo porque está dañado. El resultado de esa imagen dice «No se pudo abrir el archivo como imagen. No se analizó», y las demás del lote se analizan con normalidad.
 
-La cuarta es la que más pesa en la confianza: una imagen que se abre bien pero en la que el modelo no encuentra nada. Puede estar desenfocada, ser de mala calidad o no ser de espermatozoides. El sitio responde que no se encontraron espermatozoides o que la imagen es de mala calidad, y que no es factible analizarla. Debo ser sincero en un punto: todavía no existe un aviso que distinga «esta imagen no corresponde a una muestra de espermatozoides» de «esta imagen es de mala calidad». El modelo actual no puede separar las dos situaciones, porque nunca vio ejemplos de imágenes ajenas. Es una mejora prevista, y ayudaría contar con imágenes de otro tipo que sirvan como ejemplos negativos.
+La cuarta es la que más pesa en la confianza: una imagen que se abre bien pero en la que el modelo no encuentra nada. Puede estar desenfocada, ser de mala calidad o no ser de espermatozoides. El sitio responde que no se encontraron espermatozoides o que la imagen es de mala calidad, y que no es factible analizarla. Distinguir entre «esta imagen no corresponde a una muestra de espermatozoides» y «esta imagen es de mala calidad» es un reto de la siguiente etapa: el modelo necesita ver ejemplos de imágenes de otro tipo, que servirían como ejemplos negativos.
 
 La quinta es contar muy pocos espermatozoides. Con menos de tres, el sitio entrega el conteo y las medidas, pero añade un aviso: la distribución de tamaños no es confiable. Tiene sentido estadístico, porque un histograma hecho con una o dos observaciones no representa nada.
 
-La sexta es que los modelos no estén disponibles. Si en el servidor faltaran sus archivos, o la biblioteca que los ejecuta, el sitio no se cae: usa una detección más simple, basada en un umbral de color, y lo anuncia con un recuadro amarillo que dice que es una detección provisional, sin el modelo entrenado, que sirve para probar el sistema y no tiene validez científica. Es una red de seguridad pensada para el desarrollo y para fallos de despliegue. En la operación normal no debería verse nunca, pero si alguien la ve, sabrá qué significa.
+La sexta es que los modelos no estén disponibles. Si en el servidor faltaran sus archivos, o la biblioteca que los ejecuta, el sitio no se cae: usa una detección más simple, basada en un umbral de color, y lo anuncia con un recuadro amarillo. Es una red de seguridad pensada para el desarrollo y para fallos de despliegue. En la operación normal no debería verse nunca, pero si alguien la ve, sabrá qué significa.
 
 En todos estos casos el sistema le dice al usuario qué pasó. Es una decisión de diseño que viene de una frase de la reunión: que la persona diga «ah, no la analizó», en lugar de recibir un resultado dudoso y concluir que la red no sirve.
 
 ### 2.8 Un lote de varias imágenes y los dos modelos
 
-*493 palabras · 2.0 min*
+*496 palabras · 2.0 min*
 
 [Pantalla: volver a «Analizar imagen». Subir un lote preparado de tres imágenes: dos de fluorescencia y una de fondo claro. Mientras corre el análisis, continuar con el texto.]
 
@@ -403,7 +404,7 @@ Selecciono los tres archivos en el campo de carga, que acepta varios a la vez, y
 
 Hay dos modelos porque los dos tipos de fotografía se ven muy distintos. En una, los espermatozoides son brillantes sobre fondo negro; en la otra, oscuros sobre fondo claro. Un solo modelo para ambas habría pedido muchas más imágenes. Con las que tenemos funcionó mejor entrenar uno por tipo. Y el sitio sabe cuál usar midiendo el brillo: toma el valor máximo de los tres canales de color en cada píxel, calcula la mediana de todos esos valores y, si pasa de ciento veintisiete en una escala de cero a doscientos cincuenta y cinco, considera la foto de fondo claro. Si no, de fondo oscuro. No hay aprendizaje en esa decisión. Es comparar un número con un umbral, lo cual la hace fácil de entender, de verificar y de ajustar.
 
-Cada imagen del lote se analiza de forma independiente. El modelo que se aplica a la primera no condiciona el de la segunda, y si una falla, las otras siguen. El sitio también guarda con qué detector se analizó cada imagen, para saber después, al revisar un análisis viejo, qué se usó.
+Cada imagen del lote se analiza de forma independiente. El modelo que se aplica a la primera no condiciona el de la segunda, y si una no se puede analizar, las otras siguen. El sitio también guarda con qué detector se analizó cada imagen, para saber después, al revisar un análisis viejo, qué se usó.
 
 [Acción: cuando termine el análisis, mostrar los tres bloques de resultados y la gráfica de promedios al final.]
 
@@ -415,29 +416,29 @@ Otra, sobre el modelo de fondo claro: se entrenó con muy poco material, cuatro 
 
 ### 2.9 La escala en micras
 
-*550 palabras · 2.2 min*
+*554 palabras · 2.2 min*
 
 [Pantalla: la imagen marcada de una de las fotografías, con la regla en la esquina inferior izquierda. Acercar con el visor hasta que se lea el texto de la regla.]
 
 Dedico unos minutos a la escala, porque es el punto que pide más precisión y el que más dudas genera.
 
-En la esquina inferior izquierda de la imagen marcada hay una regla: una línea de trescientos píxeles con el texto «300 px = 5 micras (escala provisional)». Se añadió para que cualquiera que mire la imagen vea de inmediato qué equivalencia se está usando.
+En la esquina inferior izquierda de la imagen marcada hay una regla: una línea de trescientos píxeles con el texto «300 px = 5 micras». Se añadió para que cualquiera que mire la imagen vea de inmediato qué equivalencia se está usando.
 
-Para entender por qué es provisional hay que partir de algo simple: una fotografía digital sabe cuántos píxeles mide, pero no cuántas micras corresponden a cada uno. Esa relación depende del aumento del objetivo, que en nuestro caso es de cuarenta aumentos, del tamaño del sensor de la cámara, de cualquier adaptador intermedio y de la resolución a la que se guardó la foto. Y las imágenes que el grupo ha compartido no traen barra de escala impresa, ni la cabecera de los archivos guarda esa información.
+Para entender cómo se llega a una escala hay que partir de algo simple: una fotografía digital sabe cuántos píxeles mide, pero no cuántas micras corresponden a cada uno. Esa relación depende del aumento del objetivo, que en nuestro caso es de cuarenta aumentos, del tamaño del sensor de la cámara, de cualquier adaptador intermedio y de la resolución a la que se guardó la foto. Y las imágenes que el grupo ha compartido no traen barra de escala impresa, ni la cabecera de los archivos guarda esa información.
 
 Se podría intentar deducir la escala suponiendo el tamaño de alguna estructura de la imagen. Decidí no hacerlo. Calibrar una medición con el tamaño supuesto de lo mismo que luego se va a medir es un razonamiento circular: el resultado confirmaría la suposición del principio. Cualquier valor de escala tiene que venir de una medida independiente.
 
-Lo que usamos hoy son sesenta píxeles por micra, a partir de una referencia que nos dieron: una raya de trescientos píxeles equivale a cinco micras. Es un valor de trabajo, no una calibración, y por eso cada resultado lo declara: en pantalla, en el CSV y en el PDF.
+Lo que usamos hoy son sesenta píxeles por micra, a partir de una referencia que nos dieron: una raya de trescientos píxeles equivale a cinco micras. Es el valor de referencia mientras se calibra, y por eso cada resultado lo indica: en pantalla, en el CSV y en el PDF.
 
 La solución definitiva tiene tres partes. Primera, conocer la escala real. Hay tres caminos, de más a menos confiable: fotografiar una regla de calibración, es decir, una laminilla con una regla grabada de dimensiones conocidas, con el mismo microscopio y la misma cámara a cuarenta aumentos; usar la calibración del programa de la cámara, si la tiene; o calcularla con la ficha técnica de la cámara y del adaptador. Segunda, guardar el resultado en una tabla de escalas, con un valor de píxeles por micra para cada resolución en que se guardan las fotos. Las del grupo vienen en dos tamaños, de unos mil setecientos noventa y dos y tres mil quinientos ochenta y cuatro píxeles de ancho, y cada resolución necesita su propio valor. La tabla sería un archivo de configuración que se edita sin tocar el código. Tercera, una herramienta pequeña para el desarrollador que, dada la foto de la regla y la distancia conocida entre dos marcas, calcule el valor y lo guarde en la tabla.
 
 Lo que necesito del grupo, y lo pido formalmente, son tres datos. La marca y el modelo de la cámara y del programa con que toman las fotografías. Si cuentan con una regla de calibración y, de ser así, una fotografía de ella a las dos resoluciones. Y si las fotografías de los dos tamaños son del mismo campo del microscopio con distinta resolución o se tomaron con ajustes distintos. Con eso queda resuelto, y los usuarios no tendrán que conocer ni escribir la escala.
 
-Mientras tanto, la recomendación es tratar los píxeles como el dato principal y las micras como una aproximación. Los píxeles son lo que realmente se midió; las micras son esa medida por un factor que aún no está calibrado.
+Mientras se calibra, la recomendación es tratar los píxeles como el dato principal y las micras como una conversión de referencia. Los píxeles son lo que realmente se midió; las micras son esa medida por un factor que se afinará con la calibración.
 
 ### 2.10 Descargar el CSV y el PDF
 
-*566 palabras · 2.3 min*
+*567 palabras · 2.3 min*
 
 [Pantalla: bajar al final de la página de resultados, donde están los botones.]
 
@@ -451,7 +452,7 @@ Para quien trabaja con datos, este es el formato más útil, porque permite segu
 
 [Acción: hacer clic en «Descargar PDF» y abrir el archivo.]
 
-Ahora el PDF, que es un informe. La primera página reúne lo que se pidió: el encabezado con el nombre del proyecto y el lema, el nombre del usuario, la fecha y la hora del análisis y el número de imágenes. El encabezado de cada página lleva el círculo y el nombre del proyecto, y ahí se colocará el logotipo cuando el grupo lo proporcione; en el pie aparecen el usuario, la fecha y el número de página. Después vienen los dos avisos que ya conocemos, escala provisional y modelo preliminar, para que el informe se lea con la cautela correcta aunque circule sin el contexto de la pantalla.
+Ahora el PDF, que es un informe. La primera página reúne lo que se pidió: el encabezado con el nombre del proyecto y el lema, el nombre del usuario, la fecha y la hora del análisis y el número de imágenes. El encabezado de cada página lleva el círculo y el nombre del proyecto, y ahí se colocará el logotipo cuando el grupo lo proporcione; en el pie aparecen el usuario, la fecha y el número de página. Después vienen los dos recuadros de contexto que ya conocemos, escala de referencia y estado del modelo, para que el informe se lea con el contexto correcto aunque circule sin la pantalla.
 
 Luego hay una página por imagen, con el nombre del archivo, los metadatos, los mensajes del análisis, la imagen marcada con sus contornos y su regla de escala, el conteo, la media y la desviación estándar del área y del largo, y la gráfica de distribución. Con varias imágenes se añade al final una página con la gráfica de promedios. Todo va en un solo PDF, como se pidió: diez imágenes no producen diez archivos sino un documento con diez análisis.
 
@@ -487,13 +488,13 @@ Para cerrar el recorrido, salgo con el botón «Salir». El sitio avisa y me dev
 
 ### 2.12 Preguntas frecuentes sobre el uso del sitio
 
-*406 palabras · 1.6 min*
+*399 palabras · 1.6 min*
 
 [Pantalla: diapositiva «Preguntas frecuentes». Cinco preguntas con respuesta corta.]
 
 Con la experiencia de las pruebas, junté las dudas que más probablemente van a surgir al usar el sitio.
 
-¿Qué pasa si olvido mi contraseña? Hoy no hay un enlace automático de recuperación. Es uno de los pendientes que el grupo debe decidir. Mientras tanto, se puede crear una cuenta con otro correo, o avisarme para resolverlo.
+¿Qué pasa si olvido mi contraseña? La recuperación automática de la contraseña se define con el grupo. Mientras tanto, se puede crear una cuenta con otro correo, o avisarme para resolverlo.
 
 ¿Puedo subir más de diez imágenes? No en un solo envío. El límite sale de las reuniones. Si hay más, se hacen varios envíos, y cada uno genera su PDF.
 
@@ -513,7 +514,7 @@ Con la experiencia de las pruebas, junté las dudas que más probablemente van a
 
 ### 2.13 Recomendaciones para usar el sitio en el trabajo diario
 
-*387 palabras · 1.5 min*
+*394 palabras · 1.6 min*
 
 [Pantalla: diapositiva «Buenas prácticas». Cinco viñetas.]
 
@@ -527,45 +528,41 @@ Revisar la imagen marcada antes de confiar en los números. El visor con zoom es
 
 Guardar el CSV. Es el registro completo del análisis, con una fila por espermatozoide, y permite repetir las estadísticas o combinarlas con otros datos. El PDF es el informe para leer y compartir; el CSV es el dato para trabajar. Conviene conservar los dos, con el nombre de la muestra en el nombre del archivo.
 
-Llevar un registro de las imágenes que el modelo analiza mal. Si una fotografía da un resultado claramente incorrecto, por ejemplo muchos contornos partidos o un número de células muy distinto del que se ve a simple vista, vale la pena conservarla y anotar qué pasó. Esas imágenes son las que más aportan al reentrenamiento, porque muestran justo lo que el modelo todavía no resuelve. Un modelo mejora con ejemplos de sus propios errores, y el grupo es quien los tiene.
+Llevar un registro de las imágenes que el modelo analiza con dificultad. Si una fotografía da un resultado claramente distinto de lo que se ve, por ejemplo muchos contornos partidos o un número de células muy diferente del que se cuenta a simple vista, vale la pena conservarla y anotar qué pasó. Esas imágenes son las que más aportan al reentrenamiento, porque muestran justo lo que el modelo puede aprender a resolver. Un modelo mejora con ejemplos de sus propios retos, y el grupo es quien los tiene.
 
 Con esto queda cubierto el uso del sitio. Estas recomendaciones también estarán en el material de apoyo.
 
 ### 2.14 Cierre del tema y puente a la siguiente parte
 
-*279 palabras · 1.1 min*
+*219 palabras · 0.9 min*
 
 [Pantalla: diapositiva resumen «Lo que vimos». Seis viñetas.]
 
-Resumo lo recorrido antes de la pausa.
+Resumo lo recorrido.
 
-El sitio tiene una parte informativa, bilingüe y sencilla, y una parte de análisis a la que se accede con una cuenta gratuita. El usuario sube hasta diez imágenes, el sistema elige el modelo según el brillo de cada una y devuelve el conteo, el área y el largo de cada espermatozoide con su media y desviación estándar, la distribución de tamaños y una imagen con cada contorno marcado. El resultado se explora con zoom y con detalle por espermatozoide, y se exporta a CSV y PDF. Cada análisis queda en el perfil del usuario, es privado, y las imágenes originales se borran. Y el sistema es claro sobre sus límites: avisa que el modelo es preliminar, que la escala es provisional y que no analiza lo que no puede analizar.
+El sitio tiene una parte informativa, bilingüe y sencilla, y una parte de análisis a la que se accede con una cuenta gratuita. El usuario sube hasta diez imágenes, el sistema elige el modelo según el brillo de cada una y devuelve el conteo, el área y el largo de cada espermatozoide con su media y desviación estándar, la distribución de tamaños y una imagen con cada contorno marcado. El resultado se explora con zoom y con detalle por espermatozoide, y se exporta a CSV y PDF. Cada análisis queda en el perfil del usuario, es privado, y las imágenes originales se borran. Y cada resultado indica con claridad la escala que se usó y el estado del modelo.
 
-Para que quede registrado, repito lo que el sitio aún no hace y depende de decisiones o materiales del grupo: enviar por correo los mensajes del formulario de contacto, para lo cual falta la dirección de destino; mostrar los textos, fotografías, infografías, videos y logotipo definitivos; el aviso de privacidad; la recuperación de contraseña, si el grupo decide que la necesita; y la escala calibrada en micras. Ninguno impide usar el análisis, pero todos se irán completando hasta la entrega.
+Para cerrar el recorrido, los retos que se resuelven con el grupo en esta etapa: la dirección de destino del formulario de contacto; los textos, fotografías, infografías, videos y logotipo definitivos; el aviso de privacidad; la recuperación de contraseña, si el grupo decide que la necesita; y la calibración de la escala en micras. Ninguno impide usar el análisis, y todos se van completando hasta la entrega.
 
-Seguramente muchos tienen ahora una pregunta: ¿cómo sabe el sistema dónde hay un espermatozoide? La respuesta es la red neuronal, y a ella dedicamos la última parte de la sesión. Antes tomamos diez minutos de pausa. Anoten durante ese tiempo las preguntas que les hayan surgido de la demostración, porque al regresar atenderemos unas cuantas antes de entrar a la red.
+Seguramente muchos tienen ahora una pregunta: ¿cómo sabe el sistema dónde hay un espermatozoide? La respuesta es la red neuronal, y a ella dedicamos la última parte de la sesión.
 
-[Pausa de 10 minutos. Detener el cronómetro de la grabación si se desea.]
+[Pasar a la diapositiva de título del tercer bloque.]
 
 ## Tema 3. ¿Qué es una red neuronal?
 
-*12,469 palabras · 49.9 min a 250 palabras por minuto (meta: 50 min, 12,500 palabras)*
+*12,391 palabras · 49.6 min a 250 palabras por minuto (meta: 50 min, 12,500 palabras)*
 
-### 3.1 Regreso de la pausa y planteamiento del problema
+### 3.1 Planteamiento del problema
 
-*845 palabras · 3.4 min*
+*815 palabras · 3.3 min*
 
-[Pantalla: diapositiva de título «¿Qué es una red neuronal?». Antes de empezar, dedicar un par de minutos a las preguntas anotadas durante la pausa.]
+[Pantalla: diapositiva de título «¿Qué es una red neuronal?».]
 
-Bienvenidos de nuevo. Antes de entrar a la red, dedico unos minutos a las preguntas que hayan quedado de la demostración. Pueden decirlas en voz alta o escribirlas en el chat.
-
-[Pausa breve para preguntas.]
-
-Entramos entonces a la última parte, y una advertencia sobre cómo voy a explicar. Este tema es de los más técnicos del proyecto y se pone abstracto con facilidad. Para evitarlo voy de lo concreto a lo general: un problema que podamos imaginar, luego la idea que lo resuelve y al final el nombre técnico. No uso ecuaciones. Cuando una idea tenga expresión matemática, diré con palabras qué hace, y quien quiera la fórmula la encontrará en el material de apoyo. Al terminar los cincuenta minutos, todos deberían poder responder tres preguntas: qué es una red neuronal, cómo aprende, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
+Entramos a la última parte, y una advertencia sobre cómo voy a explicar. Este tema es de los más técnicos del proyecto y se pone abstracto con facilidad. Para evitarlo voy de lo concreto a lo general: un problema que podamos imaginar, luego la idea que lo resuelve y al final el nombre técnico. No uso ecuaciones. Cuando una idea tenga expresión matemática, diré con palabras qué hace, y quien quiera la fórmula la encontrará en el material de apoyo. La meta de estos cincuenta minutos es que quede claro cómo responder tres preguntas: qué es una red neuronal, cómo aprende, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
 
 Partamos del problema. Supongan que tienen que escribir un programa que reciba una fotografía y diga cuántos espermatozoides hay. Es la tarea del sitio. ¿Cómo lo harían con programación tradicional, escribiendo reglas explícitas?
 
-La primera idea natural es usar el brillo. Los espermatozoides son brillantes sobre fondo oscuro, así que se podría decir: todo píxel con un brillo mayor a cierto valor pertenece a una célula. Luego se agrupan los píxeles vecinos en manchas, y cada mancha es una célula. Esa técnica se llama umbralización, y el sitio la incluye como mecanismo de emergencia: es la detección provisional que mencioné. Como primera aproximación sirve, pero los problemas aparecen pronto. Las colas también brillan, y no queremos contarlas. Hay manchas rojas difusas, más grandes y fuera de foco, que pasan el umbral sin ser espermatozoides. Hay células encimadas entre sí o sobre las colas de otras, y el umbral las une en una sola mancha. Además, el brillo de una imagen depende de la iluminación, de la exposición y de la tinción: un umbral que funciona en una fotografía puede fallar en la siguiente.
+La primera idea natural es usar el brillo. Los espermatozoides son brillantes sobre fondo oscuro, así que se podría decir: todo píxel con un brillo mayor a cierto valor pertenece a una célula. Luego se agrupan los píxeles vecinos en manchas, y cada mancha es una célula. Esa técnica se llama umbralización, y el sitio la incluye como respaldo: es la detección de emergencia que mencioné. Como primera aproximación sirve, pero los problemas aparecen pronto. Las colas también brillan, y no queremos contarlas. Hay manchas rojas difusas, más grandes y fuera de foco, que pasan el umbral sin ser espermatozoides. Hay células encimadas entre sí o sobre las colas de otras, y el umbral las une en una sola mancha. Además, el brillo de una imagen depende de la iluminación, de la exposición y de la tinción: un umbral que funciona en una fotografía puede fallar en la siguiente.
 
 Se pueden seguir agregando reglas. Si la mancha es muy alargada, probablemente es una cola. Si es muy grande, probablemente es una mancha difusa. Si tiene forma de ocho, probablemente son dos células juntas y hay que partirla por el estrechamiento. Cada regla ayuda un poco y trae sus excepciones. La lista crece, se enreda, y cada excepción nueva obliga a modificar el programa con el riesgo de romper lo que ya funcionaba. Hay problemas en los que escribir las reglas a mano es muy difícil, no por falta de ingenio sino porque las reglas verdaderas son demasiadas, demasiado sutiles y dependen de demasiados detalles.
 
@@ -615,7 +612,7 @@ Resumo con un esquema que usaremos hasta el final. Una red neuronal es una caden
 
 ### 3.3 Cómo aprende una red
 
-*1,033 palabras · 4.1 min*
+*1,016 palabras · 4.1 min*
 
 [Pantalla: diapositiva con un ciclo de cuatro pasos: predecir, comparar, ajustar, repetir.]
 
@@ -649,9 +646,7 @@ Ahora una parte con mucha importancia práctica: la diferencia entre aprender y 
 
 La defensa se enuncia fácil: nunca se juzga la calidad de un modelo con los mismos ejemplos con que se entrenó. Se aparta una parte de las imágenes, el conjunto de validación, que la red no usa para ajustar pesos y que sirve solo para medir qué tan bien generaliza. Si el desempeño en entrenamiento mejora pero el de validación empeora, hay sobreajuste. Esta separación la veremos con detalle en las sesiones dos y cuatro, y es la razón de que, al hablar de las medidas de calidad, siempre aclare que se calcularon sobre imágenes que el modelo no vio al entrenar.
 
-Hagamos una pausa mental para recapitular. Entrenar una red es repetir un ciclo: predecir, medir el error con una función de pérdida, ajustar los pesos siguiendo la pendiente que lo reduce y empezar otra vez con ejemplos nuevos. Las respuestas correctas las dan personas con la anotación. El riesgo principal es memorizar en vez de aprender, y se controla evaluando con imágenes que el modelo nunca vio. Si algo de esto quedó poco claro, es buen momento para preguntar, porque todo lo que sigue se apoya aquí.
-
-[Pausa breve para preguntas. Continuar si no hay.]
+Recapitulemos. Entrenar una red es repetir un ciclo: predecir, medir el error con una función de pérdida, ajustar los pesos siguiendo la pendiente que lo reduce y empezar otra vez con ejemplos nuevos. Las respuestas correctas las dan personas con la anotación. El riesgo principal es memorizar en vez de aprender, y se controla evaluando con imágenes que el modelo nunca vio. Todo lo que sigue se apoya en esto.
 
 ### 3.4 Un ciclo de aprendizaje con un solo peso
 
@@ -671,7 +666,7 @@ Segundo paso: moverse. Se resta al peso el gradiente multiplicado por la tasa de
 
 Segundo ciclo. Predicción: dos punto ocho por tres, ocho punto cuatro. El error es cero punto seis. La pendiente ahora es mucho más suave: menos dos por tres por cero punto seis, menos tres punto seis. El peso sube cero punto dieciocho y queda en dos punto noventa y ocho.
 
-Tercer ciclo. Predicción: ocho punto noventa y cuatro. Error: cero punto cero seis. En dos ciclos más, el peso está prácticamente en tres. Fíjense en el patrón: cada ajuste es proporcional al error, así que los primeros pasos son grandes y los últimos, diminutos. Es exactamente la forma de la curva de pérdida que mostré hace un momento.
+Tercer ciclo. Predicción: ocho punto noventa y cuatro. Error: cero punto cero seis. En dos ciclos más, el peso está prácticamente en tres. El patrón es este: cada ajuste es proporcional al error, así que los primeros pasos son grandes y los últimos, diminutos. Es exactamente la forma de la curva de pérdida que mostré hace un momento.
 
 Ahora veamos qué pasa con una tasa mal elegida. Con cero punto cinco, diez veces mayor. En el primer ciclo, el peso pasa de uno a diecinueve: uno más dieciocho. La predicción es cincuenta y siete, cuando la respuesta es nueve. Nos pasamos por muchísimo, y el error ahora es de menos cuarenta y ocho, mayor que el inicial. En el siguiente ciclo el ajuste sería todavía más brusco, en dirección contraria, y el peso oscilaría con amplitud creciente. Eso es lo que llamo saltar por encima del valle. La pérdida, en lugar de bajar, explota, y ese es el caso en que el cuaderno se detiene y sugiere bajar la tasa de aprendizaje.
 
@@ -789,7 +784,7 @@ Para fijar la diferencia, una pregunta por tipo. La clasificación responde «¿
 
 ### 3.9 Reutilizar una red ya entrenada: el aprendizaje por transferencia
 
-*953 palabras · 3.8 min*
+*942 palabras · 3.8 min*
 
 [Pantalla: diapositiva con dos recorridos paralelos. A la izquierda: «Entrenar desde cero». A la derecha: «Partir de una red preentrenada».]
 
@@ -817,11 +812,11 @@ Paso cinco: se evalúa con imágenes que la red no vio. Cada cierto número de �
 
 Así se consigue un modelo útil con ocho fotografías en total. Sin la transferencia, esas ocho no alcanzarían ni de lejos.
 
-Ahora algo que quiero que se lleven, porque afecta las decisiones futuras del grupo. La transferencia reduce mucho la cantidad de datos necesaria, pero no la elimina. Permite pasar de millones de ejemplos a cientos. Aun así, el modelo depende de la calidad y variedad de los ejemplos con que se afina. Si las ocho fotografías son de la misma muestra, tomadas el mismo día y con la misma tinción, el modelo se especializará en ese caso. Con otra tinción, otra iluminación u otros artefactos, es posible que falle. Por eso la actualización de la red, con un lote de unas cincuenta imágenes en condiciones más variadas, no es un lujo: es lo que vuelve confiable al modelo.
+Ahora, algo que afecta las decisiones futuras del grupo. La transferencia reduce mucho la cantidad de datos necesaria, pero no la elimina. Permite pasar de millones de ejemplos a cientos. Aun así, el modelo depende de la calidad y variedad de los ejemplos con que se afina. Si las ocho fotografías son de la misma muestra, tomadas el mismo día y con la misma tinción, el modelo se especializará en ese caso. Con otra tinción, otra iluminación u otros artefactos, es posible que falle. Por eso la actualización de la red, con un lote de unas cincuenta imágenes en condiciones más variadas, no es un lujo: es lo que vuelve confiable al modelo.
 
 Y una observación de otro tipo. Esta técnica funciona porque existe una red base de calidad y de acceso abierto. Para elegir la Mask R-CNN de la biblioteca torchvision, y no otras alternativas muy populares, pesó la licencia. Hay una familia de modelos muy conocida cuya licencia obliga a publicar el código de cualquier sitio que se sirva en línea con ellos; la de torchvision es permisiva y no impone esa condición. En proyectos como este la elección de la herramienta también tiene una dimensión legal, y conviene decidirla con conocimiento.
 
-Para cerrar esta sección, un ejercicio mental para comprobar que la idea quedó clara: si mañana el grupo quisiera detectar otro tipo de célula, ¿empezaríamos de cero? No. Tomaríamos como base la red que ya tenemos, o incluso la preentrenada original, la afinaríamos con ejemplos anotados del nuevo tipo y tendríamos un modelo nuevo. Por eso en las sesiones dos y cuatro dedicamos tanto tiempo a la anotación y al reentrenamiento: es el procedimiento que da independencia.
+Para cerrar esta sección, un caso: si mañana el grupo quisiera detectar otro tipo de célula, ¿habría que empezar de cero? No. Tomaríamos como base la red que ya tenemos, o incluso la preentrenada original, la afinaríamos con ejemplos anotados del nuevo tipo y tendríamos un modelo nuevo. Por eso en las sesiones dos y cuatro dedicamos tanto tiempo a la anotación y al reentrenamiento: es el procedimiento que da independencia.
 
 ### 3.10 Qué ve realmente la red: brillo, aumento de datos y variaciones
 
@@ -833,7 +828,7 @@ Un par de detalles del cuaderno de entrenamiento conectan directamente con lo qu
 
 El primero: la red no ve colores. El cuaderno convierte cada fotografía a un solo canal de brillo, tomando el valor más alto entre rojo, verde y azul de cada píxel. Por eso la red trabaja con una imagen de una sola capa de números y detecta formas por contraste. El sitio hace lo mismo al analizar una fotografía, para que la preparación sea idéntica a la del entrenamiento.
 
-En las fotografías de fondo claro se invierte el brillo antes de pasarlas por la red, de modo que los espermatozoides oscuros sobre fondo claro se parezcan a los brillantes sobre fondo oscuro. Es una hipótesis de trabajo que aún no está comprobada del todo, y está anotada como tal en el cuaderno.
+En las fotografías de fondo claro se invierte el brillo antes de pasarlas por la red, de modo que los espermatozoides oscuros sobre fondo claro se parezcan a los brillantes sobre fondo oscuro. Es un criterio de preparación que conviene confirmar con más imágenes de fondo claro, y así consta en el cuaderno.
 
 El segundo detalle: el aumento de datos. Con pocas imágenes, el modelo corre el riesgo de memorizarlas. Una técnica barata contra eso es mostrarle, en cada época, versiones ligeramente distintas de los mismos recortes. El cuaderno aplica volteos y giros de noventa grados, un acercamiento o alejamiento de entre el ochenta por ciento y el ciento veinticinco por ciento, cambios de brillo y de contraste, y un poco de ruido. Todo al azar, en cada recorte.
 
@@ -845,13 +840,13 @@ Un tercer detalle, relacionado con el tamaño. Los recortes son de quinientos do
 
 ### 3.11 De la red a la medición: cómo se reparten las tareas
 
-*600 palabras · 2.4 min*
+*596 palabras · 2.4 min*
 
 [Pantalla: diagrama de flujo con cinco cajas: imagen → red neuronal (contornos) → medición con código (área, largo) → estadística (media, desviación, histograma) → CSV y PDF.]
 
 Con lo visto hasta ahora podemos leer el diagrama de pantalla, que resume cómo se reparten las tareas en el sistema. Ya lo mencioné de pasada; ahora que conocemos mejor la red, lo veo con más detalle.
 
-La imagen entra por la izquierda. La red neuronal es la primera caja y produce un conjunto de contornos: por cada espermatozoide que encuentra, una forma cerrada que lo delimita. Noten que la red no produce medidas. No dice «esta célula tiene tanta área». Dice «esta es la forma de una célula».
+La imagen entra por la izquierda. La red neuronal es la primera caja y produce un conjunto de contornos: por cada espermatozoide que encuentra, una forma cerrada que lo delimita. La red no produce medidas. No dice «esta célula tiene tanta área». Dice «esta es la forma de una célula».
 
 Desde ahí el trabajo pasa a código convencional. Con la forma en la mano, es un problema geométrico: el área es el número de píxeles que quedan dentro y el largo es la longitud de la curva a lo largo de la forma. Esos cálculos usan OpenCV y numpy, bibliotecas conocidas y probadas, y son deterministas: repetir el cálculo con el mismo contorno da exactamente las mismas cifras. Después se resume con estadística elemental: media, desviación estándar, mínimo, máximo, histograma. Y al final se generan los archivos.
 
@@ -863,29 +858,29 @@ La segunda es la flexibilidad. Si el grupo decide cambiar la definición de lo q
 
 La tercera es la economía de datos. Con pocos ejemplos es mucho más fácil enseñarle a una red una sola cosa bien, dónde está el espermatozoide, que pedirle además que aprenda a medir. Cada tarea adicional exige ejemplos adicionales.
 
-Precisión sobre lo que significa que el modelo tenga una sola clase. La red se entrenó para distinguir dos cosas: espermatozoide y fondo. No distingue entre cabeza y cola, ni entre una célula y otra estructura que se le parezca. Marcará cualquier cosa que se parezca lo bastante a lo que vio en los ejemplos, y puede dejar pasar un espermatozoide inusual que no se parezca. Por eso los avisos de pantalla recomiendan revisar la imagen marcada.
+Precisión sobre lo que significa que el modelo tenga una sola clase. La red se entrenó para distinguir dos cosas: espermatozoide y fondo. No distingue entre cabeza y cola, ni entre una célula y otra estructura que se le parezca. Marcará cualquier cosa que se parezca lo bastante a lo que vio en los ejemplos, y puede dejar pasar un espermatozoide inusual que no se parezca. Por eso conviene revisar la imagen marcada.
 
-Esto conecta con algo que vimos en la demostración: los contornos cubren el espermatozoide visible completo y no solo la cabeza. No es un error del código sino un reflejo de cómo se etiquetaron las imágenes de entrenamiento. Por ahora, quienes anotaron marcaron la cabeza y el primer tramo de la cola, y la frontera entre ambas está sin decidir. La red aprendió a reproducir esa decisión. Si el grupo define un criterio, por ejemplo el que se sugirió en una de las reuniones, tomar como cabeza lo que quede dentro de un radio fijo desde la punta, habría que reanotar las imágenes con ese criterio y reentrenar. Es un buen ejemplo de cómo una decisión de anotación se convierte, sin que nadie lo programe, en un comportamiento del modelo.
+Esto conecta con algo que vimos en la demostración: los contornos cubren el espermatozoide visible completo y no solo la cabeza. No es un error del código sino un reflejo de cómo se etiquetaron las imágenes de entrenamiento. Por ahora, quienes anotaron marcaron la cabeza y el primer tramo de la cola, y la frontera entre ambas se define con el grupo. La red aprendió a reproducir esa decisión. Si el grupo define un criterio, por ejemplo el que se sugirió en una de las reuniones, tomar como cabeza lo que quede dentro de un radio fijo desde la punta, habría que reanotar las imágenes con ese criterio y reentrenar. Es un buen ejemplo de cómo una decisión de anotación se convierte, sin que nadie lo programe, en un comportamiento del modelo.
 
-### 3.12 Qué esperar de un modelo entrenado con pocos ejemplos
+### 3.12 Los retos de un modelo entrenado con pocos ejemplos
 
-*688 palabras · 2.8 min*
+*685 palabras · 2.7 min*
 
-[Pantalla: diapositiva con dos columnas: «Qué hace bien» y «Dónde falla».]
+[Pantalla: diapositiva con dos columnas: «Qué hace bien» y «Retos».]
 
 Para completar la explicación, hablemos de expectativas, porque la forma más común de decepcionarse con un modelo así es esperar de él más de lo que sus datos pueden dar. Voy a ser concreto, con lo que sabemos de nuestros dos modelos.
 
 Primero, lo que hace bien. En imágenes parecidas a las de su entrenamiento, el modelo localiza la mayoría de los espermatozoides y traza contornos razonables. Al verificar el sitio contra el cuaderno de entrenamiento, dio los mismos conteos en cinco fotografías de prueba: ciento catorce, nueve, dos, uno y cuarenta y tres contornos. Eso demuestra que el sitio aplica el modelo exactamente igual que en el entrenamiento, que no es poca cosa, porque una diferencia mínima en la preparación de la imagen basta para alterar los resultados. Es una comprobación de integración, no de calidad científica, y quiero ser claro en eso.
 
-Dónde falla: hay cuatro limitaciones.
+Los retos son cuatro.
 
-La primera es la aglomeración. Donde hay muchos espermatozoides juntos, el modelo repite o parte contornos y no encuentra algunos. En las mediciones con el modelo de fluorescencia, en las zonas más amontonadas encontró unos ochenta y cinco de cada cien. Por eso el aviso dice que ahí el conteo es aproximado. Tiene explicación: cuando dos objetos se superponen, el límite entre ellos es ambiguo incluso para una persona, y con pocos ejemplos de ese caso, la red no tuvo oportunidades suficientes de aprender cómo resolverlo.
+La primera es la aglomeración. Donde hay muchos espermatozoides juntos, el modelo repite o parte contornos y no encuentra algunos. En las mediciones con el modelo de fluorescencia, en las zonas más amontonadas encontró unos ochenta y cinco de cada cien. Por eso ahí el conteo se lee como una estimación. Tiene explicación: cuando dos objetos se superponen, el límite entre ellos es ambiguo incluso para una persona, y con pocos ejemplos de ese caso, la red no tuvo oportunidades suficientes de aprender cómo resolverlo.
 
-La segunda es la variedad. El modelo vio cuatro fotografías de cada tipo, todas de un mismo conjunto de escenas. No sabemos cómo se comportará con otras muestras, tinciones o intensidades de iluminación, ni con fotos que hayan pasado por compresión. Puede funcionar muy bien o fallar de maneras que no anticipamos. La única forma de saberlo es probar con imágenes nuevas y comparar con un conteo hecho por una persona.
+La segunda es la variedad. El modelo vio cuatro fotografías de cada tipo, todas de un mismo conjunto de escenas. No sabemos cómo se comportará con otras muestras, tinciones o intensidades de iluminación, ni con fotos que hayan pasado por compresión. Puede funcionar muy bien o tener dificultades que no anticipamos. La única forma de saberlo es probar con imágenes nuevas y comparar con un conteo hecho por una persona.
 
 La tercera es lo que no es un espermatozoide. La red nunca vio ejemplos negativos de otro tipo de imagen, así que no puede decir «esto no es una muestra». Ante una fotografía de algo muy distinto lo más probable es que no encuentre nada y el sitio avise que no se puede analizar, pero no hay garantía: podría marcar manchas que se le parezcan. De ahí la utilidad de contar con imágenes de «basura» para reentrenar.
 
-La cuarta tiene que ver con la medición y no con la red. La escala en micras es provisional y las medidas de cabeza a cola no están implementadas. No son fallas del modelo, pero limitan lo que se puede afirmar con los resultados.
+La cuarta tiene que ver con la medición y no con la red: calibrar la escala en micras y sumar las medidas de cabeza a cola. No dependen del modelo actual, y definen hasta dónde se puede afirmar algo en micras con los resultados.
 
 ¿Qué mejora un modelo así? La respuesta es sencilla y bastante general en aprendizaje automático: más datos, más variados y mejor etiquetados. Más, porque cada ejemplo aporta información. Más variados, porque los nuevos deben cubrir las condiciones en que el modelo se usará de verdad. Y mejor etiquetados, porque la calidad de las anotaciones fija el techo de lo que el modelo puede aprender. Por eso, cuando llegue el lote de cincuenta imágenes, el trabajo de calidad estará sobre todo en la anotación, no en el código.
 
@@ -895,17 +890,17 @@ También anticipo una pregunta frecuente: ¿el modelo mejora solo con el uso? No
 
 ### 3.13 Un caso práctico: qué hacer ante una imagen mal analizada
 
-*680 palabras · 2.7 min*
+*685 palabras · 2.7 min*
 
 [Pantalla: diapositiva «Una imagen que sale mal». Un esquema de decisión con cuatro preguntas.]
 
-Para llevar lo anterior a la práctica, un caso hipotético pero muy probable. Alguien del grupo sube una fotografía y, al revisar la imagen marcada, el resultado no lo convence: hay muchos contornos partidos, o falta un grupo de espermatozoides. ¿Qué hace?
+Para llevar lo anterior a la práctica, un caso hipotético pero muy probable. Alguien del grupo sube una fotografía y, al revisar la imagen marcada, el resultado no lo convence: hay muchos contornos partidos, o hay un grupo de espermatozoides sin marcar. ¿Qué hace?
 
 La primera pregunta es de diagnóstico: ¿qué tipo de error es? Conviene distinguir tres. Omisiones, es decir, espermatozoides sin marcar. Falsos positivos, es decir, marcas sobre algo que no es un espermatozoide, como una mancha o un resto. Y errores de forma: un contorno que une dos células en una o que parte una en dos. Cada tipo apunta a una causa distinta y ayuda a decidir qué hacer.
 
 La segunda es sobre la imagen: ¿es del tipo para el que se entrenó el modelo? Hay varias comprobaciones sencillas. El formato: si la fotografía es un JPG o pasó por una aplicación de mensajería, la compresión pudo alterar los bordes. El sitio avisa cuando hay compresión, y si ese aviso aparece, lo primero es repetir el análisis con el archivo original. El tipo de fondo: el sitio decide el modelo por el brillo de la imagen, y una fotografía en el límite, ni claramente oscura ni claramente clara, podría recibir un modelo que no corresponde. La tinción, la iluminación y el aumento: si son muy distintos de los del entrenamiento, el modelo podría estar fuera de su zona de confianza. Recordemos que los modelos actuales se entrenaron con aumentos de cuarenta y con unas pocas escenas.
 
-La tercera es sobre la densidad: ¿el error se concentra en las zonas más aglomeradas? Si es así, estamos ante la limitación conocida del modelo, y el aviso del sitio ya la anticipaba. No es una falla de esa imagen sino del estado actual de la red. Lo recomendable es tomar nota y, si hace falta un conteo exacto, contar a mano la zona aglomerada con ayuda del zoom y usar el resultado del sitio como referencia.
+La tercera es sobre la densidad: ¿el error se concentra en las zonas más aglomeradas? Si es así, estamos ante uno de los retos conocidos del modelo, y el contexto del sitio ya lo señalaba. No es un problema de esa imagen sino de la etapa actual de la red. Lo recomendable es tomar nota y, si hace falta un conteo exacto, contar a mano la zona aglomerada con ayuda del zoom y usar el resultado del sitio como referencia.
 
 La cuarta es sobre qué hacer con el resultado: ¿se corrige o se descarta? Recomiendo no modificar a mano el CSV sin dejar constancia. Es mejor conservar el resultado tal como lo entregó el sistema, anotar aparte la corrección y documentar la diferencia. Así se mantiene la trazabilidad, y la diferencia entre el conteo del modelo y el de una persona es un dato valioso en sí mismo: una estimación directa del error del modelo.
 
@@ -917,11 +912,11 @@ Por último, una advertencia sobre la tentación de ajustar el modelo para que �
 
 ### 3.14 Ideas que conviene matizar
 
-*707 palabras · 2.8 min*
+*706 palabras · 2.8 min*
 
 [Pantalla: diapositiva «Seis ideas que conviene matizar». Cada una se presenta con una frase corta y se desarrolla de palabra.]
 
-Antes de repasar el vocabulario, comento seis ideas que circulan mucho cuando se habla de redes neuronales y que influyen en cómo interpretamos los resultados del sitio. No las traigo porque crea que el grupo las comparte, sino porque son las que más aparecen cuando el tema llega a personas ajenas al proyecto, y es probable que ustedes tengan que explicarlas.
+Antes de repasar el vocabulario, comento seis ideas que circulan mucho cuando se habla de redes neuronales y que influyen en cómo interpretamos los resultados del sitio. No las traigo porque crea que el grupo las comparte, sino porque son las que más aparecen cuando el tema llega a personas ajenas al proyecto, y es probable que haya que explicarlas.
 
 La primera: que la red entiende lo que ve. Lo dije al comienzo, pero es la más persistente. La red calcula. Encontró una combinación de pesos que, ante ciertos patrones de píxeles, produce ciertas salidas. En la práctica eso significa que ante una situación que nunca vio no razona por analogía ni pide ayuda: produce la salida que sus pesos dictan, con la misma seguridad de siempre.
 
@@ -959,25 +954,25 @@ Para cerrar el bloque conceptual, respondo las preguntas que suelen aparecer en 
 
 ¿Qué pasa si salen versiones nuevas de PyTorch? El archivo de cada modelo guarda con qué versión se entrenó, y el servidor debe usar versiones compatibles. Si en el futuro se actualiza PyTorch, hay que probar que los modelos sigan dando los mismos resultados. Lo mencionaré en la guía de despliegue, en la tercera sesión.
 
-### 3.16 Preguntas de comprobación para el grupo
+### 3.16 Tres casos para ilustrar lo visto
 
-*319 palabras · 1.3 min*
+*297 palabras · 1.2 min*
 
-[Pantalla: diapositiva «Para pensar». Una pregunta a la vez. Dejar entre veinte y treinta segundos de silencio antes de responder, y aceptar respuestas por voz o por el chat.]
+[Pantalla: diapositiva «Tres casos». Presentar un caso a la vez y dar enseguida su resolución.]
 
-Antes de pasar al vocabulario, tres preguntas rápidas para comprobar que las ideas quedaron claras. No son un examen; sirven para ver si hay algo que conviene repetir.
+Antes de pasar al vocabulario, tres casos breves que reúnen lo que acabamos de ver. Cada uno se plantea y se resuelve.
 
-Primera pregunta. Una red aprende a detectar espermatozoides con cuatro fotografías en las que todos los espermatozoides miran hacia la derecha. Se le muestra una fotografía nueva donde miran hacia la izquierda, y falla. ¿Qué pasó y cómo se evita? La respuesta es sobreajuste a un detalle accidental: la orientación. Se evita con más variedad en los datos y con aumento de datos, en este caso girando y volteando los recortes durante el entrenamiento. Es justo lo que hace el cuaderno.
+Primer caso. Una red aprende a detectar espermatozoides con cuatro fotografías en las que todos los espermatozoides miran hacia la derecha. Se le muestra una fotografía nueva donde miran hacia la izquierda, y no la reconoce bien. ¿Qué pasó? Un sobreajuste a un detalle accidental: la orientación. Se evita con más variedad en los datos y con aumento de datos, en este caso girando y volteando los recortes durante el entrenamiento. Es justo lo que hace el cuaderno.
 
-Segunda pregunta. El sitio informa un conteo de ciento catorce espermatozoides, pero una persona cuenta ciento treinta a simple vista. ¿Cuál es el siguiente paso? Primero, abrir la imagen marcada y localizar dónde están los que faltan. Si están en una zona muy aglomerada, es la limitación conocida del modelo y no una falla de esa imagen. Si están dispersos y sin marcar, es una señal de que la imagen se parece poco a las del entrenamiento, y vale la pena conservarla como candidata para el próximo lote de anotación. En ninguno de los dos casos se corrige el CSV a mano sin dejar constancia.
+Segundo caso. El sitio informa un conteo de ciento catorce espermatozoides, pero una persona cuenta ciento treinta a simple vista. ¿Cuál es el siguiente paso? Primero, abrir la imagen marcada y localizar dónde están los que faltan. Si están en una zona muy aglomerada, es uno de los retos conocidos del modelo y no un problema de esa imagen. Si están dispersos y sin marcar, es una señal de que la imagen se parece poco a las del entrenamiento, y vale la pena conservarla como candidata para el próximo lote de anotación. En ninguno de los dos casos se corrige el CSV a mano sin dejar constancia.
 
-Tercera pregunta. Un colega propone: «para mejorar el modelo, sigamos entrenándolo con las mismas ocho fotografías hasta que la pérdida llegue a cero». ¿Qué le responderían? Que la pérdida de entrenamiento puede llegar a cero por memorización, sin que el modelo mejore con imágenes nuevas, y que la medida que importa es la de validación. Lo que mejoraría el modelo son imágenes nuevas, variadas y bien anotadas.
+Tercer caso. Alguien propone: «para mejorar el modelo, sigamos entrenándolo con las mismas ocho fotografías hasta que la pérdida llegue a cero». ¿Funcionaría? La pérdida de entrenamiento puede llegar a cero por memorización, sin que el modelo mejore con imágenes nuevas, y la medida que importa es la de validación. Lo que mejoraría el modelo son imágenes nuevas, variadas y bien anotadas.
 
-Si alguna de las respuestas no les salió, o si les salió pero no estaban seguros, nos sirve para saber qué repasar. Pueden dejar su duda en el chat o plantearla en el espacio de preguntas al final.
+Los tres casos apuntan a lo mismo: lo que el modelo aprende depende de los datos, y lo que se afirma sobre él depende de cómo se mida.
 
 ### 3.17 Repaso del vocabulario
 
-*596 palabras · 2.4 min*
+*597 palabras · 2.4 min*
 
 [Pantalla: diapositiva «Vocabulario de la sesión», con una lista de términos. Recorrerla de arriba hacia abajo sin prisa.]
 
@@ -1003,11 +998,11 @@ La inferencia es el uso de un modelo ya entrenado para analizar una imagen nueva
 
 Y tres términos que no son de la red pero que ya usamos: el contorno, la forma cerrada que delimita a un espermatozoide; la imagen marcada, la fotografía con los contornos dibujados y numerados; y la escala, la equivalencia entre píxeles y micras.
 
-No tienen que memorizar la lista. Quedará en el material de apoyo, y el repositorio tiene además un glosario que se irá ampliando. Cuando oigan alguno de estos términos en las próximas sesiones, recuerden la imagen que lo acompañaba: el filtro que se desliza, el paso en la montaña con niebla, el estudiante que memoriza el examen de práctica, el músico que cambia de instrumento.
+No tienen que memorizar la lista. Quedará en el material de apoyo, y el repositorio tiene además un glosario que se irá ampliando. Cuando oigan alguno de estos términos en las próximas sesiones, sirve recordar la imagen que lo acompañaba: el filtro que se desliza, el paso en la montaña con niebla, el estudiante que memoriza el examen de práctica, el músico que cambia de instrumento.
 
 ### 3.18 Lo que viene en la siguiente sesión
 
-*374 palabras · 1.5 min*
+*372 palabras · 1.5 min*
 
 [Pantalla: diapositiva «Sesión 2: la red y sus datos», con tres puntos.]
 
@@ -1019,25 +1014,25 @@ Veremos también un problema práctico que mencioné de pasada en la demostraci�
 
 La segunda parte de esa sesión es de datos y entrenamiento. Cómo se anotan las imágenes en CVAT, una herramienta de anotación que corre en una computadora local, de modo que las imágenes no salen de ella. Qué es el formato COCO, la manera estandarizada de guardar anotaciones, y cómo el cuaderno de Colab lee ese archivo y revisa que todo cuadre con las fotografías. Y el entrenamiento paso a paso, con las mismas ideas de hoy: la pérdida, las épocas, la validación.
 
-Para prepararse piden poco. Con una cuenta de Google tienen lo necesario para abrir el cuaderno de Colab; los enlaces se comparten antes de la sesión y no hay que instalar nada. Si quieren llegar con una pregunta lista, les sugiero esta: ¿qué criterio usarían para decidir si algo en una imagen cuenta como espermatozoide? Es la pregunta de fondo de la anotación, y habrá tiempo para discutirla.
+Para prepararse piden poco. Con una cuenta de Google tienen lo necesario para abrir el cuaderno de Colab; los enlaces se comparten antes de la sesión y no hay que instalar nada. Una pregunta que conviene tener presente de cara a esa sesión: ¿qué criterio decide si algo en una imagen cuenta como espermatozoide? Es la pregunta de fondo de la anotación, y se retoma ahí.
 
 Recordemos el panorama de las cinco sesiones. Hoy vimos el sitio y la idea de red neuronal. En la segunda, la red y sus datos. En la tercera, cómo está construido el sitio por dentro. En la cuarta, cómo se ajusta y se evalúa el modelo. Y en la quinta recorremos el código y cerramos.
 
 ### 3.19 Cierre de la sesión
 
-*317 palabras · 1.3 min*
+*323 palabras · 1.3 min*
 
 [Pantalla: diapositiva final «Gracias». Con el correo de contacto del desarrollador.]
 
 Llegamos al final del contenido. Un resumen breve y abrimos las preguntas.
 
-Hoy vimos tres cosas. El objetivo y el alcance de Image Bio Pro: un sitio que analiza imágenes de fluorescencia de espermatozoides, los cuenta, mide su área y su largo, muestra la distribución de tamaños y exporta los resultados. El sitio en funcionamiento: la cuenta, la carga de imágenes, la lectura de resultados, el zoom, la escala provisional, los avisos, el CSV, el PDF y el historial. Y la idea de red neuronal: una cadena de capas con pesos ajustables que aprende de ejemplos anotados, ve las imágenes mediante filtros que se aprenden, no empieza de cero gracias al aprendizaje por transferencia y debe evaluarse siempre con imágenes que no vio.
+Hoy vimos tres cosas. El objetivo y el alcance de Image Bio Pro: un sitio que analiza imágenes de fluorescencia de espermatozoides, los cuenta, mide su área y su largo, muestra la distribución de tamaños y exporta los resultados. El sitio en funcionamiento: la cuenta, la carga de imágenes, la lectura de resultados, el zoom, la escala de referencia, los avisos de contexto, el CSV, el PDF y el historial. Y la idea de red neuronal: una cadena de capas con pesos ajustables que aprende de ejemplos anotados, ve las imágenes mediante filtros que se aprenden, no empieza de cero gracias al aprendizaje por transferencia y debe evaluarse siempre con imágenes que no vio.
 
 Si tuviera que quedarme con una sola idea, sería esta: la red localiza, el código mide y las personas verifican. Ese reparto hace confiable al sistema aunque la red sea imperfecta, y permite que el grupo lo mantenga y lo mejore.
 
-Antes de las preguntas, lo que queda pendiente y depende de ustedes. Primero, los datos para calibrar la escala: la cámara y el programa con que toman las fotografías, si cuentan con una regla de calibración y si las fotografías de los dos tamaños son del mismo campo. Segundo, el correo al que deben llegar los mensajes del formulario de contacto. Tercero, los contenidos del sitio: textos, fotografías, infografías, videos, logotipo y aviso de privacidad. Cuarto, la confirmación de las fechas y los datos prácticos de las siguientes sesiones.
+Antes de las preguntas, lo que se resuelve en conjunto con el grupo. Primero, los datos para calibrar la escala: la cámara y el programa con que toman las fotografías, si cuentan con una regla de calibración y si las fotografías de los dos tamaños son del mismo campo. Segundo, el correo al que deben llegar los mensajes del formulario de contacto. Tercero, los contenidos del sitio: textos, fotografías, infografías, videos, logotipo y aviso de privacidad. Cuarto, la confirmación de las fechas y los datos prácticos de las siguientes sesiones.
 
-También agradezco de antemano sus comentarios sobre esta presentación. Por ser la primera sesión, me interesa saber si el nivel de profundidad fue el adecuado, si hubo partes demasiado rápidas o demasiado lentas y si hay temas que quisieran ver con más detalle en las siguientes. Pueden decírmelo ahora, en el chat, o por correo.
+También agradezco de antemano sus comentarios sobre esta presentación. Por ser la primera sesión, me interesa saber si el nivel de profundidad fue el adecuado, si hubo partes demasiado rápidas o demasiado lentas y si hay temas que quisieran ver con más detalle en las siguientes. Pueden hacérmelo llegar en el espacio de preguntas o por correo.
 
 Gracias por su atención. Abrimos el espacio de preguntas.
 
