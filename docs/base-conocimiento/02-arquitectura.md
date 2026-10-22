@@ -4,7 +4,7 @@
 Navegador → Nginx → Gunicorn → aplicación Flask → modelo (detección) → medición → resultados (pantalla, CSV, PDF).
 
 ## Servidor y despliegue
-- VPS de Hostinger, plan **KVM 1** (un núcleo de CPU). Cifras exactas de RAM y precio: [COMPLETAR].
+- VPS de Hostinger, plan **KVM 1** (un núcleo de CPU, 4 GB de RAM y 50 GB de almacenamiento según las especificaciones del plan). El precio es un dato irrelevante para el proyecto: se pagaron 2,520 pesos por 2 años.
 - Ubuntu con Docker, Nginx como proxy, HTTPS con Certbot.
 - Gunicorn con un solo proceso y 4 hilos, tiempo máximo de 1800 s por petición. Se usa un solo proceso porque cada modelo ocupa unos 176 MB en memoria y varios procesos los duplicarían.
 - Nginx acepta envíos de hasta 300 MB.

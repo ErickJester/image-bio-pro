@@ -5,7 +5,7 @@ Respuestas breves, para decirse en voz alta. Los datos [COMPLETAR] se desconocen
 ## Sobre la calidad del modelo
 
 **1. ¿Qué precisión tiene?**
-En las zonas de validación, que la red no vio al aprender, el AP50 de fluorescencia es 0.91. Son zonas de las mismas fotos y no muestras independientes, y en zonas muy amontonadas la red encuentra unos 85 de cada 100. Por eso lo presento como un modelo preliminar.
+En las zonas de validación, que la red no vio al aprender, el modelo de fluorescencia tiene un AP50 de 0.89, una precisión de 0.84 y un recall de 0.89: de cada 100 marcas unas 84 son correctas, y de cada 100 espermatozoides encuentra unos 89. Son zonas de las mismas fotos y no muestras independientes, con solo 66 espermatozoides, y el mejor punto del modelo se eligió con esa misma validación, así que las cifras son algo optimistas. Por eso lo presento como un modelo preliminar.
 
 **2. Con solo 4 fotos, ¿no hay sobreajuste?**
 Son pocas fotos, pero con cientos de etiquetas (258 en fluorescencia), y partimos de un modelo preentrenado. Aun así no sabemos cómo generaliza a otras muestras: más datos variados es la mejora principal.
@@ -14,7 +14,7 @@ Son pocas fotos, pero con cientos de etiquetas (258 en fluorescencia), y partimo
 Es real para esa validación, pero no prueba calidad: solo hay 2 espermatozoides ahí. El propio cuaderno avisa que es poco confiable.
 
 **4. ¿Cuántos espermatozoides se le escapan o se le inventan?**
-En fluorescencia amontonada encuentra unos 85 de cada 100. En campo claro, en la foto con más células, marcó 42 donde hay 38 etiquetados. Precisión y recall de fluorescencia: dato no disponible.
+En fluorescencia, en la validación, de 66 espermatozoides la red marcó 70: se le escapan unos 11 de cada 100 (recall 0.89) y unas 16 de cada 100 marcas son falsas (precisión 0.84). En fotos con pocas células tiende a marcar de más, por ejemplo 11 detectados donde hay 6 etiquetados. En campo claro, en la foto con más células, marcó 42 donde hay 38 etiquetados.
 
 **5. ¿Y si subo una imagen que no es de espermatozoides?**
 Si no encuentra nada, avisa que no se pudo analizar. No hay garantía: puede marcar manchas o sombras, lo que llamamos falso positivo o alucinación. Más datos variados y bien etiquetados lo reducen.
@@ -71,7 +71,7 @@ Corre en CPU, sin GPU, para mantener bajo el costo. En la computadora de desarro
 El sitio usa una detección por umbral y avisa en rojo que no es confiable. Si no detecta nada, dice que no pudo analizar la imagen.
 
 **21. ¿Cuánto cuesta?**
-Son estimaciones: VPS de 100 a 250 MXN al mes, dominio de 200 a 400 al año y Colab unos 300. Precio real del KVM 1: dato no disponible.
+Es poco y no es lo importante del proyecto: el VPS costó 2,520 pesos por 2 años, unos 105 al mes. El dominio y Colab son estimaciones: dominio de 200 a 400 al año y Colab unos 300.
 
 ## Sobre ciencia e IA
 
@@ -108,7 +108,7 @@ Es un programa que aprende por ejemplos en lugar de seguir reglas escritas a man
 El pie de página del sitio indica la licencia Creative Commons Atribución-NoComercial 4.0: se puede compartir citando la autoría y sin fines comerciales. El repositorio no incluye un archivo de licencia de software, y si es público: dato no disponible [COMPLETAR]. Sobre el uso: cualquier persona puede crear una cuenta gratis con su correo y analizar sus imágenes. Las herramientas que usa, como Flask y Mask R-CNN de PyTorch, son de código abierto; elegí Mask R-CNN, de licencia BSD, justamente para que su licencia no obligara a publicar el código del sitio.
 
 **32. ¿Cuánto tiempo llevó hacerlo?**
-La construcción del sitio fue del 8 al 16 de octubre de 2026, y la entrega es el 28 de octubre. El primer registro en el repositorio es del 6 de octubre. Horas totales, incluyendo la preparación de los datos y los modelos: dato no disponible [COMPLETAR].
+La construcción del sitio fue del 8 al 16 de octubre de 2026, y la entrega es el 28 de octubre. El cuaderno de Colab donde se entrenan los modelos empezó antes, a inicios o mediados de septiembre. El primer registro en el repositorio es del 6 de octubre. Horas totales: dato no disponible.
 
 **33. ¿Puede usarse con otras células o con otros temas?**
 La técnica sí: el mismo enfoque de detectar, contornear y medir sirve para otros objetos en imágenes. Pero este modelo solo aprendió espermatozoides; para otras células habría que etiquetar fotos nuevas y reentrenar en Colab. Por eso lo presento como caso de estudio y no como un analizador general de células.
