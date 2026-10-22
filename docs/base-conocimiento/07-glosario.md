@@ -1,0 +1,38 @@
+# 07 · Glosario
+
+- **Imagen digital:** cuadrícula de píxeles, cada uno con números que indican su color o brillo.
+- **Píxel:** el punto más pequeño de una imagen digital.
+- **Fluorescencia:** técnica de microscopía donde las células brillan sobre fondo oscuro.
+- **Campo claro:** microscopía con fondo claro, donde las células se ven más oscuras o teñidas.
+- **Umbral (thresholding):** regla que separa lo brillante de lo oscuro según un valor fijo.
+- **Red neuronal:** programa formado por capas de operaciones con números ajustables.
+- **Red convolucional (CNN):** red que recorre la imagen con filtros pequeños para detectar bordes y formas.
+- **Capa oculta:** capa intermedia de una red, entre la entrada y la salida.
+- **Segmentación por instancias:** detectar cada objeto y trazar su contorno individual.
+- **Mask R-CNN:** red que detecta objetos y entrega una máscara (contorno) para cada uno.
+- **Transfer learning:** reutilizar una red ya entrenada y ajustarla con datos propios.
+- **Entrenamiento:** ajustar la red con ejemplos etiquetados.
+- **Inferencia:** usar la red ya entrenada con fotos nuevas.
+- **Pesos (.pt):** los números aprendidos por la red, guardados en un archivo.
+- **Función de pérdida:** número que mide cuánto se equivocó la red.
+- **Descenso del gradiente:** ajustar los pesos paso a paso hacia donde baja el error, como bajar una pendiente con niebla.
+- **Retropropagación:** calcular, de la salida hacia atrás, cuánto contribuyó cada peso al error.
+- **Hiperparámetro:** decisión previa al entrenamiento, como el tamaño del paso.
+- **Época:** una pasada completa por los datos de entrenamiento.
+- **Sobreajuste:** la red memoriza los ejemplos y falla con fotos nuevas.
+- **Tesela:** recorte de la foto que se analiza por separado.
+- **IoU:** qué tanto se traslapan el contorno de la red y el etiquetado a mano (de 0 a 1).
+- **AP50:** métrica de detección que cuenta un acierto cuando el IoU supera 0.5.
+- **Precisión:** de lo que la red marcó, qué parte era correcta.
+- **Recall:** de lo que había, qué parte encontró la red.
+- **F1:** combinación de precisión y recall en un solo número.
+- **Falso positivo / alucinación:** marcar como espermatozoide algo que no lo es.
+- **Anotación / etiquetado:** marcar a mano los objetos de una foto para enseñarle a la red.
+- **CVAT:** herramienta usada para anotar las imágenes.
+- **Google Colab:** servicio donde se entrena la red.
+- **Flask:** framework de Python con el que está hecho el sitio.
+- **Gunicorn / Nginx:** servidor de aplicaciones de Python / servidor web que recibe las visitas.
+- **Docker:** empaqueta la aplicación para que corra igual en cualquier servidor.
+- **VPS:** servidor virtual privado que se renta.
+- **CSRF:** ataque que se evita con una clave oculta en cada formulario.
+- **Reproducibilidad:** misma entrada, mismo resultado.
