@@ -86,3 +86,29 @@ Pocas fotos de un solo grupo: puede fallar con otras tinciones, microscopios o m
 
 **25. ¿Qué sigue?**
 Medir en el VPS, reunir más imágenes (incluidas muestras sin espermatozoides), validar con fotos nuevas y reentrenar; después, medir de cabeza a cola y avisar cuando la imagen no sea de espermatozoides.
+
+## Sobre el contexto, el alcance y el público general
+
+**26. ¿Qué diferencia hay con herramientas como ImageJ o los sistemas de análisis seminal (CASA)?**
+No las sustituyo ni las comparé: no tengo una comparación medida. Lo que sí puedo decir es qué hace este sitio: detecta, cuenta y mide espermatozoides en fotos con un modelo ya entrenado, sin que la persona configure nada, y entrega histograma, CSV y PDF. ImageJ es una herramienta general de análisis de imagen, y los sistemas CASA son sistemas especializados de análisis seminal; este sitio no mide movilidad, solo fotos fijas. Comparación formal con ellos: dato no disponible.
+
+**27. ¿Reemplaza al investigador?**
+No. El sitio cuenta y mide, pero no interpreta. Decidir qué significan los resultados y si son confiables para una muestra concreta le corresponde al grupo de investigación. Es una ayuda para la parte repetitiva.
+
+**28. ¿Qué pasa con la privacidad de los datos y de las muestras? ¿Tienen consentimiento?**
+Sobre el sitio: las cuentas son privadas, las contraseñas se guardan cifradas, las imágenes subidas se borran al terminar el análisis y cada persona ve solo sus resultados. El sitio tiene un aviso de privacidad 2026 en el pie de página. Sobre el origen de las muestras y su consentimiento: dato no disponible [COMPLETAR]; eso lo maneja el grupo de investigación que aportó las fotos.
+
+**29. ¿Se puede usar para diagnóstico clínico?**
+No. Es un modelo preliminar, entrenado con pocas fotos y validado en zonas de esas mismas fotos, y el sitio no interpreta resultados. Es un caso de estudio y una herramienta de apoyo a la investigación, no un dispositivo de diagnóstico.
+
+**30. ¿Qué es una red neuronal, explicada sin tecnicismos?**
+Es un programa que aprende por ejemplos en lugar de seguir reglas escritas a mano. Se le muestran muchas fotos donde ya se marcó a mano dónde están los espermatozoides; al principio se equivoca, y cada vez que se equivoca se ajusta un poco, como quien practica hasta acertar. Al final se guarda lo aprendido en un archivo y se usa con fotos nuevas.
+
+**31. ¿Es de código abierto? ¿Quién puede usarlo?**
+El pie de página del sitio indica la licencia Creative Commons Atribución-NoComercial 4.0: se puede compartir citando la autoría y sin fines comerciales. El repositorio no incluye un archivo de licencia de software, y si es público: dato no disponible [COMPLETAR]. Sobre el uso: cualquier persona puede crear una cuenta gratis con su correo y analizar sus imágenes. Las herramientas que usa, como Flask y Mask R-CNN de PyTorch, son de código abierto; elegí Mask R-CNN, de licencia BSD, justamente para que su licencia no obligara a publicar el código del sitio.
+
+**32. ¿Cuánto tiempo llevó hacerlo?**
+La construcción del sitio fue del 8 al 16 de octubre de 2026, y la entrega es el 28 de octubre. El primer registro en el repositorio es del 6 de octubre. Horas totales, incluyendo la preparación de los datos y los modelos: dato no disponible [COMPLETAR].
+
+**33. ¿Puede usarse con otras células o con otros temas?**
+La técnica sí: el mismo enfoque de detectar, contornear y medir sirve para otros objetos en imágenes. Pero este modelo solo aprendió espermatozoides; para otras células habría que etiquetar fotos nuevas y reentrenar en Colab. Por eso lo presento como caso de estudio y no como un analizador general de células.
