@@ -1,6 +1,6 @@
 # Guion del video 1 de 6: El problema
 
-Image Bio Pro · Sesión 1 · Capacitación en video
+Image Bio Pro · Módulo 1 · Capacitación en video
 
 *3,228 palabras, unos 18.4 min de habla*
 
@@ -20,31 +20,31 @@ En esta serie de videos les voy a platicar de Image Bio Pro, un proyecto que la 
 
 Quizás se pregunten qué es, exactamente, Image Bio Pro. Bueno, es una plataforma web nueva, pensada para meter las ideas más recientes de la inteligencia artificial en esas mismas tareas dentro de la UAM Iztapalapa. Dicho de otro modo, es la nueva era de la inteligencia artificial puesta al servicio de la comunidad universitaria.
 
-[Diapositiva · Las cuatro sesiones]
+[Diapositiva · Los cuatro módulos]
 
-> Idea central: Son cuatro sesiones: la primera el problema y las bases teóricas, la segunda cómo aprende una computadora, la tercera el sitio funcionando y la cuarta datos, entrenamiento y despliegue.
+> Idea central: Son cuatro módulos: el primero el problema y las bases teóricas, el segundo cómo aprende una computadora, el tercero el sitio funcionando y el cuarto datos, entrenamiento y despliegue.
 
-Este proyecto lo voy a presentar a lo largo de cuatro sesiones. Antes que nada, les platico lo que vamos a ir viendo en ellas.
+Este proyecto lo voy a presentar a lo largo de cuatro módulos. Antes que nada, les platico lo que vamos a ir viendo en ellos.
 
-En la primera sesión empezamos por el problema que intentamos resolver, y les platicaré las bases teóricas que ocupamos para diseñar el sitio web.
+En el primer módulo empezamos por el problema que intentamos resolver, y les platicaré las bases teóricas que ocupamos para diseñar el sitio web.
 
-En la segunda sesión, y lo resumo en una palabra, vemos cómo aprende una computadora, que es la esencia de una red neuronal artificial.
+En el segundo módulo, y lo resumo en una palabra, vemos cómo aprende una computadora, que es la esencia de una red neuronal artificial.
 
-En la tercera sesión les enseño cómo funciona esta plataforma web. Una vez que entendimos el problema y exploramos las bases teóricas, ahora sí toca mostrar el sistema.
+En el tercer módulo les enseño cómo funciona esta plataforma web. Una vez que entendimos el problema y exploramos las bases teóricas, ahora sí toca mostrar el sistema.
 
-Y en la cuarta sesión veremos un par de ejemplos con datos, cómo se entrena la red neuronal y cómo es el despliegue de la información.
+Y en el cuarto módulo veremos un par de ejemplos con datos, cómo se entrena la red neuronal y cómo es el despliegue de la información.
 
-Quisiera pedirles que me den la oportunidad de cautivarlos para poder presentarles el sitio web en la tercera sesión. Me gustaría que primero tuvieran todo el background, todas las bases teóricas que nos permitieron desarrollar este sitio, para que cuando lo visiten sepan el trabajo y el enfoque de inteligencia artificial que utilizó esta plataforma. Espero que me puedan acompañar en estas cuatro sesiones.
+Quisiera pedirles que me den la oportunidad de cautivarlos para poder presentarles el sitio web en el tercer módulo. Me gustaría que primero tuvieran todo el background, todas las bases teóricas que nos permitieron desarrollar este sitio, para que cuando lo visiten sepan el trabajo y el enfoque de inteligencia artificial que utilizó esta plataforma. Espero que me puedan acompañar en estos cuatro módulos.
 
-[Diapositiva · La agenda de esta sesión]
+[Diapositiva · La agenda de este módulo]
 
-> Idea central: Hoy: el problema, qué es una imagen digital, algunas definiciones de inteligencia artificial y el comienzo de las redes neuronales. El sitio funcionando se presenta en la tercera sesión.
+> Idea central: Hoy: el problema, qué es una imagen digital, algunas definiciones de inteligencia artificial y el comienzo de las redes neuronales. El sitio funcionando se presenta en el tercer módulo.
 
-La agenda de esta primera sesión: primero quisiera presentarles el problema, y después comenzamos explicando qué es una imagen digital.
+La agenda de este primer módulo: primero quisiera presentarles el problema, y después comenzamos explicando qué es una imagen digital.
 
 Después de la imagen digital vamos a poner en orden algunas definiciones de inteligencia artificial, y con eso empezamos con las redes neuronales: qué es una neurona, qué es una capa y cómo se arma una red.
 
-Cada sesión se divide en videos de unos 20 minutos. Esta primera sesión son seis videos, y en cada uno vamos a ir avanzando por estos temas.
+Cada módulo se divide en videos de unos 20 minutos. Este primer módulo son seis videos, y en cada uno vamos a ir avanzando por estos temas.
 
 [Diapositiva · La inteligencia artificial en la educación y la investigación]
 
@@ -54,7 +54,7 @@ Empiezo con una pregunta, y no hace falta que la contesten en voz alta: ¿para q
 
 Aprender de ejemplos es la idea que sostiene todo el curso, así que conviene aclararla. Tradicionalmente, cuando uno quiere que una computadora haga algo, le escribe reglas: si pasa esto, haz aquello. Eso funciona muy bien para una calculadora o para una hoja de cálculo, donde las reglas son exactas. Pero para reconocer un espermatozoide en una imagen, escribir las reglas es casi imposible. ¿Cómo describirían ustedes, con reglas exactas, la forma de una cabeza, con todas sus variaciones de tamaño, de orientación y de brillo? Cada vez que escribieran una regla, aparecería una imagen que la rompe.
 
-En lugar de escribir las reglas, se le muestran a la computadora muchos ejemplos ya resueltos. Es decir, imágenes donde una persona marcó a mano dónde están los espermatozoides. El programa ajusta por sí mismo lo que necesita para reproducir esas marcas. A eso se le llama aprender de ejemplos, y a lo que resulta de ese proceso se le llama modelo. Cómo sucede ese ajuste lo vemos con calma más adelante en esta sesión. Por ahora basta con recordar que al modelo le dimos ejemplos en lugar de reglas.
+En lugar de escribir las reglas, se le muestran a la computadora muchos ejemplos ya resueltos. Es decir, imágenes donde una persona marcó a mano dónde están los espermatozoides. El programa ajusta por sí mismo lo que necesita para reproducir esas marcas. A eso se le llama aprender de ejemplos, y a lo que resulta de ese proceso se le llama modelo. Cómo sucede ese ajuste lo vemos con calma más adelante en este módulo. Por ahora basta con recordar que al modelo le dimos ejemplos en lugar de reglas.
 
 Las imágenes vienen de muchas fuentes, y una de las más importantes en las ciencias de la vida es la microscopía. Con un microscopio podemos ver células, por ejemplo espermatozoides, y podemos ver cómo cambian de tamaño y de forma bajo ciertas condiciones. Cada imagen trae información, pero alguien tiene que sacarla: contar, medir, comparar.
 
@@ -66,7 +66,7 @@ No hace falta ser experto en nada. Si saben programar, van a ver cómo se arma e
 
 Esto tiene sentido en un entorno universitario. En la docencia, una herramienta que analiza imágenes le permite a quien está aprendiendo ver, con sus propios datos, cómo se pasa de una imagen a una medida. En la investigación, el conteo y la medición dejan de depender de horas de trabajo manual y de la mirada de una sola persona. Y en la difusión de la cultura científica, un sitio abierto a la comunidad muestra que la inteligencia artificial es una herramienta que se puede usar, revisar y entender.
 
-Por eso, a lo largo de las sesiones vamos a ver el sitio funcionando y también las ideas que hay debajo, para que cualquiera de ustedes pueda razonar sobre qué hace el sistema, cuándo se puede confiar en él y cuándo conviene mirar con más cuidado. Esa es la ventaja de conocer las bases: dejan de ser una caja negra.
+Por eso, a lo largo de los módulos vamos a ver el sitio funcionando y también las ideas que hay debajo, para que cualquiera de ustedes pueda razonar sobre qué hace el sistema, cuándo se puede confiar en él y cuándo conviene mirar con más cuidado. Esa es la ventaja de conocer las bases: dejan de ser una caja negra.
 
 [Diapositiva · Microscopía de fluorescencia]
 
@@ -186,6 +186,6 @@ Con todo eso se arman los resultados que mencionamos: la imagen marcada con los 
 
 Fíjense que hay una parte que aprende y otra que calcula. La que aprende es la red, y por eso necesita ejemplos y entrenamiento. La que calcula es el código, y por eso es preciso, repetible y fácil de comprobar.
 
-De todo este mapa, hoy vemos las piezas para entender la primera parte: qué es una imagen para una computadora, y qué es una red neuronal y cómo aprende. El recorrido completo, con el sitio funcionando, llega en la tercera sesión.
+De todo este mapa, hoy vemos las piezas para entender la primera parte: qué es una imagen para una computadora, y qué es una red neuronal y cómo aprende. El recorrido completo, con el sitio funcionando, llega en el tercer módulo.
 
 Pero antes de ver cómo se resuelve, tenemos que regresarnos a lo fundamental: qué es una imagen, y qué es una imagen digital.

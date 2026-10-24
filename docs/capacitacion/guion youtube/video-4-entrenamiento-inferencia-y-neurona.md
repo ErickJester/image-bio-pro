@@ -1,6 +1,6 @@
 # Guion del video 4 de 6: Entrenamiento, inferencia y la neurona
 
-Image Bio Pro · Sesión 1 · Capacitación en video
+Image Bio Pro · Módulo 1 · Capacitación en video
 
 Continúa del video 3. Empieza con la frase que lo une con el video anterior.
 
@@ -62,7 +62,7 @@ Y no interviene el azar: ante la misma imagen, el mismo modelo responde siempre 
 
 Con esto ya podemos empezar con las redes neuronales. Voy de lo general a lo concreto: primero un problema que podemos imaginar, luego la idea que lo resuelve y al final el nombre técnico. No voy a usar ecuaciones. Cuando una idea tenga expresión matemática, les digo con palabras qué hace.
 
-La meta de esta parte es que quede claro cómo responder tres preguntas: qué es una red neuronal, cómo aprende y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides. Las dos primeras las vemos en esta sesión. La tercera, en la siguiente.
+La meta de esta parte es que quede claro cómo responder tres preguntas: qué es una red neuronal, cómo aprende y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides. Las dos primeras las vemos en este módulo. La tercera, en el siguiente módulo.
 
 Vamos a hablar de números, pesos y capas, y esas palabras pueden sonar intimidantes, pero todo lo que vamos a ver se reduce a multiplicar, sumar y comparar. Si saben sumar y multiplicar, tienen todo lo necesario.
 

@@ -1,56 +1,59 @@
 # Capacitación
 
-8 horas de capacitación en línea para la comunidad universitaria y el grupo del proyecto, en 4 sesiones de 2 horas por Zoom. Se anuncia como el curso BIOIMAGE 2026 (UAM Unidad Iztapalapa), con enfoque en investigación y uso de la inteligencia artificial.
+Curso BIOIMAGE 2026 (UAM Unidad Iztapalapa), con enfoque en investigación y uso de la inteligencia artificial. Se hace solo en video: cuatro módulos, con unos 10 videos de unos 20 minutos en total. No hay sesiones en vivo.
 
 Este documento es la planeación vigente. Si otra sesión de trabajo la retoma, aquí está el estado y lo que falta.
 
-## Participantes y formato
+## Formato
 
-- Unas 6 o 7 personas en el grupo base, aunque el curso es público y podrían conectarse más. Perfil mixto: algo de programación y algo de biología. Dos personas con mucha experiencia.
-- Es una charla informativa y educativa, estilo ponencia. Quien presenta habla; el público puede preguntar en cualquier momento y quien presenta no hace preguntas al público. Las respuestas son breves, y lo muy técnico se deja para el final.
-- Las sesiones se graban y se suben a redes. Hay que decirlo al inicio de cada una.
-- Lenguaje profesional pero platicado: sin comentarios que sugieran que el grupo no sabe, con un término técnico explicado en una frase la primera vez que aparece, y con las ideas intuitivas antes de la definición formal.
+- Todo se graba y se publica en video. Ya no hay sesiones en vivo ni Zoom (problemas de la escuela), así que tampoco hay público presente ni preguntas en el momento.
+- Un módulo agrupa varios videos. Cada video dura unos 20 minutos (unas 3,500 palabras a 175 palabras por minuto) y, después del primero de cada módulo, abre con una frase que lo une con el anterior.
+- Perfil del público: mixto, con algo de programación y algo de biología.
+- Lenguaje profesional pero platicado: sin comentarios que sugieran que el público no sabe, con un término técnico explicado en una frase la primera vez que aparece, y con las ideas intuitivas antes de la definición formal.
 - Apoyos visuales sencillos donde ayuden (la tabla de píxeles, una pendiente, una guitarra y un ukulele para la transferencia) y ejemplos numéricos cortos.
-- No hay un taller de práctica con los participantes. El código y los cuadernos de Colab se muestran en demostración.
+- No hay un taller de práctica. El código y los cuadernos de Colab se muestran en demostración.
+- Cada video tiene dos versiones del guion: la humanizada y la natural (escrita para decirse en voz alta), las dos con su documento de Word.
 
-## Calendario (según el flyer)
+## Plan de videos (borrador)
 
-| Sesión | Fecha (2026) | Horario | Tema |
+El objetivo es reducir los 24 videos que saldrían de 4 módulos de 2 horas a unos 10. Presupuesto: unos 200 minutos de habla en total.
+
+| Módulo | Videos | Contenido | Estado |
 |---|---|---|---|
-| 1 | Viernes 23 de octubre | 6:00 a 8:00 pm | El problema y el sitio |
-| 2 | Sábado 24 de octubre | 9:00 a 11:00 am | Cómo aprende la computadora |
-| 3 | Lunes 26 de octubre | 6:00 a 8:00 pm | Cómo funciona el sistema por dentro |
-| 4 | Martes 27 de octubre | 6:00 a 8:00 pm | Datos, reentrenamiento y despliegue |
+| 1 | 3 | Problema e imagen digital; IA, entrenamiento y neurona; capas, aprendizaje y cierre | Guion terminado en [`guion youtube/modulo-1`](guion%20youtube/modulo-1) |
+| 2 | 2 | Redes convolucionales, Mask R-CNN y transferencia | Guion pendiente |
+| 3 | 2 o 3 | El sistema por dentro | Guion pendiente |
+| 4 | 3 | Datos, reentrenamiento y despliegue | Guion pendiente |
+| Total | 10 a 11 | | |
 
-El flyer anuncia cuatro áreas de enfoque: frontend para el desarrollo web, backend en el desarrollo web, redes neuronales convolucionales y cloud computing. El temario las cubre así: frontend en la sesión 1, redes convolucionales en la 2, backend en la 3 y cloud en la 4. El 28 de octubre queda libre para la entrega.
+El módulo 1 salió de seis videos (unos 110 minutos de habla), guardados en [`guion youtube`](guion%20youtube), a tres de unos 21 minutos. Se quitó material del problema y se dejó casi todo lo teórico (imagen digital, redes neuronales y cómo aprenden).
 
-## Temario por sesión
+## Temario por módulo
 
-Referencia de tiempo: 170 palabras por minuto. En cada sesión caben unos 50 minutos de habla (unas 8,500 palabras); el resto es demostración, pausa y margen.
+### Módulo 1. El problema y las bases
 
-### Sesión 1. El problema y el sitio
+Guion terminado: [`guion youtube/modulo-1`](guion%20youtube/modulo-1).
 
-Guion terminado: [`guion-sesion-1.md`](guion-sesion-1.md).
+- Video 1, el problema y la imagen digital: el caso de estudio (contar y medir espermatozoides en fotos de microscopio), qué se quiere medir, el camino de una imagen a un número, y qué es una imagen digital (píxeles, color, resolución, histograma, formatos, aumentos y escala).
+- Video 2, inteligencia artificial, entrenamiento y neurona: definiciones, palabras clave, entrenamiento contra inferencia, el umbral como primer intento, la neurona, el sesgo y la activación.
+- Video 3, capas, aprendizaje y cierre: capas y red, una red pequeña a mano, profundidad, cómo aprende una red, anotación, aprendizaje supervisado, pérdida, descenso del gradiente, retropropagación, lotes y épocas, semillas, límites de un modelo.
 
-- El caso de estudio: contar y medir espermatozoides en fotos de microscopio. La red localiza y el código mide.
-- Por qué una plataforma web, y entrenamiento contra inferencia.
-- Qué es una imagen digital: píxeles, brillo, formatos y escala.
-- El sitio en vivo: visitante, cuenta, análisis, resultados, descargas y "Mis análisis".
-- Lo que no es un espermatozoide: falsos positivos (en programación, alucinaciones).
+Material que se quitó del módulo 1 y debe reaparecer en otro lugar o en un documento escrito (por confirmar):
 
-### Sesión 2. Cómo aprende la computadora
+- Colab, Python, Flask y servidor: módulo 3.
+- Cómo se ve un cuaderno de Colab: módulo 4.
+- Media y desviación estándar, y los dos tipos de imagen con su modelo: módulo 3.
+- Glosario y preguntas frecuentes: documento escrito.
 
-Guion pendiente. Es la sesión más pesada: lo que cabe en 2 horas obliga a recortar.
+### Módulo 2. Redes convolucionales y transferencia
 
-- Umbralización como primer intento, y por qué no basta. Se presenta como la solución sencilla y se conecta con la red: la red retoma esa idea y suma otros factores.
-- La neurona, la capa y la red, con una figura sencilla.
-- Cómo se ve una imagen una red convolucional: el filtro que recorre la imagen, con el ejemplo numérico de 3 por 3.
-- Cómo aprende: predecir, medir el error, ajustar y repetir. Pérdida, descenso del gradiente (la pendiente en la niebla), tasa de aprendizaje y retropropagación explicada primero con el juego de Batalla naval.
+Guion pendiente. Ya no incluye umbral, neurona, capa, pérdida ni descenso del gradiente, que están en el módulo 1.
+
+- Cómo ve una imagen una red convolucional: el filtro que recorre la imagen, con el ejemplo numérico de 3 por 3.
 - Mask R-CNN y aprendizaje por transferencia (guitarra y ukulele), en lenguaje sencillo.
-- Orden pedido en el ensayo: primero qué es una imagen (sesión 1), después qué es una red, después cómo aprende, y al final los resultados. Los términos (hiperparámetro, retropropagación) se dicen primero con palabras sencillas y después con su definición formal.
-- Los retos del modelo pasan a la sesión 3 para que esta no se desborde.
+- Los retos del modelo pasan al módulo 3.
 
-### Sesión 3. Cómo funciona el sistema por dentro
+### Módulo 3. Cómo funciona el sistema por dentro
 
 Guion pendiente.
 
@@ -60,14 +63,14 @@ Guion pendiente.
 - Retos y cómo se resolvieron: espermatozoides empalmados, falsos positivos y la escala.
 - Demostración: abrir una imagen marcada y revisar un contorno a mano.
 
-### Sesión 4. Datos, reentrenamiento y despliegue
+### Módulo 4. Datos, reentrenamiento y despliegue
 
-Guion pendiente. Es una sesión con mucho contenido; si no cabe, el reentrenamiento se muestra más corto y los detalles quedan en material aparte.
+Guion pendiente. Si no cabe, el reentrenamiento se muestra más corto y los detalles quedan en material aparte.
 
 - Datos: cuántas imágenes hacen falta, anotación en CVAT, criterio de anotación y quién valida.
 - Entrenamiento y validación: sobreajuste y la gráfica de curvas.
-- Reentrenar en Colab: qué se cambia y qué esperar. Se muestra el cuaderno con `MODO_PRUEBA = True`, sin correr el entrenamiento completo en vivo.
-- **Despliegue en la nube (bloque propio, unos 20 minutos).** Es contenido vivido en el proyecto, con ejemplos reales:
+- Reentrenar en Colab: qué se cambia y qué esperar. Se muestra el cuaderno con `MODO_PRUEBA = True`, sin correr el entrenamiento completo.
+- **Despliegue en la nube (bloque propio, unos 20 minutos, un video).** Es contenido vivido en el proyecto, con ejemplos reales:
   - El VPS y la clave SSH: la clave pública va al servidor y la privada no sale de la computadora. Mejor una clave por uso.
   - Docker en tres ideas: imagen (la receta), contenedor (el programa corriendo) y volumen (donde viven los datos, para que reconstruir no los borre).
   - Docker Compose: un archivo que levanta los dos servicios del sitio, `web` y `nginx`, con un comando.
@@ -79,26 +82,25 @@ Guion pendiente. Es una sesión con mucho contenido; si no cabe, el reentrenamie
 
 ## Estado del despliegue
 
-El sitio ya está en un VPS de Hostinger con Ubuntu, Docker y Nginx, con el dominio `imagebiopro.cloud` y HTTPS con Let's Encrypt (el certificado vence en enero de 2027 y se renueva con una tarea programada). Para el viernes falta: que el contenido real de Nosotros, Aliados e infografías esté cargado y que los modelos estén copiados en el servidor.
+El sitio ya está en un VPS de Hostinger con Ubuntu, Docker y Nginx, con el dominio `imagebiopro.cloud` y HTTPS con Let's Encrypt (el certificado vence en enero de 2027 y se renueva con una tarea programada). Falta que el contenido real de Nosotros, Aliados e infografías esté cargado y que los modelos estén copiados en el servidor.
 
 ## Pendientes
 
-- Confirmar con el cliente las fechas y horarios del flyer, el número de participantes y quién envía el enlace de Zoom.
-- Escribir los guiones de las sesiones 2, 3 y 4 con el mismo formato que el de la sesión 1 (idea que debe quedar, ideas en orden, frases ancla y tiempos).
-- Armar las diapositivas de cada sesión: numeradas, con letra grande, pocas ideas por diapositiva y dibujos sencillos. La presentación actual tiene 129 diapositivas y sigue el orden anterior.
-- Decidir cuándo se responden las preguntas que lleguen por escrito.
-- Confirmar qué se dice sobre dónde se publica la grabación.
-- Corregir el README principal y el guion para que todo diga lo mismo sobre cómo se mide el largo (hoy el código mide el lado mayor del rectángulo mínimo, no la longitud a lo largo de la curva).
+- Confirmar el plan de videos (cuántos por módulo y qué se recorta) y la duración máxima de cada video.
+- Escribir los guiones de los módulos 2, 3 y 4, con el mismo formato que los del módulo 1.
+- Armar los tres mazos del módulo 1 (hoy hay seis mazos, uno por cada video anterior) y los de los otros módulos: numerados, con letra grande, pocas ideas por diapositiva y dibujos sencillos.
+- Definir las fechas de publicación de los videos y dónde se publican. El calendario del flyer (23 al 27 de octubre) era para sesiones en vivo.
+- Corregir el README principal y los guiones para que todo diga lo mismo sobre cómo se mide el largo (hoy el código mide el lado mayor del rectángulo mínimo, no la longitud a lo largo de la curva).
+- El color se calcula pero ya no se muestra (indicación del cliente del 16 de octubre): los guiones y los mazos no deben decir que el sistema lo entrega.
 
 ## Materiales
 
-Se preparan a partir del trabajo de desarrollo. El material de cada sesión se termina a más tardar el día anterior.
+Se preparan a partir del trabajo de desarrollo.
 
-- [x] Guion de la sesión 1.
-- [ ] Guiones de las sesiones 2, 3 y 4.
-- [ ] Diapositivas por sesión.
-- [ ] Capturas del sitio (en `capturas/`, ya hay las de la sesión 1).
-- [ ] Cuaderno de Colab para mostrar en la sesión 4: `entrenamiento/entrenar_mask_rcnn.ipynb`.
-- [ ] Grabaciones de las sesiones.
+- [x] Guion del módulo 1 en tres videos: [`guion youtube/modulo-1`](guion%20youtube/modulo-1).
+- [ ] Guiones de los módulos 2, 3 y 4.
+- [ ] Mazos por video.
+- [ ] Capturas del sitio (en `capturas/`, ya hay las del módulo 1).
+- [ ] Cuaderno de Colab para mostrar en el módulo 4: `entrenamiento/entrenar_mask_rcnn.ipynb`.
 
 Notas de la reunión de ensayo del 20 de octubre: [`ensayo-presentacion.md`](ensayo-presentacion.md) y [`transcripcion-ensayo-combinada.md`](transcripcion-ensayo-combinada.md).

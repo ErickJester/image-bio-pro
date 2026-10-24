@@ -1,6 +1,6 @@
 # Guion del video 2 de 6: Qué son las imágenes
 
-Image Bio Pro · Sesión 1 · Capacitación en video
+Image Bio Pro · Módulo 1 · Capacitación en video
 
 Continúa del video 1. Empieza con la frase que lo une con el video anterior.
 
@@ -72,7 +72,7 @@ Ahora pensemos en una imagen de fluorescencia. ¿Cómo se ve una célula dentro 
 
 Esto también nos dice cómo se mide el tamaño. En la diapositiva les muestro una célula pequeñita dibujada con números. Los doce cuadritos más brillantes, los que tienen el borde marcado, son la célula. Si cuento los cuadritos que ocupa, doce, ya tengo su área: doce píxeles. Medir el área de una célula es contar cuántos píxeles ocupa. En una imagen real serán cientos de píxeles por célula, pero la idea es exactamente la misma. Más adelante, con la escala del sitio, esos píxeles se convierten en micras.
 
-Una pregunta que seguramente se están haciendo: ¿y no bastaría con decir que todo píxel por encima de cierto valor es célula? Es una idea natural y es, de hecho, el primer intento que se suele hacer. Se llama umbralización: se elige un umbral y todo lo que lo supera se considera objeto. Funciona razonablemente cuando las células están separadas y bien iluminadas, pero falla cuando se tocan, cuando hay manchas brillantes que no son células, o cuando el brillo cambia de una imagen a otra. Más adelante, en esta misma sesión, vemos por qué no basta y cómo una red neuronal retoma esa idea y suma otros factores. Hoy les dejo solo la intuición de que la computadora, en el fondo, está comparando números.
+Una pregunta que seguramente se están haciendo: ¿y no bastaría con decir que todo píxel por encima de cierto valor es célula? Es una idea natural y es, de hecho, el primer intento que se suele hacer. Se llama umbralización: se elige un umbral y todo lo que lo supera se considera objeto. Funciona razonablemente cuando las células están separadas y bien iluminadas, pero falla cuando se tocan, cuando hay manchas brillantes que no son células, o cuando el brillo cambia de una imagen a otra. Más adelante, en este mismo módulo, vemos por qué no basta y cómo una red neuronal retoma esa idea y suma otros factores. Hoy les dejo solo la intuición de que la computadora, en el fondo, está comparando números.
 
 Esta idea tiene una consecuencia muy práctica: separar lo que nos interesa del fondo se puede plantear como una pregunta sobre números. ¿Dónde están los números altos? ¿Dónde están los bajos? ¿Dónde hay un cambio brusco de uno a otro? El borde de una célula es, en la tabla, el lugar donde los valores pasan de bajos a altos en muy pocos píxeles.
 
@@ -136,7 +136,7 @@ Y el archivo no guarda este dato. Las imágenes que usamos no traen escrito cuá
 
 Para cerrar este bloque, la escala. Una imagen sabe cuántos píxeles mide, pero no cuántas micras es cada uno, porque los archivos no guardan ese dato. Y si queremos comparar imágenes entre sí, hay que ponerlas en una misma medida.
 
-Por eso el sitio aplica la misma escala a todas. Es de sesenta píxeles por micra, y cada resultado dice cuál se usó. La imagen marcada trae una regla de trescientos píxeles que equivalen a cinco micras. Cómo se define esa escala no lo voy a explicar hoy; lo vemos en la tercera sesión, cuando revisemos el sistema por dentro.
+Por eso el sitio aplica la misma escala a todas. Es de sesenta píxeles por micra, y cada resultado dice cuál se usó. La imagen marcada trae una regla de trescientos píxeles que equivalen a cinco micras. Cómo se define esa escala no lo voy a explicar hoy; lo vemos en el tercer módulo, cuando revisemos el sistema por dentro.
 
 Veámoslo con números. Si sesenta píxeles son una micra, entonces un largo de sesenta píxeles es una micra de largo, y un largo de trescientos píxeles son cinco micras, que es justo la regla que va dibujada en la imagen. Con las áreas hay un paso más. Un área se mide en unidades cuadradas, así que una micra cuadrada son sesenta por sesenta píxeles, es decir, tres mil seiscientos píxeles. Si una célula ocupa tres mil seiscientos píxeles, su área es de una micra cuadrada; si ocupa la mitad, de media micra cuadrada. Por eso, en el sitio, las áreas en micras cuadradas pueden salir como números pequeños.
 

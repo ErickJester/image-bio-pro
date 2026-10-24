@@ -1,6 +1,6 @@
 # Guion del video 6 de 6: Descenso del gradiente, retropropagación y cierre (versión natural)
 
-Image Bio Pro · Sesión 1 · Capacitación en video
+Image Bio Pro · Módulo 1 · Capacitación en video
 
 Continúa del video 5. Empieza con la frase que lo une con el video anterior.
 
@@ -68,7 +68,7 @@ Y una pasada completa por todas las imágenes, en este caso las veinticinco iter
 
 Una forma de recordarlo es con el estudio para un examen. El lote es el montón de ejercicios que resuelves antes de revisar tus errores. La iteración es cada vez que revisas y corriges. Y la época es cada vez que terminas todos los ejercicios del libro. Se aprende repasando muchas veces.
 
-Ojo con las épocas: si son demasiadas, la red puede aprenderse de memoria los ejemplos, con todo y sus defectos, y luego funcionar mal con imágenes nuevas. Por eso, durante el entrenamiento, se separan algunas imágenes que la red nunca usa para ajustarse, y se miden con ellas los resultados. Cuándo parar y cómo comprobar que la red de verdad generaliza lo veremos en la última sesión.
+Ojo con las épocas: si son demasiadas, la red puede aprenderse de memoria los ejemplos, con todo y sus defectos, y luego funcionar mal con imágenes nuevas. Por eso, durante el entrenamiento, se separan algunas imágenes que la red nunca usa para ajustarse, y se miden con ellas los resultados. Cuándo parar y cómo comprobar que la red de verdad generaliza lo veremos en el último módulo.
 
 [Diapositiva · Semillas y repetibilidad]
 
@@ -144,9 +144,9 @@ Antes de cerrar, aprovecho para contestar algunas dudas que suelen aparecer cuan
 
 Una duda frecuente es si la red piensa. No. Calcula. Lo que parece comprensión es una consecuencia de un ajuste muy bien hecho. Es una distinción importante, porque nos recuerda que una red puede equivocarse con total aplomo.
 
-Otra es cuántas imágenes hacen falta. Depende. Entrenando desde cero, muchísimas, decenas de miles o más. Pero cuando cada imagen tiene cientos de células, cada una aporta un ejemplo, y las cantidades necesarias son mucho menores. En la siguiente sesión veremos otra forma de ahorrar ejemplos.
+Otra es cuántas imágenes hacen falta. Depende. Entrenando desde cero, muchísimas, decenas de miles o más. Pero cuando cada imagen tiene cientos de células, cada una aporta un ejemplo, y las cantidades necesarias son mucho menores. En el siguiente módulo veremos otra forma de ahorrar ejemplos.
 
-Otra es si la red puede equivocarse. Sí, de las dos maneras que acabamos de ver, y esos errores los revisamos con calma en la siguiente sesión.
+Otra es si la red puede equivocarse. Sí, de las dos maneras que acabamos de ver, y esos errores los revisamos con calma en el siguiente módulo.
 
 Otra es por qué se necesita una tarjeta gráfica para entrenar. Porque entrenar es hacer una cantidad enorme de multiplicaciones y sumas parecidas entre sí, y las tarjetas gráficas están diseñadas para hacer muchas operaciones de ese tipo en paralelo. Un procesador común hace pocas cosas muy rápido. Una tarjeta gráfica hace muchísimas cosas sencillas a la vez.
 
@@ -154,9 +154,9 @@ Y otra, la más honesta, es si el resultado es siempre correcto. No, y nadie deb
 
 [Diapositiva · Glosario de repaso]
 
-> Idea central: Un repaso rápido de las palabras de esta sesión, una por una, para que queden a la mano.
+> Idea central: Un repaso rápido de las palabras de este módulo, una por una, para que queden a la mano.
 
-Para terminar esta parte, un glosario rápido, con todas las palabras de esta sesión, en una frase cada una. Pueden usarlo como repaso.
+Para terminar esta parte, un glosario rápido, con todas las palabras de este módulo, en una frase cada una. Pueden usarlo como repaso.
 
 Píxel: cada cuadrito de una imagen digital, con un número, o tres si es a color. Canal: cada una de las tablas de números de una imagen a color, la roja, la verde y la azul. Resolución: cuántos píxeles tiene una imagen. Histograma: una gráfica que cuenta cuántos píxeles hay de cada brillo.
 
@@ -180,10 +180,10 @@ Para cerrar, un resumen de lo que vimos. El problema de partida era el conteo y 
 
 [Diapositiva · ¿Cómo sabe el sistema dónde hay un espermatozoide?]
 
-> Idea central: En esta sesión vimos qué es una red neuronal y cómo aprende. En la siguiente sesión vemos cómo mira una imagen una red convolucional y cómo se aprovecha una red entrenada para otra cosa; después, el sitio funcionando, y al final, datos, entrenamiento y despliegue.
+> Idea central: En este módulo vimos qué es una red neuronal y cómo aprende. En el siguiente módulo vemos cómo mira una imagen una red convolucional y cómo se aprovecha una red entrenada para otra cosa; después, el sitio funcionando, y al final, datos, entrenamiento y despliegue.
 
 Y una última idea para llevarse. Si les quedó la impresión de que una red neuronal es una máquina de multiplicar y sumar, tienen razón. Lo que la hace poderosa es la cantidad de operaciones simples y el cuidado con el que se ajustan. Con eso en mente, se entiende por qué el sistema funciona y también por qué conviene revisarlo.
 
-Y termino con una pregunta que seguramente ya se hicieron: ¿cómo sabe el sistema dónde hay un espermatozoide? De eso trata la siguiente sesión: cómo mira una imagen una red como la nuestra, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
+Y termino con una pregunta que seguramente ya se hicieron: ¿cómo sabe el sistema dónde hay un espermatozoide? De eso trata el siguiente módulo: cómo mira una imagen una red como la nuestra, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
 
 Luego viene el sistema funcionando, con el sitio, y por último los datos, el entrenamiento y el despliegue en la nube. Muchas gracias por su atención.

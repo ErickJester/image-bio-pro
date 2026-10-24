@@ -1,6 +1,6 @@
 # Guion del video 5 de 6: Activación, capas y cómo aprende una red (versión natural)
 
-Image Bio Pro · Sesión 1 · Capacitación en video
+Image Bio Pro · Módulo 1 · Capacitación en video
 
 Continúa del video 4. Empieza con la frase que lo une con el video anterior.
 
@@ -128,7 +128,7 @@ A partir de ahí, cada ajuste mueve un poco los pesos en la dirección que reduc
 
 Como el punto de partida es al azar, dos entrenamientos de la misma red con los mismos datos no dan exactamente el mismo resultado: son parecidos, pero no idénticos. Más adelante vemos cómo controlar ese azar.
 
-Otro detalle: no empezar de cero cambia mucho. Si en lugar de pesos al azar se parte de pesos que ya vienen de un entrenamiento anterior, la red ya sabe hacer algunas cosas útiles desde el primer momento. Es una técnica que se usa mucho y de la que hablaremos en la siguiente sesión.
+Otro detalle: no empezar de cero cambia mucho. Si en lugar de pesos al azar se parte de pesos que ya vienen de un entrenamiento anterior, la red ya sabe hacer algunas cosas útiles desde el primer momento. Es una técnica que se usa mucho y de la que hablaremos en el siguiente módulo.
 
 Una red sin entrenar es una red que todavía no aprendió, y todo lo que sepa lo sabrá porque se le mostró.
 
@@ -142,7 +142,7 @@ Para entrenar la red hace falta, como dijimos, un conjunto de imágenes con la r
 
 La herramienta que se usó se llama CVAT. Es un programa pensado para anotar imágenes, que permite dibujar polígonos sobre los objetos y exportar el resultado en un formato que la red puede leer. Tiene una ventaja importante: no publica los datos, así que las imágenes de la investigación se quedan donde deben.
 
-Recordemos las cantidades. Cada imagen tiene del orden de ciento cincuenta cabezas, así que anotar una imagen son ciento cincuenta contornos. Con diez imágenes, ya son más de mil quinientos. Parece mucho trabajo, pero es muy poco frente a los millones de ejemplos que necesitaría una red entrenada desde cero. Y hay una forma de ahorrar ejemplos de la que hablaremos en la siguiente sesión.
+Recordemos las cantidades. Cada imagen tiene del orden de ciento cincuenta cabezas, así que anotar una imagen son ciento cincuenta contornos. Con diez imágenes, ya son más de mil quinientos. Parece mucho trabajo, pero es muy poco frente a los millones de ejemplos que necesitaría una red entrenada desde cero. Y hay una forma de ahorrar ejemplos de la que hablaremos en el siguiente módulo.
 
 Lo más delicado de la anotación es el criterio. ¿Qué cuenta como una cabeza? ¿Una mancha difusa sí o no? ¿Una cabeza parcialmente tapada por una cola? ¿Dos cabezas pegadas se dibujan juntas o por separado? Cada decisión que se toma al anotar es una decisión que la red va a aprender. Si una persona anota de una manera y otra de otra, la red recibe señales contradictorias.
 

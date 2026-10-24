@@ -1,6 +1,6 @@
 # Guion del video 3 de 6: La inteligencia artificial a nuestro alrededor, definiciones y palabras clave (versión natural)
 
-Image Bio Pro · Sesión 1 · Capacitación en video
+Image Bio Pro · Módulo 1 · Capacitación en video
 
 Continúa del video 2. Empieza con la frase que lo une con el video anterior.
 
@@ -40,7 +40,7 @@ Y una quinta: filtrar. Antes de que una persona revise cientos de imágenes, un 
 
 En todos los casos pasa lo mismo: la inteligencia artificial no sustituye el criterio de quien investiga. Hace de forma rápida y consistente la parte repetitiva del trabajo, y le deja a la persona lo que requiere conocimiento: decidir qué preguntas hacer, interpretar los resultados y detectar cuándo algo no tiene sentido.
 
-Un resultado producido por un modelo es una medición, con sus márgenes de error, y no una verdad. Por eso, en un buen sistema, el resultado siempre se puede revisar. Esa idea nos va a acompañar en todas las sesiones.
+Un resultado producido por un modelo es una medición, con sus márgenes de error, y no una verdad. Por eso, en un buen sistema, el resultado siempre se puede revisar. Esa idea nos va a acompañar en todos los módulos.
 
 [Diapositiva · Algunas definiciones de inteligencia artificial]
 
@@ -62,9 +62,9 @@ Y otra cosa: cuando se habla de inteligencia artificial en los medios, casi siem
 
 [Diapositiva · Palabras que vamos a escuchar]
 
-> Idea central: Seis palabras para las cuatro sesiones: red neuronal, Google Colab, Python, Flask, modelo y servidor. Entrenamiento e inferencia se explican en el siguiente video.
+> Idea central: Seis palabras para los cuatro módulos: red neuronal, Google Colab, Python, Flask, modelo y servidor. Entrenamiento e inferencia se explican en el siguiente video.
 
-Les dejo en pantalla unas palabras que van a escuchar durante las cuatro sesiones. No las voy a leer todas, solo las que salen hoy.
+Les dejo en pantalla unas palabras que van a escuchar durante los cuatro módulos. No las voy a leer todas, solo las que salen hoy.
 
 Una red neuronal es un programa que aprende de ejemplos. Google Colab es un entorno para programar en la nube. Python es un lenguaje de programación, y Flask es una herramienta para hacer sitios web con Python: el sitio está hecho con las dos. El modelo es el archivo que guarda lo que la red aprendió. Y el servidor es la computadora donde el sitio está en línea, la que responde cuando alguien entra. También aparecen dos palabras que explico en el siguiente video, entrenamiento e inferencia, porque son las que más confunden y las que más importa distinguir.
 
@@ -158,7 +158,7 @@ Ese servidor no tiene una tarjeta gráfica especializada. Hace la inferencia con
 
 También hay programas que ayudan al servidor a trabajar bien. Uno recibe las peticiones de internet y las reparte, y otro corre el sitio en sí, para que pueda atender a varias personas a la vez. No hace falta que conozcamos los detalles ahora. Quédense con esto: el servidor es el lugar donde las cosas realmente suceden, y el navegador de cada persona es solo una ventana para ver y pedir.
 
-Y de cómo se pone un servidor en internet, y qué cuidados requiere, hablaremos en la última sesión.
+Y de cómo se pone un servidor en internet, y qué cuidados requiere, hablaremos en el último módulo.
 
 [Diapositiva · Cómo se ve un cuaderno de Colab]
 
@@ -176,4 +176,4 @@ Se puede ejecutar solo una parte, y eso sirve para probar. Por ejemplo, entrenar
 
 Un cuaderno es, además, un registro. Si alguien quiere saber con qué datos y con qué decisiones se obtuvo un modelo, el cuaderno lo dice. Y si alguien quiere repetirlo, lo ejecuta.
 
-El cuaderno lo vamos a abrir y recorrer juntos en la última sesión. En el siguiente video vemos cómo se entrena un modelo y cómo se usa.
+El cuaderno lo vamos a abrir y recorrer juntos en el último módulo. En el siguiente video vemos cómo se entrena un modelo y cómo se usa.
