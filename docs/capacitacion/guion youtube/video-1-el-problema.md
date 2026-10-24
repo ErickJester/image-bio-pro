@@ -6,17 +6,17 @@ Image Bio Pro · Sesión 1 · Capacitación en video
 
 [Diapositiva · Image Bio Pro]
 
-> Idea central: Todo el curso gira alrededor de un solo proyecto, Image Bio Pro. En la portada habla Saúl; tú tomas la palabra en la siguiente diapositiva.
+> Idea central: Todo el curso gira alrededor de un solo proyecto, Image Bio Pro. La portada se queda en pantalla mientras te presentas y agradeces; en la siguiente diapositiva empiezas a explicar qué es el proyecto.
+
+Buenas tardes a todos. Mi nombre es Ángel Frausto Robles, soy ponente y parte del equipo que desarrolló este sitio web. Soy egresado de la Escuela Superior de Cómputo del Instituto Politécnico Nacional, especializado en temas de visión por computadora e inteligencia artificial.
+
+Quiero agradecer a la doctora Sheila y al doctor Saúl la oportunidad de presentar este proyecto tan importante para la universidad.
 
 [Diapositiva · ¿Qué es Image Bio Pro?]
 
 > Idea central: Image Bio Pro es un proyecto de la UAM que lleva la inteligencia artificial a la docencia, la investigación, la difusión de la cultura y el servicio a la comunidad universitaria.
 
-Buenas tardes a todos. Muchísimas gracias por la presentación, doctor Saúl. Muchas gracias también a los profesores, a la doctora Sheila y al doctor Saúl, por la oportunidad de poder presentar este proyecto tan importante para la universidad.
-
-Me presento. Mi nombre es Ángel Frausto Robles, soy ponente y parte del equipo que desarrolló este sitio web. Soy egresado de la Escuela Superior de Cómputo del Instituto Politécnico Nacional, especializado en temas de visión por computadora e inteligencia artificial.
-
-El día de hoy les voy a platicar de lo que es el proyecto Image Bio Pro, que está impulsando la Universidad Autónoma Metropolitana para promover proyectos de inteligencia artificial en el desempeño de las funciones de docencia, investigación y preservación y difusión de la cultura, así como de vinculación y servicio a la comunidad universitaria.
+En esta serie de videos les voy a platicar de lo que es el proyecto Image Bio Pro, que está impulsando la Universidad Autónoma Metropolitana para promover proyectos de inteligencia artificial en el desempeño de las funciones de docencia, investigación y preservación y difusión de la cultura, así como de vinculación y servicio a la comunidad universitaria.
 
 Quizás la primera pregunta que se hagan es: ¿qué es Image Bio Pro? Bueno, básicamente es una nueva plataforma web que tiene como objetivo incorporar los nuevos conceptos de inteligencia artificial para abordar, estudiar y apoyar las actividades de docencia, de investigación y de preservación y difusión de la cultura en la comunidad universitaria de la UAM Iztapalapa. Es la nueva era de la inteligencia artificial al servicio de la comunidad universitaria.
 
@@ -24,7 +24,7 @@ Quizás la primera pregunta que se hagan es: ¿qué es Image Bio Pro? Bueno, bá
 
 > Idea central: Son cuatro sesiones: la primera el problema y las bases teóricas, la segunda cómo aprende una computadora, la tercera el sitio funcionando y la cuarta datos, entrenamiento y despliegue.
 
-Este proyecto lo voy a presentar a lo largo de cuatro sesiones. Antes que nada, les platico lo que vamos a ir viendo en ellas.
+Este proyecto lo voy a presentar a lo largo de cuatro sesiones, y cada sesión se divide en videos de unos 20 minutos. Antes que nada, les platico lo que vamos a ir viendo en ellas.
 
 En la primera sesión vamos a ver el problema que intentamos resolver, y les platicaré las bases teóricas que ocupamos para diseñar el sitio web.
 
@@ -36,13 +36,15 @@ Y en la cuarta sesión veremos un par de ejemplos con datos, cómo se entrena la
 
 Quisiera pedirles que me den la oportunidad de cautivarlos para poder presentarles el sitio web en la tercera sesión. Me gustaría que primero tuvieran todo el background, todas las bases teóricas que nos permitieron desarrollar este sitio, para que cuando lo visiten sepan el trabajo y el enfoque de inteligencia artificial que utilizó esta plataforma. Espero que me puedan acompañar en estas cuatro sesiones.
 
-[Diapositiva · La agenda de hoy]
+[Diapositiva · La agenda de esta sesión]
 
 > Idea central: Hoy: el problema, qué es una imagen digital, algunas definiciones de inteligencia artificial y el comienzo de las redes neuronales. El sitio funcionando se presenta en la tercera sesión.
 
-La agenda del día de hoy: primero quisiera presentarles el problema, y después comenzamos explicando qué es una imagen digital.
+La agenda de esta primera sesión: primero quisiera presentarles el problema, y después comenzamos explicando qué es una imagen digital.
 
 Después de la imagen digital vamos a poner en orden algunas definiciones de inteligencia artificial, y con eso empezamos con las redes neuronales: qué es una neurona, qué es una capa y cómo se arma una red. El sitio funcionando lo vemos en la tercera sesión.
+
+Cada sesión se divide en videos de unos 20 minutos. Esta primera sesión son seis videos, y en cada uno vamos a ir avanzando por estos temas.
 
 [Diapositiva · La inteligencia artificial en la educación y la investigación]
 
