@@ -2,7 +2,7 @@
 
 Image Bio Pro · Sesión 1 · Capacitación en video
 
-*3,295 palabras, unos 18.8 min de habla*
+*3,228 palabras, unos 18.4 min de habla*
 
 [Diapositiva · Image Bio Pro]
 
@@ -94,7 +94,7 @@ Y contar es lo más sencillo. Lo siguiente sería medir. ¿Qué tan grande es ca
 
 [Diapositiva · Qué se quiere medir]
 
-> Idea central: Del problema salen cuatro cosas que medir: cuántas cabezas hay, qué tamaño tiene cada una, cómo se distribuyen los tamaños y de qué color es cada cabeza.
+> Idea central: Del problema salen tres cosas que medir: cuántas cabezas hay, qué tamaño tiene cada una y cómo se distribuyen los tamaños.
 
 Pongamos en claro qué queremos obtener de cada imagen, porque de ahí sale todo el diseño del sistema.
 
@@ -104,11 +104,9 @@ Lo segundo es el tamaño de cada cabeza. Como las cabezas son curvas, no basta c
 
 Lo tercero es la distribución de tamaños. En lugar de quedarnos con un solo número, queremos ver cómo se reparten las medidas: cuántas cabezas son pequeñas, cuántas medianas, cuántas grandes. Esa distribución suele parecerse a una campana, la famosa campana de Gauss, y de ella se sacan dos números que usaremos mucho: la media, que es el valor típico, y la desviación estándar, que dice qué tanto se alejan las demás del valor típico.
 
-Lo cuarto es el color. En estas imágenes, el color de la cabeza va de rojo a amarillo, y se mide a partir de la proporción de rojo y de verde dentro de cada contorno. Lo importante es que no son categorías separadas: es una escala continua, de la que usamos diez grados.
-
 Y al final, todo eso se tiene que poder llevar a otro lado. Por eso los resultados se exportan en un archivo CSV, para trabajarlos en una hoja de cálculo, y en un informe en PDF, para compartirlos.
 
-Esas cuatro cosas, conteo, tamaño, distribución y color, son lo que el sistema entrega por cada imagen. Y todas dependen de algo previo: saber dónde está cada cabeza.
+Esas tres cosas, conteo, tamaño y distribución, son lo que el sistema entrega por cada imagen. Y todas dependen de algo previo: saber dónde está cada cabeza.
 
 [Diapositiva · Media y desviación estándar, con un ejemplo]
 
@@ -182,7 +180,7 @@ El recorrido empieza con una imagen. Una persona la sube al sitio. Lo primero qu
 
 Después entra la red neuronal. Su trabajo es encontrar las cabezas y trazar el contorno de cada una. Esa es la única parte que se basa en aprendizaje.
 
-Con los contornos en la mano, entra el código convencional. Para cada contorno, cuenta los píxeles que encierra, y con la escala los convierte en micras cuadradas: eso es el área. Mide el largo. Calcula el color a partir de la proporción de rojo y verde. Y luego junta todas las cabezas de la imagen y calcula el conteo, la media y la desviación estándar.
+Con los contornos en la mano, entra el código convencional. Para cada contorno, cuenta los píxeles que encierra, y con la escala los convierte en micras cuadradas: eso es el área. Mide el largo. Y luego junta todas las cabezas de la imagen y calcula el conteo, la media y la desviación estándar.
 
 Con todo eso se arman los resultados que mencionamos: la imagen marcada con los contornos, la tabla con una fila por cabeza, la gráfica de tamaños y los archivos para descargar.
 

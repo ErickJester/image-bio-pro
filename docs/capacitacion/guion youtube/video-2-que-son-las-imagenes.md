@@ -4,7 +4,7 @@ Image Bio Pro · Sesión 1 · Capacitación en video
 
 Continúa del video 1. Empieza con la frase que lo une con el video anterior.
 
-*3,372 palabras, unos 19.3 min de habla*
+*3,363 palabras, unos 19.2 min de habla*
 
 [Diapositiva · ¿Qué son las imágenes?]
 
@@ -44,7 +44,7 @@ Hasta ahora hablamos de imágenes en tonos de gris, donde cada píxel tiene un s
 
 En una imagen a color, cada píxel guarda tres números en lugar de uno. Un número dice cuánto rojo tiene el píxel, otro cuánto verde y otro cuánto azul. Cada uno va, igual que el brillo, de cero a doscientos cincuenta y cinco. Estos tres números se llaman canales, y por eso se habla de los canales rojo, verde y azul. Mezclándolos en distintas proporciones se obtiene cualquier color que veamos en una pantalla.
 
-Veamos un ejemplo. El naranja de una cabeza brillante podría tener doscientos cuarenta de rojo, ciento veintidós de verde y cuarenta y dos de azul. Mucho rojo, una cantidad media de verde y casi nada de azul. Si el color tuviera menos verde, por ejemplo treinta, se vería más rojo. Si tuviera más verde, por ejemplo doscientos, se vería más amarillo. Y esto es justamente lo que nos permite medir el color de cada cabeza: comparar cuánto rojo y cuánto verde hay dentro de su contorno.
+Veamos un ejemplo. El naranja de una cabeza brillante podría tener doscientos cuarenta de rojo, ciento veintidós de verde y cuarenta y dos de azul. Mucho rojo, una cantidad media de verde y casi nada de azul. Si el color tuviera menos verde, por ejemplo treinta, se vería más rojo. Si tuviera más verde, por ejemplo doscientos, se vería más amarillo. Con tres números, entonces, queda descrito el color de cada píxel.
 
 Una imagen de tres canales pesa tres veces más que una de un canal, porque guarda tres números por píxel. Y para muchas tareas, como encontrar dónde hay algo brillante, a veces basta con trabajar con el brillo, que es un solo número por píxel y se calcula combinando los tres canales.
 
