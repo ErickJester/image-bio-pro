@@ -22,7 +22,7 @@ En una gráfica es una línea plana en cero hasta el origen, y luego una línea 
 
 Al combinar muchas de estas esquinas en capas, la red puede dibujar relaciones tan complicadas como queramos: curvas, bordes, formas. Es la diferencia entre trazar con una sola regla recta y trazar con miles de segmentos pequeños que, juntos, siguen cualquier contorno.
 
-Entonces: los pesos deciden a qué se fija cada neurona. El sesgo decide qué tan exigente es. Y la activación hace que la red pueda representar cosas que no son simples proporciones. Con esas tres ideas se entiende una neurona completa.
+En conjunto: los pesos fijan a qué atiende cada neurona, el sesgo cuánta exigencia tiene, y la activación permite que la red represente algo más que simples proporciones. Con esas tres ideas queda completa la neurona.
 
 [Diapositiva · De la neurona a la capa y a la red]
 
@@ -38,9 +38,9 @@ Esa arquitectura es la red neuronal, y cuando tiene muchas capas se habla de apr
 
 La red que usamos tiene decenas de millones de pesos. Que un modelo esté entrenado significa que cada uno de esos millones de números ya tiene un valor adecuado. Un modelo sin entrenar tiene los mismos pesos con valores arbitrarios, y produce respuestas sin sentido. El entrenamiento es el proceso que encuentra los valores correctos.
 
-La comparación con el cerebro hay que tomarla con cautela. El concepto nació de la idea de que las neuronas biológicas reciben señales, las ponderan y se activan según el total. Pero una neurona artificial es mucho más simple que una biológica, y la red completa no funciona como un cerebro. Lo útil de la analogía son las muchas unidades simples que, en capas, producen comportamientos complejos. Sería un error pensar que, por llamarse neuronal, la red piensa o comprende.
+Una comparación con el cerebro conviene tomarla con cautela. El concepto nació de la idea de que las neuronas biológicas reciben señales, las ponderan y se activan según el total, pero una neurona artificial es mucho más simple, y la red completa no funciona como un cerebro. Lo útil de la analogía son las muchas unidades simples que, en capas, producen comportamientos complejos. Aunque se llame neuronal, la red no piensa ni comprende.
 
-Entonces: una red neuronal es una cadena de capas. Cada capa toma números, los combina con pesos, aplica una pequeña no linealidad y pasa el resultado a la siguiente. Los pesos son lo que la red sabe. Falta ver cómo conseguir que esos pesos tomen valores útiles.
+Dicho en corto, una red neuronal es una cadena de capas. Cada capa toma números, los combina con pesos, aplica una pequeña no linealidad y pasa el resultado a la siguiente. Los pesos son lo que la red sabe, y falta ver cómo lograr que tomen valores útiles.
 
 Para que no quede en el aire, recorramos una red muy pequeña, con números, en la siguiente diapositiva.
 
@@ -74,7 +74,7 @@ Para quitarle todo misterio, calculemos a mano una red muy pequeña. Tiene dos e
 
 Supongamos que las dos entradas valen uno y dos. La primera neurona de la capa intermedia tiene los pesos uno y uno, y sesgo cero. Multiplica uno por uno, dos por uno, suma, y da tres. Como es positivo, la activación lo deja pasar: la salida de esta neurona es tres.
 
-La segunda tiene los pesos uno y menos uno, y sesgo cero. Multiplica uno por uno, dos por menos uno, suma, y da menos uno. Es negativo, y la activación lo convierte en cero. Esta neurona queda apagada.
+La segunda tiene los pesos uno y menos uno, y sesgo cero. Multiplica uno por uno, dos por menos uno, suma, y da menos uno. Al ser negativo, la activación lo deja en cero y la neurona queda apagada.
 
 Ahora la neurona de salida. Recibe las respuestas de la capa anterior: tres y cero. Tiene los pesos dos y uno, y un sesgo de menos uno. Multiplica tres por dos, que son seis, y cero por uno, que es cero. Suma seis. Le resta el sesgo, uno, y queda cinco. Esa es la respuesta de la red.
 
@@ -94,9 +94,9 @@ Cada nivel de la descripción se apoya en el anterior: una casa no se describe d
 
 Una red de una sola capa tendría que describir la casa directamente a partir de los píxeles. En teoría se puede, pero necesitaría un número enorme de neuronas para cubrir todas las combinaciones posibles. Con varias capas, cada una resuelve un pedazo pequeño y el conjunto resuelve el problema completo con muchos menos recursos.
 
-También es verdad que más capas no siempre es mejor. Cada capa agrega pesos que ajustar, y una red muy profunda con pocos ejemplos puede aprender de memoria en lugar de generalizar. Hay un equilibrio, y encontrarlo es parte del diseño. Por eso se parte de arquitecturas probadas en problemas parecidos, en lugar de inventar la estructura desde cero.
+También es verdad que más capas no siempre es mejor. Cada capa agrega pesos que ajustar, y una red muy profunda con pocos ejemplos puede aprender de memoria en lugar de generalizar. Hay un equilibrio, y encontrarlo es parte del diseño.
 
-Total que la profundidad permite construir ideas complejas a partir de ideas simples, y por eso el aprendizaje profundo funciona tan bien con datos que tienen estructura, como las imágenes.
+Dicho de otro modo, la profundidad permite construir ideas complejas a partir de ideas más simples, y por eso el aprendizaje profundo funciona tan bien con datos que tienen estructura, como las imágenes.
 
 [Diapositiva · Cómo aprende una red]
 
@@ -106,9 +106,9 @@ Total que la profundidad permite construir ideas complejas a partir de ideas sim
 
 Primero, la red hace una predicción con los pesos que tiene en ese momento. Segundo, se compara con la respuesta correcta que alguien proporcionó a mano, y se mide cuánto se equivocó. Tercero, se ajustan un poco los pesos en la dirección que habría reducido el error. Y cuarto, se repite con otro ejemplo, y así miles de veces.
 
-Antes de entrenar, los pesos son arbitrarios. Si le damos una imagen, la red responde, pero la respuesta es casi aleatoria: con una imagen de cientos de espermatozoides podría marcar regiones al azar. Para mejorar, la red necesita saber cuánto se equivocó. Esa medida se llama función de pérdida, un número que resume la distancia entre lo que la red predijo y lo que debió predecir. Si marca justo los espermatozoides que las personas marcaron, la pérdida es pequeña. Si marca otras cosas, o se le escapa mucho, es grande. La pérdida solo tiene que cumplir dos condiciones: ser más baja mientras mejor sea la predicción y poder calcularse de forma automática.
+Para mejorar, la red necesita saber cuánto se equivocó. Esa medida se llama función de pérdida, un número que resume la distancia entre lo que la red predijo y lo que debió predecir. Si marca justo los espermatozoides que las personas marcaron, la pérdida es pequeña; si marca otras cosas o se le escapa mucho, es grande.
 
-Las respuestas correctas no las da la red ni el desarrollador: las dan las personas. Alguien tuvo que mirar cada imagen de entrenamiento y marcar con un contorno cada espermatozoide. A ese trabajo se le llama anotación o etiquetado, y es la fuente de lo que el modelo aprende. En nuestro caso, se hizo con una herramienta llamada CVAT. El modelo solo puede aprender a reproducir lo que las personas marcaron. Si las marcas tienen errores, aprende los errores. Si siguen un criterio, aprende ese criterio. Un modelo es, en cierto sentido, un espejo comprimido de las anotaciones.
+Las respuestas correctas las ponen las personas, que marcan con un contorno cada espermatozoide de las imágenes de entrenamiento. A ese trabajo se le llama anotación, y de ahí aprende el modelo. Más adelante vemos cómo se hace.
 
 Ninguno de estos cuatro pasos requiere que alguien le explique a la red qué es un espermatozoide. Lo único que se necesita son ejemplos con su respuesta correcta y una forma de medir qué tan lejos estuvo la red de esa respuesta. Todo lo demás es mecánico: predecir, comparar, ajustar, repetir.
 
@@ -126,7 +126,7 @@ Con esos valores, la red hace predicciones sin sentido. Si le damos una imagen, 
 
 A partir de ahí, cada ajuste mueve un poco los pesos en la dirección que reduce el error. Al principio los cambios son grandes, porque cualquier mejora cuenta. Después se vuelven más finos.
 
-Como el punto de partida es al azar, dos entrenamientos de la misma red con los mismos datos no dan exactamente el mismo resultado. Son parecidos, con una calidad comparable, pero no idénticos. Hay una forma de controlar esto: fijar la semilla del generador de números al azar, de modo que siempre se obtengan los mismos valores iniciales. Por eso, en un cuaderno bien documentado, se anota esa semilla.
+Como el punto de partida es al azar, dos entrenamientos de la misma red con los mismos datos no dan exactamente el mismo resultado: son parecidos, pero no idénticos. Más adelante vemos cómo controlar ese azar.
 
 Otro detalle: no empezar de cero cambia mucho. Si en lugar de pesos al azar se parte de pesos que ya vienen de un entrenamiento anterior, la red ya sabe hacer algunas cosas útiles desde el primer momento. Es una técnica que se usa mucho y de la que hablaremos en la siguiente sesión.
 
@@ -148,7 +148,7 @@ Lo más delicado de la anotación es el criterio. ¿Qué cuenta como una cabeza?
 
 Por eso conviene que alguien del grupo valide las anotaciones, y que haya un criterio escrito. Una red entrenada con anotaciones cuidadosas y consistentes funciona bien. Una entrenada con anotaciones descuidadas aprende el descuido.
 
-Es una buena razón para recordar que los modelos no son neutros. Reflejan las decisiones de quienes los enseñaron.
+Un modelo es, en cierto sentido, un espejo comprimido de sus anotaciones: refleja las decisiones de quienes lo enseñaron.
 
 [Diapositiva · Con respuestas y sin respuestas]
 
@@ -164,7 +164,7 @@ Y hay una tercera, el aprendizaje por refuerzo, donde el sistema aprende proband
 
 Para nuestro problema, el supervisado es el adecuado, porque sabemos exactamente qué queremos: que la red encuentre cabezas. Y su costo es el que ya vimos: alguien tiene que anotar las imágenes. Cada contorno dibujado a mano es una respuesta correcta que la red usa para ajustarse.
 
-Eso explica por qué la calidad de las anotaciones pesa tanto. En el aprendizaje supervisado, las respuestas son la fuente de todo lo que la red aprende. Si son buenas, la red puede ser buena. Si no lo son, no hay entrenamiento que lo compense.
+Aquí las respuestas son la fuente de todo lo que la red aprende. Si son buenas, la red puede ser buena, y si no lo son, ningún entrenamiento lo compensa.
 
 [Diapositiva · La función de pérdida]
 
@@ -178,6 +178,6 @@ En un problema muy sencillo, como adivinar el tamaño de una célula, la pérdid
 
 En una red como la nuestra, que debe encontrar cabezas y trazar su contorno, la pérdida combina varias medidas: si la red acertó en que ahí había una cabeza, qué tan bien quedó su ubicación y qué tanto coincide el contorno que dibujó la red con el que dibujó la persona. Todas se suman en un solo número, y ese es el que se intenta reducir.
 
-La pérdida nos dice qué tan bien se ajusta la red a las respuestas que le dimos, no qué tan bien entiende el problema. Si las respuestas contienen errores, la red aprende a reproducirlos, y la pérdida puede ser muy baja a pesar de eso. Por eso es tan importante el trabajo de las personas que anotan las imágenes. Su cuidado y su criterio se convierten en el límite de lo que la red puede aprender.
+Ojo: la pérdida mide qué tanto se parece lo que hizo la red a las respuestas que le dimos, no qué tanto entiende el problema. Si esas respuestas traen errores, la red los aprende y la pérdida aun así puede salir muy baja.
 
-Durante el entrenamiento, normalmente se ve una gráfica de la pérdida a lo largo del tiempo. Al principio es alta y baja deprisa. Después baja cada vez más despacio, y se estabiliza. Esa gráfica es una de las formas de saber si el entrenamiento va bien. En el siguiente video vemos cómo se ajustan los pesos.
+Esa pérdida se vigila durante todo el entrenamiento. En el siguiente video vemos cómo se ajustan los pesos.

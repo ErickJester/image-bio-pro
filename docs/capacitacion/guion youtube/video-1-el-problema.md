@@ -2,7 +2,7 @@
 
 Image Bio Pro · Sesión 1 · Capacitación en video
 
-*3,709 palabras, unos 21.2 min de habla*
+*3,295 palabras, unos 18.8 min de habla*
 
 [Diapositiva · Image Bio Pro]
 
@@ -16,21 +16,21 @@ Quiero agradecer a la doctora Sheila y al doctor Saúl la oportunidad de present
 
 > Idea central: Image Bio Pro es un proyecto de la UAM que lleva la inteligencia artificial a la docencia, la investigación, la difusión de la cultura y el servicio a la comunidad universitaria.
 
-En esta serie de videos les voy a platicar de lo que es el proyecto Image Bio Pro, que está impulsando la Universidad Autónoma Metropolitana para promover proyectos de inteligencia artificial en el desempeño de las funciones de docencia, investigación y preservación y difusión de la cultura, así como de vinculación y servicio a la comunidad universitaria.
+En esta serie de videos les voy a platicar de Image Bio Pro, un proyecto que la Universidad Autónoma Metropolitana está impulsando para que la inteligencia artificial llegue a lo que se hace todos los días en la universidad: dar clases, investigar, preservar y difundir la cultura, y también vincularse con la comunidad y servirle.
 
-Quizás la primera pregunta que se hagan es: ¿qué es Image Bio Pro? Bueno, básicamente es una nueva plataforma web que tiene como objetivo incorporar los nuevos conceptos de inteligencia artificial para abordar, estudiar y apoyar las actividades de docencia, de investigación y de preservación y difusión de la cultura en la comunidad universitaria de la UAM Iztapalapa. Es la nueva era de la inteligencia artificial al servicio de la comunidad universitaria.
+Quizás se pregunten qué es, exactamente, Image Bio Pro. Bueno, es una plataforma web nueva, pensada para meter las ideas más recientes de la inteligencia artificial en esas mismas tareas dentro de la UAM Iztapalapa. Dicho de otro modo, es la nueva era de la inteligencia artificial puesta al servicio de la comunidad universitaria.
 
 [Diapositiva · Las cuatro sesiones]
 
 > Idea central: Son cuatro sesiones: la primera el problema y las bases teóricas, la segunda cómo aprende una computadora, la tercera el sitio funcionando y la cuarta datos, entrenamiento y despliegue.
 
-Este proyecto lo voy a presentar a lo largo de cuatro sesiones, y cada sesión se divide en videos de unos 20 minutos. Antes que nada, les platico lo que vamos a ir viendo en ellas.
+Este proyecto lo voy a presentar a lo largo de cuatro sesiones. Antes que nada, les platico lo que vamos a ir viendo en ellas.
 
-En la primera sesión vamos a ver el problema que intentamos resolver, y les platicaré las bases teóricas que ocupamos para diseñar el sitio web.
+En la primera sesión empezamos por el problema que intentamos resolver, y les platicaré las bases teóricas que ocupamos para diseñar el sitio web.
 
-En la segunda sesión vamos a ver, y lo resumo en una palabra, cómo aprende una computadora, que es la esencia de una red neuronal artificial.
+En la segunda sesión, y lo resumo en una palabra, vemos cómo aprende una computadora, que es la esencia de una red neuronal artificial.
 
-En la tercera sesión vamos a ver cómo funciona esta plataforma web. Una vez que ya entendimos el problema y exploramos las bases teóricas, ahora sí les presentaré cómo funciona el sistema.
+En la tercera sesión les enseño cómo funciona esta plataforma web. Una vez que entendimos el problema y exploramos las bases teóricas, ahora sí toca mostrar el sistema.
 
 Y en la cuarta sesión veremos un par de ejemplos con datos, cómo se entrena la red neuronal y cómo es el despliegue de la información.
 
@@ -42,7 +42,7 @@ Quisiera pedirles que me den la oportunidad de cautivarlos para poder presentarl
 
 La agenda de esta primera sesión: primero quisiera presentarles el problema, y después comenzamos explicando qué es una imagen digital.
 
-Después de la imagen digital vamos a poner en orden algunas definiciones de inteligencia artificial, y con eso empezamos con las redes neuronales: qué es una neurona, qué es una capa y cómo se arma una red. El sitio funcionando lo vemos en la tercera sesión.
+Después de la imagen digital vamos a poner en orden algunas definiciones de inteligencia artificial, y con eso empezamos con las redes neuronales: qué es una neurona, qué es una capa y cómo se arma una red.
 
 Cada sesión se divide en videos de unos 20 minutos. Esta primera sesión son seis videos, y en cada uno vamos a ir avanzando por estos temas.
 
@@ -58,15 +58,13 @@ En lugar de escribir las reglas, se le muestran a la computadora muchos ejemplos
 
 Las imágenes vienen de muchas fuentes, y una de las más importantes en las ciencias de la vida es la microscopía. Con un microscopio podemos ver células, por ejemplo espermatozoides, y podemos ver cómo cambian de tamaño y de forma bajo ciertas condiciones. Cada imagen trae información, pero alguien tiene que sacarla: contar, medir, comparar.
 
-Para quienes no han trabajado con fluorescencia, una explicación breve. En esta técnica las células se tiñen con un colorante que, al recibir cierta luz, la devuelve en otro color. Por eso en la imagen la célula brilla y el fondo queda oscuro: lo único que vemos es lo que está teñido. Eso nos conviene, porque hay mucho contraste entre la célula y el fondo. Más adelante, cuando veamos cómo mira una imagen la computadora, esto va a tener mucho sentido.
+Las imágenes que vamos a usar vienen de la microscopía de fluorescencia, y en un momento les explico en qué consiste.
 
-También conviene decir qué preguntas se contestan con estas imágenes. Quien estudia espermatozoides puede querer saber cuántos hay en una muestra, qué tan grandes son, si ese tamaño cambia cuando cambia una condición, y qué tanto varían unos de otros. Todas esas preguntas se contestan midiendo, y medir a mano, uno por uno, es justo lo que vamos a ver que se vuelve un problema.
-
-Lo que busco con este curso es que vean cómo se aplica la inteligencia artificial a un problema real de biología de la reproducción. Entonces, eh, para entender cómo se aplica la inteligencia artificial, vamos a seguir un caso de estudio, o sea, un ejemplo concreto: contar y medir espermatozoides en imágenes de microscopio.
+Lo que busco con este curso es que vean cómo se aplica la inteligencia artificial a un problema real de biología de la reproducción. Entonces, eh, para verlo en concreto, vamos a seguir un caso de estudio, o sea, un ejemplo: contar y medir espermatozoides en imágenes de microscopio.
 
 No hace falta ser experto en nada. Si saben programar, van a ver cómo se arma el sistema, y si vienen de biología, van a ver cómo se mide lo que ya conocen.
 
-Esto importa en un entorno universitario. En la docencia, una herramienta que analiza imágenes permite que quien está aprendiendo vea, con sus propios datos, cómo se pasa de una imagen a una medida. En la investigación, permite que el conteo y la medición dejen de depender de horas de trabajo manual y de la mirada de una sola persona. Y en la difusión de la cultura científica, un sitio abierto a la comunidad muestra que la inteligencia artificial es una herramienta que se puede usar, revisar y entender.
+Esto tiene sentido en un entorno universitario. En la docencia, una herramienta que analiza imágenes le permite a quien está aprendiendo ver, con sus propios datos, cómo se pasa de una imagen a una medida. En la investigación, el conteo y la medición dejan de depender de horas de trabajo manual y de la mirada de una sola persona. Y en la difusión de la cultura científica, un sitio abierto a la comunidad muestra que la inteligencia artificial es una herramienta que se puede usar, revisar y entender.
 
 Por eso, a lo largo de las sesiones vamos a ver el sitio funcionando y también las ideas que hay debajo, para que cualquiera de ustedes pueda razonar sobre qué hace el sistema, cuándo se puede confiar en él y cuándo conviene mirar con más cuidado. Esa es la ventaja de conocer las bases: dejan de ser una caja negra.
 
@@ -74,13 +72,13 @@ Por eso, a lo largo de las sesiones vamos a ver el sitio funcionando y también 
 
 > Idea central: En fluorescencia, la célula se tiñe con un colorante que devuelve la luz en otro color. Por eso brilla sobre un fondo oscuro y es fácil de distinguir.
 
-Antes de ver el problema, una explicación breve de qué tipo de imágenes vamos a usar, porque no todos vienen del mismo entorno. Trabajamos con microscopía de fluorescencia.
+Veamos primero qué tipo de imágenes vamos a usar, porque no todas vienen del mismo entorno. Trabajamos con microscopía de fluorescencia.
 
 En esta técnica, las células se tiñen con un colorante especial, un fluoróforo. Ese colorante tiene una propiedad: cuando recibe luz de cierto color, la absorbe, y un instante después devuelve luz de otro color. El microscopio ilumina la muestra con la luz que el colorante absorbe y, al mirar, filtra todo lo demás para dejar pasar solo la luz que el colorante devuelve.
 
-El resultado es una imagen muy particular. Lo que está teñido brilla, y lo que no está teñido queda oscuro. En nuestras imágenes, las cabezas de los espermatozoides aparecen en rojo o anaranjado, las colas en un verde amarillento, y el fondo es casi negro. Esto nos conviene muchísimo, porque hay un contraste enorme entre lo que queremos medir y lo que no.
+El resultado es una imagen muy particular. Lo que está teñido brilla, y lo que no está teñido queda oscuro. En nuestras imágenes, las cabezas de los espermatozoides aparecen en rojo o anaranjado, las colas en un verde amarillento, y el fondo es casi negro.
 
-Eso tiene una consecuencia para la computadora. Cuando hay mucho contraste, separar un objeto del fondo es más fácil, porque el objeto tiene números altos y el fondo números bajos. Más adelante vamos a ver qué es una imagen digital y por qué esto importa tanto.
+Para la computadora esto es una gran ayuda: separar un objeto del fondo resulta más fácil cuando el objeto tiene números altos y el fondo números bajos. Más adelante vemos qué es una imagen digital y por qué esto importa tanto.
 
 También existen las imágenes de fondo claro, donde la muestra se ve oscura sobre un fondo iluminado. Se ven distintas, y por eso para cada tipo de imagen hay un modelo distinto. Hoy nos concentramos en fluorescencia, que es el caso más claro para entender las ideas.
 
@@ -138,29 +136,25 @@ Un experimento típico compara condiciones. Se toma una muestra en una condició
 
 Para contestar con seriedad hace falta repetir. Una sola imagen puede ser rara por casualidad. Varias imágenes por condición, y varias muestras por condición, permiten distinguir una diferencia real de una variación normal. Y para saber si una diferencia es suficientemente grande como para tomarla en serio se usan pruebas estadísticas, que se aplican con los datos que el sistema entrega en el archivo CSV.
 
-Nuestro sistema cuenta, mide y entrega los datos de forma consistente y revisable. No interpreta. Decidir si una diferencia es significativa, qué la causa y qué implica biológicamente es una pregunta que le corresponde a quien conoce la biología detrás. El sistema es un instrumento, como una balanza: da el peso, y no decide si el resultado del experimento es bueno o malo.
+Nuestro sistema cuenta, mide y entrega los datos de forma uniforme y verificable. No interpreta. Decidir si una diferencia es significativa, qué la causa y qué implica biológicamente es una pregunta que le corresponde a quien conoce la biología detrás. El sistema es un instrumento, como una balanza: da el peso, y no decide si el resultado del experimento es bueno o malo.
 
-Y por eso la consistencia es tan valiosa. Si el instrumento no es consistente, las diferencias que se encuentren podrían venir del instrumento y no de la condición. Un método de medición estable permite que lo que se vea en los datos sea lo que realmente cambió en la muestra.
+Por eso importa que el instrumento sea estable: si no lo es, las diferencias que aparezcan podrían venir del instrumento y no de la condición. Con un método de medición uniforme, lo que se ve en los datos es lo que de verdad cambió en la muestra.
 
 [Diapositiva · Contar y medir a mano]
 
 > Idea central: Contar y medir a mano es lento, repetitivo y cambia según quién lo haga: tres personas cuidadosas pueden dar tres conteos distintos de la misma imagen. Un sistema que lo haga siempre igual hace falta.
 
-El problema es este: contar y medir a mano es lento, es repetitivo y cambia según quién lo haga. Una sola imagen puede traer decenas o cientos de células. Muchas están encimadas o pegadas unas a otras, y ahí es donde cada persona decide distinto dónde termina una y empieza la otra. El ojo no tiene una regla fija, y por eso cada persona decide distinto. En la diapositiva puse tres conteos de la misma imagen, de tres personas distintas. Son números de ejemplo, no de una medición real, pero la idea es esa: tres personas cuidadosas pueden llegar a tres resultados distintos.
+Ahora sí, el problema. Contar y medir a mano toma mucho tiempo, es repetitivo y el resultado cambia según quién lo haga. Una sola imagen puede traer decenas o cientos de células, y muchas están encimadas o pegadas, así que cada quien traza la frontera entre una y otra en un lugar distinto. El ojo no tiene una regla fija. En la diapositiva puse tres conteos de la misma imagen, hechos por tres personas distintas. Son números de ejemplo, no de una medición real, pero la idea es esa: tres personas cuidadosas pueden llegar a tres resultados diferentes.
 
-Imaginen contar a mano cien células en una imagen, y luego repetirlo con muchas imágenes... este, cada persona contaría algo distinto, ¿no? Además, para la investigación muchas veces lo que importa es el tamaño: cuánto mide cada célula, cuánto varía de una a otra y cómo cambia ese tamaño entre una condición y otra. Medir cada célula a mano exige trazar su contorno con cuidado y leer el resultado, una y otra vez. Multipliquen eso por cientos de células en una imagen y por muchas imágenes. Un sistema que haga ese trabajo siempre de la misma manera deja de ser un lujo y se vuelve algo que de verdad hace falta.
+Y no se trata solo de contar. Para la investigación muchas veces lo que importa es el tamaño: cuánto mide cada célula, cuánto varía de una a otra y cómo cambia entre una condición y otra. Medir a mano exige trazar cada contorno con cuidado y leer el resultado, una y otra vez, para cientos de células en muchas imágenes. Un sistema que haga ese trabajo siempre igual deja de ser un lujo y se vuelve una necesidad.
 
-Hay otra consecuencia que a veces se pasa por alto: el cansancio. Una persona que lleva una hora contando no mide igual que cuando empezó. Un programa no se cansa, y esa regularidad, para comparar imágenes entre sí, vale mucho.
-
-Una cosa más sobre las imágenes. Trabajamos con dos tipos: las de fluorescencia, donde las células brillan sobre un fondo oscuro, y las de fondo claro, que se ven distinto porque el fondo ya no es oscuro. Para cada tipo tenemos un modelo distinto, y más adelante vamos a ver cómo el sitio elige el que corresponde.
-
-Pensemos en dos personas que cuentan la misma imagen con todo cuidado. Una decide que dos cabezas muy pegadas son una sola, porque no ve el estrechamiento entre ellas. La otra sí lo ve y cuenta dos. Ninguna se equivocó por descuido; cada una aplicó su criterio. Pero sus números ya no coinciden, y si esas dos personas trabajan en laboratorios distintos, o en semanas distintas, comparar sus resultados deja de ser confiable.
+Pensemos en dos personas que cuentan la misma imagen con todo cuidado. Una decide que dos cabezas muy pegadas son una sola, porque no ve el estrechamiento entre ellas. La otra sí lo ve y cuenta dos. Ninguna se equivocó por descuido; cada una aplicó su criterio. Pero sus números ya no coinciden, y comparar sus resultados deja de ser confiable.
 
 Pasa algo parecido con las medidas. Para medir el tamaño de una cabeza a mano hay que decidir dónde exactamente termina el borde, y el borde de una célula brillante no es una línea nítida sino una transición de brillo. Una persona puede trazar el contorno un poco por dentro y otra un poco por fuera, y esa diferencia, que parece mínima, cambia el área de forma apreciable, porque el área crece con el cuadrado del tamaño.
 
 Y hay un tema de registro. Cuando se mide a mano, rara vez queda constancia de cómo se midió: dónde se trazó cada contorno, qué criterio se siguió. Un sistema automático puede guardar la imagen marcada, y cualquiera puede abrirla y ver exactamente qué se midió.
 
-Por todo eso, el objetivo es que el criterio de las personas sea consistente y repetible: que la misma imagen dé siempre el mismo resultado, y que ese resultado se pueda revisar.
+Por todo eso buscamos que la misma imagen dé siempre el mismo resultado, sin importar quién la analice, y que ese resultado se pueda revisar.
 
 [Diapositiva · Un día de trabajo sin el sistema]
 
@@ -190,10 +184,10 @@ Después entra la red neuronal. Su trabajo es encontrar las cabezas y trazar el 
 
 Con los contornos en la mano, entra el código convencional. Para cada contorno, cuenta los píxeles que encierra, y con la escala los convierte en micras cuadradas: eso es el área. Mide el largo. Calcula el color a partir de la proporción de rojo y verde. Y luego junta todas las cabezas de la imagen y calcula el conteo, la media y la desviación estándar.
 
-Finalmente se arman los resultados: una imagen marcada con los contornos, una tabla con una fila por cabeza, una gráfica de la distribución de tamaños, un archivo CSV para trabajar con los datos y un informe en PDF.
+Con todo eso se arman los resultados que mencionamos: la imagen marcada con los contornos, la tabla con una fila por cabeza, la gráfica de tamaños y los archivos para descargar.
 
-Si lo pensamos con calma, hay una parte que aprende y una parte que calcula. La que aprende es la red, y por eso necesita ejemplos, entrenamiento y todo lo que veremos hoy. La que calcula es el código, y por eso es preciso, repetible y se puede revisar.
+Fíjense que hay una parte que aprende y otra que calcula. La que aprende es la red, y por eso necesita ejemplos y entrenamiento. La que calcula es el código, y por eso es preciso, repetible y fácil de comprobar.
 
-Hoy nos vamos a concentrar en las piezas que hacen falta para entender la primera parte: qué es una imagen para una computadora, y qué es y cómo aprende una red neuronal. El recorrido completo, con el sitio funcionando, lo vemos en la tercera sesión.
+De todo este mapa, hoy vemos las piezas para entender la primera parte: qué es una imagen para una computadora, y qué es una red neuronal y cómo aprende. El recorrido completo, con el sitio funcionando, llega en la tercera sesión.
 
 Pero antes de ver cómo se resuelve, tenemos que regresarnos a lo fundamental: qué es una imagen, y qué es una imagen digital.

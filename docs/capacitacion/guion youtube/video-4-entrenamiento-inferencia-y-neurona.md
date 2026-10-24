@@ -4,30 +4,30 @@ Image Bio Pro · Sesión 1 · Capacitación en video
 
 Continúa del video 3. Empieza con la frase que lo une con el video anterior.
 
-*3,658 palabras, unos 20.9 min de habla*
+*3,147 palabras, unos 18.0 min de habla*
 
 [Diapositiva · Entrenamiento aparte, inferencia en el servidor]
 
 > Idea central: Entrenar es aprender la receta y se hace aparte, en Colab; la inferencia es cocinarla, y se hace en el servidor. Para mejorar el modelo no se toca el sitio, solo se cambia el archivo.
 
-En el video anterior vimos las palabras clave de este curso. Hay dos que conviene separar bien. El desarrollo de la red tiene dos etapas, y están separadas a propósito. Primero se entrena en Google Colab y, después, cuando queremos analizar imágenes nuevas, usamos el modelo en el servidor. A eso se le llama inferencia, ¿va?
+En el video anterior vimos las palabras clave de este curso. Hay dos que conviene separar bien, porque el desarrollo de la red tiene dos etapas, entrenamiento e inferencia, y están separadas a propósito.
 
 La primera etapa es el entrenamiento. Se hace en Colab, con imágenes que las personas ya marcaron a mano, y de ahí sale el archivo del modelo. La segunda etapa es la inferencia, que es usar el modelo ya entrenado para analizar imágenes nuevas. Eso se hace en el servidor, en el procesador de la computadora donde está el sitio.
 
 Esto tiene una consecuencia práctica. Para mejorar el modelo no se toca el sitio. Se entrena aparte, se obtiene un archivo nuevo y se cambia ese archivo en el servidor. Son dos partes con cuidados distintos: la parte web se mantiene como cualquier sitio, y la parte de aprendizaje automático se mejora con datos.
 
-Una comparación que ayuda: el entrenamiento es como aprender una receta, y la inferencia es como cocinarla las veces que haga falta. Aprender la receta lleva tiempo y esfuerzo, con muchos intentos y correcciones, y se hace una vez, o cada vez que se quiere mejorar. Cocinar con la receta ya aprendida es mucho más rápido y se repite todos los días. Con el sitio pasa igual: entrenar el modelo es lo pesado, y por eso se hace aparte, en Colab, donde hay más capacidad de cálculo. Usarlo para analizar una imagen es lo ligero, y por eso puede hacerse en el procesador del servidor del sitio.
-
-Esta separación tiene una ventaja más. El sitio no necesita saber cómo se entrenó el modelo, solo necesita el archivo. Cuando se entrena una versión mejor, se reemplaza el archivo y el sitio sigue funcionando igual.
+Una comparación que ayuda: el entrenamiento es como aprender una receta, y la inferencia es como cocinarla las veces que haga falta. Aprender la receta lleva tiempo y esfuerzo, con muchos intentos y correcciones, y se hace una vez, o cada vez que se quiere mejorar. Cocinar con la receta ya aprendida es mucho más rápido y se repite todos los días.
 
 Las dos etapas están separadas porque son trabajos de naturaleza distinta, y cada una pide una máquina distinta.
 
-El entrenamiento es un trabajo de mucho cálculo y poca frecuencia. Se hace una vez, o unas pocas veces. Necesita ver muchas veces los mismos ejemplos, y cada pasada ajusta millones de números. Para eso conviene una máquina potente, como las que ofrece Colab, con una tarjeta gráfica. Una vez terminado, no se repite hasta que haya una razón.
+El entrenamiento es un trabajo de mucho cálculo y poca frecuencia. Se hace una vez, o unas pocas veces. Necesita ver muchas veces los mismos ejemplos, y cada pasada ajusta millones de números. Para eso conviene una máquina potente, como las que ofrece Colab, con una tarjeta gráfica.
 
 La inferencia es lo opuesto: poco cálculo, pero muchas veces. Cada vez que alguien sube una imagen, hay que hacer una pasada por la red, solo de ida, sin ajustar nada. Es mucho más barato, y se puede hacer en una máquina modesta.
 
 Esa asimetría es lo que permite que el sistema funcione como funciona. El trabajo pesado se hace una vez, en el lugar adecuado, y el trabajo ligero se hace todos los días, en el servidor del sitio.
-Una pregunta que suele aparecer es: ¿el modelo sigue aprendiendo mientras la gente lo usa? La respuesta es que no. Durante la inferencia, los pesos no cambian. Si algún día se quisiera mejorar el modelo, se reuniría un conjunto nuevo de imágenes, se entrenaría una versión aparte y se cambiaría el archivo.
+
+Una pregunta que suele salir: ¿el modelo sigue aprendiendo mientras la gente lo usa? No. Durante la inferencia los pesos no cambian, y para mejorarlo hace falta entrenar otra versión con imágenes nuevas.
+
 [Diapositiva · Entrenamiento]
 
 > Idea central: Entrenar es ajustar los pesos con ejemplos anotados. Necesita muchos cálculos, una máquina potente y se hace pocas veces.
@@ -38,9 +38,7 @@ Entrenar es el proceso de ajustar los pesos de la red con ejemplos. Para hacerlo
 
 No se usan todas las imágenes para entrenar. Se separa una parte que la red no ve durante el entrenamiento, y que sirve después para comprobar si funciona con imágenes que no conoce. Es la diferencia entre estudiar con los ejercicios del libro y presentar un examen con ejercicios nuevos.
 
-El entrenamiento tiene tres características que lo distinguen. Es costoso, porque cada pasada recorre millones de pesos para cada imagen. Es lento comparado con usar la red, y puede tardar de minutos a horas, según el tamaño del modelo y de los datos. Y es poco frecuente: se hace una vez para obtener el modelo, y se vuelve a hacer solo si hay una razón.
-
-Por eso se hace en un entorno aparte. En nuestro caso, en Google Colab, donde se pueden usar máquinas con tarjeta gráfica. Y como está en un cuaderno, queda documentado: qué datos se usaron, qué decisiones se tomaron y qué resultado se obtuvo.
+Como es un trabajo pesado, se hace en un entorno aparte, que en nuestro caso es Google Colab, con máquinas que tienen tarjeta gráfica. Y como está en un cuaderno, queda documentado: qué datos se usaron, qué decisiones se tomaron y qué resultado se obtuvo.
 
 El producto del entrenamiento es el archivo del modelo. Es lo único que sale de ahí y lo único que necesita el sitio.
 
@@ -52,13 +50,11 @@ La segunda etapa es la inferencia. La palabra suena técnica, pero es sencilla: 
 
 En la inferencia no se ajusta nada. La imagen entra, atraviesa las capas hacia adelante, y sale la respuesta. No hay pérdida, ni gradiente, ni retropropagación. Los pesos están fijos, tal como quedaron al terminar el entrenamiento.
 
-Esto hace que sea mucho más ligera que el entrenamiento. Una sola pasada hacia adelante cuesta una fracción de lo que cuesta una pasada completa con ajuste. Y por eso se puede hacer en una computadora ordinaria, sin tarjeta gráfica, con el procesador común. Es lo que hace nuestro servidor.
+Eso la hace mucho más liviana que el entrenamiento: una pasada hacia adelante cuesta una fracción de una pasada completa con ajuste, y por eso alcanza con el procesador del servidor.
 
 También cambia la forma de pensar en el tiempo. En el entrenamiento, una hora más o menos no importa demasiado. En la inferencia, la persona está esperando con la página abierta, y cada segundo cuenta. Por eso se cuida que el modelo se cargue una sola vez, al iniciar el servidor, y que no haya que volver a leer el archivo con cada análisis.
 
-Otra diferencia es la frecuencia. El entrenamiento sucede una vez, y la inferencia sucede cada vez que alguien usa el sitio. Para un modelo que se usa durante meses, se puede hacer miles de veces.
-
-La inferencia es determinista. Con el mismo modelo y la misma imagen, siempre se obtiene la misma respuesta. No hay azar en el uso. Eso es lo que queremos de un instrumento: que dos mediciones de la misma muestra coincidan.
+Y no interviene el azar: ante la misma imagen, el mismo modelo responde siempre lo mismo. Para un instrumento de medición, eso es justo lo deseable.
 
 [Diapositiva · Fundamentos de redes neuronales]
 
@@ -84,8 +80,6 @@ Como primera aproximación sirve, pero los problemas aparecen pronto. Las colas 
 
 Se pueden seguir agregando reglas. Si la mancha es muy alargada, probablemente es una cola. Si es muy grande, probablemente es una mancha difusa. Si tiene forma de ocho, probablemente son dos células juntas y hay que partirla por el estrechamiento. Cada regla ayuda un poco y trae sus excepciones. La lista crece, se enreda, y cada extensión nueva obliga a modificar el programa, con el riesgo de romper lo que ya funcionaba.
 
-Hay problemas en los que escribir las reglas a mano es muy difícil. Por eso se recurre al aprendizaje automático: en lugar de escribir las reglas, se muestran ejemplos y se deja que el sistema las encuentre. Y una de las técnicas que mejor lo hace con imágenes es la red neuronal.
-
 Veamos con números por qué un umbral, que parece tan razonable, tiene tantos problemas. Tomemos una fila de diez píxeles, con estos valores de brillo: ocho, ocho, sesenta, ciento cuarenta, doscientos treinta, doscientos treinta, ciento cuarenta, sesenta, ocho, ocho. Es la forma típica de una célula: sube, llega a un máximo y baja.
 
 Si ponemos el umbral en cien, los píxeles que lo superan son cuatro: los de ciento cuarenta y los dos de doscientos treinta. Entonces la célula mide, en esa fila, cuatro píxeles. Pero si bajamos el umbral a cincuenta, los de sesenta también pasan, y la célula mide seis píxeles. Con un cambio de cincuenta puntos en el umbral, el tamaño de la célula cambió en la mitad. Y no hay una respuesta correcta: ambos valores parecen razonables.
@@ -94,7 +88,7 @@ Ese es el primer problema, y es serio, porque lo que queremos es medir. Un méto
 
 El segundo problema es que el umbral trata a todos los píxeles por igual. No distingue una cabeza de una cola, ni una cabeza de una mancha, porque lo único que mira es el brillo de cada píxel por separado. Y el tercero es que ignora la forma. Dos células pegadas se convierten en una mancha grande, porque el umbral no sabe que ahí había dos objetos.
 
-Con reglas adicionales se pueden arreglar algunos casos, pero cada regla es una decisión hecha a mano, con sus excepciones. Cuando el problema es complejo y las excepciones se multiplican, escribir reglas a mano deja de ser práctico. Necesitamos otra forma de plantearlo, y ahí aparece el aprendizaje automático.
+Mirado en conjunto, el umbral deja claro el límite de las reglas escritas a mano: cada regla nueva trae sus excepciones, y cuando se multiplican, mantener el programa deja de ser práctico. Hace falta plantear el problema de otra forma, y ahí entra el aprendizaje automático: se le muestran ejemplos al sistema y se deja que él encuentre las reglas. Con imágenes, la técnica que mejor funciona es la red neuronal.
 
 [Diapositiva · Una red neuronal no entiende]
 
@@ -108,7 +102,7 @@ Tendemos a atribuirle a la red una comprensión que no tiene. Cuando una persona
 
 Un buen ejemplo de esto es lo que pasa cuando se le muestra algo que nunca vio. Si le damos la imagen de otro tipo de tejido, no responde «esto no es lo que sé hacer». Responde con la misma seguridad, porque no tiene una forma de medir su propia ignorancia. Para ella, todo es una entrada y debe dar una salida.
 
-Entonces, la confianza que podemos tener en una red depende de cuánto se parecen las imágenes nuevas a las imágenes con las que se entrenó. Si se parecen, la respuesta suele ser buena. Si no, no hay garantía. Y por eso, en este proyecto, el resultado siempre se puede revisar, y por eso insistimos en mirar la imagen marcada antes de confiar en un número.
+Entonces, la confianza que podemos tener en una red depende de cuánto se parecen las imágenes nuevas a las imágenes con las que se entrenó. Si se parecen, la respuesta suele ser buena. Si no, no hay garantía. Por eso conviene mirar siempre la imagen marcada antes de confiar en un número.
 
 Pensarlo así nos quita el misterio: una red neuronal es una máquina de reconocer patrones, muy buena, que hay que usar con criterio.
 
@@ -134,13 +128,13 @@ El cambio de fondo es de método: en lugar de decirle a la computadora cómo hac
 
 Ahora sí vamos a construir la idea de la red desde su pieza más pequeña, que es la neurona artificial. Es la pieza elemental, y aunque el nombre es más una inspiración histórica que una descripción fiel de la biología, es una operación muy pequeña que se describe en cuatro pasos.
 
-Primero, recibe una lista de números, que son las entradas. Segundo, cada entrada se multiplica por otro número, que es su peso. Tercero, se suman los resultados. Y cuarto, a esa suma se le aplica una pequeña función que decide cuándo se activa la neurona. Eso es todo.
+Primero, recibe una lista de números, que son las entradas. Segundo, cada entrada se multiplica por otro número, que es su peso. Tercero, se suman los resultados. Y cuarto, a esa suma se le aplica una pequeña función que decide cuándo se activa la neurona.
 
 Un ejemplo simple para ver qué hace un peso: imaginen una neurona que decide si un punto de la imagen es rojo e intenso. Recibe tres entradas, la cantidad de rojo, de verde y de azul de un píxel. Para que dé una salida alta con un píxel muy rojo, se le asigna un peso grande y positivo a la entrada del rojo, y pesos pequeños o negativos a las otras dos. Un píxel muy rojo produce una suma muy grande y uno azul una suma muy pequeña.
 
 Los pesos expresan qué le importa a la neurona. Un peso grande dice «esto me va a importar mucho», uno cercano a cero dice «me da igual», y uno negativo dice «esto me hace dudar». Falta un elemento, un número que se suma al final, que se llama sesgo. Desplaza el punto desde el cual la neurona empieza a activarse. Pueden imaginarlo como un interruptor sensible: los pesos deciden a qué se fija y el sesgo decide qué tan exigente es antes de encenderse.
 
-El último paso, la función de activación, es lo que hace posible que las redes sean tan potentes. Si la neurona solo multiplicara y sumara, haría una operación lineal, y encadenar muchas operaciones lineales equivale a una sola. No importa cuántas capas se apilen, el resultado siempre sería tan limitado como el de una. La función de activación introduce una no linealidad. La más usada hoy es simple: si la suma es negativa, la salida es cero; si es positiva, la salida es la propia suma. La neurona se apaga si no recibe estímulo suficiente y responde de forma proporcional si lo recibe. Esa pequeña torcedura permite representar relaciones complicadas y no solo proporcionales.
+El último paso es la función de activación, que es lo que hace posible que las redes sean tan potentes. Por ahora basta saber que es una regla sencilla: si la suma es negativa, la salida es cero, y si es positiva, pasa tal cual.
 
 Hagamos las cuentas de una neurona con números concretos, para que se vea que de verdad es solo multiplicar y sumar.
 
@@ -150,7 +144,7 @@ Probemos con un píxel naranja intenso, el de doscientos cuarenta, ciento veinti
 
 Probemos ahora con un píxel azul, de veinte, treinta y doscientos veinte. Las entradas son cero punto cero ocho, cero punto doce y cero punto ochenta y seis. El rojo aporta cero punto dieciséis, el verde resta cero punto doce y el azul resta cero punto ochenta y seis, y con el sesgo el total queda en menos uno punto doce. Es un número negativo, y la neurona, que se activa solo con valores positivos, responde cero.
 
-Sin que nadie le dijera la palabra rojo, esta neurona distingue un píxel rojo de uno azul, solo por cómo están puestos sus pesos. El sesgo también cuenta: si fuera menos uno en lugar de menos cero punto tres, el píxel naranja daría solo cerca de cero punto veinticuatro, una respuesta mucho más tímida. El sesgo es lo que decide qué tan exigente es la neurona antes de decir que sí.
+Sin que nadie le dijera la palabra rojo, esta neurona distingue un píxel rojo de uno azul, solo por cómo están puestos sus pesos. El sesgo también cuenta: si fuera menos uno en lugar de menos cero punto tres, el píxel naranja daría solo cerca de cero punto veinticuatro, una respuesta mucho más tímida.
 
 Esto es todo lo que hace una neurona: multiplicar, sumar y comparar. La potencia de una red viene de que hay millones de ellas, bien ajustadas.
 

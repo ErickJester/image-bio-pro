@@ -12,13 +12,13 @@ Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conv
 
 En el video anterior vimos cómo se mide el error de una red con la función de pérdida. El siguiente paso es ajustar, que es la parte más ingeniosa. Imaginen que están en una montaña con una niebla densa y quieren llegar al valle más bajo. No ven el paisaje. Solo sienten la inclinación del suelo bajo los pies. En cada paso avanzan un poquito hacia donde el suelo baja más. No saben dónde está el valle, pero siguiendo la pendiente llegan, poco a poco, a un lugar bajo.
 
-Esa imagen es literalmente el algoritmo con que se entrena la red: el descenso del gradiente. La altura del terreno es la pérdida. La posición es el conjunto de todos los pesos. La inclinación del suelo es el gradiente, que indica, para cada peso, en qué dirección moverlo para que la pérdida baje. Y el tamaño del paso se llama tasa de aprendizaje. Con un paso demasiado grande se puede saltar por encima del valle y rebotar sin llegar nunca. Con uno muy pequeño se avanza tan lento que el entrenamiento no termina en tiempo razonable. Elegir el tamaño del paso es una de las decisiones que se toman antes de entrenar, y esas decisiones se llaman hiperparámetros.
+Esa imagen es literalmente el algoritmo con que se entrena la red: el descenso del gradiente. La altura del terreno es la pérdida. La posición es el conjunto de todos los pesos. La inclinación del suelo es el gradiente, que indica, para cada peso, en qué dirección moverlo para que la pérdida baje. Y el tamaño del paso se llama tasa de aprendizaje. Cómo elegir el tamaño de ese paso lo vemos enseguida.
 
 La palabra gradiente suena complicada, pero la idea es sencilla. El gradiente es, para cada peso, una indicación de hacia dónde moverlo y qué tan sensible es la pérdida a ese movimiento. Si al subir un poquito un peso la pérdida sube, el gradiente dice que hay que bajarlo. Y si al subirlo la pérdida baja, que hay que subirlo.
 
 Volviendo a la montaña con niebla: en una montaña con dos direcciones, norte-sur y este-oeste, la inclinación nos dice cuánto sube o baja el suelo en cada una, y avanzamos en la combinación que más baja. En nuestra red hay decenas de millones de direcciones, una por cada peso, y el gradiente da la inclinación en todas a la vez.
 
-Nada garantiza que el valle al que llegamos sea el más profundo de toda la montaña. Podemos caer en un hueco intermedio. En la práctica, con redes grandes, esos huecos suelen ser suficientemente buenos, y por eso el método funciona. Pero explica por qué dos entrenamientos del mismo modelo, con puntos de partida distintos, pueden dar resultados ligeramente distintos.
+Nada garantiza que el valle al que llegamos sea el más profundo de toda la montaña. Podemos caer en un hueco intermedio. En la práctica, con redes grandes, esos huecos suelen ser suficientemente buenos, y por eso el método funciona.
 
 Este procedimiento no es nuevo ni exclusivo de la inteligencia artificial. Es una técnica clásica de optimización, que se usa en ingeniería y en estadística para encontrar los valores que minimizan una cantidad. Lo que cambió es la escala: ahora se aplica a modelos con decenas de millones de parámetros y con cantidades enormes de datos.
 
@@ -36,25 +36,23 @@ El paso ideal está entre los dos, y no hay una fórmula que lo dé de antemano.
 
 La tasa de aprendizaje es un ejemplo de lo que se llama hiperparámetro. Un hiperparámetro es una decisión que se toma antes de entrenar y que no la aprende la red. La diferencia con un peso es esta: los pesos los ajusta el entrenamiento, mientras que los hiperparámetros los elige la persona. Otros ejemplos son cuántas veces se recorren los datos, cuántos ejemplos se usan en cada ajuste o cuántas capas tiene la red.
 
-Conviene saber que existen, porque cuando se dice que un modelo se entrenó de cierta manera, parte de esa manera son sus hiperparámetros. Y por eso el cuaderno de entrenamiento se comparte con su configuración: para que cualquiera pueda repetir el entrenamiento con las mismas decisiones.
-
 [Diapositiva · Retropropagación: repartir el error]
 
 > Idea central: La retropropagación calcula cuánto contribuyó cada peso al error, yendo hacia atrás desde la salida, capa por capa. Se parece a revisar los tiros fallados de Batalla naval.
 
-Bueno, también hay que preguntarse cómo se calcula la pendiente con decenas de millones de pesos. Existe una técnica, la retropropagación, que aprovecha que la red es una cadena de operaciones simples para calcular de forma eficiente cuánto contribuyó cada peso al error. Se llama así porque el cálculo va hacia atrás: parte del error en la salida y retrocede capa por capa, repartiendo la responsabilidad.
+Bueno, también hay que preguntarse cómo se calcula la pendiente con decenas de millones de pesos. Existe una técnica, la retropropagación, que aprovecha que la red es una cadena de operaciones simples para calcular de forma eficiente cuánto contribuyó cada peso al error. Va hacia atrás: parte del error en la salida y retrocede capa por capa.
 
 Una forma de verlo es con el juego de Batalla naval. Al principio la red señala casi al azar, como cuando uno dispara a ciegas. Conforme se avanza por las capas, el peso del error va aumentando, como las piezas blancas que marcan los tiros que no dieron en el blanco. La retropropagación es ir desde el fondo, desde donde el error es más grande, hacia atrás, para ver cuál fue el origen, que era la aleatoriedad del principio.
 
 Veamos la idea con una analogía más cercana. Imaginen una cadena de montaje con varias estaciones, y al final sale un producto defectuoso. Nadie sabe en cuál estación se cometió el error. Una persona revisa el producto y, caminando hacia atrás, va preguntando: ¿esta estación lo hizo bien? ¿La anterior? Así identifica cuánto contribuyó cada una al defecto, y le pide a cada una que corrija lo suyo, un poco, en la dirección correcta.
 
-La retropropagación hace exactamente eso con la red. El error aparece al final, en la salida. Desde ahí se calcula cuánto del error se debe a cada neurona de la última capa, luego a cada neurona de la capa anterior, y así hacia atrás hasta la entrada. Con eso se sabe, para cada peso, en qué dirección moverlo.
+Con la red pasa lo mismo: el error aparece al final, en la salida, y desde ahí se calcula cuánto se debe a cada neurona de la última capa, luego a las de la capa anterior, y así hasta la entrada. Con eso se sabe, para cada peso, en qué dirección moverlo.
 
-Lo que hace posible que esto sea eficiente es que una red es una cadena de operaciones simples, y la contribución de cada una se calcula con reglas elementales. Sin esa técnica, entrenar redes tan grandes sería prácticamente imposible. Con ella, una sola pasada hacia atrás da el gradiente de todos los pesos a la vez.
+Sin esta técnica, entrenar redes tan grandes sería prácticamente imposible. Con ella, una sola pasada hacia atrás da el gradiente de todos los pesos a la vez.
 
 Un ciclo completo de entrenamiento es: la imagen entra, la red predice con los pesos actuales, se calcula la pérdida, la retropropagación reparte el error hacia atrás, el descenso del gradiente mueve un poco cada peso, y se pasa a la siguiente imagen. Eso, muchas veces, es lo que llamamos entrenar.
 
-Así, ensayo tras ensayo, los pesos van tomando valores útiles, y una red que empezó respondiendo al azar termina marcando los espermatozoides. Cómo mira una imagen una red convolucional, y cómo se aprovecha una red entrenada para otra cosa, lo vemos en la siguiente sesión.
+Así, ensayo tras ensayo, los pesos van tomando valores útiles, y una red que empezó respondiendo al azar termina marcando los espermatozoides.
 
 [Diapositiva · Lotes, iteraciones y épocas]
 
@@ -70,7 +68,7 @@ Y una pasada completa por todas las imágenes, en este caso las veinticinco iter
 
 Una forma de recordarlo es con el estudio para un examen. El lote es el montón de ejercicios que resuelves antes de revisar tus errores. La iteración es cada vez que revisas y corriges. Y la época es cada vez que terminas todos los ejercicios del libro. Se aprende repasando muchas veces.
 
-También hay que tener cuidado: demasiadas épocas pueden hacer que la red se aprenda de memoria los ejemplos, incluidos sus defectos, y que luego funcione mal con imágenes nuevas. Por eso, durante el entrenamiento, se separan algunas imágenes que la red nunca usa para ajustarse, y se miden con ellas los resultados. Ese tema, el de cuándo parar y cómo comprobar que la red de verdad generaliza, lo veremos en la última sesión.
+Ojo con las épocas: si son demasiadas, la red puede aprenderse de memoria los ejemplos, con todo y sus defectos, y luego funcionar mal con imágenes nuevas. Por eso, durante el entrenamiento, se separan algunas imágenes que la red nunca usa para ajustarse, y se miden con ellas los resultados. Cuándo parar y cómo comprobar que la red de verdad generaliza lo veremos en la última sesión.
 
 [Diapositiva · Semillas y repetibilidad]
 
@@ -118,7 +116,7 @@ Una red recién creada no sirve de nada, porque sus pesos son arbitrarios. Para 
 
 Lo que no hay también importa: no hay comprensión ni reglas escritas a mano para reconocer espermatozoides. Hay números ajustados con paciencia a partir de ejemplos, y por eso la calidad de los ejemplos y la revisión de las personas son tan importantes.
 
-Con estas ideas ya tenemos las bases de qué es una red neuronal y cómo aprende. En la siguiente sesión vamos a ver cómo mira una imagen una red como la nuestra, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides. Después veremos cómo se usa todo esto en un sitio funcionando, y al final, cómo se prepararon los datos, cómo se entrenó y cómo se publicó.
+Con estas ideas ya tenemos las bases de qué es una red neuronal y cómo aprende.
 
 [Diapositiva · Límites y cuidados al usar un modelo]
 
@@ -148,11 +146,9 @@ Una duda frecuente es si la red piensa. No. Calcula. Lo que parece comprensión 
 
 Otra es cuántas imágenes hacen falta. Depende. Entrenando desde cero, muchísimas, decenas de miles o más. Pero cuando cada imagen tiene cientos de células, cada una aporta un ejemplo, y las cantidades necesarias son mucho menores. En la siguiente sesión veremos otra forma de ahorrar ejemplos.
 
-Otra es si la red puede equivocarse. Claro. Puede marcar algo que no es una cabeza, y puede dejar escapar una que sí lo es. Por eso el sistema muestra la imagen marcada, y por eso conviene revisarla. Hablaremos de esos errores con calma en la siguiente sesión.
+Otra es si la red puede equivocarse. Sí, de las dos maneras que acabamos de ver, y esos errores los revisamos con calma en la siguiente sesión.
 
 Otra es por qué se necesita una tarjeta gráfica para entrenar. Porque entrenar es hacer una cantidad enorme de multiplicaciones y sumas parecidas entre sí, y las tarjetas gráficas están diseñadas para hacer muchas operaciones de ese tipo en paralelo. Un procesador común hace pocas cosas muy rápido. Una tarjeta gráfica hace muchísimas cosas sencillas a la vez.
-
-Otra es si la red mejora cuanto más se usa. No. Una vez entrenada, está fija. Para que mejore hay que entrenarla de nuevo, con más ejemplos o con mejores ejemplos.
 
 Y otra, la más honesta, es si el resultado es siempre correcto. No, y nadie debería prometerlo. Es una herramienta de medición, con sus márgenes de error, como cualquier instrumento. Lo que sí podemos prometer es que es consistente y que se puede revisar.
 
@@ -180,7 +176,7 @@ Colab: el entorno para entrenar. Python: el lenguaje. Flask: la herramienta para
 
 > Idea central: El problema era contar y medir a mano; vimos qué es una imagen digital, algunas definiciones y las bases de las redes neuronales: neurona, capas y cómo aprenden.
 
-Para cerrar, un resumen de lo que vimos. El problema era contar y medir a mano, que es lento y cambia según quién lo haga. Vimos qué es una imagen digital: una tabla de números, con sus formatos y su escala. Pusimos en orden algunas definiciones y las palabras que vamos a usar. Y vimos las bases de las redes neuronales: la neurona, la capa y la red, y cómo aprende una red ajustando sus pesos a partir de ejemplos.
+Para cerrar, un resumen de lo que vimos. El problema de partida era el conteo y la medición manuales, que tardan mucho y dependen de quién los haga. Vimos qué es una imagen digital: una cuadrícula de números, con sus formatos y su escala. Pusimos en orden algunas definiciones y las palabras que vamos a usar. Y vimos las bases de las redes neuronales: la neurona, la capa y la red, y cómo aprende una red ajustando sus pesos a partir de ejemplos.
 
 [Diapositiva · ¿Cómo sabe el sistema dónde hay un espermatozoide?]
 
@@ -188,6 +184,6 @@ Para cerrar, un resumen de lo que vimos. El problema era contar y medir a mano, 
 
 Y una última idea para llevarse. Si les quedó la impresión de que una red neuronal es una máquina de multiplicar y sumar, tienen razón. Lo que la hace poderosa es la cantidad de operaciones simples y el cuidado con el que se ajustan. Con eso en mente, se entiende por qué el sistema funciona y también por qué conviene revisarlo.
 
-Y termino con una pregunta que seguramente ya se hicieron: ¿cómo sabe el sistema dónde hay un espermatozoide? En esta sesión vimos qué es una red neuronal y cómo aprende. En la siguiente sesión vamos a ver cómo mira una imagen una red como la nuestra, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
+Y termino con una pregunta que seguramente ya se hicieron: ¿cómo sabe el sistema dónde hay un espermatozoide? De eso trata la siguiente sesión: cómo mira una imagen una red como la nuestra, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
 
-Después vemos cómo funciona el sistema, con el sitio, y al final, los datos, el entrenamiento y el despliegue en la nube. Muchas gracias por su atención.
+Luego viene el sistema funcionando, con el sitio, y por último los datos, el entrenamiento y el despliegue en la nube. Muchas gracias por su atención.

@@ -12,9 +12,9 @@ Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conv
 
 En el video anterior vimos qué es una imagen digital: una tabla de números, con sus formatos y su escala. Ahora vamos con la inteligencia artificial. Pero antes de ponernos con las definiciones, miremos dónde ya vive. Seguramente ustedes usan todos los días, sin pensarlo, varias herramientas que funcionan con aprendizaje automático.
 
-Escriben un mensaje en el teléfono y les sugiere la siguiente palabra. ¿Qué está pasando ahí? Hay un modelo que aprendió, de millones de textos, qué palabras suelen seguir a cuáles. El correo manda un mensaje a la carpeta de no deseados: otro modelo, que aprendió de muchísimos correos que otras personas marcaron como basura, qué rasgos tiene un mensaje de ese tipo. Una plataforma de video propone qué ver después: un modelo que aprendió de lo que miraron personas parecidas a ustedes.
+Escriben un mensaje en el teléfono y les sugiere la siguiente palabra. ¿Qué está pasando ahí? Un modelo aprendió, de millones de textos, qué palabras suelen seguir a cuáles. El correo manda un mensaje a la carpeta de no deseados: otro modelo se formó con muchísimos correos que otras personas marcaron como basura, y así reconoce los rasgos de ese tipo de mensaje. Y la plataforma de video propone qué ver después porque se apoya en lo que miraron personas parecidas a ustedes.
 
-Lo mismo con la voz. Le dictan algo al teléfono y lo transcribe, porque un modelo aprendió a relacionar sonidos con palabras escuchando enormes cantidades de grabaciones transcritas. Un traductor convierte una frase de un idioma a otro, y aprendió de colecciones enormes de textos traducidos.
+Lo mismo pasa con la voz. Al dictarle algo al teléfono, el modelo que lo transcribe aprendió a relacionar sonidos con palabras escuchando grandes cantidades de grabaciones transcritas, y un traductor que pasa una frase de un idioma a otro se formó con enormes colecciones de textos traducidos.
 
 Y con las imágenes también. El teléfono agrupa las fotos por personas, o la cámara enfoca sola la cara. Son modelos que aprendieron a reconocer rostros a partir de muchísimos ejemplos.
 
@@ -50,7 +50,7 @@ Antes de entrar con las redes neuronales, conviene poner en orden algunas palabr
 
 La inteligencia artificial es el campo más amplio: cualquier técnica que haga que una máquina realice tareas que se asocian con la inteligencia. El aprendizaje automático es la parte que aprende de ejemplos. Las redes neuronales son una técnica dentro del aprendizaje automático. Y el aprendizaje profundo se refiere a redes con muchas capas, que les explico en un momento.
 
-La idea que da nombre al aprendizaje automático cabe en una frase: en lugar de escribir las reglas, se muestran ejemplos y se deja que el sistema las encuentre. En la programación tradicional se entregan reglas y datos, y salen las respuestas. En el aprendizaje automático se entregan datos y respuestas, y salen las reglas. Es una inversión del flujo, y de ella depende todo lo que sigue.
+La idea de fondo del aprendizaje automático cabe en una frase: el sistema encuentra las reglas a partir de ejemplos, en vez de que alguien las escriba. En la programación tradicional se entregan reglas y datos y salen las respuestas. En el aprendizaje automático se entregan datos y respuestas y salen las reglas. El flujo se invierte, y de eso depende todo lo que sigue.
 
 Muchas familias de técnicas siguen esa idea, desde modelos estadísticos sencillos hasta arquitecturas muy complejas. Las redes neuronales son una de ellas, y rinden especialmente bien con imágenes, sonido o texto: datos crudos, con mucha estructura, que no se describen fácilmente con unas pocas variables. Aquí vamos a usar una red de aprendizaje profundo, que es la técnica que mejor funciona con imágenes.
 
@@ -59,8 +59,6 @@ Para que no se mezclen, conviene verlas como círculos que se contienen unos a o
 Algo que sale de ahí: no toda la inteligencia artificial aprende de ejemplos. Un programa que sigue reglas escritas por una persona, como un sistema que recomienda qué hacer si la temperatura sube de cierto valor, también es inteligencia artificial en el sentido amplio. Lo que distingue al aprendizaje automático es que las reglas se obtienen de los datos, en lugar de escribirlas una persona.
 
 Y otra cosa: cuando se habla de inteligencia artificial en los medios, casi siempre se está hablando de aprendizaje profundo, que es la rama que más ha avanzado en los últimos años con imágenes, sonido y texto. Es la que usamos aquí.
-
-Quédense con una imagen sencilla, que nos va a servir en todas las sesiones. En la programación tradicional, yo escribo las reglas y la computadora las aplica. En el aprendizaje automático, yo le doy ejemplos y la computadora descubre las reglas. Todo lo demás son detalles de cómo hacerlo bien.
 
 [Diapositiva · Palabras que vamos a escuchar]
 
@@ -74,7 +72,7 @@ Una red neuronal es un programa que aprende de ejemplos. Google Colab es un ento
 
 > Idea central: Una red neuronal es un programa formado por muchas operaciones pequeñas conectadas, cuyos valores se ajustan a partir de ejemplos en lugar de escribirse a mano.
 
-Empecemos por la palabra que más vamos a usar: red neuronal. Una red neuronal es un programa que aprende de ejemplos.
+Empecemos por la palabra que más vamos a usar: red neuronal. Dicho de forma sencilla, es un programa que se va afinando con ejemplos.
 
 Un programa tradicional es una lista de instrucciones: si pasa esto, haz aquello. Una red neuronal, en cambio, es una estructura de muchísimas operaciones muy pequeñas, conectadas entre sí, y cada operación tiene unos números que se pueden ajustar. Esos números se llaman pesos. Al principio los pesos valen cualquier cosa, y la red no sirve para nada. Después, con ejemplos, los pesos se van ajustando hasta que la red da buenas respuestas.
 
@@ -96,7 +94,7 @@ Eso tiene una ventaja enorme para la inteligencia artificial. Entrenar una red n
 
 Se trabaja en cuadernos. Un cuaderno es un documento que mezcla texto explicativo y celdas de código, y se ejecuta celda por celda. Eso lo hace muy bueno para enseñar y para documentar, porque quien lo lee ve qué se hizo, en qué orden y con qué resultado.
 
-En este proyecto, Colab es donde se entrena el modelo. El entrenamiento está escrito en un cuaderno que cualquier persona con el enlace puede abrir y ejecutar, y eso es parte de lo que decíamos sobre que todo se pueda repetir.
+En este proyecto, Colab es donde se entrena el modelo. El entrenamiento está escrito en un cuaderno que cualquier persona con el enlace puede abrir y ejecutar, y así cualquiera puede repetir el entrenamiento.
 
 También hay que decir qué no es Colab: no es donde vive el sitio. Cuando el entrenamiento termina, lo que sale es un archivo, y ese archivo se lleva al servidor donde está la página. Colab sirve para entrenar, y no para que las personas usen el modelo todos los días. Esa diferencia es justo la que veremos con entrenamiento e inferencia.
 
@@ -112,7 +110,7 @@ Algunas son las que usamos en este proyecto. PyTorch es la biblioteca con la que
 
 Un proyecto como este no se escribe desde cero. Se combinan bibliotecas muy buenas, cada una especializada en algo, y el trabajo propio está en unirlas con cuidado y en decidir cómo se usan.
 
-Hay otros lenguajes que también se usan en inteligencia artificial, como C++ para las partes que necesitan máxima velocidad. Pero Python es el que se usa para escribir y probar las ideas. Y tiene otra ventaja: el mismo lenguaje sirve para entrenar la red y para hacer el sitio web, así que no hay que cambiar de herramienta entre una parte y la otra.
+Hay otros lenguajes que también se usan en inteligencia artificial, como C++ para las partes que necesitan máxima velocidad. Pero Python es el que se usa para escribir y probar las ideas.
 
 [Diapositiva · Flask]
 
@@ -176,6 +174,6 @@ El cuaderno de este proyecto está dividido en pasos numerados. Primero, el ento
 
 Se puede ejecutar solo una parte, y eso sirve para probar. Por ejemplo, entrenar unos minutos con pocas imágenes solo para verificar que todo funciona antes de lanzar el entrenamiento completo.
 
-Un cuaderno es, además, un registro. Si alguien quiere saber con qué datos y con qué decisiones se obtuvo un modelo, el cuaderno lo dice. Y si alguien quiere repetirlo, lo ejecuta. Eso es lo que significa que el proceso se pueda repetir, una idea que va a volver en todo el curso.
+Un cuaderno es, además, un registro. Si alguien quiere saber con qué datos y con qué decisiones se obtuvo un modelo, el cuaderno lo dice. Y si alguien quiere repetirlo, lo ejecuta.
 
 El cuaderno lo vamos a abrir y recorrer juntos en la última sesión. En el siguiente video vemos cómo se entrena un modelo y cómo se usa.

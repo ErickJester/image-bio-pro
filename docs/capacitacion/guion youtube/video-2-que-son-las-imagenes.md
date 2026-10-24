@@ -4,13 +4,13 @@ Image Bio Pro · Sesión 1 · Capacitación en video
 
 Continúa del video 1. Empieza con la frase que lo une con el video anterior.
 
-*3,653 palabras, unos 20.9 min de habla*
+*3,372 palabras, unos 19.3 min de habla*
 
 [Diapositiva · ¿Qué son las imágenes?]
 
 > Idea central: Antes de hablar de redes hay que entender qué es una imagen para una computadora. Esa pregunta abre esta parte.
 
-En el video anterior vimos el problema: contar y medir a mano es lento y cambia según quién lo haga. Para resolverlo, hay que empezar por lo básico. La primera pregunta que nos vamos a hacer es: ¿qué son las imágenes?
+En el video anterior vimos el problema: el conteo y la medición hechos a mano consumen mucho tiempo y varían de una persona a otra. Para resolverlo, hay que empezar por lo básico. La primera pregunta que nos vamos a hacer es: ¿qué son las imágenes?
 
 Una imagen es la categoría general. Abarca cualquier tipo de representación visual: un dibujo, una pintura, una captura, lo que sea. Una fotografía es un tipo de imagen: la que se captura con una cámara y registra la luz que llega a un sensor en un momento concreto. Toda fotografía es una imagen, pero no toda imagen es una fotografía. En microscopía todo lo que se genera se llama imagen, y por eso de aquí en adelante voy a hablar de imágenes, y en particular de imágenes digitales.
 
@@ -20,19 +20,17 @@ Una imagen es la categoría general. Abarca cualquier tipo de representación vi
 
 Vamos con algo que parece muy básico y de lo que depende todo lo demás. La pregunta es: ¿qué es una imagen para una computadora?
 
-Para la computadora, una imagen es, o sea, una tabla de números. Cada cuadrito, cada píxel, guarda cuánta luz tiene. Es una cuadrícula de cuadritos, y cada píxel guarda un número. En una imagen en tonos de gris, ese número es el brillo, y va de cero, que es negro, a doscientos cincuenta y cinco, que es blanco. Los números intermedios son los grises. En una imagen a color no es un número sino tres, uno para el rojo, otro para el verde y otro para el azul, y con la mezcla de los tres sale el color de ese cuadrito.
+Para la computadora, una imagen es, o sea, una tabla de números: una cuadrícula de cuadritos, los píxeles, y cada uno guarda cuánta luz tiene. En una imagen en tonos de gris, ese número es el brillo, y va de cero, que es negro, a doscientos cincuenta y cinco, que es blanco. Los números intermedios son los grises. En una imagen a color no es un número sino tres, uno para el rojo, otro para el verde y otro para el azul, y con la mezcla de los tres sale el color de ese cuadrito.
 
 En la diapositiva tengo a la izquierda una imagen pequeña con un cuadro azul marcado, y a la derecha lo que hay dentro de ese cuadro, ampliado hasta que se ven los números. Son treinta y cinco cuadritos, siete por cinco. Fíjense en la parte de afuera: números bajos, casi negros. Y en el centro, números altos, hasta un doscientos cincuenta y cinco. Eso es lo que la computadora tiene delante cuando mira una imagen.
 
-Una imagen grande, de las que usamos, tiene por ejemplo mil setecientos noventa y dos píxeles de ancho por mil trescientos setenta y cuatro de alto. Hagan la cuenta: son casi dos millones y medio de cuadritos, cada uno con su número. La computadora los maneja todos a la vez sin problema, pero a un ojo humano eso no le dice nada. Lo que nosotros vemos como células, la computadora lo ve como un mar de números.
+Una imagen real de las nuestras tiene casi dos millones y medio de cuadritos, cada uno con su número. La computadora los maneja todos a la vez sin problema, pero a un ojo humano eso no le dice nada: lo que nosotros vemos como células, la computadora lo ve como un mar de números.
 
 Un detalle sobre esos números del cero al doscientos cincuenta y cinco: tienen una razón. Cada píxel guarda su valor en un byte, que son ocho bits, y con ocho bits se pueden representar doscientos cincuenta y seis valores distintos. Por eso el rango empieza en cero y termina en doscientos cincuenta y cinco. Con esos doscientos cincuenta y seis niveles el ojo ve un degradado suave de negro a blanco, sin escalones. En una imagen a color son tres bytes por píxel, uno por cada color.
 
-Y una idea más, la de resolución. Cuantos más píxeles tiene una imagen, más detalle puede guardar, porque cada cuadrito representa una zona más pequeña de lo que se fotografió. Una imagen con pocos píxeles se ve pixelada cuando se amplía, justamente porque los cuadritos ya no alcanzan a describir la forma. Por eso a las imágenes del microscopio les conviene tener muchos píxeles: para que la forma de cada célula quede descrita con detalle.
-
 Hagamos el ejercicio de ponernos en el lugar de la computadora. Cuando ustedes miran una imagen, reconocen formas, bordes, colores, y casi sin esfuerzo saben qué es cada cosa. La computadora no recibe nada de eso. Recibe una lista ordenada de números y una indicación de cuántos hay por fila y cuántas filas son. Con esa información reconstruye la cuadrícula.
 
-Por eso se habla de una matriz. Una matriz es simplemente una tabla de números organizada en filas y columnas, como una hoja de cálculo. Cada celda de esa tabla es un píxel, y el valor de la celda es lo que sabemos de ese punto. En la diapositiva ven un fragmento de siete por cinco, con treinta y cinco celdas. Si pudiéramos ver la imagen completa de esta manera, serían casi dos millones y medio de celdas.
+Por eso se habla de una matriz. Una matriz es simplemente una tabla de números organizada en filas y columnas, como una hoja de cálculo. Cada celda de esa tabla es un píxel, y el valor de la celda es lo que sabemos de ese punto. En la diapositiva ven un fragmento de siete por cinco, con treinta y cinco celdas.
 
 La computadora no tiene ninguna idea previa de lo que hay en la imagen. No sabe dónde empieza una célula ni dónde termina. Cualquier cosa que queramos que haga, contar, medir o reconocer, tiene que construirse a partir de esos números y de las relaciones entre ellos. Un píxel solo no dice nada. Lo que dice algo es cómo se comportan los números vecinos: dónde suben de golpe, dónde bajan, dónde se mantienen parecidos.
 
@@ -104,9 +102,9 @@ Esta es una herramienta que usaremos más adelante para entender qué ve la comp
 
 Un tema práctico: los formatos de archivo. No todos guardan la imagen igual. BMP, PNG y TIFF guardan la imagen tal cual. JPG la comprime para que pese menos, y al comprimirla puede mover los bordes de las células. Para medir, eso importa.
 
-En la diapositiva tengo la misma célula dos veces: a la izquierda con el borde nítido y a la derecha con el borde difuminado y con bloques raros, que es lo que pasa con la compresión. ¿Por qué importa? Porque si el borde se difumina, el contorno cambia, y si el contorno cambia, cambia el área, y entonces cambian los números que nos interesan. El sitio acepta JPG, pero lo avisa. La recomendación es trabajar con los archivos originales del microscopio y evitar que pasen por aplicaciones de mensajería, que suelen comprimirlos sin que nos demos cuenta.
+En la diapositiva tengo la misma célula dos veces: a la izquierda con el borde nítido y a la derecha con el borde difuminado y con bloques raros, que es lo que pasa con la compresión. ¿Por qué importa? Porque si el borde se difumina, el contorno cambia, y si el contorno cambia, cambia el área, y entonces cambian los números que nos interesan.
 
-Un dato que ayuda a entender la diferencia: una imagen de las que usamos, guardada como BMP, pesa alrededor de siete megabytes, porque guarda todos sus píxeles sin comprimir. El mismo contenido en JPG puede pesar una fracción de eso, y ahí está el atractivo del JPG: ocupa menos. Pero ese ahorro de espacio se paga con fidelidad, y para medir, la fidelidad es justo lo que necesitamos.
+Una imagen de las que usamos, guardada como BMP, pesa unos siete megabytes, como vimos hace un momento. El mismo contenido en JPG puede pesar una fracción de eso, y ahí está su atractivo: ocupa menos. Pero ese ahorro se paga con fidelidad, y para medir, la fidelidad es justo lo que necesitamos.
 
 Veámoslo con un poco más de detalle, porque este es uno de los errores más comunes y más fáciles de evitar.
 
@@ -136,17 +134,17 @@ Y el archivo no guarda este dato. Las imágenes que usamos no traen escrito cuá
 
 > Idea central: Una imagen sabe cuántos píxeles mide, pero no cuántas micras es cada uno. El sitio usa la misma escala en todas las imágenes, 60 píxeles por micra, y la declara en cada resultado.
 
-La última idea de este bloque es la escala. Una imagen sabe cuántos píxeles mide, pero no sabe cuántas micras es cada píxel, es decir, cuánto mide en la realidad. Los archivos no guardan esa información. Además, las imágenes pueden venir de distintos aumentos, por ejemplo de cuarenta X y de cien X, y cada aumento cambia lo que representa un píxel. Si queremos comparar imágenes entre sí, necesitamos una forma de ponerlas en la misma medida.
+Para cerrar este bloque, la escala. Una imagen sabe cuántos píxeles mide, pero no cuántas micras es cada uno, porque los archivos no guardan ese dato. Y si queremos comparar imágenes entre sí, hay que ponerlas en una misma medida.
 
-Por eso el sitio usa la misma escala en todas las imágenes, para estandarizar su tamaño. Esa escala es de sesenta píxeles por micra, y cada resultado dice qué escala se usó. La imagen marcada trae una regla de trescientos píxeles que equivalen a cinco micras. No voy a entrar hoy en cómo se define esa escala; eso lo vemos en la tercera sesión, cuando veamos cómo funciona el sistema.
+Por eso el sitio aplica la misma escala a todas. Es de sesenta píxeles por micra, y cada resultado dice cuál se usó. La imagen marcada trae una regla de trescientos píxeles que equivalen a cinco micras. Cómo se define esa escala no lo voy a explicar hoy; lo vemos en la tercera sesión, cuando revisemos el sistema por dentro.
 
 Veámoslo con números. Si sesenta píxeles son una micra, entonces un largo de sesenta píxeles es una micra de largo, y un largo de trescientos píxeles son cinco micras, que es justo la regla que va dibujada en la imagen. Con las áreas hay un paso más. Un área se mide en unidades cuadradas, así que una micra cuadrada son sesenta por sesenta píxeles, es decir, tres mil seiscientos píxeles. Si una célula ocupa tres mil seiscientos píxeles, su área es de una micra cuadrada; si ocupa la mitad, de media micra cuadrada. Por eso, en el sitio, las áreas en micras cuadradas pueden salir como números pequeños.
 
 Esta decisión importa. Imaginen que el sitio no declarara la escala y que una persona midiera con él imágenes de cuarenta X y otra de cien X. Las dos obtendrían áreas en micras cuadradas, pero las de una estarían infladas o reducidas respecto de las de la otra, y nadie se enteraría. Los números parecerían precisos y no lo serían.
 
-Al fijar una escala única para todas las imágenes, el sistema estandariza el tamaño: cualquier imagen se interpreta con la misma relación entre píxeles y micras. Eso permite comparar entre imágenes y entre personas. Y al declararla en cada resultado, quien lee un número sabe con qué regla se calculó. Si en el futuro se decide usar otra escala, o una por cada aumento, se puede cambiar y todo el mundo sabrá que cambió.
+Con una escala única, cualquier imagen se interpreta con la misma relación entre píxeles y micras, y eso permite comparar entre imágenes y entre personas. Además, como cada resultado la declara, quien lee un número sabe con qué regla se calculó. Si en el futuro se decide usar otra escala, o una por cada aumento, se puede cambiar y todos sabrán que cambió.
 
-Un último detalle, que se entiende con un ejemplo. Dijimos que una micra cuadrada son sesenta por sesenta píxeles, tres mil seiscientos. Entonces, si una cabeza ocupa siete mil doscientos píxeles, su área es de dos micras cuadradas. Y si ocupa mil ochocientos, de media micra cuadrada. Con este tipo de cuentas, que cualquiera puede repetir con una calculadora, se pasa de lo que la computadora ve a lo que el investigador necesita.
+Un último ejemplo: si una cabeza ocupa siete mil doscientos píxeles, su área es de dos micras cuadradas, y si ocupa mil ochocientos, media micra cuadrada. Con cuentas así, que cualquiera puede repetir con una calculadora, se pasa de lo que la computadora ve a lo que el investigador necesita.
 
 [Diapositiva · Dos tipos de imagen, dos modelos]
 
