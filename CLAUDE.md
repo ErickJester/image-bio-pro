@@ -30,9 +30,10 @@ Cuando el usuario pida hacer push:
 3. Si aparece en alguno, **no hacer push**. Avisar al usuario qué commit lo contiene y esperar instrucciones.
 4. Si todos están limpios, hacer el push.
 
-### 4. Cada commit lleva su tipo y su número de versión
-- El mensaje empieza con el tipo del commit, luego dos puntos, luego el número de versión y después el resumen: `tipo: vA.n.x resumen`. Por ejemplo `fix: v1.4.2 corrige el enlace de contacto`.
+### 4. Cada commit lleva su tipo y, si cambia el sitio, su número de versión
+- Los commits que cambian el sitio, el código o la configuración llevan versión. El mensaje empieza con el tipo del commit, luego dos puntos, luego el número de versión y después el resumen: `tipo: vA.n.x resumen`. Por ejemplo `fix: v1.4.2 corrige el enlace de contacto`.
+- Los commits que solo tocan guiones, mazos, planes de capacitación o documentos (`docs/`, `README.md`) **no llevan número de versión, ni entrada en `CHANGELOG.md`, ni etiqueta**. El mensaje es solo `docs: resumen`, por ejemplo `docs: reorganiza los guiones en carpetas por modulo y por video`. Si un commit mezcla documentos con cambios del sitio, lleva versión.
 - Tipos que se usan: `feat` (algo nuevo), `fix` (corrección), `docs` (documentación, guiones, mazos), `style` (formato o estilo sin cambiar el comportamiento), `refactor`, `test`, `perf` y `chore` (configuración, dependencias y tareas varias). Si el cambio rompe lo anterior (sube `A`), se agrega `!` al tipo: `feat!: v2.0.0 resumen`.
-- El número se elige con las reglas de `docs/versionado.md` y es el siguiente al último de `CHANGELOG.md`. Por lo general `feat` sube `n` y `fix` sube `x`; `docs` sube `n` si es un conjunto o un plan nuevo y `x` si es un ajuste.
+- El número se elige con las reglas de `docs/versionado.md` y es el siguiente al último de `CHANGELOG.md`. Por lo general `feat` sube `n` y `fix` sube `x`.
 - La entrada de `CHANGELOG.md` va en el mismo commit. Después del commit se pone la etiqueta anotada `vA.n.x` en ese commit.
 - Las etiquetas se suben junto con el push, en un paso aparte del commit y después de la revisión de la regla 3.
