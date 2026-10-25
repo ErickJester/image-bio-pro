@@ -1,6 +1,6 @@
 # Guion del módulo 1, video 3 de 3: Capas, cómo aprende una red y cierre
 
-Image Bio Pro · Módulo 1 · Capacitación en video
+BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Continúa del video anterior. Empieza con la frase que lo une con el video anterior.
 

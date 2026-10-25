@@ -1,6 +1,6 @@
 # Guion del video 2 de 6: Qué son las imágenes (versión natural)
 
-Image Bio Pro · Módulo 1 · Capacitación en video
+BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Continúa del video 1. Empieza con la frase que lo une con el video anterior.
 

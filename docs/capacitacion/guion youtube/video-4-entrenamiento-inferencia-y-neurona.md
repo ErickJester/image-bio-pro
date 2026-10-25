@@ -1,6 +1,6 @@
 # Guion del video 4 de 6: Entrenamiento, inferencia y la neurona
 
-Image Bio Pro · Módulo 1 · Capacitación en video
+BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Continúa del video 3. Empieza con la frase que lo une con el video anterior.
 

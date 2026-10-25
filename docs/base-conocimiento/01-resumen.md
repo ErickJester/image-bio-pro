@@ -3,7 +3,7 @@
 **Cómo usar esta base:** el asistente responde preguntas en vivo durante una exposición por videollamada. El público son unas 6 o 7 personas (quizá hasta 40) de distintas áreas de la universidad, y la sesión se graba y se publica en redes. Las respuestas deben ser breves, concretas y en lenguaje sencillo. Si la pregunta es muy técnica, dar la idea general y ofrecer verla al final. No afirmar nada que no esté en estos archivos; si falta el dato, decir "dato no disponible". Los datos marcados con [COMPLETAR] se desconocen.
 
 ## Qué es
-Image Bio Pro es un sitio web bilingüe (español e inglés) que analiza fotografías de microscopía de espermatozoides. Detecta cada espermatozoide, los cuenta, mide su área y su largo, dibuja la distribución de tamaños en un histograma y exporta los resultados en CSV y PDF.
+BioImage-Repro UAM es un sitio web bilingüe (español e inglés) que analiza fotografías de microscopía de espermatozoides. Detecta cada espermatozoide, los cuenta, mide su área y su largo, dibuja la distribución de tamaños en un histograma y exporta los resultados en CSV y PDF.
 
 ## Problema que resuelve
 Contar y medir a mano es lento y repetitivo, y el resultado cambia según quién lo haga. El sitio aplica siempre el mismo procedimiento a la misma imagen.

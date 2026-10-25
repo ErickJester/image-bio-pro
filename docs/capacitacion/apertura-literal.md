@@ -2,15 +2,15 @@
 
 Basada solo en lo que Saúl dijo como si fuera Ángel en la reunión del 22 de octubre. Las palabras son las suyas, sin muletillas ni repeticiones. La presentación de ESCOM es de Ángel (línea 429 de la transcripción).
 
-[Diapositiva · ¿Qué es Image Bio Pro?]
+[Diapositiva · ¿Qué es BioImage-Repro UAM?]
 
 Buenas tardes a todos. Muchísimas gracias por la presentación, doctor Saúl. Muchas gracias también a los profesores, a la doctora Sheila y al doctor Saúl, por la oportunidad de poder presentar este proyecto tan importante para la universidad.
 
 Me presento. Mi nombre es Ángel Frausto Robles, soy ponente y parte del equipo que desarrolló este sitio web. Soy egresado de la Escuela Superior de Cómputo del Instituto Politécnico Nacional, especializado en temas de visión por computadora e inteligencia artificial.
 
-El día de hoy les voy a platicar de lo que es el proyecto Image Bio Pro, que está impulsando la Universidad Autónoma Metropolitana para promover proyectos de inteligencia artificial en el desempeño de las funciones de docencia, investigación y preservación y difusión de la cultura, así como de vinculación y servicio a la comunidad universitaria.
+El día de hoy les voy a platicar de lo que es el proyecto BioImage-Repro UAM, que está impulsando la Universidad Autónoma Metropolitana para promover proyectos de inteligencia artificial en el desempeño de las funciones de docencia, investigación y preservación y difusión de la cultura, así como de vinculación y servicio a la comunidad universitaria.
 
-Quizás la primera pregunta que se hagan es: ¿qué es Image Bio Pro? Bueno, básicamente es una nueva plataforma web que tiene como objetivo incorporar los nuevos conceptos de inteligencia artificial para abordar, estudiar y apoyar las actividades de docencia, de investigación y de preservación y difusión de la cultura en la comunidad universitaria de la UAM Iztapalapa. Es la nueva era de la inteligencia artificial al servicio de la comunidad universitaria.
+Quizás la primera pregunta que se hagan es: ¿qué es BioImage-Repro UAM? Bueno, básicamente es una nueva plataforma web que tiene como objetivo incorporar los nuevos conceptos de inteligencia artificial para abordar, estudiar y apoyar las actividades de docencia, de investigación y de preservación y difusión de la cultura en la comunidad universitaria de la UAM Iztapalapa. Es la nueva era de la inteligencia artificial al servicio de la comunidad universitaria.
 
 [Diapositiva · Las cuatro sesiones]
 

@@ -1,6 +1,6 @@
 # Guion del video 6 de 6: Descenso del gradiente, retropropagación y cierre
 
-Image Bio Pro · Módulo 1 · Capacitación en video
+BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Continúa del video 5. Empieza con la frase que lo une con el video anterior.
 

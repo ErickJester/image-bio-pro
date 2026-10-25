@@ -1,6 +1,6 @@
 # Guion de la sesión 1: Introducción y comienzo de redes neuronales (versión 3)
 
-Image Bio Pro · Capacitación · viernes 23 de octubre de 2026, de 6:00 a 8:00 pm
+BioImage-Repro UAM · Capacitación · viernes 23 de octubre de 2026, de 6:00 a 8:00 pm
 
 Esta sesión es la primera de cuatro. Presenta el problema, la idea de imagen digital, algunas definiciones de inteligencia artificial y el comienzo de las redes neuronales. Las redes convolucionales y cómo se aprovecha una red entrenada para otra cosa se ven en la sesión 2; el sitio funcionando, en la sesión 3; datos, entrenamiento y despliegue, en la sesión 4.
 
@@ -18,21 +18,21 @@ Ritmo considerado: 175 palabras por minuto. Cada bloque trae sus palabras y el t
 
 *471 palabras, unos 2.7 min de habla*
 
-[Diapositiva · Image Bio Pro]
+[Diapositiva · BioImage-Repro UAM]
 
-> Idea central: Todo el curso gira alrededor de un solo proyecto, Image Bio Pro. En la portada habla Saúl; tú tomas la palabra en la siguiente diapositiva.
+> Idea central: Todo el curso gira alrededor de un solo proyecto, BioImage-Repro UAM. En la portada habla Saúl; tú tomas la palabra en la siguiente diapositiva.
 
-[Diapositiva · ¿Qué es Image Bio Pro?]
+[Diapositiva · ¿Qué es BioImage-Repro UAM?]
 
-> Idea central: Image Bio Pro es un proyecto de la UAM que lleva la inteligencia artificial a la docencia, la investigación, la difusión de la cultura y el servicio a la comunidad universitaria.
+> Idea central: BioImage-Repro UAM es un proyecto de la UAM que lleva la inteligencia artificial a la docencia, la investigación, la difusión de la cultura y el servicio a la comunidad universitaria.
 
 Buenas tardes a todos. Muchísimas gracias por la presentación, doctor Saúl. Muchas gracias también a los profesores, a la doctora Sheila y al doctor Saúl, por la oportunidad de poder presentar este proyecto tan importante para la universidad.
 
 Me presento. Mi nombre es Ángel Frausto Robles, soy ponente y parte del equipo que desarrolló este sitio web. Soy egresado de la Escuela Superior de Cómputo del Instituto Politécnico Nacional, especializado en temas de visión por computadora e inteligencia artificial.
 
-El día de hoy les voy a platicar de lo que es el proyecto Image Bio Pro, que está impulsando la Universidad Autónoma Metropolitana para promover proyectos de inteligencia artificial en el desempeño de las funciones de docencia, investigación y preservación y difusión de la cultura, así como de vinculación y servicio a la comunidad universitaria.
+El día de hoy les voy a platicar de lo que es el proyecto BioImage-Repro UAM, que está impulsando la Universidad Autónoma Metropolitana para promover proyectos de inteligencia artificial en el desempeño de las funciones de docencia, investigación y preservación y difusión de la cultura, así como de vinculación y servicio a la comunidad universitaria.
 
-Quizás la primera pregunta que se hagan es: ¿qué es Image Bio Pro? Bueno, básicamente es una nueva plataforma web que tiene como objetivo incorporar los nuevos conceptos de inteligencia artificial para abordar, estudiar y apoyar las actividades de docencia, de investigación y de preservación y difusión de la cultura en la comunidad universitaria de la UAM Iztapalapa. Es la nueva era de la inteligencia artificial al servicio de la comunidad universitaria.
+Quizás la primera pregunta que se hagan es: ¿qué es BioImage-Repro UAM? Bueno, básicamente es una nueva plataforma web que tiene como objetivo incorporar los nuevos conceptos de inteligencia artificial para abordar, estudiar y apoyar las actividades de docencia, de investigación y de preservación y difusión de la cultura en la comunidad universitaria de la UAM Iztapalapa. Es la nueva era de la inteligencia artificial al servicio de la comunidad universitaria.
 
 [Diapositiva · Las cuatro sesiones]
 

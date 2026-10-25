@@ -1,6 +1,6 @@
 # Requisitos
 
-Requisitos de Image Bio Pro tomados **solo de la transcripción de la reunión con el cliente**. Cada uno cita la frase de donde sale. Lo que no se dijo en la reunión no está aquí: las decisiones técnicas van en el [README](../README.md) y lo que quedó sin resolver está al final, en "Pendientes".
+Requisitos de BioImage-Repro UAM tomados **solo de la transcripción de la reunión con el cliente**. Cada uno cita la frase de donde sale. Lo que no se dijo en la reunión no está aquí: las decisiones técnicas van en el [README](../README.md) y lo que quedó sin resolver está al final, en "Pendientes".
 
 Versión del 7 de octubre de 2026 (primera reunión), ampliada el 12 de octubre con la reunión de requisitos del clasificador. Los requisitos RF-22 en adelante y RNF-06 en adelante salen de la segunda reunión; los cambios sobre la primera están en "Cambios respecto a la primera reunión".
 
@@ -14,9 +14,9 @@ Versión del 7 de octubre de 2026 (primera reunión), ampliada el 12 de octubre 
 | ID | Requisito | Lo que se dijo |
 |---|---|---|
 | RF-01 | El sitio tiene un menú tipo hamburguesa con sus secciones, entre ellas una de infografías. | "el menú de hamburguesa, por lo general las pestañas… una sección de infografía" |
-| RF-02 | La página principal lleva como título *Image Bio Pro*. | "aquí como título iría *Image Bio Pro*" |
+| RF-02 | La página principal lleva como título *BioImage-Repro UAM*. | "aquí como título iría *BioImage-Repro UAM*" |
 | RF-03 | El sitio está en inglés y español, con un selector EN/ES y traducción automática con la API de Google Traductor. | "me pidieron es que estuviera en inglés y español"; "se puede traer la API de Google Traductor, y ya se lo traduce automáticamente" |
-| RF-04 | La sección Nosotros muestra solo "¿Qué es Image Bio Pro?" con el texto que pase el grupo. | "llevaría uno que lleve 'Nosotros' y nada más, '¿Qué es Image Bio Pro?'… No habría como más cosas" |
+| RF-04 | La sección Nosotros muestra solo "¿Qué es BioImage-Repro UAM?" con el texto que pase el grupo. | "llevaría uno que lleve 'Nosotros' y nada más, '¿Qué es BioImage-Repro UAM?'… No habría como más cosas" |
 | RF-05 | La sección Contacto ("Haz contacto") tiene el formulario clásico, con correo. | "nada más sería 'Haz contacto', ¿no? El formulario clásico que viene, ¿no? Correo y así" |
 | RF-06 | La sección Aliados muestra a las personas del grupo con su nombre, su foto y una reseña. | "vendría como el nombre de las personas que estamos en el grupo"; "quedaría pendiente subir las fotografías o los nombres"; "'Fulano de tal' es esto" |
 | RF-07 | Las infografías se muestran como cuadros; al dar clic, se abre una ventana grande que despliega la imagen y el texto, como un blog. | "le apucha aquí y automáticamente en esta página sale grande esta ventana y despliega información"; "Casi como si fuera blog" |

@@ -3,7 +3,7 @@
 Resumen de la reunión de ensayo, combinando dos transcripciones. Sin marcas de tiempo. Donde las transcripciones no coinciden o se oye mal, se indica con [verificar].
 
 **Participantes**
-- **Ángel:** desarrollador de Image Bio Pro, presenta.
+- **Ángel:** desarrollador de BioImage-Repro UAM, presenta.
 - **Evaluador:** quien revisa la presentación y da retroalimentación (rol inferido de la conversación).
 - **Isaac:** se une al final para la parte de tiempos de espera.
 
@@ -16,7 +16,7 @@ Resumen de la reunión de ensayo, combinando dos transcripciones. Sin marcas de 
 
 ## 2. Introducción: cómo empezar
 
-- Ángel iba a leer su introducción tal como la tenía escrita, con "Buenas tardes… mi nombre es Ángel Frausto Robles, desarrollador de Image Bio Pro".
+- Ángel iba a leer su introducción tal como la tenía escrita, con "Buenas tardes… mi nombre es Ángel Frausto Robles, desarrollador de BioImage-Repro UAM".
 - El objetivo del proyecto se puede repetir; el evaluador dijo que no importa repetir la introducción.
 - El párrafo sobre la necesidad ("contar y medir células a mano es lento…") fue cuestionado por la palabra "explícitos". Se acordó decir **explícitos y estandarizados**.
 - El evaluador pide no ir demasiado rápido: Ángel dijo que tiene mucho texto para las dos horas.
@@ -35,7 +35,7 @@ Resumen de la reunión de ensayo, combinando dos transcripciones. Sin marcas de 
 Son seis secciones: Inicio, Nosotros, Aliados, Infografías y videos, Inteligencia Artificial y Contacto.
 
 - **Inicio:** título con el lema "Análisis de imágenes de microscopio". Espacio para una imagen principal que se pondrá después.
-- **Nosotros:** qué es Image Bio Pro.
+- **Nosotros:** qué es BioImage-Repro UAM.
 - **Aliados:** una tarjeta por persona, con nombre, fotografía y lo que estudió. Quien quiera aparecer solo tiene que mandar sus datos.
 - **Infografías y videos:** las infografías se abren en una ventana grande con imagen y texto, como un blog. El título va fuera de la imagen. Abajo hay unos cuatro videos de YouTube dentro de la misma página.
 - **Contacto:** formulario con nombre, correo y mensaje, y datos de contacto.

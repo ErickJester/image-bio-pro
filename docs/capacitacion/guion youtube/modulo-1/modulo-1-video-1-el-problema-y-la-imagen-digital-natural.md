@@ -1,24 +1,24 @@
 # Guion del módulo 1, video 1 de 3: El problema y la imagen digital (versión natural)
 
-Image Bio Pro · Módulo 1 · Capacitación en video
+BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conversación, sin guiones largos. La apertura está escrita para que hables desde el inicio, sin que nadie te presente.
 
-[Diapositiva · Image Bio Pro]
+[Diapositiva · BioImage-Repro UAM]
 
-> Idea central: Todo el curso gira alrededor de un solo proyecto, Image Bio Pro. La portada se queda en pantalla mientras te presentas y agradeces; en la siguiente diapositiva empiezas a explicar qué es el proyecto.
+> Idea central: Todo el curso gira alrededor de un solo proyecto, BioImage-Repro UAM. La portada se queda en pantalla mientras te presentas y agradeces; en la siguiente diapositiva empiezas a explicar qué es el proyecto.
 
 Buenas tardes a todos. Mi nombre es Ángel Frausto Robles, soy ponente y parte del equipo que desarrolló este sitio web. Soy egresado de la Escuela Superior de Cómputo del Instituto Politécnico Nacional, especializado en temas de visión por computadora e inteligencia artificial.
 
 Quiero agradecer a la doctora Sheila y al doctor Saúl la oportunidad de presentar este proyecto tan importante para la universidad.
 
-[Diapositiva · ¿Qué es Image Bio Pro?]
+[Diapositiva · ¿Qué es BioImage-Repro UAM?]
 
-> Idea central: Image Bio Pro es un proyecto de la UAM que lleva la inteligencia artificial a la docencia, la investigación, la difusión de la cultura y el servicio a la comunidad universitaria.
+> Idea central: BioImage-Repro UAM es un proyecto de la UAM que lleva la inteligencia artificial a la docencia, la investigación, la difusión de la cultura y el servicio a la comunidad universitaria.
 
-En esta serie de videos les voy a platicar de Image Bio Pro, un proyecto que la Universidad Autónoma Metropolitana está impulsando para que la inteligencia artificial llegue a lo que se hace todos los días en la universidad: dar clases, investigar, preservar y difundir la cultura, y también vincularse con la comunidad y servirle.
+En esta serie de videos les voy a platicar de BioImage-Repro UAM, un proyecto que la Universidad Autónoma Metropolitana está impulsando para que la inteligencia artificial llegue a lo que se hace todos los días en la universidad: dar clases, investigar, preservar y difundir la cultura, y también vincularse con la comunidad y servirle.
 
-Quizás se pregunten qué es, exactamente, Image Bio Pro. Bueno, es una plataforma web nueva, pensada para meter las ideas más recientes de la inteligencia artificial en esas mismas tareas dentro de la UAM Iztapalapa. Dicho de otro modo, es la nueva era de la inteligencia artificial puesta al servicio de la comunidad universitaria.
+Quizás se pregunten qué es, exactamente, BioImage-Repro UAM. Bueno, es una plataforma web nueva, pensada para meter las ideas más recientes de la inteligencia artificial en esas mismas tareas dentro de la UAM Iztapalapa. Dicho de otro modo, es la nueva era de la inteligencia artificial puesta al servicio de la comunidad universitaria.
 
 [Diapositiva · Los cuatro módulos]
 

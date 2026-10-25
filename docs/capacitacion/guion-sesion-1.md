@@ -1,6 +1,6 @@
 # Guion de la sesión 1: El problema y el sitio
 
-Image Bio Pro · Capacitación · viernes 23 de octubre de 2026, de 6:00 a 8:00 pm
+BioImage-Repro UAM · Capacitación · viernes 23 de octubre de 2026, de 6:00 a 8:00 pm
 
 Esta sesión es la primera de cuatro. Presenta el problema como caso de estudio de inteligencia artificial, la idea de imagen digital y el sitio funcionando. Cómo aprende la red se ve en la sesión 2; cómo funciona el sistema por dentro, en la sesión 3; datos, reentrenamiento y despliegue, en la sesión 4.
 
@@ -18,9 +18,9 @@ Ritmo considerado: 175 palabras por minuto. Cada bloque trae su horario, su dura
 
 *0:00-0:05 · 5 min · 557 palabras, unos 3.2 min de habla*
 
-[Diapositiva · Image Bio Pro]
+[Diapositiva · BioImage-Repro UAM]
 
-Eh... buenas tardes a todos, y gracias por conectarse. Este... soy Angel Frausto Robles, desarrollador de Image Bio Pro. Les agradezco que estén aquí, sobre todo un viernes por la tarde.
+Eh... buenas tardes a todos, y gracias por conectarse. Este... soy Angel Frausto Robles, desarrollador de BioImage-Repro UAM. Les agradezco que estén aquí, sobre todo un viernes por la tarde.
 
 Antes de entrar en materia, les cuento de qué se trata esto. Esta es la primera de cuatro sesiones del curso BIOIMAGE 2026, y todo el curso gira alrededor de un solo proyecto: un sitio web que cuenta y mide espermatozoides en fotografías de microscopio, usando inteligencia artificial. Yo desarrollé el sitio, así que les voy a contar cómo se usa y también por qué quedó como quedó.
 
@@ -206,7 +206,7 @@ Y para ubicarnos en la unidad: una micra es la milésima parte de un milímetro.
 
 [Diapositiva · Presentación del sistema]
 
-[Pantalla: cambiar al navegador, con el sitio abierto en la página de inicio, sin sesión iniciada y con el zoom al 125 %. Arriba, centrado, el logotipo (un círculo azul con un punto verde) junto al nombre IMAGE BIO PRO y el lema «Análisis de imágenes de microscopio». Debajo, una barra blanca con el botón «Menú» (tres rayas) a la izquierda y, a la derecha, «ES | EN» e «Iniciar sesión». En el cuerpo, el título «Image Bio Pro», una frase corta, un botón verde «Analizar una imagen» y, a la derecha, un recuadro punteado reservado para la imagen principal. Más abajo, tarjetas numeradas («1 de 3», «2 de 3», «3 de 3») que cuentan el problema, el recorrido y los resultados.]
+[Pantalla: cambiar al navegador, con el sitio abierto en la página de inicio, sin sesión iniciada y con el zoom al 125 %. Arriba, centrado, el logotipo (un círculo azul con un punto verde) junto al nombre BIOIMAGE-REPRO UAM y el lema «Análisis de imágenes de microscopio». Debajo, una barra blanca con el botón «Menú» (tres rayas) a la izquierda y, a la derecha, «ES | EN» e «Iniciar sesión». En el cuerpo, el título «BioImage-Repro UAM», una frase corta, un botón verde «Analizar una imagen» y, a la derecha, un recuadro punteado reservado para la imagen principal. Más abajo, tarjetas numeradas («1 de 3», «2 de 3», «3 de 3») que cuentan el problema, el recorrido y los resultados.]
 
 Bueno, ahora sí, voy a mostrarles el sitio, empezando como lo vería cualquier visitante, o sea, sin haber iniciado sesión. Estoy compartiendo el navegador, y lo primero que ven es la página de inicio. Arriba, centrado, está el logotipo con el nombre del proyecto y su lema: «Análisis de imágenes de microscopio». Debajo hay una barra con el botón de menú a la izquierda, y a la derecha el selector de idioma y el acceso para iniciar sesión.
 
@@ -218,7 +218,7 @@ El diseño todavía lo estamos afinando, así que no es la versión final, pero 
 
 Si abro el menú, aparecen las seis secciones de las que hablamos hace un rato, una debajo de otra: Inicio, Nosotros, Aliados, Infografías y videos, Inteligencia Artificial y Contacto. Voy a recorrerlas rápido, una por una.
 
-Nosotros es la sección que cuenta qué es Image Bio Pro. Es texto, y se va a cargar con el contenido real del grupo. Ahí se explica, con palabras sencillas, de qué trata el proyecto y para qué sirve.
+Nosotros es la sección que cuenta qué es BioImage-Repro UAM. Es texto, y se va a cargar con el contenido real del grupo. Ahí se explica, con palabras sencillas, de qué trata el proyecto y para qué sirve.
 
 [Acción: abrir Aliados. Se ve una cuadrícula de tarjetas, cuatro por fila. Cada tarjeta tiene el nombre arriba, un recuadro cuadrado para la fotografía y un texto breve debajo. Con el contenido real cargado se ven los nombres y las fotos; si todavía no, aparecen los marcadores de ejemplo («Dr. Nombre Apellido», «[foto]» y un texto de relleno).]
 
@@ -232,11 +232,11 @@ Las infografías se abren en una ventana grande, como en un blog, con la imagen 
 
 Contacto es la sección más sencilla. A la izquierda están los datos de contacto y un espacio para un mapa, y a la derecha un formulario con nombre, correo y mensaje. Lo que se escribe aquí queda guardado para el equipo. Si alguien del curso encuentra un error en el sitio, un texto que no se entiende o tiene una sugerencia, este es el canal.
 
-[Acción: clic en «EN», arriba a la derecha. Menú, títulos, botones y textos cambian a inglés en pantalla, mientras que los nombres propios (como Image Bio Pro) quedan igual. Volver a «ES» al terminar.]
+[Acción: clic en «EN», arriba a la derecha. Menú, títulos, botones y textos cambian a inglés en pantalla, mientras que los nombres propios (como BioImage-Repro UAM) quedan igual. Volver a «ES» al terminar.]
 
 Ahora algo que a veces sorprende. Arriba a la derecha hay un selector de idioma, y si elijo EN, el sitio completo se traduce al inglés. No hay dos versiones del sitio: la traducción la hace el servicio de Google que está integrado. Eso tiene una ventaja, que es que todo queda traducido sin trabajo extra, y una desventaja, que es que la calidad es la de un traductor automático. Para cuidar eso, los nombres propios y los nombres de archivo están marcados para que no se traduzcan. Vuelvo a español. En la práctica, si un colega de otro país quiere usarlo, o si alguien prefiere leer en inglés, puede hacerlo sin que tengamos que mantener dos sitios distintos.
 
-[Acción: bajar hasta el final de la página. Una franja azul oscura con el nombre «Image Bio Pro» y la institución a la izquierda, el contacto y el año a la derecha, los enlaces del menú en una fila y, al final, una línea con el aviso de privacidad 2026 y la licencia Creative Commons.]
+[Acción: bajar hasta el final de la página. Una franja azul oscura con el nombre «BioImage-Repro UAM» y la institución a la izquierda, el contacto y el año a la derecha, los enlaces del menú en una fila y, al final, una línea con el aviso de privacidad 2026 y la licencia Creative Commons.]
 
 Si bajo hasta el final de la página, está el pie. Tiene el nombre del proyecto y la institución, un contacto de ejemplo, los mismos enlaces del menú, y abajo el aviso de privacidad 2026 y la licencia Creative Commons, Atribución y No Comercial.
 
@@ -458,7 +458,7 @@ La presentación tiene 23 diapositivas, numeradas. El sistema no lleva diapositi
 
 | Bloque | Diapositiva |
 |---|---|
-| 1 | Image Bio Pro · Las cuatro sesiones · La agenda de hoy |
+| 1 | BioImage-Repro UAM · Las cuatro sesiones · La agenda de hoy |
 | 2 | La inteligencia artificial en la educación y la investigación · El caso de estudio · Contar y medir a mano · La red localiza y el código mide · Tres principios · Funciona y se puede mejorar |
 | 3 | Una parte web y una parte de aprendizaje automático · Palabras que vamos a escuchar · Entrenamiento aparte, inferencia en el servidor · Un entorno educativo con seis secciones |
 | 4 | Una fotografía es una tabla de números · Una célula brillante son números altos · Formatos: unos conservan los bordes, otros no · La imagen no sabe cuánto mide un píxel |

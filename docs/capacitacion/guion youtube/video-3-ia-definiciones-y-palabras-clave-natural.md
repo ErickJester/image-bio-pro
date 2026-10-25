@@ -1,6 +1,6 @@
 # Guion del video 3 de 6: La inteligencia artificial a nuestro alrededor, definiciones y palabras clave (versión natural)
 
-Image Bio Pro · Módulo 1 · Capacitación en video
+BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Continúa del video 2. Empieza con la frase que lo une con el video anterior.
 

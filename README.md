@@ -1,4 +1,4 @@
-# Image Bio Pro
+# BioImage-Repro UAM
 
 Sitio web bilingüe (español/inglés) con un clasificador de imágenes de microscopio. El usuario sube una foto de fluorescencia de una muestra de espermatozoides y el sistema detecta las cabezas, las cuenta, mide su tamaño, muestra la distribución de tamaños y clasifica cada cabeza por color.
 
@@ -50,9 +50,9 @@ Microscopía de fluorescencia sobre fondo negro de espermatozoides. En cada imag
 
 ### Sitio web
 
-- Título *Image Bio Pro* y menú tipo hamburguesa con Inicio, Nosotros, Aliados, Infografías y videos, Inteligencia Artificial y Contacto.
+- Título *BioImage-Repro UAM* y menú tipo hamburguesa con Inicio, Nosotros, Aliados, Infografías y videos, Inteligencia Artificial y Contacto.
 - Selector de idioma EN/ES.
-- **Nosotros:** qué es Image Bio Pro.
+- **Nosotros:** qué es BioImage-Repro UAM.
 - **Aliados:** personas del grupo, con nombre y foto, en tarjetas.
 - **Contacto:** formulario con nombre, correo y mensaje.
 - **Infografías y videos:** sección propia del menú. Las infografías son publicaciones tipo blog: al dar clic se abre una ventana con la imagen y el texto. El título va fuera de la imagen.

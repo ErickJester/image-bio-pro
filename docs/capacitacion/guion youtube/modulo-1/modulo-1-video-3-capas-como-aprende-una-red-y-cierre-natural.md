@@ -1,6 +1,6 @@
 # Guion del módulo 1, video 3 de 3: Capas, cómo aprende una red y cierre (versión natural)
 
-Image Bio Pro · Módulo 1 · Capacitación en video
+BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conversación, sin guiones largos. Empieza con la frase que lo une con el video anterior.
 

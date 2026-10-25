@@ -1,6 +1,6 @@
 # Guion del video 5 de 6: Activación, capas y cómo aprende una red
 
-Image Bio Pro · Módulo 1 · Capacitación en video
+BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Continúa del video 4. Empieza con la frase que lo une con el video anterior.
 

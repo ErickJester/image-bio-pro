@@ -1,9 +1,9 @@
-# Image Bio Pro: contexto para responder preguntas en vivo
+# BioImage-Repro UAM: contexto para responder preguntas en vivo
 
 **Cómo responder:** el público son unas 6 o 7 personas (quizá hasta 40) de distintas áreas, y la sesión se graba y se publica. Respuestas breves, concretas y en lenguaje sencillo. Si la pregunta es muy técnica, dar la idea general y ofrecer verla al final o en otra sesión. No afirmar nada que no esté aquí.
 
 ## 1. Resumen
-Image Bio Pro es un sitio web bilingüe (español/inglés) que analiza fotografías de microscopía de espermatozoides: detecta cada uno, los cuenta, mide área y largo, dibuja la distribución de tamaños y exporta CSV y PDF. Resuelve que contar y medir a mano es lento, repetitivo y cambia según quién lo haga. Se hizo para un grupo de investigación de la UAM Xochimilco y se presenta como caso de estudio de IA para la comunidad universitaria, en cuatro sesiones de dos horas (23, 24, 26 y 27 de octubre de 2026). Desarrollador: Ing. Angel Frausto Robles. Entrega: 28 de octubre.
+BioImage-Repro UAM es un sitio web bilingüe (español/inglés) que analiza fotografías de microscopía de espermatozoides: detecta cada uno, los cuenta, mide área y largo, dibuja la distribución de tamaños y exporta CSV y PDF. Resuelve que contar y medir a mano es lento, repetitivo y cambia según quién lo haga. Se hizo para un grupo de investigación de la UAM Xochimilco y se presenta como caso de estudio de IA para la comunidad universitaria, en cuatro sesiones de dos horas (23, 24, 26 y 27 de octubre de 2026). Desarrollador: Ing. Angel Frausto Robles. Entrega: 28 de octubre.
 
 ## 2. Objetivo y alcance
 **Logrado:** cuentas privadas; hasta 10 imágenes por análisis; conteo, área y largo con media y desviación estándar; histograma por imagen y de promedios; imagen marcada con zoom; CSV y PDF único; "Mis análisis"; imagen de ejemplo sintética.
