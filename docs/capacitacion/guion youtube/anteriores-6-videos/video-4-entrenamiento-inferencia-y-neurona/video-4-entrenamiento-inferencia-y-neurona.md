@@ -26,7 +26,7 @@ La inferencia es lo opuesto: poco cálculo, pero muchas veces. Cada vez que algu
 
 Esa asimetría es lo que permite que el sistema funcione como funciona. El trabajo pesado se hace una vez, en el lugar adecuado, y el trabajo ligero se hace todos los días, en el servidor del sitio.
 
-Una pregunta que suele salir: ¿el modelo sigue aprendiendo mientras la gente lo usa? No. Durante la inferencia los pesos no cambian, y para mejorarlo hace falta entrenar otra versión con imágenes nuevas.
+Una duda que conviene aclarar: ¿el modelo sigue aprendiendo mientras la gente lo usa? No. Durante la inferencia los pesos no cambian, y para mejorarlo hace falta entrenar otra versión con imágenes nuevas.
 
 [Diapositiva 2 · Entrenamiento]
 

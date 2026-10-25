@@ -50,7 +50,7 @@ Cada módulo se divide en videos de unos 20 minutos. Este primer módulo son sei
 
 > Idea central: La inteligencia artificial puede analizar imágenes aprendiendo de ejemplos y no de reglas escritas, y lo hace sin cansarse. En este curso se ve aplicada a un problema real de biología de la reproducción.
 
-Empiezo con una pregunta, y no hace falta que la contesten en voz alta: ¿para qué sirve la inteligencia artificial en la educación y en la investigación? Hay muchas respuestas, y una de ellas, que es la que nos interesa hoy, es analizar imágenes. Una persona mira una imagen y reconoce lo que hay en ella. Un programa que aprendió de muchos ejemplos puede hacer algo parecido, y puede hacerlo muchas veces seguidas sin cansarse.
+Empiezo con una pregunta: ¿para qué sirve la inteligencia artificial en la educación y en la investigación? Hay muchas respuestas, y una de ellas, que es la que nos interesa hoy, es analizar imágenes. Una persona mira una imagen y reconoce lo que hay en ella. Un programa que aprendió de muchos ejemplos puede hacer algo parecido, y puede hacerlo muchas veces seguidas sin cansarse.
 
 Aprender de ejemplos es la idea que sostiene todo el curso, así que conviene aclararla. Tradicionalmente, cuando uno quiere que una computadora haga algo, le escribe reglas: si pasa esto, haz aquello. Eso funciona muy bien para una calculadora o para una hoja de cálculo, donde las reglas son exactas. Pero para reconocer un espermatozoide en una imagen, escribir las reglas es casi imposible. ¿Cómo describirían ustedes, con reglas exactas, la forma de una cabeza, con todas sus variaciones de tamaño, de orientación y de brillo? Cada vez que escribieran una regla, aparecería una imagen que la rompe.
 
@@ -86,7 +86,7 @@ También existen las imágenes de fondo claro, donde la muestra se ve oscura sob
 
 > Idea central: Una imagen de fluorescencia muestra manchas brillantes sobre fondo oscuro, y cada una es la cabeza de un espermatozoide. Contarlas a simple vista es posible, pero medir cada una ya no.
 
-Les muestro cómo se ve el problema. Esta es una imagen de fluorescencia. Lo que ven son manchas de colores brillantes sobre un fondo oscuro. Cada mancha es la cabeza de un espermatozoide, y a veces se alcanza a ver una línea que sale de ella, que es la cola. Ahora pregunto, sin esperar respuesta: ¿cuántos hay en esta imagen? Lo primero que haría cualquiera es contarlos con la vista, uno por uno. Y si además hay que medir cada uno, ya no basta con mirar.
+Les muestro cómo se ve el problema. Esta es una imagen de fluorescencia. Lo que ven son manchas de colores brillantes sobre un fondo oscuro. Cada mancha es la cabeza de un espermatozoide, y a veces se alcanza a ver una línea que sale de ella, que es la cola. ¿Cuántos hay en esta imagen? Lo primero que haría cualquiera es contarlos con la vista, uno por uno. Y si además hay que medir cada uno, ya no basta con mirar.
 
 En la imagen hay cabezas de distintos tonos, unas más anaranjadas, otras más rojizas. Hay colas, que salen de las cabezas como líneas delgadas. Hay zonas donde las células se tocan, y algunas cuyas colas se cruzan con otras cabezas. Si me pidieran contar cuántas cabezas hay, yo empezaría por una esquina y avanzaría célula por célula, y a la mitad me preguntaría si ya conté esta o aquella.
 

@@ -26,7 +26,7 @@ Una comparación con el cerebro conviene tomarla con cautela. El concepto nació
 
 Dicho en corto, una red neuronal es una cadena de capas. Cada capa toma números, los combina con pesos, aplica una pequeña no linealidad y pasa el resultado a la siguiente. Los pesos son lo que la red sabe, y falta ver cómo lograr que tomen valores útiles.
 
-Otra pregunta frecuente es qué hace cada capa. En una red que trabaja con imágenes, las primeras capas tienden a responder a cosas muy sencillas, como bordes y cambios de brillo. Las capas siguientes combinan esas respuestas para detectar formas, como curvas o esquinas. Y las últimas combinan formas para reconocer objetos completos. Nadie le dice a la red que haga eso; es lo que resulta útil, y por eso es lo que el entrenamiento termina encontrando. Es una jerarquía: de lo simple a lo complejo.
+Otra cuestión que conviene aclarar es qué hace cada capa. En una red que trabaja con imágenes, las primeras capas tienden a responder a cosas muy sencillas, como bordes y cambios de brillo. Las capas siguientes combinan esas respuestas para detectar formas, como curvas o esquinas. Y las últimas combinan formas para reconocer objetos completos. Nadie le dice a la red que haga eso; es lo que resulta útil, y por eso es lo que el entrenamiento termina encontrando. Es una jerarquía: de lo simple a lo complejo.
 
 [Diapositiva 2 · Una red pequeña, a mano]
 
@@ -132,7 +132,7 @@ La tasa de aprendizaje es un ejemplo de lo que se llama un hiperparámetro. Un h
 
 [Diapositiva 10 · Retropropagación: repartir el error]
 
-> Idea central: La retropropagación calcula cuánto contribuyó cada peso al error, yendo hacia atrás desde la salida, capa por capa. Se parece a revisar los tiros fallados de Batalla naval.
+> Idea central: La retropropagación calcula cuánto contribuyó cada peso al error, yendo hacia atrás desde la salida, capa por capa. Se parece a revisar una cadena de montaje de atrás hacia adelante.
 
 También hay que preguntarse cómo se calcula la pendiente con decenas de millones de pesos. Existe una técnica, la retropropagación, que aprovecha que la red es una cadena de operaciones simples para calcular de forma eficiente cuánto contribuyó cada peso al error. Va hacia atrás: parte del error en la salida y retrocede capa por capa.
 
@@ -156,7 +156,7 @@ Un ajuste de los pesos, hecho con un lote, es una iteración. Entonces, para pas
 
 Y una pasada completa por todas las imágenes, en este caso las veinticinco iteraciones, es una época. Una época no suele bastar. La red necesita ver los mismos ejemplos muchas veces para ajustar sus pesos con cuidado, así que el entrenamiento se repite por varias épocas, y en cada una la pérdida baja un poco más.
 
-Ojo con las épocas: si son demasiadas, la red puede aprenderse de memoria los ejemplos, con todo y sus defectos, y luego funcionar mal con imágenes nuevas. Por eso, durante el entrenamiento, se separan algunas imágenes que la red nunca usa para ajustarse, y se miden con ellas los resultados. Cuándo parar y cómo comprobar que la red de verdad generaliza lo veremos en el último módulo.
+Ojo con las épocas: si son demasiadas, la red puede aprenderse de memoria los ejemplos, con todo y sus defectos, y luego funcionar mal con imágenes nuevas. Por eso, durante el entrenamiento, se separan algunas imágenes que la red nunca usa para ajustarse, y se miden con ellas los resultados. Cuándo parar y cómo comprobar que la red de verdad generaliza lo veremos en el segundo módulo.
 
 [Diapositiva 12 · Semillas y repetibilidad]
 
@@ -208,4 +208,4 @@ Y una última idea para llevarse. Si les quedó la impresión de que una red neu
 
 Y termino con una pregunta que seguramente ya se hicieron: ¿cómo sabe el sistema dónde hay un espermatozoide? De eso trata el siguiente módulo: cómo mira una imagen una red como la nuestra, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
 
-Luego viene el sistema funcionando, con el sitio, y por último los datos, el entrenamiento y el despliegue en la nube. Muchas gracias por su atención.
+Luego viene el sistema funcionando, con el sitio, y por último los datos, el entrenamiento y el despliegue en la nube. Gracias por acompañarme en este módulo.

@@ -24,7 +24,11 @@ Esa es la idea que sostiene el resto de lo que vamos a ver. También nos recuerd
 
 Pasemos de la vida diaria a las ciencias de la vida, que es donde nos interesa. ¿Para qué se usa la inteligencia artificial con imágenes de microscopio?
 
+La tarea más directa es contar. Contar células, núcleos, bacterias o colonias en una imagen es algo que se hace constantemente en un laboratorio, y es tedioso. Un modelo que cuenta con un criterio fijo ahorra tiempo y evita la variación entre personas.
+
 La segunda es localizar. Saber dónde está cada estructura dentro de la imagen permite medirla, seguirla en el tiempo si se toman varias imágenes, o estudiar cómo se distribuyen unas respecto de otras. Esta es la tarea que nos ocupa: encontrar cada cabeza de espermatozoide.
+
+La tercera es medir. Una vez localizada una estructura, se puede obtener su tamaño, su forma o su intensidad. Con las mediciones de cientos de estructuras se pueden comparar condiciones y tratamientos.
 
 En todos los casos hay algo que se repite: la inteligencia artificial no sustituye el criterio de quien investiga. Hace de forma rápida y consistente una parte repetitiva del trabajo, y deja a la persona lo que requiere conocimiento: decidir qué preguntas hacer, interpretar los resultados y detectar cuándo algo no tiene sentido.
 
@@ -94,7 +98,7 @@ Esto tiene una consecuencia práctica. Para mejorar el modelo no se toca el siti
 
 Una comparación que ayuda: el entrenamiento es como aprender una receta, y la inferencia es como cocinarla las veces que haga falta. Aprender la receta lleva tiempo y esfuerzo, con muchos intentos y correcciones, y se hace una vez, o cada vez que se quiere mejorar. Cocinar con la receta ya aprendida es mucho más rápido y se repite todos los días.
 
-Una pregunta que suele salir: ¿el modelo sigue aprendiendo mientras la gente lo usa? No. Durante la inferencia los pesos no cambian, y para mejorarlo hace falta entrenar otra versión con imágenes nuevas.
+Una duda que conviene aclarar: ¿el modelo sigue aprendiendo mientras la gente lo usa? No. Durante la inferencia los pesos no cambian, y para mejorarlo hace falta entrenar otra versión con imágenes nuevas.
 
 [Diapositiva 8 · Entrenamiento]
 

@@ -22,7 +22,11 @@ Esa es la idea que sostiene el resto de lo que vamos a ver. También nos recuerd
 
 Bueno, pasemos de la vida diaria a las ciencias de la vida, que es donde nos interesa. ¿Para qué se usa la inteligencia artificial con imágenes de microscopio?
 
+Lo más directo: contar. Contar células, núcleos, bacterias o colonias en una imagen es algo que se hace todo el tiempo en un laboratorio, y es tedioso. Un modelo que cuenta con un criterio fijo ahorra tiempo y evita la variación entre personas.
+
 Segundo: localizar. Saber dónde está cada estructura dentro de la imagen permite medirla, seguirla en el tiempo si se toman varias imágenes, o estudiar cómo se distribuyen unas respecto de otras. Esta es la tarea que nos ocupa: encontrar cada cabeza de espermatozoide.
+
+Tercero: medir. Una vez localizada una estructura, se puede obtener su tamaño, su forma o su intensidad. Con las mediciones de cientos de estructuras se pueden comparar condiciones y tratamientos.
 
 En todos los casos pasa lo mismo: la inteligencia artificial no sustituye el criterio de quien investiga. Hace de forma rápida y consistente la parte repetitiva del trabajo, y le deja a la persona lo que requiere conocimiento: decidir qué preguntas hacer, interpretar los resultados y detectar cuándo algo no tiene sentido.
 
@@ -46,7 +50,7 @@ Y otra cosa: cuando se habla de inteligencia artificial en los medios, casi siem
 
 [Diapositiva 4 · Palabras que vamos a escuchar]
 
-> Idea central: Seis palabras para los cuatro módulos: red neuronal, Google Colab, Python, Flask, modelo y servidor. Entrenamiento e inferencia se explican en el siguiente video.
+> Idea central: Seis palabras para los cuatro módulos: red neuronal, Google Colab, Python, Flask, modelo y servidor. Entrenamiento e inferencia se explican en las siguientes diapositivas.
 
 Les dejo en pantalla unas palabras que van a escuchar durante los cuatro módulos. No las voy a leer todas, solo las que salen hoy.
 
@@ -92,7 +96,7 @@ La primera etapa, el entrenamiento, se hace en Colab, con imágenes que las pers
 
 Piénsenlo como una receta. Entrenar es aprender la receta: lleva tiempo, esfuerzo, muchos intentos y correcciones, y se hace una vez, o cada vez que se quiere mejorar. La inferencia es cocinarla las veces que haga falta. Eso es mucho más rápido, y se repite todos los días.
 
-Una pregunta que suele salir: ¿el modelo sigue aprendiendo mientras la gente lo usa? No. Durante la inferencia los pesos no cambian, y para mejorarlo hace falta entrenar otra versión con imágenes nuevas.
+Una duda que conviene aclarar: ¿el modelo sigue aprendiendo mientras la gente lo usa? No. Durante la inferencia los pesos no cambian, y para mejorarlo hace falta entrenar otra versión con imágenes nuevas.
 
 [Diapositiva 8 · Entrenamiento]
 

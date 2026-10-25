@@ -44,9 +44,9 @@ Dicho en corto, una red neuronal es una cadena de capas. Cada capa toma números
 
 Para ver cómo se arma una red completa y que no quede en el aire, recorramos una muy pequeña, con números, en la siguiente diapositiva.
 
-Pero antes, una pregunta que suelen hacer: ¿cuántas capas y cuántas neuronas debe tener una red? No hay una respuesta única. Es una decisión de diseño que depende del problema. Una red con pocas neuronas no tiene capacidad suficiente para capturar las relaciones complejas. Una con demasiadas puede aprender detalles que no sirven, y tarda más en entrenarse y en usarse. Por eso, en la práctica, se parte de arquitecturas que ya se probaron en problemas parecidos, y se ajustan.
+Pero antes, algo que conviene aclarar: ¿cuántas capas y cuántas neuronas debe tener una red? No hay una respuesta única. Es una decisión de diseño que depende del problema. Una red con pocas neuronas no tiene capacidad suficiente para capturar las relaciones complejas. Una con demasiadas puede aprender detalles que no sirven, y tarda más en entrenarse y en usarse. Por eso, en la práctica, se parte de arquitecturas que ya se probaron en problemas parecidos, y se ajustan.
 
-Otra pregunta frecuente es qué hace cada capa. En una red que trabaja con imágenes, las primeras capas tienden a responder a cosas muy sencillas, como bordes y cambios de brillo. Las capas siguientes combinan esas respuestas para detectar formas, como curvas o esquinas. Y las últimas combinan formas para reconocer objetos completos. Nadie le dice a la red que haga eso; es lo que resulta útil, y por eso es lo que el entrenamiento termina encontrando. Es una jerarquía: de lo simple a lo complejo.
+Otra cuestión que conviene aclarar es qué hace cada capa. En una red que trabaja con imágenes, las primeras capas tienden a responder a cosas muy sencillas, como bordes y cambios de brillo. Las capas siguientes combinan esas respuestas para detectar formas, como curvas o esquinas. Y las últimas combinan formas para reconocer objetos completos. Nadie le dice a la red que haga eso; es lo que resulta útil, y por eso es lo que el entrenamiento termina encontrando. Es una jerarquía: de lo simple a lo complejo.
 
 [Diapositiva 3 · Una capa con tres criterios]
 

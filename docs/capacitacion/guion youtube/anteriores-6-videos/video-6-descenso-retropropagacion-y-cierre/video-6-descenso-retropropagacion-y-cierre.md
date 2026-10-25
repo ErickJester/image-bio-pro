@@ -140,7 +140,7 @@ Nada de esto le quita valor al sistema. Un instrumento de laboratorio también t
 
 > Idea central: Respuestas breves a las dudas más comunes: la red no piensa, no necesita millones de imágenes si parte de una ya entrenada, puede equivocarse y se revisa.
 
-Antes de cerrar, aprovecho para contestar algunas dudas que suelen aparecer cuando se explica esto por primera vez.
+Antes de cerrar, aprovecho para aclarar algunas dudas que suelen aparecer cuando se explica esto por primera vez.
 
 Una duda frecuente es si la red piensa. No. Calcula. Lo que parece comprensión es una consecuencia de un ajuste muy bien hecho. Es una distinción importante, porque nos recuerda que una red puede equivocarse con total aplomo.
 
@@ -186,4 +186,4 @@ Y una última idea para llevarse. Si les quedó la impresión de que una red neu
 
 Y termino con una pregunta que seguramente ya se hicieron: ¿cómo sabe el sistema dónde hay un espermatozoide? De eso trata el siguiente módulo: cómo mira una imagen una red como la nuestra, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
 
-Luego viene el sistema funcionando, con el sitio, y por último los datos, el entrenamiento y el despliegue en la nube. Muchas gracias por su atención.
+Luego viene el sistema funcionando, con el sitio, y por último los datos, el entrenamiento y el despliegue en la nube. Gracias por acompañarme en este módulo.
