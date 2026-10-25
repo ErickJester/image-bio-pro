@@ -21,7 +21,7 @@ Versión del 7 de octubre de 2026 (primera reunión), ampliada el 12 de octubre 
 | RF-06 | La sección Aliados muestra a las personas del grupo con su nombre, su foto y una reseña. | "vendría como el nombre de las personas que estamos en el grupo"; "quedaría pendiente subir las fotografías o los nombres"; "'Fulano de tal' es esto" |
 | RF-07 | Las infografías se muestran como cuadros; al dar clic, se abre una ventana grande que despliega la imagen y el texto, como un blog. | "le apucha aquí y automáticamente en esta página sale grande esta ventana y despliega información"; "Casi como si fuera blog" |
 | RF-08 | El título de cada infografía va fuera de la imagen. | "¿esto ya vendría dentro de la imagen, verdad? — No, eso sí puede ir… afuera" |
-| RF-09 | El sitio muestra unos 4 videos cortos de YouTube que se reproducen en la misma página. | "lo que ellos quieren es que aquí mismo aparezca esa imagen de YouTube"; "Van a ser más o menos como cuatro videos… cortos de cuatro minutos" |
+| RF-09 | El sitio muestra los 15 videos del curso (cuatro módulos, unos 20 minutos cada uno) de YouTube, que se reproducen en la misma página; antes eran unos 4 videos cortos. | "lo que ellos quieren es que aquí mismo aparezca esa imagen de YouTube"; "Van a ser más o menos como cuatro videos… cortos de cuatro minutos" |
 
 ### Página de inteligencia artificial y cuentas
 

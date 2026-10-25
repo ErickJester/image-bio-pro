@@ -56,7 +56,7 @@ Microscopía de fluorescencia sobre fondo negro de espermatozoides. En cada imag
 - **Aliados:** personas del grupo, con nombre y foto, en tarjetas.
 - **Contacto:** formulario con nombre, correo y mensaje.
 - **Infografías y videos:** sección propia del menú. Las infografías son publicaciones tipo blog: al dar clic se abre una ventana con la imagen y el texto. El título va fuera de la imagen.
-- **Videos:** debajo de las infografías, unos cuatro videos de YouTube de unos cuatro minutos, incrustados en la propia página.
+- **Videos:** debajo de las infografías, los 15 videos del curso (cuatro módulos, unos 20 minutos cada video), incrustados en la propia página y agrupados en dos secciones: desarrollo de la red neuronal convolucional y desarrollo del sitio web. Se ven en un reproductor grande con la lista del curso por sección (pestañas, siguiente y anterior, y marca de videos vistos que se guarda en el navegador de cada persona). Mientras no estén subidos, el reproductor muestra un recuadro de marcador.
 - **Página de IA:** imagen de fondo, carga de imagen y botón para analizarla. Debajo, una muestra de las infografías recientes. Si hacen falta parámetros ajustables, se agregan después.
 - **Cuentas:** registro e inicio de sesión con correo electrónico, sin vincularlo a Gmail. Los análisis de cada usuario son privados: solo los ve quien los hizo.
 - **Contenido:** el cliente lo entrega y lo irá actualizando con el tiempo. Mientras tanto, los textos e imágenes se llenan con Lorem Ipsum y marcadores de posición.
