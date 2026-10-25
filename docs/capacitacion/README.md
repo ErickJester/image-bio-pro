@@ -1,6 +1,6 @@
 # Capacitación
 
-Curso BIOIMAGE 2026 (UAM Unidad Iztapalapa), con enfoque en investigación y uso de la inteligencia artificial. Se hace solo en video: cuatro módulos, con unos 10 videos de unos 20 minutos en total. No hay sesiones en vivo.
+Curso BIOIMAGE 2026 (UAM Unidad Iztapalapa), con enfoque en investigación y uso de la inteligencia artificial. Se hace solo en video: cuatro módulos, con 15 videos de unos 20 minutos en total. No hay sesiones en vivo.
 
 Este documento es la planeación vigente. Si otra sesión de trabajo la retoma, aquí está el estado y lo que falta.
 
@@ -16,15 +16,15 @@ Este documento es la planeación vigente. Si otra sesión de trabajo la retoma, 
 
 ## Plan de videos (borrador)
 
-El objetivo es reducir los 24 videos que saldrían de 4 módulos de 2 horas a unos 10. Presupuesto: unos 200 minutos de habla en total.
+El objetivo es reducir los 24 videos que saldrían de 4 módulos de 2 horas a unos 15. Presupuesto: unos 300 minutos de habla en total.
 
-| Módulo | Videos | Contenido | Estado |
-|---|---|---|---|
-| 1 | 3 | Problema e imagen digital; IA, entrenamiento y neurona; capas, aprendizaje y cierre | Guion terminado en [`guion youtube/modulo-1`](guion%20youtube/modulo-1) |
-| 2 | 2 | Redes convolucionales, Mask R-CNN y transferencia | Guion pendiente |
-| 3 | 2 o 3 | El sistema por dentro | Guion pendiente |
-| 4 | 3 | Datos, reentrenamiento y despliegue | Guion pendiente |
-| Total | 10 a 11 | | |
+| Módulo | Carácter | Videos | Contenido | Estado |
+|---|---|---|---|---|
+| 1 | Teoría fundamental | 3 | Problema e imagen digital; IA, entrenamiento y neurona; capas, aprendizaje y cierre | Guion terminado en [`guion youtube/modulo-1`](guion%20youtube/modulo-1) |
+| 2 | Teoría con más detalle | 4 | Redes convolucionales; Mask R-CNN; aprendizaje por transferencia; datos, anotación, entrenamiento y validación | Guion pendiente |
+| 3 | Presentación del sistema y, sobre todo, código | 4 | Frontend (con el sitio funcionando); backend; inferencia con recortes; medición, escala y retos | Guion pendiente |
+| 4 | Código y despliegue | 4 | Cuaderno de Colab en dos videos; despliegue (VPS, SSH, Docker); Nginx, dominio, HTTPS y cierre | Guion pendiente |
+| Total | | 15 | | |
 
 El módulo 1 salió de seis videos (unos 110 minutos de habla), guardados en [`guion youtube`](guion%20youtube), a tres de unos 21 minutos. Se quitó material del problema y se dejó casi todo lo teórico (imagen digital, redes neuronales y cómo aprenden).
 
@@ -45,32 +45,31 @@ Material que se quitó del módulo 1 y debe reaparecer en otro lugar o en un doc
 - Media y desviación estándar, y los dos tipos de imagen con su modelo: módulo 3.
 - Glosario y preguntas frecuentes: documento escrito.
 
-### Módulo 2. Redes convolucionales y transferencia
+### Módulo 2. Teoría con más detalle
 
-Guion pendiente. Ya no incluye umbral, neurona, capa, pérdida ni descenso del gradiente, que están en el módulo 1.
+Guion pendiente. Sigue siendo teórico, pero con más detalle que el módulo 1. Ya no incluye umbral, neurona, capa, pérdida ni descenso del gradiente, que están en el módulo 1.
 
-- Cómo ve una imagen una red convolucional: el filtro que recorre la imagen, con el ejemplo numérico de 3 por 3.
-- Mask R-CNN y aprendizaje por transferencia (guitarra y ukulele), en lenguaje sencillo.
-- Los retos del modelo pasan al módulo 3.
+- Video 1, cómo ve una imagen una red convolucional: el filtro que recorre la imagen, con el ejemplo numérico de 3 por 3.
+- Video 2, Mask R-CNN, en lenguaje sencillo.
+- Video 3, aprendizaje por transferencia (guitarra y ukulele).
+- Video 4, datos y entrenamiento en teoría (pasan aquí desde el antiguo módulo 4): cuántas imágenes hacen falta, anotación en CVAT, criterio de anotación y quién valida; entrenamiento y validación, sobreajuste y la gráfica de curvas.
 
-### Módulo 3. Cómo funciona el sistema por dentro
+### Módulo 3. Presentación del sistema y código
 
-Guion pendiente.
+Guion pendiente. Aquí el sitio se presenta funcionando y, a partir de ahí, casi todo es código en pantalla.
 
-- Backend: Flask, las rutas y qué pasa cuando se sube una imagen.
-- Cómo se usa el modelo (inferencia): la misma preparación que en el entrenamiento, recortes (teselas), juntar resultados y quitar repetidos. El modelo se carga una vez.
-- La medición: contorno, área, largo y escala (60 px = 1 µm en todas las imágenes, para estandarizar el tamaño). El largo en el código es el lado mayor del rectángulo mínimo que encierra el contorno.
-- Retos y cómo se resolvieron: espermatozoides empalmados, falsos positivos y la escala.
-- Demostración: abrir una imagen marcada y revisar un contorno a mano.
+- Video 1, frontend: se abre con el sitio funcionando (visitante, cuenta, análisis, resultados, descargas y "Mis análisis"; abrir una imagen marcada y revisar un contorno a mano) y se explica cómo está hecho, en código: plantillas Jinja2 (`app/templates`), Bootstrap, `estilos.css` y `sitio.js`, y la pantalla de resultados con el zoom y la gráfica. No hay framework de frontend.
+- Video 2, backend: Flask, las rutas y qué pasa cuando se sube una imagen (`app/__init__.py`, `app/analisis/rutas.py`, cuentas y base de datos).
+- Video 3, inferencia, en código: la misma preparación que en el entrenamiento, recortes (teselas), juntar resultados y quitar repetidos. El modelo se carga una vez.
+- Video 4, medición y retos, en código: contorno, área, largo y escala (60 px = 1 µm en todas las imágenes, para estandarizar el tamaño; el largo en el código es el lado mayor del rectángulo mínimo que encierra el contorno). Retos y cómo se resolvieron: espermatozoides empalmados, falsos positivos y la escala.
+- Material que se quitó del módulo 1 y reaparece aquí: Python, Flask, servidor, media y desviación estándar, y los dos tipos de imagen con su modelo.
 
-### Módulo 4. Datos, reentrenamiento y despliegue
+### Módulo 4. Código y despliegue
 
-Guion pendiente. Si no cabe, el reentrenamiento se muestra más corto y los detalles quedan en material aparte.
+Guion pendiente. Cierra el código y lleva el sitio a internet.
 
-- Datos: cuántas imágenes hacen falta, anotación en CVAT, criterio de anotación y quién valida.
-- Entrenamiento y validación: sobreajuste y la gráfica de curvas.
-- Reentrenar en Colab: qué se cambia y qué esperar. Se muestra el cuaderno con `MODO_PRUEBA = True`, sin correr el entrenamiento completo.
-- **Despliegue en la nube (bloque propio, unos 20 minutos, un video).** Es contenido vivido en el proyecto, con ejemplos reales:
+- Videos 1 y 2, el cuaderno de Colab, en código (`entrenamiento/entrenar_mask_rcnn.ipynb`; el cuaderno se quitó del módulo 1 y se retoma aquí). Se muestra con `MODO_PRUEBA = True`, sin correr el entrenamiento completo. Reparto propuesto, por confirmar contra el cuaderno real: el video 1 va del entorno y la configuración hasta preparar las imágenes y los recortes (leer las etiquetas, separar entrenamiento y validación); el video 2 va de construir la red a partir de una ya entrenada hasta entrenar, ver los resultados y exportar el modelo.
+- Videos 3 y 4, **despliegue en la nube y cierre** (el video 3 llega hasta Docker Compose; el 4 va de Nginx al cierre). Es contenido vivido en el proyecto, con ejemplos reales:
   - El VPS y la clave SSH: la clave pública va al servidor y la privada no sale de la computadora. Mejor una clave por uso.
   - Docker en tres ideas: imagen (la receta), contenedor (el programa corriendo) y volumen (donde viven los datos, para que reconstruir no los borre).
   - Docker Compose: un archivo que levanta los dos servicios del sitio, `web` y `nginx`, con un comando.
