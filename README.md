@@ -8,6 +8,8 @@ Proyecto desarrollado para un grupo de investigación de la UAM Unidad Iztapalap
 
 Los requisitos funcionales y no funcionales, con su prioridad y estado, están en [`docs/requisitos.md`](docs/requisitos.md).
 
+La versión actual y las reglas para numerar las versiones (`A.n.x`) están en [`CHANGELOG.md`](CHANGELOG.md) y [`docs/versionado.md`](docs/versionado.md).
+
 ## Calendario
 
 | Fechas (2026) | Actividad |
