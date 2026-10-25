@@ -4,7 +4,7 @@ BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 *3,228 palabras, unos 18.4 min de habla*
 
-[Diapositiva · BioImage-Repro UAM]
+[Diapositiva 1 · BioImage-Repro UAM]
 
 > Idea central: Todo el curso gira alrededor de un solo proyecto, BioImage-Repro UAM. La portada se queda en pantalla mientras te presentas y agradeces; en la siguiente diapositiva empiezas a explicar qué es el proyecto.
 
@@ -12,7 +12,7 @@ Buenas tardes a todos. Mi nombre es Ángel Frausto Robles, soy ponente y parte d
 
 Quiero agradecer a la doctora Sheila y al doctor Saúl la oportunidad de presentar este proyecto tan importante para la universidad.
 
-[Diapositiva · ¿Qué es BioImage-Repro UAM?]
+[Diapositiva 2 · ¿Qué es BioImage-Repro UAM?]
 
 > Idea central: BioImage-Repro UAM es un proyecto de la UAM que lleva la inteligencia artificial a la docencia, la investigación, la difusión de la cultura y el servicio a la comunidad universitaria.
 
@@ -20,7 +20,7 @@ En esta serie de videos les voy a platicar de BioImage-Repro UAM, un proyecto qu
 
 Quizás se pregunten qué es, exactamente, BioImage-Repro UAM. Bueno, es una plataforma web nueva, pensada para meter las ideas más recientes de la inteligencia artificial en esas mismas tareas dentro de la UAM Iztapalapa. Dicho de otro modo, es la nueva era de la inteligencia artificial puesta al servicio de la comunidad universitaria.
 
-[Diapositiva · Los cuatro módulos]
+[Diapositiva 3 · Los cuatro módulos]
 
 > Idea central: Son cuatro módulos: el primero el problema y las bases teóricas, el segundo cómo aprende una computadora, el tercero el sitio funcionando y el cuarto datos, entrenamiento y despliegue.
 
@@ -36,7 +36,7 @@ Y en el cuarto módulo veremos un par de ejemplos con datos, cómo se entrena la
 
 Quisiera pedirles que me den la oportunidad de cautivarlos para poder presentarles el sitio web en el tercer módulo. Me gustaría que primero tuvieran todo el background, todas las bases teóricas que nos permitieron desarrollar este sitio, para que cuando lo visiten sepan el trabajo y el enfoque de inteligencia artificial que utilizó esta plataforma. Espero que me puedan acompañar en estos cuatro módulos.
 
-[Diapositiva · La agenda de este módulo]
+[Diapositiva 4 · La agenda de este módulo]
 
 > Idea central: Hoy: el problema, qué es una imagen digital, algunas definiciones de inteligencia artificial y el comienzo de las redes neuronales. El sitio funcionando se presenta en el tercer módulo.
 
@@ -46,7 +46,7 @@ Después de la imagen digital vamos a poner en orden algunas definiciones de int
 
 Cada módulo se divide en videos de unos 20 minutos. Este primer módulo son seis videos, y en cada uno vamos a ir avanzando por estos temas.
 
-[Diapositiva · La inteligencia artificial en la educación y la investigación]
+[Diapositiva 5 · La inteligencia artificial en la educación y la investigación]
 
 > Idea central: La inteligencia artificial puede analizar imágenes aprendiendo de ejemplos y no de reglas escritas, y lo hace sin cansarse. En este curso se ve aplicada a un problema real de biología de la reproducción.
 
@@ -68,7 +68,7 @@ Esto tiene sentido en un entorno universitario. En la docencia, una herramienta 
 
 Por eso, a lo largo de los módulos vamos a ver el sitio funcionando y también las ideas que hay debajo, para que cualquiera de ustedes pueda razonar sobre qué hace el sistema, cuándo se puede confiar en él y cuándo conviene mirar con más cuidado. Esa es la ventaja de conocer las bases: dejan de ser una caja negra.
 
-[Diapositiva · Microscopía de fluorescencia]
+[Diapositiva 6 · Microscopía de fluorescencia]
 
 > Idea central: En fluorescencia, la célula se tiñe con un colorante que devuelve la luz en otro color. Por eso brilla sobre un fondo oscuro y es fácil de distinguir.
 
@@ -82,7 +82,7 @@ Para la computadora esto es una gran ayuda: separar un objeto del fondo resulta 
 
 También existen las imágenes de fondo claro, donde la muestra se ve oscura sobre un fondo iluminado. Se ven distintas, y por eso para cada tipo de imagen hay un modelo distinto. Hoy nos concentramos en fluorescencia, que es el caso más claro para entender las ideas.
 
-[Diapositiva · El caso de estudio]
+[Diapositiva 7 · El caso de estudio]
 
 > Idea central: Una imagen de fluorescencia muestra manchas brillantes sobre fondo oscuro, y cada una es la cabeza de un espermatozoide. Contarlas a simple vista es posible, pero medir cada una ya no.
 
@@ -92,7 +92,7 @@ En la imagen hay cabezas de distintos tonos, unas más anaranjadas, otras más r
 
 Y contar es lo más sencillo. Lo siguiente sería medir. ¿Qué tan grande es cada cabeza? ¿Qué tanto varían entre sí? ¿Cambian de tamaño cuando cambia una condición del experimento? Esas preguntas son las que interesan en una investigación, y para contestarlas hay que medir cada célula, una por una, en cada imagen.
 
-[Diapositiva · Qué se quiere medir]
+[Diapositiva 8 · Qué se quiere medir]
 
 > Idea central: Del problema salen tres cosas que medir: cuántas cabezas hay, qué tamaño tiene cada una y cómo se distribuyen los tamaños.
 
@@ -108,7 +108,7 @@ Y al final, todo eso se tiene que poder llevar a otro lado. Por eso los resultad
 
 Esas tres cosas, conteo, tamaño y distribución, son lo que el sistema entrega por cada imagen. Y todas dependen de algo previo: saber dónde está cada cabeza.
 
-[Diapositiva · Media y desviación estándar, con un ejemplo]
+[Diapositiva 9 · Media y desviación estándar, con un ejemplo]
 
 > Idea central: La media es el valor típico y la desviación estándar dice qué tanto se alejan los demás. Dos grupos con la misma media pueden ser muy distintos.
 
@@ -124,7 +124,7 @@ Los dos grupos tienen la misma media, dos, y sin embargo son muy distintos: en u
 
 Por eso el sistema entrega las dos cosas, y por eso la gráfica de la distribución de tamaños es tan útil: porque muestra de un vistazo cuál es el valor típico y qué tanto se reparte el resto.
 
-[Diapositiva · Para qué sirven estas medidas en una investigación]
+[Diapositiva 10 · Para qué sirven estas medidas en una investigación]
 
 > Idea central: Con las imágenes se comparan condiciones: se mide cada grupo y se compara cómo cambian el número y el tamaño de las células. Interpretar la diferencia es trabajo de quien investiga.
 
@@ -138,7 +138,7 @@ Nuestro sistema cuenta, mide y entrega los datos de forma uniforme y verificable
 
 Por eso importa que el instrumento sea estable: si no lo es, las diferencias que aparezcan podrían venir del instrumento y no de la condición. Con un método de medición uniforme, lo que se ve en los datos es lo que de verdad cambió en la muestra.
 
-[Diapositiva · Contar y medir a mano]
+[Diapositiva 11 · Contar y medir a mano]
 
 > Idea central: Contar y medir a mano es lento, repetitivo y cambia según quién lo haga: tres personas cuidadosas pueden dar tres conteos distintos de la misma imagen. Un sistema que lo haga siempre igual hace falta.
 
@@ -154,7 +154,7 @@ Y hay un tema de registro. Cuando se mide a mano, rara vez queda constancia de c
 
 Por todo eso buscamos que la misma imagen dé siempre el mismo resultado, sin importar quién la analice, y que ese resultado se pueda revisar.
 
-[Diapositiva · Un día de trabajo sin el sistema]
+[Diapositiva 12 · Un día de trabajo sin el sistema]
 
 > Idea central: Con cuentas sencillas se ve que el trabajo manual no escala: unas pocas decenas de imágenes ya significan miles de células y medio día de trabajo.
 
@@ -170,7 +170,7 @@ Un sistema automático cambia esas dos cuentas. Procesa una imagen en unas decen
 
 El valor está en la velocidad y también en que el resultado es comparable. Dos personas que analizan sus imágenes con el mismo sistema están midiendo con la misma regla, y eso es lo que hace posible comparar entre laboratorios y entre experimentos.
 
-[Diapositiva · El camino de una imagen a un número]
+[Diapositiva 13 · El camino de una imagen a un número]
 
 > Idea central: Un mapa del recorrido: la imagen entra, la red encuentra las cabezas, el código mide cada una y salen los números, la gráfica, el CSV y el PDF.
 

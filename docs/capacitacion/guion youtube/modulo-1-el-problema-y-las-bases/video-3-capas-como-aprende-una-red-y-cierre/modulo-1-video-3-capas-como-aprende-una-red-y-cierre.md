@@ -6,7 +6,7 @@ Continúa del video anterior. Empieza con la frase que lo une con el video anter
 
 *3,608 palabras, unos 20.6 min de habla*
 
-[Diapositiva · De la neurona a la capa y a la red]
+[Diapositiva 1 · De la neurona a la capa y a la red]
 
 > Idea central: Una neurona sola hace muy poco. Muchas neuronas forman una capa, las capas se apilan y eso es una red neuronal; con muchas capas se habla de aprendizaje profundo.
 
@@ -28,7 +28,7 @@ Dicho en corto, una red neuronal es una cadena de capas. Cada capa toma números
 
 Otra pregunta frecuente es qué hace cada capa. En una red que trabaja con imágenes, las primeras capas tienden a responder a cosas muy sencillas, como bordes y cambios de brillo. Las capas siguientes combinan esas respuestas para detectar formas, como curvas o esquinas. Y las últimas combinan formas para reconocer objetos completos. Nadie le dice a la red que haga eso; es lo que resulta útil, y por eso es lo que el entrenamiento termina encontrando. Es una jerarquía: de lo simple a lo complejo.
 
-[Diapositiva · Una red pequeña, a mano]
+[Diapositiva 2 · Una red pequeña, a mano]
 
 > Idea central: Una red pequeña con dos entradas, dos neuronas ocultas y una salida se calcula con cuatro multiplicaciones y unas sumas. Una red grande hace lo mismo, millones de veces.
 
@@ -42,7 +42,7 @@ Ahora la neurona de salida. Recibe las respuestas de la capa anterior: tres y ce
 
 Eso es todo. Cuatro multiplicaciones en la capa intermedia, dos más en la salida, unas sumas y una regla de activación. Ahora imaginen esto con millones de neuronas, en decenas de capas. El tipo de operación es el mismo; solo cambia la cantidad, y esa cantidad permite que la red capture patrones muy sutiles.
 
-[Diapositiva · Profundidad: por qué importan las capas]
+[Diapositiva 3 · Profundidad: por qué importan las capas]
 
 > Idea central: Con una sola capa la red solo puede combinar entradas de forma simple. Apilar capas permite construir ideas sobre otras ideas.
 
@@ -54,7 +54,7 @@ Cada nivel de la descripción se apoya en el anterior: una casa no se describe d
 
 Dicho de otro modo, la profundidad permite construir ideas complejas a partir de ideas más simples, y por eso el aprendizaje profundo funciona tan bien con datos que tienen estructura, como las imágenes.
 
-[Diapositiva · Cómo aprende una red]
+[Diapositiva 4 · Cómo aprende una red]
 
 > Idea central: La red aprende por ensayo y corrección: predice, mide cuánto se equivocó, ajusta los pesos y repite. La respuesta correcta la ponen las personas, al anotar las imágenes.
 
@@ -68,7 +68,7 @@ Las respuestas correctas las ponen las personas, que marcan con un contorno cada
 
 Y es mecánico a una escala enorme. Una sola pasada por una imagen ajusta millones de pesos, y el proceso completo repite eso miles y miles de veces. Ningún ser humano podría hacerlo a mano, y esa es una buena razón para que lo haga la computadora. Pero conviene entender el ciclo, porque cuando algo sale mal casi siempre se debe a uno de sus pasos: ejemplos que no representan bien el problema, una medida de error mal elegida, o un ajuste demasiado brusco.
 
-[Diapositiva · Anotar imágenes: de dónde salen las respuestas]
+[Diapositiva 5 · Anotar imágenes: de dónde salen las respuestas]
 
 > Idea central: Alguien tiene que dibujar el contorno de cada cabeza en las imágenes de entrenamiento. La red solo puede aprender lo que esas personas marcaron, con sus aciertos y sus errores.
 
@@ -80,7 +80,7 @@ Por eso es recomendable que alguien del grupo valide las anotaciones, y que haya
 
 Un modelo es, en cierto sentido, un espejo comprimido de sus anotaciones: refleja las decisiones de quienes lo enseñaron.
 
-[Diapositiva · Con respuestas y sin respuestas]
+[Diapositiva 6 · Con respuestas y sin respuestas]
 
 > Idea central: Aprender con ejemplos que traen su respuesta se llama aprendizaje supervisado. Es el que usamos, y por eso necesitamos anotar las imágenes.
 
@@ -92,7 +92,7 @@ Para nuestro problema, el supervisado es el adecuado, porque sabemos exactamente
 
 Aquí las respuestas son la fuente de todo lo que la red aprende. Si son buenas, la red puede ser buena, y si no lo son, ningún entrenamiento lo compensa.
 
-[Diapositiva · La función de pérdida]
+[Diapositiva 7 · La función de pérdida]
 
 > Idea central: La pérdida es un número que resume qué tan mal lo hizo la red. Cuanto más cerca de la respuesta correcta, más baja; el entrenamiento consiste en bajarla.
 
@@ -104,7 +104,7 @@ En una red como la nuestra, que debe encontrar cabezas y trazar su contorno, la 
 
 Ojo: la pérdida mide qué tanto se parece lo que hizo la red a las respuestas que le dimos, no qué tanto entiende el problema. Si esas respuestas traen errores, la red los aprende y la pérdida aun así puede salir muy baja.
 
-[Diapositiva · Ajustar: el descenso del gradiente]
+[Diapositiva 8 · Ajustar: el descenso del gradiente]
 
 > Idea central: Ajustar los pesos es como bajar una montaña con niebla: en cada paso se avanza hacia donde el suelo baja más. El tamaño del paso es la tasa de aprendizaje.
 
@@ -118,7 +118,7 @@ Volviendo a la montaña con niebla: en una montaña con dos direcciones, norte-s
 
 Nada garantiza que el valle al que llegamos sea el más profundo de toda la montaña. Podemos caer en un hueco intermedio. En la práctica, con redes grandes, estos huecos suelen ser suficientemente buenos, y por eso el método funciona.
 
-[Diapositiva · Tasa de aprendizaje e hiperparámetros]
+[Diapositiva 9 · Tasa de aprendizaje e hiperparámetros]
 
 > Idea central: La tasa de aprendizaje es el tamaño del paso. Las decisiones que se toman antes de entrenar, como esta, se llaman hiperparámetros y se eligen probando.
 
@@ -130,7 +130,7 @@ El paso ideal está entre los dos, y no hay una fórmula que lo dé de antemano.
 
 La tasa de aprendizaje es un ejemplo de lo que se llama un hiperparámetro. Un hiperparámetro es una decisión que se toma antes de entrenar y que no la aprende la red. La diferencia con un peso es esta: los pesos los ajusta el entrenamiento, mientras que los hiperparámetros los elige la persona. Otros ejemplos son cuántas veces se recorren los datos, cuántos ejemplos se usan en cada ajuste, o cuántas capas tiene la red.
 
-[Diapositiva · Retropropagación: repartir el error]
+[Diapositiva 10 · Retropropagación: repartir el error]
 
 > Idea central: La retropropagación calcula cuánto contribuyó cada peso al error, yendo hacia atrás desde la salida, capa por capa. Se parece a revisar los tiros fallados de Batalla naval.
 
@@ -144,7 +144,7 @@ Un ciclo completo de entrenamiento es: la imagen entra, la red predice con los p
 
 Así, ensayo tras ensayo, los pesos van tomando valores útiles, y una red que empezó respondiendo al azar termina marcando los espermatozoides.
 
-[Diapositiva · Lotes, iteraciones y épocas]
+[Diapositiva 11 · Lotes, iteraciones y épocas]
 
 > Idea central: En cada ajuste se usa un lote de imágenes. Una iteración es un ajuste; una época es una pasada completa por todos los ejemplos. Se hacen muchas épocas.
 
@@ -158,7 +158,7 @@ Y una pasada completa por todas las imágenes, en este caso las veinticinco iter
 
 Ojo con las épocas: si son demasiadas, la red puede aprenderse de memoria los ejemplos, con todo y sus defectos, y luego funcionar mal con imágenes nuevas. Por eso, durante el entrenamiento, se separan algunas imágenes que la red nunca usa para ajustarse, y se miden con ellas los resultados. Cuándo parar y cómo comprobar que la red de verdad generaliza lo veremos en el último módulo.
 
-[Diapositiva · Semillas y repetibilidad]
+[Diapositiva 12 · Semillas y repetibilidad]
 
 > Idea central: Como el entrenamiento usa azar, para poder repetirlo se fija una semilla y se documentan las decisiones. Así otra persona puede obtener el mismo modelo.
 
@@ -170,7 +170,7 @@ Esto es importante en ciencia. Un resultado que no se puede repetir es difícil 
 
 Un entrenamiento repetible no es por eso un entrenamiento correcto: se puede repetir uno malo tantas veces como se quiera. La repetibilidad es la condición para poder revisarlo, y no garantiza que esté bien.
 
-[Diapositiva · Repaso: lo que hace una red]
+[Diapositiva 13 · Repaso: lo que hace una red]
 
 > Idea central: Una red neuronal es una cadena de capas con pesos ajustables, que se ajustan con ejemplos mediante pérdida, gradiente y retropropagación. No hay comprensión: hay números ajustados.
 
@@ -182,7 +182,7 @@ Lo que no hay también importa: no hay comprensión ni reglas escritas a mano pa
 
 Con estas ideas ya tenemos las bases de qué es una red neuronal y cómo aprende.
 
-[Diapositiva · Límites y cuidados al usar un modelo]
+[Diapositiva 14 · Límites y cuidados al usar un modelo]
 
 > Idea central: Un modelo funciona bien con imágenes parecidas a las de su entrenamiento. Con otras puede fallar sin avisar, y por eso se revisa siempre la imagen marcada.
 
@@ -194,13 +194,13 @@ El segundo es que el modelo no duda. Marca lo que cree que es una cabeza con el 
 
 El tercero son los errores de dos tipos. Puede marcar algo que no es una cabeza, como una mancha o un trozo de cola. Y puede dejar sin marcar una cabeza que sí está. Los segundos son más difíciles de notar, porque no hay contorno que mirar. Por eso conviene mirar la imagen entera y no solo lo marcado.
 
-[Diapositiva · Lo que vimos hoy]
+[Diapositiva 15 · Lo que vimos hoy]
 
 > Idea central: El problema era contar y medir a mano; vimos qué es una imagen digital, algunas definiciones y las bases de las redes neuronales: neurona, capas y cómo aprenden.
 
 Para cerrar, un resumen de lo que vimos. El problema de partida era el conteo y la medición manuales, que tardan mucho y dependen de quién los haga. Vimos qué es una imagen digital: una cuadrícula de números, con sus formatos y su escala. Pusimos en orden algunas definiciones y las palabras que vamos a usar. Y vimos las bases de las redes neuronales: la neurona, la capa y la red, y cómo aprende una red ajustando sus pesos a partir de ejemplos.
 
-[Diapositiva · ¿Cómo sabe el sistema dónde hay un espermatozoide?]
+[Diapositiva 16 · ¿Cómo sabe el sistema dónde hay un espermatozoide?]
 
 > Idea central: En este módulo vimos qué es una red neuronal y cómo aprende. En el siguiente módulo vemos cómo mira una imagen una red convolucional y cómo se aprovecha una red entrenada para otra cosa; después, el sitio funcionando, y al final, datos, entrenamiento y despliegue.
 

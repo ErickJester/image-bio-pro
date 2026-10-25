@@ -6,7 +6,7 @@ Continúa del video 5. Empieza con la frase que lo une con el video anterior.
 
 *3,129 palabras, unos 17.9 min de habla*
 
-[Diapositiva · Ajustar: el descenso del gradiente]
+[Diapositiva 1 · Ajustar: el descenso del gradiente]
 
 > Idea central: Ajustar los pesos es como bajar una montaña con niebla: en cada paso se avanza hacia donde el suelo baja más. El tamaño del paso es la tasa de aprendizaje.
 
@@ -22,7 +22,7 @@ Nada garantiza que el valle al que llegamos sea el más profundo de toda la mont
 
 Este procedimiento no es nuevo ni exclusivo de la inteligencia artificial. Es una técnica clásica de optimización, que se usa en ingeniería y en estadística para encontrar los valores que minimizan una cantidad. Lo que cambió es la escala: ahora se aplica a modelos con decenas de millones de parámetros y con cantidades enormes de datos.
 
-[Diapositiva · Tasa de aprendizaje e hiperparámetros]
+[Diapositiva 2 · Tasa de aprendizaje e hiperparámetros]
 
 > Idea central: La tasa de aprendizaje es el tamaño del paso. Las decisiones que se toman antes de entrenar, como esta, se llaman hiperparámetros y se eligen probando.
 
@@ -36,7 +36,7 @@ El paso ideal está entre los dos, y no hay una fórmula que lo dé de antemano.
 
 La tasa de aprendizaje es un ejemplo de lo que se llama un hiperparámetro. Un hiperparámetro es una decisión que se toma antes de entrenar y que no la aprende la red. La diferencia con un peso es esta: los pesos los ajusta el entrenamiento, mientras que los hiperparámetros los elige la persona. Otros ejemplos son cuántas veces se recorren los datos, cuántos ejemplos se usan en cada ajuste, o cuántas capas tiene la red.
 
-[Diapositiva · Retropropagación: repartir el error]
+[Diapositiva 3 · Retropropagación: repartir el error]
 
 > Idea central: La retropropagación calcula cuánto contribuyó cada peso al error, yendo hacia atrás desde la salida, capa por capa. Se parece a revisar los tiros fallados de Batalla naval.
 
@@ -54,7 +54,7 @@ Un ciclo completo de entrenamiento es: la imagen entra, la red predice con los p
 
 Así, ensayo tras ensayo, los pesos van tomando valores útiles, y una red que empezó respondiendo al azar termina marcando los espermatozoides.
 
-[Diapositiva · Lotes, iteraciones y épocas]
+[Diapositiva 4 · Lotes, iteraciones y épocas]
 
 > Idea central: En cada ajuste se usa un lote de imágenes. Una iteración es un ajuste; una época es una pasada completa por todos los ejemplos. Se hacen muchas épocas.
 
@@ -70,7 +70,7 @@ Una forma de recordarlo es con el estudio de un examen. El lote es el montón de
 
 Ojo con las épocas: si son demasiadas, la red puede aprenderse de memoria los ejemplos, con todo y sus defectos, y luego funcionar mal con imágenes nuevas. Por eso, durante el entrenamiento, se separan algunas imágenes que la red nunca usa para ajustarse, y se miden con ellas los resultados. Cuándo parar y cómo comprobar que la red de verdad generaliza lo veremos en el último módulo.
 
-[Diapositiva · Semillas y repetibilidad]
+[Diapositiva 5 · Semillas y repetibilidad]
 
 > Idea central: Como el entrenamiento usa azar, para poder repetirlo se fija una semilla y se documentan las decisiones. Así otra persona puede obtener el mismo modelo.
 
@@ -88,7 +88,7 @@ Por eso, cuando el entrenamiento está en un cuaderno compartido, el cuaderno gu
 
 Un entrenamiento repetible no es por eso un entrenamiento correcto: se puede repetir uno malo tantas veces como se quiera. La repetibilidad es la condición para poder revisarlo, y no garantiza que esté bien.
 
-[Diapositiva · Un entrenamiento de ejemplo: la pérdida bajando]
+[Diapositiva 6 · Un entrenamiento de ejemplo: la pérdida bajando]
 
 > Idea central: Durante el entrenamiento, la pérdida empieza alta, baja rápido al principio y se estabiliza. Esa curva es la forma de saber si el entrenamiento va bien.
 
@@ -104,7 +104,7 @@ Esa gráfica sirve también para detectar problemas. Si la pérdida no baja, hay
 
 Quien entrena una red pasa mucho tiempo mirando esta curva. Es como el termómetro del entrenamiento: no dice todo, pero avisa si algo va mal.
 
-[Diapositiva · Repaso: lo que hace una red]
+[Diapositiva 7 · Repaso: lo que hace una red]
 
 > Idea central: Una red neuronal es una cadena de capas con pesos ajustables, que se ajustan con ejemplos mediante pérdida, gradiente y retropropagación. No hay comprensión: hay números ajustados.
 
@@ -118,7 +118,7 @@ Lo que no hay también importa: no hay comprensión ni reglas escritas a mano pa
 
 Con estas ideas ya tenemos las bases de qué es una red neuronal y cómo aprende.
 
-[Diapositiva · Límites y cuidados al usar un modelo]
+[Diapositiva 8 · Límites y cuidados al usar un modelo]
 
 > Idea central: Un modelo funciona bien con imágenes parecidas a las de su entrenamiento. Con otras puede fallar sin avisar, y por eso se revisa siempre la imagen marcada.
 
@@ -136,7 +136,7 @@ Y el quinto es que un buen resultado en unas imágenes no garantiza uno bueno en
 
 Nada de esto le quita valor al sistema. Un instrumento de laboratorio también tiene su rango de uso, y saber cuál es parte de saber usarlo. Lo que hace diferente a este es que muestra su trabajo: cada resultado trae la imagen marcada, para que cualquiera pueda comprobar si los contornos tienen sentido.
 
-[Diapositiva · Preguntas que suelen surgir]
+[Diapositiva 9 · Preguntas que suelen surgir]
 
 > Idea central: Respuestas breves a las dudas más comunes: la red no piensa, no necesita millones de imágenes si parte de una ya entrenada, puede equivocarse y se revisa.
 
@@ -152,7 +152,7 @@ Otra es por qué se necesita una tarjeta gráfica para entrenar. Porque entrenar
 
 Y otra, que es la más honesta, es si el resultado es siempre correcto. No, y nadie debería prometerlo. Es una herramienta de medición, con sus márgenes de error, como cualquier instrumento. Lo que sí podemos prometer es que es consistente y que se puede revisar.
 
-[Diapositiva · Glosario de repaso]
+[Diapositiva 10 · Glosario de repaso]
 
 > Idea central: Un repaso rápido de las palabras de este módulo, una por una, para que queden a la mano.
 
@@ -172,13 +172,13 @@ Anotación: dibujar a mano las respuestas correctas. Aprendizaje supervisado: ap
 
 Colab: el entorno para entrenar. Python: el lenguaje. Flask: la herramienta para el sitio. Servidor: la computadora donde vive el sitio.
 
-[Diapositiva · Lo que vimos hoy]
+[Diapositiva 11 · Lo que vimos hoy]
 
 > Idea central: El problema era contar y medir a mano; vimos qué es una imagen digital, algunas definiciones y las bases de las redes neuronales: neurona, capas y cómo aprenden.
 
 Para cerrar, un resumen de lo que vimos. El problema de partida era el conteo y la medición manuales, que tardan mucho y dependen de quién los haga. Vimos qué es una imagen digital: una cuadrícula de números, con sus formatos y su escala. Pusimos en orden algunas definiciones y las palabras que vamos a usar. Y vimos las bases de las redes neuronales: la neurona, la capa y la red, y cómo aprende una red ajustando sus pesos a partir de ejemplos.
 
-[Diapositiva · ¿Cómo sabe el sistema dónde hay un espermatozoide?]
+[Diapositiva 12 · ¿Cómo sabe el sistema dónde hay un espermatozoide?]
 
 > Idea central: En este módulo vimos qué es una red neuronal y cómo aprende. En el siguiente módulo vemos cómo mira una imagen una red convolucional y cómo se aprovecha una red entrenada para otra cosa; después, el sitio funcionando, y al final, datos, entrenamiento y despliegue.
 

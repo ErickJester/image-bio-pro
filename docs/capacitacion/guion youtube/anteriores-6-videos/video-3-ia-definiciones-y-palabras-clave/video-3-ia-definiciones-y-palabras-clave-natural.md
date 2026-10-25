@@ -6,7 +6,7 @@ Continúa del video 2. Empieza con la frase que lo une con el video anterior.
 
 Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conversación, sin guiones largos.
 
-[Diapositiva · La inteligencia artificial a nuestro alrededor]
+[Diapositiva 1 · La inteligencia artificial a nuestro alrededor]
 
 > Idea central: Sin darnos cuenta, usamos inteligencia artificial todos los días: al escribir, al buscar, al ver recomendaciones. Casi todo se basa en aprender de ejemplos.
 
@@ -22,7 +22,7 @@ Y con las imágenes también. El teléfono agrupa las fotos por personas, o la c
 
 Esa es la idea que sostiene el resto de lo que vamos a ver. También nos recuerda que estas herramientas no son mágicas ni inteligentes en el sentido humano. Son muy buenas para lo que vieron en sus ejemplos, y se equivocan de maneras que a veces sorprenden. En este curso vemos cómo funciona esa idea con un caso que nos queda muy cerca: contar y medir células.
 
-[Diapositiva · La inteligencia artificial con imágenes de células]
+[Diapositiva 2 · La inteligencia artificial con imágenes de células]
 
 > Idea central: En biología, la inteligencia artificial ayuda a contar, medir y localizar estructuras en imágenes de microscopio. Su valor está en la rapidez y en la consistencia.
 
@@ -42,7 +42,7 @@ En todos los casos pasa lo mismo: la inteligencia artificial no sustituye el cri
 
 Un resultado producido por un modelo es una medición, con sus márgenes de error, y no una verdad. Por eso, en un buen sistema, el resultado siempre se puede revisar. Esa idea nos va a acompañar en todos los módulos.
 
-[Diapositiva · Algunas definiciones de inteligencia artificial]
+[Diapositiva 3 · Algunas definiciones de inteligencia artificial]
 
 > Idea central: Inteligencia artificial, aprendizaje automático, redes neuronales y aprendizaje profundo son capas de un mismo campo, de lo más amplio a lo más específico.
 
@@ -60,7 +60,7 @@ Algo que sale de ahí: no toda la inteligencia artificial aprende de ejemplos. U
 
 Y otra cosa: cuando se habla de inteligencia artificial en los medios, casi siempre se está hablando de aprendizaje profundo, que es la rama que más ha avanzado en los últimos años con imágenes, sonido y texto. Es la que usamos aquí.
 
-[Diapositiva · Palabras que vamos a escuchar]
+[Diapositiva 4 · Palabras que vamos a escuchar]
 
 > Idea central: Seis palabras para los cuatro módulos: red neuronal, Google Colab, Python, Flask, modelo y servidor. Entrenamiento e inferencia se explican en el siguiente video.
 
@@ -68,7 +68,7 @@ Les dejo en pantalla unas palabras que van a escuchar durante los cuatro módulo
 
 Una red neuronal es un programa que aprende de ejemplos. Google Colab es un entorno para programar en la nube. Python es un lenguaje de programación, y Flask es una herramienta para hacer sitios web con Python: el sitio está hecho con las dos. El modelo es el archivo que guarda lo que la red aprendió. Y el servidor es la computadora donde el sitio está en línea, la que responde cuando alguien entra. También aparecen dos palabras que explico en el siguiente video, entrenamiento e inferencia, porque son las que más confunden y las que más importa distinguir.
 
-[Diapositiva · Red neuronal]
+[Diapositiva 5 · Red neuronal]
 
 > Idea central: Una red neuronal es un programa formado por muchas operaciones pequeñas conectadas, cuyos valores se ajustan a partir de ejemplos en lugar de escribirse a mano.
 
@@ -84,7 +84,7 @@ Una cosa más. Hay redes de muchos tamaños. Algunas tienen unas decenas de peso
 
 En los siguientes videos vamos a construir una desde cero, empezando por su pieza más pequeña, para que se vea que no hay nada misterioso.
 
-[Diapositiva · Google Colab]
+[Diapositiva 6 · Google Colab]
 
 > Idea central: Google Colab es un cuaderno de programación en la nube, con computadoras potentes disponibles desde el navegador. Ahí se entrenó el modelo.
 
@@ -98,7 +98,7 @@ En este proyecto, Colab es donde se entrena el modelo. El entrenamiento está es
 
 También hay que decir qué no es Colab: no es donde vive el sitio. Cuando el entrenamiento termina, lo que sale es un archivo, y ese archivo se lleva al servidor donde está la página. Colab sirve para entrenar, y no para que las personas usen el modelo todos los días. Esa diferencia es justo la que veremos con entrenamiento e inferencia.
 
-[Diapositiva · Python]
+[Diapositiva 7 · Python]
 
 > Idea central: Python es el lenguaje de programación que se usa en casi toda la inteligencia artificial, gracias a sus bibliotecas. Aquí se usa para entrenar el modelo y para hacer el sitio.
 
@@ -112,7 +112,7 @@ Un proyecto como este no se escribe desde cero. Se combinan bibliotecas muy buen
 
 Hay otros lenguajes que también se usan en inteligencia artificial, como C++ para las partes que necesitan máxima velocidad. Pero Python es el que se usa para escribir y probar las ideas.
 
-[Diapositiva · Flask]
+[Diapositiva 8 · Flask]
 
 > Idea central: Flask es una herramienta de Python para construir sitios web. Recibe lo que pide el navegador, hace el trabajo y devuelve la página.
 
@@ -128,7 +128,7 @@ Flask también se encarga de cosas como las cuentas de las personas, para saber 
 
 ¿Por qué se eligió Flask? Porque es pequeño y claro. No obliga a aprender un montón de reglas, y permite que una persona entienda de principio a fin cómo está hecho el sitio. Y como está escrito en Python, puede llamar directamente a la red neuronal, que también está en Python. El sitio y el modelo hablan el mismo idioma.
 
-[Diapositiva · Modelo]
+[Diapositiva 9 · Modelo]
 
 > Idea central: El modelo es el archivo que guarda lo que la red aprendió: sus pesos. Por sí solo no hace nada, hace falta un programa que lo cargue y lo use.
 
@@ -144,7 +144,7 @@ Otra característica: un modelo está fijo. Una vez entrenado, sus pesos no camb
 
 De ahí sale algo que a veces sorprende: dos personas que analizan la misma imagen con el mismo modelo obtienen siempre el mismo resultado. Y eso es justo lo que queremos de un instrumento de medición.
 
-[Diapositiva · Servidor]
+[Diapositiva 10 · Servidor]
 
 > Idea central: El servidor es la computadora, siempre encendida y conectada a internet, donde vive el sitio y donde se usa el modelo cada vez que alguien sube una imagen.
 
@@ -160,7 +160,7 @@ También hay programas que ayudan al servidor a trabajar bien. Uno recibe las pe
 
 Y de cómo se pone un servidor en internet, y qué cuidados requiere, hablaremos en el último módulo.
 
-[Diapositiva · Cómo se ve un cuaderno de Colab]
+[Diapositiva 11 · Cómo se ve un cuaderno de Colab]
 
 > Idea central: Un cuaderno de Colab mezcla texto y celdas de código que se ejecutan una por una, y deja a la vista cada paso y su resultado.
 

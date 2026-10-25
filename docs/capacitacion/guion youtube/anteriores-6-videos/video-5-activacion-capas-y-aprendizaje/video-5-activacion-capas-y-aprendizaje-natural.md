@@ -6,7 +6,7 @@ Continúa del video 4. Empieza con la frase que lo une con el video anterior.
 
 Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conversación, sin guiones largos.
 
-[Diapositiva · La función de activación]
+[Diapositiva 1 · La función de activación]
 
 > Idea central: La activación introduce una torcedura en la suma: si el total es negativo la salida es cero, y si es positivo se deja pasar. Sin ella, apilar capas no serviría de nada.
 
@@ -24,7 +24,7 @@ Al combinar muchas de estas esquinas en capas, la red puede dibujar relaciones t
 
 En conjunto: los pesos fijan a qué atiende cada neurona, el sesgo cuánta exigencia tiene, y la activación permite que la red represente algo más que simples proporciones. Con esas tres ideas queda completa la neurona.
 
-[Diapositiva · De la neurona a la capa y a la red]
+[Diapositiva 2 · De la neurona a la capa y a la red]
 
 > Idea central: Una neurona sola hace muy poco. Muchas neuronas forman una capa, las capas se apilan y eso es una red neuronal; con muchas capas se habla de aprendizaje profundo.
 
@@ -48,7 +48,7 @@ Pero antes, una pregunta que suelen hacer: ¿cuántas capas y cuántas neuronas 
 
 Otra pregunta frecuente: ¿qué hace cada capa? En una red que trabaja con imágenes, las primeras capas tienden a responder a cosas muy sencillas, como bordes y cambios de brillo. Las siguientes combinan esas respuestas para detectar formas, como curvas o esquinas. Y las últimas combinan formas para reconocer objetos completos. Nadie le dice a la red que haga eso. Es lo que resulta útil, y por eso es lo que el entrenamiento termina encontrando. Es una jerarquía: de lo simple a lo complejo.
 
-[Diapositiva · Una capa con tres criterios]
+[Diapositiva 3 · Una capa con tres criterios]
 
 > Idea central: Tres neuronas con los mismos datos y distintos pesos dan tres respuestas distintas: cada una es una pregunta diferente sobre la entrada.
 
@@ -66,7 +66,7 @@ La salida de la capa es la lista de las tres respuestas: alta, cero y moderada. 
 
 Ahora imaginen cien neuronas, cada una con sus propios pesos, mirando la misma entrada. Cada una responde a una combinación diferente. La capa entrega cien respuestas, y la siguiente capa puede combinarlas para preguntar cosas más elaboradas. Los pesos de cada neurona no los escribe nadie: los encuentra el entrenamiento, y por eso cada neurona termina especializándose en lo que resulta útil.
 
-[Diapositiva · Una red pequeña, a mano]
+[Diapositiva 4 · Una red pequeña, a mano]
 
 > Idea central: Una red pequeña con dos entradas, dos neuronas ocultas y una salida se calcula con cuatro multiplicaciones y unas sumas. Una red grande hace lo mismo, millones de veces.
 
@@ -82,7 +82,7 @@ Eso es todo. Cuatro multiplicaciones en la capa intermedia, dos más en la salid
 
 Si cambiamos uno solo de los pesos, la respuesta final cambia. Por ejemplo, si el segundo peso de la primera neurona fuera tres en lugar de uno, esa neurona daría uno más seis, que son siete, y la respuesta final sería trece en lugar de cinco. Entrenar una red es precisamente buscar los valores de todos esos pesos que hacen que la respuesta sea la correcta para los ejemplos que tenemos.
 
-[Diapositiva · Profundidad: por qué importan las capas]
+[Diapositiva 5 · Profundidad: por qué importan las capas]
 
 > Idea central: Con una sola capa la red solo puede combinar entradas de forma simple. Apilar capas permite construir ideas sobre otras ideas.
 
@@ -98,7 +98,7 @@ También es verdad que más capas no siempre es mejor. Cada capa agrega pesos qu
 
 Dicho de otro modo, la profundidad permite construir ideas complejas a partir de ideas más simples, y por eso el aprendizaje profundo funciona tan bien con datos que tienen estructura, como las imágenes.
 
-[Diapositiva · Cómo aprende una red]
+[Diapositiva 6 · Cómo aprende una red]
 
 > Idea central: La red aprende por ensayo y corrección: predice, mide cuánto se equivocó, ajusta los pesos y repite. La respuesta correcta la ponen las personas, al anotar las imágenes.
 
@@ -114,7 +114,7 @@ Ninguno de estos cuatro pasos requiere que alguien le explique a la red qué es 
 
 Y es mecánico a una escala enorme. Una sola pasada por una imagen ajusta millones de pesos, y el proceso completo repite eso miles y miles de veces. Ningún ser humano podría hacerlo a mano, y esa es una buena razón para que lo haga la computadora. Pero conviene entender el ciclo, porque cuando algo sale mal casi siempre se debe a uno de sus pasos: ejemplos que no representan bien el problema, una medida de error mal elegida, o un ajuste demasiado brusco.
 
-[Diapositiva · Pesos al azar: el punto de partida]
+[Diapositiva 7 · Pesos al azar: el punto de partida]
 
 > Idea central: Antes de entrenar, los pesos tienen valores al azar y la red responde sin sentido. El entrenamiento los mueve poco a poco hasta que dan buenas respuestas.
 
@@ -132,7 +132,7 @@ Otro detalle: no empezar de cero cambia mucho. Si en lugar de pesos al azar se p
 
 Una red sin entrenar es una red que todavía no aprendió, y todo lo que sepa lo sabrá porque se le mostró.
 
-[Diapositiva · Anotar imágenes: de dónde salen las respuestas]
+[Diapositiva 8 · Anotar imágenes: de dónde salen las respuestas]
 
 > Idea central: Alguien tiene que dibujar el contorno de cada cabeza en las imágenes de entrenamiento. La red solo puede aprender lo que esas personas marcaron, con sus aciertos y sus errores.
 
@@ -150,7 +150,7 @@ Por eso conviene que alguien del grupo valide las anotaciones, y que haya un cri
 
 Un modelo es, en cierto sentido, un espejo comprimido de sus anotaciones: refleja las decisiones de quienes lo enseñaron.
 
-[Diapositiva · Con respuestas y sin respuestas]
+[Diapositiva 9 · Con respuestas y sin respuestas]
 
 > Idea central: Aprender con ejemplos que traen su respuesta se llama aprendizaje supervisado. Es el que usamos, y por eso necesitamos anotar las imágenes.
 
@@ -166,7 +166,7 @@ Para nuestro problema, el supervisado es el adecuado, porque sabemos exactamente
 
 Aquí las respuestas son la fuente de todo lo que la red aprende. Si son buenas, la red puede ser buena, y si no lo son, ningún entrenamiento lo compensa.
 
-[Diapositiva · La función de pérdida]
+[Diapositiva 10 · La función de pérdida]
 
 > Idea central: La pérdida es un número que resume qué tan mal lo hizo la red. Cuanto más cerca de la respuesta correcta, más baja; el entrenamiento consiste en bajarla.
 

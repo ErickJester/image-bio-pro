@@ -6,7 +6,7 @@ Primer video del módulo 1. Abre con la presentación de quien expone.
 
 *3,765 palabras, unos 21.5 min de habla*
 
-[Diapositiva · BioImage-Repro UAM]
+[Diapositiva 1 · BioImage-Repro UAM]
 
 > Idea central: Todo el curso gira alrededor de un solo proyecto, BioImage-Repro UAM. La portada se queda en pantalla mientras te presentas y agradeces; en la siguiente diapositiva empiezas a explicar qué es el proyecto.
 
@@ -14,7 +14,7 @@ Buenas tardes a todos. Mi nombre es Ángel Frausto Robles, soy ponente y parte d
 
 Quiero agradecer a la doctora Sheila y al doctor Saúl la oportunidad de presentar este proyecto tan importante para la universidad.
 
-[Diapositiva · ¿Qué es BioImage-Repro UAM?]
+[Diapositiva 2 · ¿Qué es BioImage-Repro UAM?]
 
 > Idea central: BioImage-Repro UAM es un proyecto de la UAM que lleva la inteligencia artificial a la docencia, la investigación, la difusión de la cultura y el servicio a la comunidad universitaria.
 
@@ -22,7 +22,7 @@ En esta serie de videos les voy a platicar de BioImage-Repro UAM, un proyecto qu
 
 Quizás se pregunten qué es, exactamente, BioImage-Repro UAM. Bueno, es una plataforma web nueva, pensada para meter las ideas más recientes de la inteligencia artificial en esas mismas tareas dentro de la UAM Iztapalapa. Dicho de otro modo, es la nueva era de la inteligencia artificial puesta al servicio de la comunidad universitaria.
 
-[Diapositiva · Los cuatro módulos]
+[Diapositiva 3 · Los cuatro módulos]
 
 > Idea central: Son cuatro módulos: el primero el problema y las bases teóricas, el segundo cómo aprende una computadora, el tercero el sitio funcionando y el cuarto datos, entrenamiento y despliegue.
 
@@ -38,7 +38,7 @@ Y en el cuarto módulo veremos un par de ejemplos con datos, cómo se entrena la
 
 Quisiera pedirles que me den la oportunidad de cautivarlos para poder presentarles el sitio web en el tercer módulo. Me gustaría que primero tuvieran todo el background, todas las bases teóricas que nos permitieron desarrollar este sitio, para que cuando lo visiten sepan el trabajo y el enfoque de inteligencia artificial que utilizó esta plataforma. Espero que me puedan acompañar en estos cuatro módulos.
 
-[Diapositiva · La agenda de este módulo]
+[Diapositiva 4 · La agenda de este módulo]
 
 > Idea central: En este módulo: el problema, qué es una imagen digital, algunas definiciones de inteligencia artificial y las redes neuronales, en tres videos. El sitio funcionando se presenta en el tercer módulo.
 
@@ -48,7 +48,7 @@ Con esa base, en el segundo video ponemos en orden algunas definiciones de intel
 
 Cada módulo se divide en videos de unos 20 minutos. Este primer módulo son tres videos, y en cada uno vamos a ir avanzando por estos temas.
 
-[Diapositiva · La inteligencia artificial en la educación y la investigación]
+[Diapositiva 5 · La inteligencia artificial en la educación y la investigación]
 
 > Idea central: La inteligencia artificial puede analizar imágenes aprendiendo de ejemplos y no de reglas escritas, y lo hace sin cansarse. En este curso se ve aplicada a un problema real de biología de la reproducción.
 
@@ -58,7 +58,7 @@ Lo que busco con este curso es que vean cómo se aplica la inteligencia artifici
 
 No hace falta ser experto en nada. Si saben programar, van a ver cómo se arma el sistema, y si vienen de biología, van a ver cómo se mide lo que ya conocen.
 
-[Diapositiva · Microscopía de fluorescencia]
+[Diapositiva 6 · Microscopía de fluorescencia]
 
 > Idea central: En fluorescencia, la célula se tiñe con un colorante que devuelve la luz en otro color. Por eso brilla sobre un fondo oscuro y es fácil de distinguir.
 
@@ -72,7 +72,7 @@ Para la computadora esto es una gran ayuda: separar un objeto del fondo resulta 
 
 También existen las imágenes de fondo claro, donde la muestra se ve oscura sobre un fondo iluminado. Se ven distintas, y por eso para cada tipo de imagen hay un modelo distinto. Hoy nos concentramos en fluorescencia, que es el caso más claro para entender las ideas.
 
-[Diapositiva · El caso de estudio]
+[Diapositiva 7 · El caso de estudio]
 
 > Idea central: Una imagen de fluorescencia muestra manchas brillantes sobre fondo oscuro, y cada una es la cabeza de un espermatozoide. Contarlas a simple vista es posible, pero medir cada una ya no.
 
@@ -80,7 +80,7 @@ Les muestro cómo se ve el problema. Esta es una imagen de fluorescencia. Lo que
 
 Y contar es lo más sencillo. Lo siguiente sería medir. ¿Qué tan grande es cada cabeza? ¿Qué tanto varían entre sí? ¿Cambian de tamaño cuando cambia una condición del experimento? Esas preguntas son las que interesan en una investigación, y para contestarlas hay que medir cada célula, una por una, en cada imagen.
 
-[Diapositiva · Qué se quiere medir]
+[Diapositiva 8 · Qué se quiere medir]
 
 > Idea central: Del problema salen tres cosas que medir: cuántas cabezas hay, qué tamaño tiene cada una y cómo se distribuyen los tamaños.
 
@@ -94,7 +94,7 @@ Lo tercero es la distribución de tamaños. En lugar de quedarnos con un solo n�
 
 Esas tres cosas, conteo, tamaño y distribución, son lo que el sistema entrega por cada imagen. Y todas dependen de algo previo: saber dónde está cada cabeza.
 
-[Diapositiva · Contar y medir a mano]
+[Diapositiva 9 · Contar y medir a mano]
 
 > Idea central: Contar y medir a mano es lento, repetitivo y cambia según quién lo haga: tres personas cuidadosas pueden dar tres conteos distintos de la misma imagen. Un sistema que lo haga siempre igual hace falta.
 
@@ -102,7 +102,7 @@ Ahora sí, el problema. Contar y medir a mano toma mucho tiempo, es repetitivo y
 
 Por eso buscamos que la misma imagen dé siempre el mismo resultado, sin importar quién la analice, y que ese resultado se pueda revisar.
 
-[Diapositiva · El camino de una imagen a un número]
+[Diapositiva 10 · El camino de una imagen a un número]
 
 > Idea central: Un mapa del recorrido: la imagen entra, la red encuentra las cabezas, el código mide cada una y salen los números, la gráfica, el CSV y el PDF.
 
@@ -120,13 +120,13 @@ De todo este mapa, en este módulo vemos las piezas para entender la primera par
 
 Pero antes de ver cómo se resuelve, tenemos que regresarnos a lo fundamental: qué es una imagen, y qué es una imagen digital.
 
-[Diapositiva · ¿Qué son las imágenes?]
+[Diapositiva 11 · ¿Qué son las imágenes?]
 
 > Idea central: Antes de hablar de redes hay que entender qué es una imagen para una computadora. Esa pregunta abre esta parte.
 
 Una imagen es la categoría general. Abarca cualquier tipo de representación visual: un dibujo, una pintura, una captura, lo que sea. Una fotografía es un tipo de imagen: la que se captura con una cámara y registra la luz que llega a un sensor en un momento concreto. Toda fotografía es una imagen, pero no toda imagen es una fotografía. En microscopía todo lo que se genera se llama imagen, y por eso de aquí en adelante voy a hablar de imágenes, y en particular de imágenes digitales.
 
-[Diapositiva · Una imagen digital es una tabla de números]
+[Diapositiva 12 · Una imagen digital es una tabla de números]
 
 > Idea central: Para la computadora una imagen es una tabla de números, uno por píxel, de 0 (negro) a 255 (blanco). Una imagen grande son casi dos millones y medio de números.
 
@@ -146,7 +146,7 @@ La computadora no tiene ninguna idea previa de lo que hay en la imagen. No sabe 
 
 Esa idea, que lo importante son las relaciones entre píxeles vecinos, va a volver una y otra vez, y es justamente la base de cómo una red neuronal mira una imagen.
 
-[Diapositiva · El color: tres números por píxel]
+[Diapositiva 13 · El color: tres números por píxel]
 
 > Idea central: Una imagen a color guarda tres números por píxel, uno para el rojo, uno para el verde y uno para el azul. Un naranja intenso es mucho rojo, algo de verde y poco azul.
 
@@ -158,7 +158,7 @@ Veamos un ejemplo. El naranja de una cabeza brillante podría tener doscientos c
 
 Entonces, resumiendo: una imagen en gris es una tabla de números; una imagen a color son tres tablas del mismo tamaño apiladas, una por canal. Todo lo que se haga con una imagen se hace, finalmente, con esas tablas.
 
-[Diapositiva · Resolución y tamaño del archivo]
+[Diapositiva 14 · Resolución y tamaño del archivo]
 
 > Idea central: Más píxeles significan más detalle, pero también más números que guardar. Una imagen de nuestro tamaño pesa unos siete megabytes sin comprimir.
 
@@ -168,7 +168,7 @@ Una imagen típica de las que usamos mide mil setecientos noventa y dos píxeles
 
 Pero más píxeles también significa más datos. Hagamos la cuenta del peso. Cada píxel de una imagen a color guarda tres números, y cada número ocupa un byte. Entonces, dos millones y medio de píxeles por tres bytes son más o menos siete millones y medio de bytes, que son unos siete megabytes. Eso es lo que pesa una de nuestras imágenes cuando se guarda sin comprimir. Si fuera en gris, pesaría la tercera parte.
 
-[Diapositiva · Una célula brillante son números altos]
+[Diapositiva 15 · Una célula brillante son números altos]
 
 > Idea central: En fluorescencia, una célula es una zona de números altos sobre un fondo de números bajos. Medir su área es contar cuántos píxeles ocupa.
 
@@ -180,7 +180,7 @@ Esta idea tiene una consecuencia muy práctica: separar lo que nos interesa del 
 
 Y de ahí se entiende por qué el borde importa tanto. Si el borde es nítido, en la tabla se ve un salto claro, y trazar el contorno es sencillo. Si el borde está borroso, los valores suben poco a poco, y es más difícil decir dónde termina exactamente la célula. Esa diferencia se va a notar enseguida en los formatos de archivo y en la medida.
 
-[Diapositiva · El histograma: contar los brillos]
+[Diapositiva 16 · El histograma: contar los brillos]
 
 > Idea central: Un histograma cuenta cuántos píxeles hay de cada nivel de brillo. En fluorescencia, casi todos son oscuros y unos pocos son muy brillantes, y esa forma explica por qué un umbral parece funcionar.
 
@@ -192,7 +192,7 @@ Veamos cómo es el histograma de una imagen de fluorescencia. Recordemos cómo e
 
 Esta es una herramienta que usaremos más adelante para entender qué ve la computadora, y es una buena manera de comprobar, antes de cualquier análisis, si una imagen está bien expuesta.
 
-[Diapositiva · Formatos: unos conservan los bordes, otros no]
+[Diapositiva 17 · Formatos: unos conservan los bordes, otros no]
 
 > Idea central: BMP, PNG y TIFF guardan la imagen tal cual; JPG la comprime y puede mover los bordes, y con ellos el área. Conviene trabajar con los archivos originales del microscopio.
 
@@ -206,7 +206,7 @@ La compresión con pérdida, que es la de JPG, hace otra cosa. Parte de la idea 
 
 Por eso la recomendación es sencilla. Trabajar con el archivo original que genera el microscopio o la cámara, sin pasarlo por aplicaciones de mensajería ni de redes sociales, que casi siempre lo comprimen para ahorrar espacio. Si necesitan reducir el peso, lo ideal es un formato sin pérdida. Y si solo tienen una versión en JPG, el sitio la acepta, pero lo avisa, porque la medida puede cambiar ligeramente.
 
-[Diapositiva · Aumentos y micras]
+[Diapositiva 18 · Aumentos y micras]
 
 > Idea central: Los aumentos del microscopio, 40X o 100X, cambian cuánto mide en la realidad cada píxel. Una micra es la milésima parte de un milímetro.
 
@@ -216,7 +216,7 @@ El problema es que una imagen digital no sabe nada de micras. Solo sabe de píxe
 
 Eso significa que dos imágenes que miden lo mismo en píxeles pueden representar tamaños reales muy distintos. Si comparáramos sus medidas en píxeles sin más, estaríamos comparando cosas que no son comparables.
 
-[Diapositiva · La imagen no sabe cuánto mide un píxel]
+[Diapositiva 19 · La imagen no sabe cuánto mide un píxel]
 
 > Idea central: Una imagen sabe cuántos píxeles mide, pero no cuántas micras es cada uno. El sitio usa la misma escala en todas las imágenes, 60 píxeles por micra, y la declara en cada resultado.
 

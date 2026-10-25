@@ -4,7 +4,7 @@ BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conversación, sin guiones largos. Empieza con la frase que lo une con el video anterior.
 
-[Diapositiva · La inteligencia artificial a nuestro alrededor]
+[Diapositiva 1 · La inteligencia artificial a nuestro alrededor]
 
 > Idea central: Sin darnos cuenta, usamos inteligencia artificial todos los días: al escribir, al buscar, al ver recomendaciones. Casi todo se basa en aprender de ejemplos.
 
@@ -16,7 +16,7 @@ Escriben un mensaje en el teléfono y les sugiere la siguiente palabra. ¿Qué e
 
 Esa es la idea que sostiene el resto de lo que vamos a ver. También nos recuerda que estas herramientas no son mágicas ni inteligentes en el sentido humano. Son muy buenas para lo que vieron en sus ejemplos, y se equivocan de maneras que a veces sorprenden. En este curso vemos cómo funciona esa idea con un caso que nos queda muy cerca: contar y medir células.
 
-[Diapositiva · La inteligencia artificial con imágenes de células]
+[Diapositiva 2 · La inteligencia artificial con imágenes de células]
 
 > Idea central: En biología, la inteligencia artificial ayuda a contar, medir y localizar estructuras en imágenes de microscopio. Su valor está en la rapidez y en la consistencia.
 
@@ -28,7 +28,7 @@ En todos los casos pasa lo mismo: la inteligencia artificial no sustituye el cri
 
 Un resultado producido por un modelo es una medición, con sus márgenes de error, y no una verdad. Por eso, en un buen sistema, el resultado siempre se puede revisar. Esa idea nos va a acompañar en todos los módulos.
 
-[Diapositiva · Algunas definiciones de inteligencia artificial]
+[Diapositiva 3 · Algunas definiciones de inteligencia artificial]
 
 > Idea central: Inteligencia artificial, aprendizaje automático, redes neuronales y aprendizaje profundo son capas de un mismo campo, de lo más amplio a lo más específico.
 
@@ -44,7 +44,7 @@ Algo que sale de ahí: no toda la inteligencia artificial aprende de ejemplos. U
 
 Y otra cosa: cuando se habla de inteligencia artificial en los medios, casi siempre se está hablando de aprendizaje profundo, que es la rama que más ha avanzado en los últimos años con imágenes, sonido y texto. Es la que usamos aquí.
 
-[Diapositiva · Palabras que vamos a escuchar]
+[Diapositiva 4 · Palabras que vamos a escuchar]
 
 > Idea central: Seis palabras para los cuatro módulos: red neuronal, Google Colab, Python, Flask, modelo y servidor. Entrenamiento e inferencia se explican en el siguiente video.
 
@@ -52,7 +52,7 @@ Les dejo en pantalla unas palabras que van a escuchar durante los cuatro módulo
 
 Una red neuronal es un programa que aprende de ejemplos. Google Colab es un entorno para programar en la nube. Python es un lenguaje de programación, y Flask es una herramienta para hacer sitios web con Python: el sitio está hecho con las dos. El modelo es el archivo que guarda lo que la red aprendió. Y el servidor es la computadora donde el sitio está en línea, la que responde cuando alguien entra. También aparecen dos palabras que explico un poco más adelante, entrenamiento e inferencia, porque son las que más confunden y las que más importa distinguir.
 
-[Diapositiva · Red neuronal]
+[Diapositiva 5 · Red neuronal]
 
 > Idea central: Una red neuronal es un programa formado por muchas operaciones pequeñas conectadas, cuyos valores se ajustan a partir de ejemplos en lugar de escribirse a mano.
 
@@ -68,7 +68,7 @@ Una cosa más. Hay redes de muchos tamaños. Algunas tienen unas decenas de peso
 
 Más adelante en este video vamos a construir una desde cero, empezando por su pieza más pequeña, para que se vea que no hay nada misterioso.
 
-[Diapositiva · Modelo]
+[Diapositiva 6 · Modelo]
 
 > Idea central: El modelo es el archivo que guarda lo que la red aprendió: sus pesos. Por sí solo no hace nada, hace falta un programa que lo cargue y lo use.
 
@@ -80,7 +80,7 @@ Un modelo por sí solo no hace nada. Es como un libro cerrado: tiene todo adentr
 
 Otra característica: un modelo está fijo. Una vez entrenado, sus pesos no cambian mientras se usa. Si le damos mil imágenes para que las analice, seguirá siendo exactamente el mismo modelo, con exactamente los mismos pesos. No aprende de lo que analiza. Para que cambie hay que entrenarlo otra vez, aparte, y el resultado es un modelo nuevo, un archivo distinto.
 
-[Diapositiva · Entrenamiento aparte, inferencia en el servidor]
+[Diapositiva 7 · Entrenamiento aparte, inferencia en el servidor]
 
 > Idea central: Entrenar es aprender la receta y se hace aparte, en Colab; la inferencia es cocinarla, y se hace en el servidor. Para mejorar el modelo no se toca el sitio, solo se cambia el archivo.
 
@@ -94,7 +94,7 @@ Piénsenlo como una receta. Entrenar es aprender la receta: lleva tiempo, esfuer
 
 Una pregunta que suele salir: ¿el modelo sigue aprendiendo mientras la gente lo usa? No. Durante la inferencia los pesos no cambian, y para mejorarlo hace falta entrenar otra versión con imágenes nuevas.
 
-[Diapositiva · Entrenamiento]
+[Diapositiva 8 · Entrenamiento]
 
 > Idea central: Entrenar es ajustar los pesos con ejemplos anotados. Necesita muchos cálculos, una máquina potente y se hace pocas veces.
 
@@ -102,7 +102,7 @@ Entrenar es ajustar los pesos de la red con ejemplos. Para hacerlo hacen falta t
 
 No se usan todas las imágenes para entrenar. Se separa una parte que la red no ve durante el entrenamiento, y que sirve después para comprobar si funciona con imágenes que no conoce. Es como la diferencia entre estudiar con los ejercicios del libro y presentar un examen con ejercicios nuevos.
 
-[Diapositiva · Inferencia]
+[Diapositiva 9 · Inferencia]
 
 > Idea central: Inferencia es usar el modelo ya entrenado para analizar una imagen nueva. Es una sola pasada, sin ajustar nada, y basta con el procesador de una computadora normal.
 
@@ -114,7 +114,7 @@ Eso la hace mucho más liviana que el entrenamiento: una pasada hacia adelante c
 
 Y no interviene el azar: ante la misma imagen, el mismo modelo responde siempre lo mismo. Para un instrumento de medición, eso es justo lo deseable.
 
-[Diapositiva · El primer intento: el umbral]
+[Diapositiva 10 · El primer intento: el umbral]
 
 > Idea central: La primera idea para contar es usar el brillo: todo píxel por encima de cierto valor es célula. Sirve como primera aproximación, pero las reglas se multiplican y se enredan.
 
@@ -132,7 +132,7 @@ Ese es el primer problema, y es serio, porque lo que queremos es medir. Un méto
 
 Mirado en conjunto, el umbral deja claro el límite de las reglas escritas a mano: cada regla nueva trae sus excepciones, y cuando se multiplican, mantener el programa deja de ser práctico. Hace falta plantear el problema de otra forma, y ahí entra el aprendizaje automático: se le muestran ejemplos al sistema y se deja que él encuentre las reglas. Con imágenes, la técnica que mejor funciona es la red neuronal.
 
-[Diapositiva · Una red neuronal no entiende]
+[Diapositiva 11 · Una red neuronal no entiende]
 
 > Idea central: Una red neuronal no entiende qué es un espermatozoide. Es un reconocedor de patrones muy sofisticado, y eso sirve para razonar cuándo va a funcionar y cuándo no.
 
@@ -146,7 +146,7 @@ Entonces, la confianza que podemos tener en una red depende de cuánto se parece
 
 Pensarlo así nos quita el misterio: una red neuronal es una máquina de reconocer patrones, muy buena, que hay que usar con criterio.
 
-[Diapositiva · Del umbral a la red: qué cambia]
+[Diapositiva 12 · Del umbral a la red: qué cambia]
 
 > Idea central: El umbral usa una regla fija sobre un píxel. La red usa millones de reglas ajustadas con ejemplos, que miran vecindarios. Cambia quién escribe las reglas.
 
@@ -156,7 +156,7 @@ La red neuronal es una enorme colección de reglas, millones de pesos, que no es
 
 El cambio de fondo es de método: en lugar de decirle a la computadora cómo hacer algo, le mostramos qué queremos y dejamos que descubra cómo.
 
-[Diapositiva · La neurona artificial]
+[Diapositiva 13 · La neurona artificial]
 
 > Idea central: Una neurona artificial es una operación muy pequeña en cuatro pasos: recibe números, los multiplica por pesos, los suma y decide si se activa.
 
@@ -178,7 +178,7 @@ Sin que nadie le dijera la palabra rojo, esta neurona distingue un píxel rojo d
 
 Esto es todo lo que hace una neurona: multiplicar, sumar y comparar. La potencia de una red viene de que hay millones de ellas, bien ajustadas.
 
-[Diapositiva · El sesgo, con un ejemplo]
+[Diapositiva 14 · El sesgo, con un ejemplo]
 
 > Idea central: El sesgo mueve el punto de activación. Con el mismo píxel y los mismos pesos, un sesgo más exigente apaga la neurona y uno más permisivo la deja encendida.
 
@@ -190,7 +190,7 @@ No cambiamos el peso, y sin embargo la neurona se comporta de otra manera. El se
 
 Esta idea se parece al umbral que vimos antes. Un sesgo negativo, con una activación que apaga todo lo que no lo supera, es en cierto modo un umbral. La diferencia es que aquí el umbral no lo elige una persona a ojo: lo encuentra el entrenamiento, y es distinto para cada neurona.
 
-[Diapositiva · La función de activación]
+[Diapositiva 15 · La función de activación]
 
 > Idea central: La activación introduce una torcedura en la suma: si el total es negativo la salida es cero, y si es positivo se deja pasar. Sin ella, apilar capas no serviría de nada.
 

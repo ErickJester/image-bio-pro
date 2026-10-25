@@ -6,7 +6,7 @@ Continúa del video 1. Empieza con la frase que lo une con el video anterior.
 
 Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conversación, sin guiones largos.
 
-[Diapositiva · ¿Qué son las imágenes?]
+[Diapositiva 1 · ¿Qué son las imágenes?]
 
 > Idea central: Antes de hablar de redes hay que entender qué es una imagen para una computadora. Esa pregunta abre esta parte.
 
@@ -14,7 +14,7 @@ En el video anterior vimos el problema: el conteo y la medición hechos a mano c
 
 Una imagen es la categoría general. Cualquier representación visual: un dibujo, una pintura, una captura, lo que sea. Una fotografía es un tipo de imagen, la que se captura con una cámara y registra la luz que llega a un sensor en un momento concreto. O sea, toda fotografía es una imagen, pero no toda imagen es una fotografía. En microscopía todo lo que se genera se llama imagen, así que de aquí en adelante voy a hablar de imágenes, y en particular de imágenes digitales.
 
-[Diapositiva · Una imagen digital es una tabla de números]
+[Diapositiva 2 · Una imagen digital es una tabla de números]
 
 > Idea central: Para la computadora una imagen es una tabla de números, uno por píxel, de 0 (negro) a 255 (blanco). Una imagen grande son casi dos millones y medio de números.
 
@@ -36,7 +36,7 @@ La computadora no tiene ninguna idea previa de lo que hay en la imagen. No sabe 
 
 Esa idea, que lo que importa son las relaciones entre píxeles vecinos, va a volver una y otra vez. Es justo la base de cómo una red neuronal mira una imagen.
 
-[Diapositiva · El color: tres números por píxel]
+[Diapositiva 3 · El color: tres números por píxel]
 
 > Idea central: Una imagen a color guarda tres números por píxel, uno para el rojo, uno para el verde y uno para el azul. Un naranja intenso es mucho rojo, algo de verde y poco azul.
 
@@ -50,7 +50,7 @@ Una imagen de tres canales pesa tres veces más que una de un canal, porque guar
 
 Entonces: una imagen en gris es una tabla de números. Una imagen a color son tres tablas del mismo tamaño, apiladas, una por canal. Todo lo que se haga con una imagen se hace, al final, con esas tablas.
 
-[Diapositiva · Resolución y tamaño del archivo]
+[Diapositiva 4 · Resolución y tamaño del archivo]
 
 > Idea central: Más píxeles significan más detalle, pero también más números que guardar. Una imagen de nuestro tamaño pesa unos siete megabytes sin comprimir.
 
@@ -64,7 +64,7 @@ Pero más píxeles también son más datos. Hagamos la cuenta del peso. Cada pí
 
 Esto explica algo que seguramente han notado: las imágenes grandes tardan más en subirse, en abrirse y en procesarse. Para la computadora, procesar una imagen es recorrer esos millones de números, y cada operación por píxel se multiplica por dos millones y medio. Más adelante veremos cómo el sistema se organiza para que la espera no sea excesiva.
 
-[Diapositiva · Una célula brillante son números altos]
+[Diapositiva 5 · Una célula brillante son números altos]
 
 > Idea central: En fluorescencia, una célula es una zona de números altos sobre un fondo de números bajos. Medir su área es contar cuántos píxeles ocupa.
 
@@ -78,7 +78,7 @@ Y eso tiene una consecuencia práctica: separar lo que nos interesa del fondo se
 
 De ahí se entiende por qué el borde importa tanto. Si es nítido, en la tabla se ve un salto claro y trazar el contorno es sencillo. Si está borroso, los valores suben poco a poco y cuesta más decir dónde termina exactamente la célula. Esa diferencia se va a notar enseguida en los formatos de archivo y en la medida.
 
-[Diapositiva · El histograma: contar los brillos]
+[Diapositiva 6 · El histograma: contar los brillos]
 
 > Idea central: Un histograma cuenta cuántos píxeles hay de cada nivel de brillo. En fluorescencia, casi todos son oscuros y unos pocos son muy brillantes, y esa forma explica por qué un umbral parece funcionar.
 
@@ -96,7 +96,7 @@ Además, el histograma de una imagen puede ser distinto del de la siguiente, si 
 
 Esta herramienta la vamos a usar más adelante para entender qué ve la computadora. Y sirve para comprobar, antes de cualquier análisis, si una imagen está bien expuesta.
 
-[Diapositiva · Formatos: unos conservan los bordes, otros no]
+[Diapositiva 7 · Formatos: unos conservan los bordes, otros no]
 
 > Idea central: BMP, PNG y TIFF guardan la imagen tal cual; JPG la comprime y puede mover los bordes, y con ellos el área. Conviene trabajar con los archivos originales del microscopio.
 
@@ -116,7 +116,7 @@ Para una fotografía de un paisaje, eso casi no importa. Para una imagen donde v
 
 Por eso la recomendación es sencilla. Trabajar con el archivo original que genera el microscopio o la cámara, sin pasarlo por aplicaciones de mensajería ni de redes sociales, que casi siempre lo comprimen para ahorrar espacio. Si necesitan reducir el peso, lo ideal es un formato sin pérdida. Y si solo tienen una versión en JPG, el sitio la acepta, pero lo avisa, porque la medida puede cambiar ligeramente.
 
-[Diapositiva · Aumentos y micras]
+[Diapositiva 8 · Aumentos y micras]
 
 > Idea central: Los aumentos del microscopio, 40X o 100X, cambian cuánto mide en la realidad cada píxel. Una micra es la milésima parte de un milímetro.
 
@@ -130,7 +130,7 @@ Eso significa que dos imágenes que miden lo mismo en píxeles pueden representa
 
 Y el archivo no guarda este dato. Las imágenes que usamos no traen escrito cuánto mide cada píxel. Entonces hay dos caminos. Uno es suponer un valor y no decir nada. El otro es declarar una escala y repetirla en todos los resultados. Nuestro sistema toma el segundo camino, y eso es lo que vemos en la siguiente diapositiva.
 
-[Diapositiva · La imagen no sabe cuánto mide un píxel]
+[Diapositiva 9 · La imagen no sabe cuánto mide un píxel]
 
 > Idea central: Una imagen sabe cuántos píxeles mide, pero no cuántas micras es cada uno. El sitio usa la misma escala en todas las imágenes, 60 píxeles por micra, y la declara en cada resultado.
 
@@ -146,7 +146,7 @@ Con una escala única, cualquier imagen se interpreta con la misma relación ent
 
 Un último ejemplo: si una cabeza ocupa siete mil doscientos píxeles, su área es de dos micras cuadradas, y si ocupa mil ochocientos, media micra cuadrada. Con cuentas así, que cualquiera puede repetir con una calculadora, se pasa de lo que la computadora ve a lo que el investigador necesita.
 
-[Diapositiva · Dos tipos de imagen, dos modelos]
+[Diapositiva 10 · Dos tipos de imagen, dos modelos]
 
 > Idea central: Las imágenes de fluorescencia y las de fondo claro se ven distintas, y por eso hay un modelo entrenado para cada tipo.
 
