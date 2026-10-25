@@ -4,7 +4,7 @@ BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Primer video del módulo 1. Abre con la presentación de quien expone.
 
-*3,765 palabras, unos 21.5 min de habla*
+*3,889 palabras, unos 22.2 min de habla*
 
 [Diapositiva 1 · BioImage-Repro UAM]
 
@@ -24,17 +24,17 @@ Quizás se pregunten qué es, exactamente, BioImage-Repro UAM. Bueno, es una pla
 
 [Diapositiva 3 · Los cuatro módulos]
 
-> Idea central: Son cuatro módulos: el primero el problema y las bases teóricas, el segundo cómo aprende una computadora, el tercero el sitio funcionando y el cuarto datos, entrenamiento y despliegue.
+> Idea central: Son cuatro módulos: el primero el problema y las bases teóricas, el segundo teoría con más detalle, el tercero el sistema y su código, y el cuarto el entrenamiento en código y el despliegue.
 
 Este proyecto lo voy a presentar a lo largo de cuatro módulos. Antes que nada, les platico lo que vamos a ir viendo en ellos.
 
 En el primer módulo empezamos por el problema que intentamos resolver, y les platicaré las bases teóricas que ocupamos para diseñar el sitio web.
 
-En el segundo módulo, y lo resumo en una palabra, vemos cómo aprende una computadora, que es la esencia de una red neuronal artificial.
+En el segundo módulo entramos con más detalle a la teoría: cómo ve una imagen una red convolucional, cómo funciona la red que usa el sitio, que se llama Mask R-CNN, cómo se aprovecha una red que ya fue entrenada para otra cosa, y cómo se preparan los datos y se entrena.
 
-En el tercer módulo les enseño cómo funciona esta plataforma web. Una vez que entendimos el problema y exploramos las bases teóricas, ahora sí toca mostrar el sistema.
+En el tercer módulo les enseño cómo funciona esta plataforma web, por fuera y por dentro, con su código. Una vez que entendimos el problema y exploramos las bases teóricas, ahora sí toca mostrar el sistema.
 
-Y en el cuarto módulo veremos un par de ejemplos con datos, cómo se entrena la red neuronal y cómo es el despliegue de la información.
+Y en el cuarto módulo vemos el código con el que se entrena la red, en un cuaderno de Colab, y cómo se despliega el sitio en la nube para que cualquiera pueda visitarlo.
 
 Quisiera pedirles que me den la oportunidad de cautivarlos para poder presentarles el sitio web en el tercer módulo. Me gustaría que primero tuvieran todo el background, todas las bases teóricas que nos permitieron desarrollar este sitio, para que cuando lo visiten sepan el trabajo y el enfoque de inteligencia artificial que utilizó esta plataforma. Espero que me puedan acompañar en estos cuatro módulos.
 
@@ -52,7 +52,7 @@ Cada módulo se divide en videos de unos 20 minutos. Este primer módulo son tre
 
 > Idea central: La inteligencia artificial puede analizar imágenes aprendiendo de ejemplos y no de reglas escritas, y lo hace sin cansarse. En este curso se ve aplicada a un problema real de biología de la reproducción.
 
-Empiezo con una pregunta: ¿para qué sirve la inteligencia artificial en la educación y en la investigación? Hay muchas respuestas, y una de ellas, que es la que nos interesa hoy, es analizar imágenes. Una persona mira una imagen y reconoce lo que hay en ella. Un programa que aprendió de muchos ejemplos puede hacer algo parecido, y puede hacerlo muchas veces seguidas sin cansarse.
+Empiezo con una pregunta: ¿para qué sirve la inteligencia artificial en la educación y en la investigación? Hay muchas respuestas, y una de ellas, que es la que nos interesa hoy, es analizar imágenes. Una persona mira una imagen y reconoce lo que hay en ella. Un programa que aprendió de muchos ejemplos puede hacer algo parecido, y puede hacerlo muchas veces seguidas sin cansarse. En lugar de escribirle reglas, se le muestran ejemplos de lo que debe encontrar.
 
 Lo que busco con este curso es que vean cómo se aplica la inteligencia artificial a un problema real de biología de la reproducción. Entonces, eh, para verlo en concreto, vamos a seguir un caso de estudio, o sea, un ejemplo: contar y medir espermatozoides en imágenes de microscopio.
 
@@ -76,7 +76,7 @@ También existen las imágenes de fondo claro, donde la muestra se ve oscura sob
 
 > Idea central: Una imagen de fluorescencia muestra manchas brillantes sobre fondo oscuro, y cada una es la cabeza de un espermatozoide. Contarlas a simple vista es posible, pero medir cada una ya no.
 
-Les muestro cómo se ve el problema. Esta es una imagen de fluorescencia. Lo que ven son manchas de colores brillantes sobre un fondo oscuro. Cada mancha es la cabeza de un espermatozoide, y a veces se alcanza a ver una línea que sale de ella, que es la cola. ¿Cuántos hay en esta imagen? Lo primero que haría cualquiera es contarlos con la vista, uno por uno. Y si además hay que medir cada uno, ya no basta con mirar.
+Les muestro cómo se ve el problema. Esta es una ilustración de una imagen de fluorescencia. Lo que ven son manchas de colores brillantes sobre un fondo oscuro. Cada mancha es la cabeza de un espermatozoide, y a veces se alcanza a ver una línea que sale de ella, que es la cola. ¿Cuántos hay en esta imagen? Lo primero que haría cualquiera es contarlos con la vista, uno por uno. Y si además hay que medir cada uno, ya no basta con mirar.
 
 Y contar es lo más sencillo. Lo siguiente sería medir. ¿Qué tan grande es cada cabeza? ¿Qué tanto varían entre sí? ¿Cambian de tamaño cuando cambia una condición del experimento? Esas preguntas son las que interesan en una investigación, y para contestarlas hay que medir cada célula, una por una, en cada imagen.
 
@@ -92,7 +92,7 @@ Lo segundo es el tamaño de cada cabeza. Como las cabezas son curvas, no basta c
 
 Lo tercero es la distribución de tamaños. En lugar de quedarnos con un solo número, queremos ver cómo se reparten las medidas: cuántas cabezas son pequeñas, cuántas medianas, cuántas grandes. Esa distribución suele parecerse a una campana, la famosa campana de Gauss, y de ella se sacan dos números que usaremos mucho: la media, que es el valor típico, y la desviación estándar, que dice qué tanto se alejan las demás del valor típico.
 
-Esas tres cosas, conteo, tamaño y distribución, son lo que el sistema entrega por cada imagen. Y todas dependen de algo previo: saber dónde está cada cabeza.
+Esas tres cosas, conteo, tamaño y distribución, son lo que el sistema entrega por cada imagen. Todo se puede descargar: un archivo CSV para trabajar en una hoja de cálculo y un informe en PDF para compartir. Y todas dependen de algo previo: saber dónde está cada cabeza.
 
 [Diapositiva 9 · Contar y medir a mano]
 
@@ -114,6 +114,8 @@ Después entra la red neuronal. Su trabajo es encontrar las cabezas y trazar el 
 
 Con los contornos en la mano, entra el código convencional. Para cada contorno, cuenta los píxeles que encierra, y con la escala los convierte en micras cuadradas: eso es el área. Mide el largo. Y luego junta todas las cabezas de la imagen y calcula el conteo, la media y la desviación estándar.
 
+Por último, el sitio entrega los resultados: la imagen con los contornos marcados, una tabla, la gráfica de distribución, el archivo CSV y el informe en PDF.
+
 Fíjense que hay una parte que aprende y otra que calcula. La que aprende es la red, y por eso necesita ejemplos y entrenamiento. La que calcula es el código, y por eso es preciso, repetible y fácil de comprobar.
 
 De todo este mapa, en este módulo vemos las piezas para entender la primera parte: qué es una imagen para una computadora, y qué es una red neuronal y cómo aprende. El recorrido completo, con el sitio funcionando, llega en el tercer módulo.
@@ -134,7 +136,7 @@ Vamos con algo que parece muy básico y de lo que depende todo lo demás. La pre
 
 Para la computadora, una imagen es, o sea, una tabla de números: una cuadrícula de cuadritos, los píxeles, y cada uno guarda cuánta luz tiene. En una imagen en tonos de gris, ese número es el brillo, y va de cero, que es negro, a doscientos cincuenta y cinco, que es blanco. Los números intermedios son los grises. En una imagen a color no es un número sino tres, uno para el rojo, otro para el verde y otro para el azul, y con la mezcla de los tres sale el color de ese cuadrito.
 
-En la diapositiva tengo a la izquierda una imagen pequeña con un cuadro azul marcado, y a la derecha lo que hay dentro de ese cuadro, ampliado hasta que se ven los números. Son treinta y cinco cuadritos, siete por cinco. Fíjense en la parte de afuera: números bajos, casi negros. Y en el centro, números altos, hasta un doscientos cincuenta y cinco. Eso es lo que la computadora tiene delante cuando mira una imagen.
+En la diapositiva tengo a la izquierda una imagen pequeña con un cuadro azul marcado, y a la derecha lo que hay dentro de ese cuadro, ampliado hasta que se ven los números. Son treinta y cinco cuadritos, siete por cinco. Fíjense en la parte de afuera: números bajos, oscuros. Y en el centro, números altos, hasta un doscientos cincuenta y cinco. Eso es lo que la computadora tiene delante cuando mira una imagen.
 
 Una imagen real de las nuestras tiene casi dos millones y medio de cuadritos, cada uno con su número. La computadora los maneja todos a la vez sin problema, pero a un ojo humano eso no le dice nada: lo que nosotros vemos como células, la computadora lo ve como un mar de números.
 
@@ -182,7 +184,7 @@ Y de ahí se entiende por qué el borde importa tanto. Si el borde es nítido, e
 
 [Diapositiva 16 · El histograma: contar los brillos]
 
-> Idea central: Un histograma cuenta cuántos píxeles hay de cada nivel de brillo. En fluorescencia, casi todos son oscuros y unos pocos son muy brillantes, y esa forma explica por qué un umbral parece funcionar.
+> Idea central: Un histograma cuenta cuántos píxeles hay de cada nivel de brillo. En fluorescencia, casi todos son oscuros y unos pocos son muy brillantes, y sirve para comprobar si una imagen está bien expuesta.
 
 Hay una forma muy útil de resumir una imagen, que se llama histograma. Es una gráfica que cuenta cuántos píxeles hay de cada nivel de brillo. En el eje horizontal van los valores, de cero a doscientos cincuenta y cinco, y en el vertical, cuántos píxeles tienen ese valor.
 
@@ -224,7 +226,7 @@ Para cerrar este bloque, la escala. Una imagen sabe cuántos píxeles mide, pero
 
 Por eso el sitio aplica la misma escala a todas. Es de sesenta píxeles por micra, y cada resultado dice cuál se usó. La imagen marcada trae una regla de trescientos píxeles que equivalen a cinco micras. Cómo se define esa escala no lo voy a explicar hoy; lo vemos en el tercer módulo, cuando revisemos el sistema por dentro.
 
-Veámoslo con números. Si sesenta píxeles son una micra, entonces un largo de sesenta píxeles es una micra de largo, y un largo de trescientos píxeles son cinco micras, que es justo la regla que va dibujada en la imagen. Con las áreas hay un paso más. Un área se mide en unidades cuadradas, así que una micra cuadrada son sesenta por sesenta píxeles, es decir, tres mil seiscientos píxeles. Si una célula ocupa tres mil seiscientos píxeles, su área es de una micra cuadrada; si ocupa la mitad, de media micra cuadrada. Por eso, en el sitio, las áreas en micras cuadradas pueden salir como números pequeños.
+Veámoslo con números. Si sesenta píxeles son una micra, entonces un largo de sesenta píxeles es una micra de largo, y un largo de trescientos píxeles son cinco micras, que es justo la regla que va dibujada en la imagen. Con las áreas hay un paso más. Un área se mide en unidades cuadradas, así que una micra cuadrada son sesenta por sesenta píxeles, es decir, tres mil seiscientos píxeles. Si una célula ocupa tres mil seiscientos píxeles, su área es de una micra cuadrada; si ocupa la mitad, de media micra cuadrada. Y si ocupa siete mil doscientos píxeles, el doble, su área es de dos micras cuadradas. Por eso, en el sitio, las áreas en micras cuadradas pueden salir como números pequeños.
 
 Esta decisión importa. Imaginen que el sitio no declarara la escala y que una persona midiera con él imágenes de cuarenta X y otra de cien X. Las dos obtendrían áreas en micras cuadradas, pero las de una estarían infladas o reducidas respecto de las de la otra, y nadie se enteraría. Los números parecerían precisos y no lo serían.
 
