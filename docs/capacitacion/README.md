@@ -20,19 +20,19 @@ El objetivo es reducir los 24 videos que saldrían de 4 módulos de 2 horas a un
 
 | Módulo | Carácter | Videos | Contenido | Estado |
 |---|---|---|---|---|
-| 1 | Teoría fundamental | 3 | Problema e imagen digital; IA, entrenamiento y neurona; capas, aprendizaje y cierre | Guion terminado en [`guion youtube/modulo-1`](guion%20youtube/modulo-1) |
+| 1 | Teoría fundamental | 3 | Problema e imagen digital; IA, entrenamiento y neurona; capas, aprendizaje y cierre | Guion terminado en [`guion youtube/modulo-1-el-problema-y-las-bases`](guion%20youtube/modulo-1-el-problema-y-las-bases) |
 | 2 | Teoría con más detalle | 4 | Redes convolucionales; Mask R-CNN; aprendizaje por transferencia; datos, anotación, entrenamiento y validación | Guion pendiente |
 | 3 | Presentación del sistema y, sobre todo, código | 4 | Frontend (con el sitio funcionando); backend; inferencia con recortes; medición, escala y retos | Guion pendiente |
 | 4 | Código y despliegue | 4 | Cuaderno de Colab en dos videos; despliegue (VPS, SSH, Docker); Nginx, dominio, HTTPS y cierre | Guion pendiente |
 | Total | | 15 | | |
 
-El módulo 1 salió de seis videos (unos 110 minutos de habla), guardados en [`guion youtube`](guion%20youtube), a tres de unos 21 minutos. Se quitó material del problema y se dejó casi todo lo teórico (imagen digital, redes neuronales y cómo aprenden).
+El módulo 1 salió de seis videos (unos 110 minutos de habla), guardados en [`guion youtube/anteriores-6-videos`](guion%20youtube/anteriores-6-videos), a tres de unos 21 minutos. Se quitó material del problema y se dejó casi todo lo teórico (imagen digital, redes neuronales y cómo aprenden).
 
 ## Temario por módulo
 
 ### Módulo 1. El problema y las bases
 
-Guion terminado: [`guion youtube/modulo-1`](guion%20youtube/modulo-1).
+Guion terminado: [`guion youtube/modulo-1-el-problema-y-las-bases`](guion%20youtube/modulo-1-el-problema-y-las-bases).
 
 - Video 1, el problema y la imagen digital: el caso de estudio (contar y medir espermatozoides en fotos de microscopio), qué se quiere medir, el camino de una imagen a un número, y qué es una imagen digital (píxeles, color, resolución, histograma, formatos, aumentos y escala).
 - Video 2, inteligencia artificial, entrenamiento y neurona: definiciones, palabras clave, entrenamiento contra inferencia, el umbral como primer intento, la neurona, el sesgo y la activación.
@@ -96,8 +96,8 @@ El sitio ya está en un VPS de Hostinger con Ubuntu, Docker y Nginx, con el domi
 
 Se preparan a partir del trabajo de desarrollo.
 
-- [x] Guion del módulo 1 en tres videos: [`guion youtube/modulo-1`](guion%20youtube/modulo-1).
-- [ ] Guiones de los módulos 2, 3 y 4.
+- [x] Guion del módulo 1 en tres videos: [`guion youtube/modulo-1-el-problema-y-las-bases`](guion%20youtube/modulo-1-el-problema-y-las-bases).
+- [ ] Guiones de los módulos 2, 3 y 4 (cada video tiene ya su carpeta vacía en `guion youtube`).
 - [ ] Mazos por video.
 - [ ] Capturas del sitio (en `capturas/`, ya hay las del módulo 1).
 - [ ] Cuaderno de Colab para mostrar en el módulo 4: `entrenamiento/entrenar_mask_rcnn.ipynb`.
