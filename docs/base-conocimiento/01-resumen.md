@@ -9,7 +9,7 @@ BioImage-Repro UAM es un sitio web bilingüe (español e inglés) que analiza fo
 Contar y medir a mano es lento y repetitivo, y el resultado cambia según quién lo haga. El sitio aplica siempre el mismo procedimiento a la misma imagen.
 
 ## Para quién
-Se hizo para un grupo de investigación de la UAM Xochimilco. En la exposición se presenta como **caso de estudio de inteligencia artificial** para la comunidad universitaria: contar espermatozoides es el ejemplo, no el único uso posible de la técnica.
+Se hizo para un grupo de investigación de la UAM Iztapalapa. En la exposición se presenta como **caso de estudio de inteligencia artificial** para la comunidad universitaria: contar espermatozoides es el ejemplo, no el único uso posible de la técnica.
 
 ## Objetivo
 Que una persona suba sus fotos, sin programar, y obtenga conteo, medidas, histograma y reportes reproducibles.

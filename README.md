@@ -2,7 +2,7 @@
 
 Sitio web bilingüe (español/inglés) con un clasificador de imágenes de microscopio. El usuario sube una foto de fluorescencia de una muestra de espermatozoides y el sistema detecta las cabezas, las cuenta, mide su tamaño, muestra la distribución de tamaños y clasifica cada cabeza por color.
 
-Proyecto desarrollado para un grupo de investigación de la UAM Unidad Xochimilco.
+Proyecto desarrollado para un grupo de investigación de la UAM Unidad Iztapalapa.
 
 > **Estado:** propuesta aceptada; el desarrollo inicia el 8 de octubre de 2026. La entrega del sitio web con la versión inicial de la red neuronal es el **28 de octubre de 2026**.
 
