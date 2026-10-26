@@ -4,7 +4,7 @@ BioImage-Repro UAM · Módulo 1 · Capacitación en video
 
 Continúa del video anterior. Empieza con la frase que lo une con el video anterior.
 
-*3,608 palabras, unos 20.6 min de habla*
+*3,995 palabras, unos 22.8 min de habla*
 
 [Diapositiva 1 · De la neurona a la capa y a la red]
 
@@ -38,9 +38,9 @@ Supongamos que las dos entradas valen uno y dos. La primera neurona de la capa i
 
 La segunda neurona tiene los pesos uno y menos uno, y sesgo cero. Multiplica uno por uno, dos por menos uno, suma, y da menos uno. Al ser negativo, la activación lo deja en cero y la neurona queda apagada.
 
-Ahora la neurona de salida. Recibe las respuestas de la capa anterior: tres y cero. Tiene los pesos dos y uno, y un sesgo de menos uno. Multiplica tres por dos, que son seis, y cero por uno, que es cero. Suma seis. Le resta el sesgo, uno, y queda cinco. Esa es la respuesta de la red.
+Ahora la neurona de salida. Recibe las respuestas de la capa anterior: tres y cero. Tiene los pesos dos y uno, y un sesgo de menos uno. Multiplica tres por dos, que son seis, y cero por uno, que es cero. Suma seis. Le resta el sesgo, uno, y queda cinco. Esa es la respuesta de la red. Si el segundo peso de la primera neurona fuera tres y no uno, la salida sería trece y no cinco.
 
-Eso es todo. Cuatro multiplicaciones en la capa intermedia, dos más en la salida, unas sumas y una regla de activación. Ahora imaginen esto con millones de neuronas, en decenas de capas. El tipo de operación es el mismo; solo cambia la cantidad, y esa cantidad permite que la red capture patrones muy sutiles.
+Eso es todo. Cuatro multiplicaciones en la capa intermedia, dos más en la salida, unas sumas y una regla de activación. Ahora imaginen esto con millones de neuronas, en decenas de capas. El tipo de operación es el mismo; solo cambia la cantidad, y esa cantidad permite que la red capture patrones muy sutiles. Entrenar es buscar los valores de todos los pesos que dan la respuesta correcta.
 
 [Diapositiva 3 · Profundidad: por qué importan las capas]
 
@@ -53,6 +53,8 @@ Imaginen que quieren describir qué es una casa a alguien que nunca ha visto una
 Cada nivel de la descripción se apoya en el anterior: una casa no se describe directamente con líneas rectas, sino pasando por partes. Esa es la idea de las capas apiladas: cada capa toma lo que hizo la anterior y construye algo un poco más elaborado.
 
 Dicho de otro modo, la profundidad permite construir ideas complejas a partir de ideas más simples, y por eso el aprendizaje profundo funciona tan bien con datos que tienen estructura, como las imágenes.
+
+Con una sola capa habría que describir la casa directo desde los píxeles, con un número enorme de neuronas. Pero más capas no siempre es mejor: cada capa agrega pesos que ajustar, y con pocos ejemplos una red muy profunda aprende de memoria.
 
 [Diapositiva 4 · Cómo aprende una red]
 
@@ -72,7 +74,7 @@ Y es mecánico a una escala enorme. Una sola pasada por una imagen ajusta millon
 
 > Idea central: Alguien tiene que dibujar el contorno de cada cabeza en las imágenes de entrenamiento. La red solo puede aprender lo que esas personas marcaron, con sus aciertos y sus errores.
 
-Para entrenar la red hace falta, como dijimos, un conjunto de imágenes con la respuesta correcta. Esa respuesta no existe sola. Alguien la tiene que crear. En nuestro caso, una persona abre cada imagen en una herramienta de anotación, y para cada cabeza dibuja su contorno, punto por punto, con el cursor. Es un trabajo lento y exigente.
+Para entrenar la red hace falta, como dijimos, un conjunto de imágenes con la respuesta correcta. Esa respuesta no existe sola. Alguien la tiene que crear. En nuestro caso, una persona abre cada imagen en una herramienta de anotación, y para cada cabeza dibuja su contorno, punto por punto, con el cursor. Es un trabajo lento y exigente. Una imagen suele traer unos ciento cincuenta contornos, así que con solo diez imágenes son más de mil quinientos dibujados a mano. Para eso usamos una herramienta de anotación llamada CVAT, sin publicar los datos. En la foto de la diapositiva se ve un ejemplo con otro tipo de célula: cada núcleo lleva su contorno dibujado a mano.
 
 Lo más delicado de la anotación es el criterio. ¿Qué cuenta como una cabeza? ¿Una mancha difusa sí o no? ¿Una cabeza parcialmente tapada por una cola? ¿Dos cabezas pegadas se dibujan juntas o por separado? Cada decisión que se toma al anotar es una decisión que la red va a aprender. Si una persona anota de una manera y otra de otra, la red recibe señales contradictorias.
 
@@ -84,9 +86,11 @@ Un modelo es, en cierto sentido, un espejo comprimido de sus anotaciones: reflej
 
 > Idea central: Aprender con ejemplos que traen su respuesta se llama aprendizaje supervisado. Es el que usamos, y por eso necesitamos anotar las imágenes.
 
-Hay formas de aprendizaje en las que a la computadora se le dan ejemplos con la respuesta correcta incluida. A esto se le llama aprendizaje supervisado, porque alguien supervisa: ya dijo cuál es la respuesta. Un ejemplo es darle mil imágenes, cada una con la etiqueta perro o gato, para que aprenda a distinguirlos. El nuestro es de este tipo: le damos imágenes con el contorno de cada cabeza ya dibujado.
+Hay formas de aprendizaje en las que a la computadora se le dan ejemplos con la respuesta correcta incluida. A esto se le llama aprendizaje supervisado, porque alguien supervisa: ya dijo cuál es la respuesta. Un ejemplo es darle mil imágenes, cada una con la etiqueta perro o gato, para que aprenda a distinguirlos. En la diapositiva se ven dos de esas imágenes con su etiqueta. El nuestro es de este tipo: le damos imágenes con el contorno de cada cabeza ya dibujado.
 
 Hay otras formas en las que no se da la respuesta. A esto se le llama aprendizaje no supervisado. La computadora recibe datos sin etiquetas y tiene que encontrar por sí misma estructura en ellos, por ejemplo, agrupar imágenes parecidas sin que nadie le haya dicho cuáles son las categorías. Es útil cuando se quiere explorar datos, pero no sirve para una tarea tan precisa como trazar el contorno de una célula.
+
+Existe una tercera forma, el aprendizaje por refuerzo: la computadora prueba acciones y recibe premios o castigos, como en un juego o al controlar un robot.
 
 Para nuestro problema, el supervisado es el adecuado, porque sabemos exactamente qué queremos: que la red encuentre cabezas. Y su costo es el que ya vimos: alguien tiene que anotar las imágenes. Cada contorno dibujado a mano es una respuesta correcta que la red usa para ajustarse.
 
@@ -100,7 +104,7 @@ Una pérdida es un número que se calcula comparando lo que la red predijo con l
 
 En un problema muy sencillo, como adivinar el tamaño de una célula, la pérdida podría ser la diferencia entre el tamaño que adivinó la red y el real, elevada al cuadrado. Si la red dice cinco y la respuesta era cuatro, la pérdida es uno. Si dice siete, es nueve. Un error grande castiga mucho más que uno pequeño.
 
-En una red como la nuestra, que debe encontrar cabezas y trazar su contorno, la pérdida combina varias medidas: si la red acertó en que ahí había una cabeza, qué tan bien quedó su ubicación y qué tanto coincide el contorno que dibujó la red con el que dibujó la persona. Todas se suman en un solo número, y ese es el que se intenta reducir.
+En una red como la nuestra, que debe encontrar cabezas y trazar su contorno, la pérdida combina varias medidas: si la red acertó en que ahí había una cabeza, qué tan bien quedó su ubicación y qué tanto coincide el contorno que dibujó la red con el que dibujó la persona. Todas se suman en un solo número, y ese es el que se intenta reducir. Durante el entrenamiento, la curva de la pérdida empieza alta, baja deprisa y después baja cada vez más despacio hasta estabilizarse, como se ve en la gráfica.
 
 Ojo: la pérdida mide qué tanto se parece lo que hizo la red a las respuestas que le dimos, no qué tanto entiende el problema. Si esas respuestas traen errores, la red los aprende y la pérdida aun así puede salir muy baja.
 
@@ -132,11 +136,13 @@ La tasa de aprendizaje es un ejemplo de lo que se llama un hiperparámetro. Un h
 
 [Diapositiva 10 · Retropropagación: repartir el error]
 
-> Idea central: La retropropagación calcula cuánto contribuyó cada peso al error, yendo hacia atrás desde la salida, capa por capa. Se parece a revisar una cadena de montaje de atrás hacia adelante.
+> Idea central: La retropropagación calcula cuánto contribuyó cada peso al error, yendo hacia atrás desde la salida, capa por capa. Se parece a revisar una cadena de montaje de atrás hacia adelante, o los tiros fallados de Batalla naval.
 
 También hay que preguntarse cómo se calcula la pendiente con decenas de millones de pesos. Existe una técnica, la retropropagación, que aprovecha que la red es una cadena de operaciones simples para calcular de forma eficiente cuánto contribuyó cada peso al error. Va hacia atrás: parte del error en la salida y retrocede capa por capa.
 
 Veamos la idea con una analogía más cercana. Imaginen una cadena de montaje con varias estaciones, y al final sale un producto defectuoso. Nadie sabe en cuál estación se cometió el error. Una persona revisa el producto y, caminando hacia atrás, va preguntando: ¿esta estación lo hizo bien? ¿La anterior? Y así identifica cuánto contribuyó cada una al defecto, y le pide a cada una que corrija lo suyo, un poco, en la dirección correcta.
+
+Otra forma de verlo es el juego de Batalla naval. Al principio la red dispara casi al azar, como quien dispara a ciegas. Las piezas blancas, que marcan los tiros fallados, ayudan a ver de dónde viene el error, como en el tablero de la diapositiva. La retropropagación recorre el camino de vuelta, desde donde el error es más grande, para encontrar su origen.
 
 Con la red pasa lo mismo: el error aparece al final, en la salida, y desde ahí se calcula cuánto se debe a cada neurona de la última capa, luego a las de la capa anterior, y así hasta la entrada. Con eso se sabe, para cada peso, en qué dirección moverlo.
 
@@ -162,9 +168,11 @@ Ojo con las épocas: si son demasiadas, la red puede aprenderse de memoria los e
 
 > Idea central: Como el entrenamiento usa azar, para poder repetirlo se fija una semilla y se documentan las decisiones. Así otra persona puede obtener el mismo modelo.
 
-En un entrenamiento hay varias cosas que dependen del azar. Los pesos iniciales se eligen al azar. El orden en que se presentan las imágenes se baraja en cada época. Y algunas técnicas que se usan para que la red generalice mejor también incluyen azar, como alterar ligeramente las imágenes en cada pasada.
+En un entrenamiento hay varias cosas que dependen del azar, como la tirada de un dado, que sale distinta cada vez. Los pesos iniciales se eligen al azar. El orden en que se presentan las imágenes se baraja en cada época. Y algunas técnicas que se usan para que la red generalice mejor también incluyen azar, como alterar ligeramente las imágenes en cada pasada.
 
-Los computadores no generan azar de verdad. Generan secuencias de números que lo parecen, a partir de un valor inicial que se llama semilla. Con la misma semilla, la secuencia es siempre la misma. Y eso es útil: si fijamos la semilla, el entrenamiento se vuelve repetible. Con los mismos datos, las mismas decisiones y la misma semilla, otra persona obtiene el mismo resultado.
+Los computadores no generan azar de verdad. Generan secuencias de números que lo parecen, a partir de un valor inicial que se llama semilla. Con la misma semilla, la secuencia es siempre la misma. Y eso es útil: si fijamos la semilla, el entrenamiento se vuelve repetible. Con los mismos datos, las mismas decisiones y la misma semilla, otra persona obtiene el mismo resultado. Por eso el cuaderno de entrenamiento guarda las semillas.
+
+Hay un matiz: algunas operaciones de las tarjetas gráficas no son estrictamente deterministas, así que lo que se busca es que los resultados sean comparables.
 
 Esto es importante en ciencia. Un resultado que no se puede repetir es difícil de defender. Si alguien afirma que un modelo funciona de cierta manera, otra persona debería poder reproducir el entrenamiento y comprobarlo.
 
@@ -180,8 +188,6 @@ Una red recién creada no sirve de nada, porque sus pesos son arbitrarios. Para 
 
 Lo que no hay también importa: no hay comprensión ni reglas escritas a mano para reconocer espermatozoides. Hay números ajustados con paciencia a partir de ejemplos, y por eso la calidad de los ejemplos y la revisión de las personas son tan importantes.
 
-Con estas ideas ya tenemos las bases de qué es una red neuronal y cómo aprende.
-
 [Diapositiva 14 · Límites y cuidados al usar un modelo]
 
 > Idea central: Un modelo funciona bien con imágenes parecidas a las de su entrenamiento. Con otras puede fallar sin avisar, y por eso se revisa siempre la imagen marcada.
@@ -194,6 +200,8 @@ El segundo es que el modelo no duda. Marca lo que cree que es una cabeza con el 
 
 El tercero son los errores de dos tipos. Puede marcar algo que no es una cabeza, como una mancha o un trozo de cola. Y puede dejar sin marcar una cabeza que sí está. Los segundos son más difíciles de notar, porque no hay contorno que mirar. Por eso conviene mirar la imagen entera y no solo lo marcado.
 
+Además, el modelo refleja sus datos: con pocos ejemplos de una situación, la maneja peor, y mejorarlo exige más ejemplos, variados y bien anotados. Que funcione en unas imágenes no garantiza que funcione en todas, así que hay que verificar con imágenes propias. Y cada resultado del sitio trae la imagen marcada, justo para comprobar si los contornos tienen sentido.
+
 [Diapositiva 15 · Lo que vimos hoy]
 
 > Idea central: El problema era contar y medir a mano; vimos qué es una imagen digital, algunas definiciones y las bases de las redes neuronales: neurona, capas y cómo aprenden.
@@ -202,10 +210,10 @@ Para cerrar, un resumen de lo que vimos. El problema de partida era el conteo y 
 
 [Diapositiva 16 · ¿Cómo sabe el sistema dónde hay un espermatozoide?]
 
-> Idea central: En este módulo vimos qué es una red neuronal y cómo aprende. En el siguiente módulo vemos cómo mira una imagen una red convolucional y cómo se aprovecha una red entrenada para otra cosa; después, el sitio funcionando, y al final, datos, entrenamiento y despliegue.
+> Idea central: En este módulo vimos qué es una red neuronal y cómo aprende. En el siguiente módulo vemos cómo mira una imagen una red convolucional, cómo se aprovecha una red entrenada para otra cosa y cómo se preparan los datos y se entrena; después, el sistema y su código, y al final, el entrenamiento en código y el despliegue.
 
 Y una última idea para llevarse. Si les quedó la impresión de que una red neuronal es una máquina de multiplicar y sumar, tienen razón. Lo que la hace poderosa es la cantidad de operaciones simples y el cuidado con el que se ajustan. Con eso en mente, se entiende por qué el sistema funciona y también por qué conviene revisarlo.
 
-Y termino con una pregunta que seguramente ya se hicieron: ¿cómo sabe el sistema dónde hay un espermatozoide? De eso trata el siguiente módulo: cómo mira una imagen una red como la nuestra, y por qué una red entrenada para otra cosa nos sirve para contar espermatozoides.
+Y termino con una pregunta que seguramente ya se hicieron: ¿cómo sabe el sistema dónde hay un espermatozoide? De eso trata el siguiente módulo: cómo mira una imagen una red como la nuestra, por qué una red entrenada para otra cosa nos sirve para contar espermatozoides, y cómo se preparan los datos y se entrena.
 
-Luego viene el sistema funcionando, con el sitio, y por último los datos, el entrenamiento y el despliegue en la nube. Gracias por acompañarme en este módulo.
+Luego viene el sistema y su código, y por último el entrenamiento en código y el despliegue en la nube. Gracias por acompañarme en este módulo.
