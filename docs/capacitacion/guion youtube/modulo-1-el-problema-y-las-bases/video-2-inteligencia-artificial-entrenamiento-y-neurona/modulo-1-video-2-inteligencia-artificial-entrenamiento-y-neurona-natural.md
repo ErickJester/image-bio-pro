@@ -10,7 +10,7 @@ Segunda versión, escrita para decirse en voz alta: frases cortas, ritmo de conv
 
 En el video anterior vimos qué es una imagen digital: una tabla de números, con sus formatos y su escala. Ahora vamos con la inteligencia artificial. Pero antes de ponernos con las definiciones, miremos dónde ya vive. Seguramente ustedes usan todos los días, sin pensarlo, varias herramientas que funcionan con aprendizaje automático.
 
-Escriben un mensaje en el teléfono y les sugiere la siguiente palabra. ¿Qué está pasando ahí? Un modelo aprendió, de millones de textos, qué palabras suelen seguir a cuáles. El correo manda un mensaje a la carpeta de no deseados: otro modelo se formó con muchísimos correos que otras personas marcaron como basura, y así reconoce los rasgos de ese tipo de mensaje. Y la plataforma de video propone qué ver después porque se apoya en lo que miraron personas parecidas a ustedes.
+Escriben un mensaje en el teléfono y les sugiere la siguiente palabra. ¿Qué está pasando ahí? Un modelo aprendió, de millones de textos, qué palabras suelen seguir a cuáles. El correo manda un mensaje a la carpeta de no deseados: otro modelo se formó con muchísimos correos que otras personas marcaron como basura, y así reconoce los rasgos de ese tipo de mensaje. Y la plataforma de video propone qué ver después porque se apoya en lo que miraron personas parecidas a ustedes. La voz y la traducción aprendieron de grabaciones transcritas y de textos traducidos. Y la cámara del teléfono agrupa fotos por personas y enfoca caras gracias a muchísimos ejemplos.
 
 ¿Qué tienen en común todos? En ningún caso alguien escribió una lista de reglas para reconocer una cara, una frase o un mensaje basura. Habría sido imposible, por la cantidad de casos y de excepciones. Lo que se hizo fue reunir muchos ejemplos y dejar que el sistema encontrara por sí mismo qué los distingue.
 
@@ -27,6 +27,8 @@ Lo más directo: contar. Contar células, núcleos, bacterias o colonias en una 
 Segundo: localizar. Saber dónde está cada estructura dentro de la imagen permite medirla, seguirla en el tiempo si se toman varias imágenes, o estudiar cómo se distribuyen unas respecto de otras. Esta es la tarea que nos ocupa: encontrar cada cabeza de espermatozoide.
 
 Tercero: medir. Una vez localizada una estructura, se puede obtener su tamaño, su forma o su intensidad. Con las mediciones de cientos de estructuras se pueden comparar condiciones y tratamientos.
+
+Hay otras dos tareas que se ven seguido: clasificar, que es decidir de qué tipo es una célula, y filtrar, que es señalar qué imágenes merecen atención antes de revisarlas una por una.
 
 En todos los casos pasa lo mismo: la inteligencia artificial no sustituye el criterio de quien investiga. Hace de forma rápida y consistente la parte repetitiva del trabajo, y le deja a la persona lo que requiere conocimiento: decidir qué preguntas hacer, interpretar los resultados y detectar cuándo algo no tiene sentido.
 
@@ -50,7 +52,7 @@ Y otra cosa: cuando se habla de inteligencia artificial en los medios, casi siem
 
 [Diapositiva 4 · Palabras que vamos a escuchar]
 
-> Idea central: Seis palabras para los cuatro módulos: red neuronal, Google Colab, Python, Flask, modelo y servidor. Entrenamiento e inferencia se explican en las siguientes diapositivas.
+> Idea central: Ocho palabras para los cuatro módulos: red neuronal, Google Colab, Python, Flask, modelo, servidor, entrenamiento e inferencia. Entrenamiento e inferencia se explican en las diapositivas 7 a 9.
 
 Les dejo en pantalla unas palabras que van a escuchar durante los cuatro módulos. No las voy a leer todas, solo las que salen hoy.
 
@@ -68,7 +70,7 @@ Por eso decimos que la red aprende. No aprende como una persona, no comprende lo
 
 El nombre viene de una inspiración. Las neuronas del cerebro reciben señales y, según el total, se activan o no. Las neuronas artificiales hacen algo parecido, pero mucho más simple. Hay que tomar esa comparación con cautela: una red neuronal artificial no es un cerebro, y el parecido es más de forma que de funcionamiento.
 
-Una cosa más. Hay redes de muchos tamaños. Algunas tienen unas decenas de pesos y se pueden estudiar a mano. Las que se usan con imágenes tienen millones, y la que usamos nosotros tiene decenas de millones. Pero el principio es siempre el mismo: operaciones pequeñas, con pesos ajustables, que se ajustan con ejemplos.
+Hay redes de muchos tamaños. Algunas tienen unas decenas de pesos y se pueden estudiar a mano. Las que se usan con imágenes tienen millones, y la que usamos nosotros tiene decenas de millones. Pero el principio es siempre el mismo: operaciones pequeñas, con pesos ajustables, que se ajustan con ejemplos.
 
 Más adelante en este video vamos a construir una desde cero, empezando por su pieza más pequeña, para que se vea que no hay nada misterioso.
 
@@ -106,6 +108,8 @@ Entrenar es ajustar los pesos de la red con ejemplos. Para hacerlo hacen falta t
 
 No se usan todas las imágenes para entrenar. Se separa una parte que la red no ve durante el entrenamiento, y que sirve después para comprobar si funciona con imágenes que no conoce. Es como la diferencia entre estudiar con los ejercicios del libro y presentar un examen con ejercicios nuevos.
 
+Entrenar es costoso: pide muchos cálculos y una máquina con tarjeta gráfica, y puede tardar de minutos a horas. Por eso se hace una vez, y se repite solo si hay una razón.
+
 [Diapositiva 9 · Inferencia]
 
 > Idea central: Inferencia es usar el modelo ya entrenado para analizar una imagen nueva. Es una sola pasada, sin ajustar nada, y basta con el procesador de una computadora normal.
@@ -114,7 +118,7 @@ La segunda etapa es la inferencia. La palabra suena técnica, pero es sencilla: 
 
 En la inferencia no se ajusta nada. La imagen entra, atraviesa las capas hacia adelante y sale la respuesta. No hay pérdida, ni gradiente, ni retropropagación. Los pesos están fijos, tal como quedaron al terminar el entrenamiento.
 
-Eso la hace mucho más liviana que el entrenamiento: una pasada hacia adelante cuesta una fracción de una pasada completa con ajuste, y por eso alcanza con el procesador del servidor.
+Eso la hace mucho más liviana que el entrenamiento: una pasada hacia adelante cuesta una fracción de una pasada completa con ajuste, y por eso alcanza con el procesador del servidor. Y se usa cada vez que alguien entra al sitio con una imagen, mientras que el entrenamiento se hace una vez, o muy pocas.
 
 Y no interviene el azar: ante la misma imagen, el mismo modelo responde siempre lo mismo. Para un instrumento de medición, eso es justo lo deseable.
 
@@ -124,7 +128,7 @@ Y no interviene el azar: ante la misma imagen, el mismo modelo responde siempre 
 
 Partamos del problema. Supongamos que hay que escribir un programa que reciba una imagen y diga cuántos espermatozoides hay. ¿Cómo se haría con un programa tradicional, con reglas explícitas?
 
-La primera idea es usar el brillo. Los espermatozoides son brillantes sobre fondo oscuro. Entonces se podría decir: todo píxel con un brillo mayor a cierto valor pertenece a una célula. Luego se agrupan los píxeles vecinos en manchas, y cada mancha es una célula. Esa técnica se llama umbralización, y el sitio la incluye como respaldo.
+La primera idea es usar el brillo. Los espermatozoides son brillantes sobre fondo oscuro. Entonces se podría decir: todo píxel con un brillo mayor a cierto valor pertenece a una célula. Luego se agrupan los píxeles vecinos en manchas, y cada mancha es una célula. Esa técnica se llama umbralización, y el sitio la incluye como respaldo. En la foto de la derecha se ve un ejemplo en una imagen cualquiera: lo que supera el umbral queda en blanco, y lo demás en negro.
 
 Como primera aproximación sirve. Pero los problemas aparecen pronto. Las colas también brillan, y no se quieren contar. Hay manchas rojas difusas, más grandes y fuera de foco, que pasan el umbral sin ser espermatozoides. Hay células encimadas entre sí, o sobre las colas de otras, y el umbral las une en una sola mancha. Además, el brillo de una imagen depende de la iluminación, de la exposición y de la tinción. Un umbral que funciona en una imagen puede fallar en la siguiente.
 
@@ -148,8 +152,6 @@ Un buen ejemplo es lo que pasa cuando se le muestra algo que nunca vio. Si le da
 
 Entonces, la confianza que podemos tener en una red depende de cuánto se parecen las imágenes nuevas a las imágenes con las que se entrenó. Si se parecen, la respuesta suele ser buena. Si no, no hay garantía. Por eso conviene mirar siempre la imagen marcada antes de confiar en un número.
 
-Pensarlo así nos quita el misterio: una red neuronal es una máquina de reconocer patrones, muy buena, que hay que usar con criterio.
-
 [Diapositiva 12 · Del umbral a la red: qué cambia]
 
 > Idea central: El umbral usa una regla fija sobre un píxel. La red usa millones de reglas ajustadas con ejemplos, que miran vecindarios. Cambia quién escribe las reglas.
@@ -158,7 +160,9 @@ El umbral es una sola regla, escrita por una persona: un píxel con brillo mayor
 
 La red neuronal es una enorme colección de reglas, millones de pesos, que no escribió nadie: se obtuvieron ajustándolos con ejemplos. Combina muchos píxeles a la vez, no uno por uno. Puede distinguir una cabeza de una cola por su forma, y una cabeza de una mancha por su textura y sus bordes. Y no depende de un solo número elegido a mano, porque lo que se ajustó fueron todos sus pesos, para que coincidan con lo que las personas marcaron.
 
-El cambio de fondo es de método: en lugar de decirle a la computadora cómo hacer algo, le mostramos qué queremos y dejamos que descubra cómo.
+Cuando el umbral falla, la solución es agregar otra regla, y cada regla nueva arriesga a las demás. Cuando la red falla, se agregan ejemplos y se entrena de nuevo. A cambio, la red cuesta más: necesita ejemplos anotados y entrenamiento, y sus decisiones son más difíciles de explicar. El umbral casi no cuesta nada.
+
+El cambio de fondo es de método: en lugar de decirle a la computadora cómo hacer algo, le mostramos qué queremos y dejamos que descubra cómo. Y recordemos el reparto: la red localiza y el código mide.
 
 [Diapositiva 13 · La neurona artificial]
 
@@ -166,19 +170,19 @@ El cambio de fondo es de método: en lugar de decirle a la computadora cómo hac
 
 Ahora sí vamos a construir la red desde su pieza más pequeña: la neurona artificial. Es la pieza elemental. El nombre es más una inspiración histórica que una descripción fiel de la biología, y lo que hace es una operación muy pequeña que se describe en cuatro pasos.
 
-Uno: recibe una lista de números, que son las entradas. Dos: cada entrada se multiplica por otro número, que es su peso. Tres: se suman los resultados. Cuatro: a esa suma se le aplica una pequeña función que decide cuándo se activa la neurona.
+Uno: recibe una lista de números, que son las entradas. Dos: cada entrada se multiplica por otro número, que es su peso. Tres: se suman los resultados. Cuatro: a esa suma se le aplica una pequeña función que decide cuándo se activa la neurona. Eso mismo es lo que muestra el diagrama de la derecha, con sus nombres en inglés: inputs son las entradas, weights los pesos, la sigma es la suma y la letra fi es la activación. El umbral que aparece ahí abajo es lo que aquí llamamos sesgo, y lo vemos enseguida.
 
 Un ejemplo para ver qué hace un peso. Imaginen una neurona que decide si un punto de la imagen es rojo e intenso. Recibe tres entradas: la cantidad de rojo, de verde y de azul de un píxel. Para que dé una salida alta con un píxel muy rojo, se le asigna un peso grande y positivo a la entrada del rojo, y pesos pequeños o negativos a las otras dos. Un píxel muy rojo produce una suma muy grande, y uno azul, una suma muy pequeña.
 
 Los pesos expresan qué le importa a la neurona. Un peso grande dice «esto me va a importar mucho». Uno cercano a cero dice «me da igual». Uno negativo dice «esto me hace dudar». Falta un elemento: un número que se suma al final, que se llama sesgo. Desplaza el punto desde el cual la neurona empieza a activarse. Pueden imaginarlo como un interruptor sensible: los pesos deciden a qué se fija, y el sesgo decide qué tan exigente es antes de encenderse.
 
-El último paso es la función de activación, que es lo que hace posible que las redes sean tan potentes. Por ahora basta saber que es una regla sencilla: si la suma es negativa, la salida es cero, y si es positiva, pasa tal cual.
+El último paso es la función de activación. Por ahora basta saber que es una regla sencilla: si la suma es negativa, la salida es cero, y si es positiva, pasa tal cual.
 
 Retomemos la neurona que busca píxeles rojos intensos. Para simplificar, expresamos cada canal entre cero y uno, dividiendo entre doscientos cincuenta y cinco. Le asignamos tres pesos: dos para el rojo, menos uno para el verde y menos uno para el azul. Y un sesgo de menos cero punto tres.
 
 Probemos con un píxel naranja intenso, el de doscientos cuarenta, ciento veintidós y cuarenta y dos. En escala de cero a uno, son más o menos cero punto noventa y cuatro, cero punto cuarenta y ocho y cero punto diecisiete. Multiplicamos cada entrada por su peso: cero punto noventa y cuatro por dos da uno punto ochenta y ocho; menos cero punto cuarenta y ocho; y menos cero punto diecisiete. Sumamos: uno punto ochenta y ocho, menos cero punto cuarenta y ocho, menos cero punto diecisiete, da uno punto veintitrés. Le restamos el sesgo, cero punto tres, y queda cerca de cero punto noventa y cuatro. La neurona responde con un número alto.
 
-Sin que nadie le dijera la palabra rojo, esta neurona distingue un píxel rojo de uno azul, solo por cómo están puestos sus pesos. El sesgo también cuenta: si fuera menos uno en lugar de menos cero punto tres, el píxel naranja daría solo cerca de cero punto veinticuatro, una respuesta mucho más tímida.
+Sin que nadie le dijera la palabra rojo, esta neurona distingue un píxel rojo de uno azul, solo por cómo están puestos sus pesos. Con un píxel azul, de veinte, treinta y doscientos veinte, el total sale negativo, menos uno punto doce, y la neurona se apaga: responde cero. El sesgo también cuenta: si fuera menos uno en lugar de menos cero punto tres, el píxel naranja daría solo cerca de cero punto veinticuatro, una respuesta mucho más tímida.
 
 Esto es todo lo que hace una neurona: multiplicar, sumar y comparar. La potencia de una red viene de que hay millones de ellas, bien ajustadas.
 
@@ -206,7 +210,7 @@ Y aquí viene lo curioso. Si se encadenan varias operaciones lineales, el result
 
 Entra la función de activación. Después de multiplicar y sumar, se aplica una pequeña regla que rompe la linealidad. La que más se usa hoy es muy sencilla: si el resultado es negativo, la salida es cero. Si es positivo, la salida es ese mismo número. Se le llama la rectificadora, porque rectifica los negativos.
 
-En una gráfica es una línea plana en cero hasta el origen, y luego una línea que sube en diagonal. Esa pequeña esquina es lo que hace posible que las redes sean tan potentes. Con ella, cada neurona tiene un comportamiento de encendido y apagado: no responde nada hasta que el estímulo supera cierto nivel, y a partir de ahí responde de forma proporcional.
+En una gráfica es una línea plana en cero hasta el origen, y luego una línea que sube en diagonal. Sin esa pequeña esquina, apilar capas no serviría de nada. Con ella, cada neurona tiene un comportamiento de encendido y apagado: no responde nada hasta que el estímulo supera cierto nivel, y a partir de ahí responde de forma proporcional.
 
 Al combinar muchas de estas esquinas en capas, la red puede dibujar relaciones tan complicadas como queramos: curvas, bordes, formas. Es la diferencia entre trazar con una sola regla recta y trazar con miles de segmentos pequeños que, juntos, siguen cualquier contorno.
 
