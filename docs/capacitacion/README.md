@@ -21,7 +21,7 @@ El objetivo es reducir los 24 videos que saldrían de 4 módulos de 2 horas a un
 | Módulo | Carácter | Videos | Contenido | Estado |
 |---|---|---|---|---|
 | 1 | Teoría fundamental | 3 | Problema e imagen digital; IA, entrenamiento y neurona; capas, aprendizaje y cierre | Guion terminado en [`guion youtube/modulo-1-el-problema-y-las-bases`](guion%20youtube/modulo-1-el-problema-y-las-bases) |
-| 2 | Teoría con más detalle | 4 | Redes convolucionales; Mask R-CNN; aprendizaje por transferencia; datos, anotación, entrenamiento y validación | Guion pendiente |
+| 2 | Teoría con más detalle | 4 | Redes convolucionales; Mask R-CNN; aprendizaje por transferencia; datos, anotación, entrenamiento y validación | Guion del video 1 terminado en [`guion youtube/modulo-2-teoria-con-mas-detalle`](guion%20youtube/modulo-2-teoria-con-mas-detalle); videos 2 a 4 pendientes |
 | 3 | Presentación del sistema y, sobre todo, código | 4 | Frontend (con el sitio funcionando); backend; inferencia con recortes; medición, escala y retos | Guion pendiente |
 | 4 | Código y despliegue | 4 | Cuaderno de Colab en dos videos; despliegue (VPS, SSH, Docker); Nginx, dominio, HTTPS y cierre | Guion pendiente |
 | Total | | 15 | | |
@@ -47,10 +47,10 @@ Material que se quitó del módulo 1 y debe reaparecer en otro lugar o en un doc
 
 ### Módulo 2. Teoría con más detalle
 
-Guion pendiente. Sigue siendo teórico, pero con más detalle que el módulo 1. Ya no incluye umbral, neurona, capa, pérdida ni descenso del gradiente, que están en el módulo 1.
+Guiones de los videos 1 y 2 terminados en `guion youtube/modulo-2-teoria-con-mas-detalle/`; videos 3 y 4 pendientes. Sigue siendo teórico, pero con más detalle que el módulo 1. Ya no incluye umbral, neurona, capa, pérdida ni descenso del gradiente, que están en el módulo 1.
 
-- Video 1, cómo ve una imagen una red convolucional: el filtro que recorre la imagen, con el ejemplo numérico de 3 por 3.
-- Video 2, Mask R-CNN, en lenguaje sencillo.
+- Video 1, cómo ve una imagen una red convolucional: el filtro que recorre la imagen, con el ejemplo numérico de 3 por 3. Terminado, con plan visual y mazo.
+- Video 2, Mask R-CNN, en lenguaje sencillo: cinco etapas, anclas, umbrales, IoU, repetidos, las cinco pérdidas y límites. Terminado, con plan visual y mazo.
 - Video 3, aprendizaje por transferencia (guitarra y ukulele).
 - Video 4, datos y entrenamiento en teoría (pasan aquí desde el antiguo módulo 4): cuántas imágenes hacen falta, anotación en CVAT, criterio de anotación y quién valida; entrenamiento y validación, sobreajuste y la gráfica de curvas.
 
