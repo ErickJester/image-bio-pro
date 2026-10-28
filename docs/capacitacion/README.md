@@ -21,7 +21,7 @@ El objetivo es reducir los 24 videos que saldrían de 4 módulos de 2 horas a un
 | Módulo | Carácter | Videos | Contenido | Estado |
 |---|---|---|---|---|
 | 1 | Teoría fundamental | 3 | Problema e imagen digital; IA, entrenamiento y neurona; capas, aprendizaje y cierre | Guion terminado en [`guion youtube/modulo-1-el-problema-y-las-bases`](guion%20youtube/modulo-1-el-problema-y-las-bases) |
-| 2 | Teoría con más detalle | 4 | Redes convolucionales; Mask R-CNN; aprendizaje por transferencia; datos, anotación, entrenamiento y validación | Guion del video 1 terminado en [`guion youtube/modulo-2-teoria-con-mas-detalle`](guion%20youtube/modulo-2-teoria-con-mas-detalle); videos 2 a 4 pendientes |
+| 2 | Teoría con más detalle | 4 | Redes convolucionales; Mask R-CNN; aprendizaje por transferencia; datos, anotación, entrenamiento y validación | Guiones de los 4 videos terminados en [`guion youtube/modulo-2-teoria-con-mas-detalle`](guion%20youtube/modulo-2-teoria-con-mas-detalle) |
 | 3 | Presentación del sistema y, sobre todo, código | 4 | Frontend (con el sitio funcionando); backend; inferencia con recortes; medición, escala y retos | Guion pendiente |
 | 4 | Código y despliegue | 4 | Cuaderno de Colab en dos videos; despliegue (VPS, SSH, Docker); Nginx, dominio, HTTPS y cierre | Guion pendiente |
 | Total | | 15 | | |
@@ -47,12 +47,12 @@ Material que se quitó del módulo 1 y debe reaparecer en otro lugar o en un doc
 
 ### Módulo 2. Teoría con más detalle
 
-Guiones de los videos 1 y 2 terminados en `guion youtube/modulo-2-teoria-con-mas-detalle/`; videos 3 y 4 pendientes. Sigue siendo teórico, pero con más detalle que el módulo 1. Ya no incluye umbral, neurona, capa, pérdida ni descenso del gradiente, que están en el módulo 1.
+Guiones de los 4 videos terminados en `guion youtube/modulo-2-teoria-con-mas-detalle/`. Sigue siendo teórico, pero con más detalle que el módulo 1. Ya no incluye umbral, neurona, capa, pérdida ni descenso del gradiente, que están en el módulo 1.
 
 - Video 1, cómo ve una imagen una red convolucional: el filtro que recorre la imagen, con el ejemplo numérico de 3 por 3. Terminado, con plan visual y mazo.
 - Video 2, Mask R-CNN, en lenguaje sencillo: cinco etapas, anclas, umbrales, IoU, repetidos, las cinco pérdidas y límites. Terminado, con plan visual y mazo.
-- Video 3, aprendizaje por transferencia (guitarra y ukulele).
-- Video 4, datos y entrenamiento en teoría (pasan aquí desde el antiguo módulo 4): cuántas imágenes hacen falta, anotación en CVAT, criterio de anotación y quién valida; entrenamiento y validación, sobreajuste y la gráfica de curvas.
+- Video 3, aprendizaje por transferencia (guitarra y ukulele): qué se reutiliza de la red preentrenada con COCO, qué se cambia, congelar o afinar, un entrenamiento de ejemplo y sus límites. Terminado, con plan visual y mazo.
+- Video 4, datos y entrenamiento en teoría (pasan aquí desde el antiguo módulo 4): cuántas imágenes hacen falta, anotación en CVAT, criterio de anotación y quién valida; entrenamiento y validación, sobreajuste y la gráfica de curvas. Terminado, con plan visual y mazo.
 
 ### Módulo 3. Presentación del sistema y código
 
@@ -86,7 +86,7 @@ El sitio ya está en un VPS de Hostinger con Ubuntu, Docker y Nginx, con el domi
 ## Pendientes
 
 - Confirmar el plan de videos (cuántos por módulo y qué se recorta) y la duración máxima de cada video.
-- Escribir los guiones de los módulos 2, 3 y 4, con el mismo formato que los del módulo 1.
+- Escribir los guiones de los módulos 3 y 4, con el mismo formato que los del módulo 1.
 - Armar los tres mazos del módulo 1 (hoy hay seis mazos, uno por cada video anterior) y los de los otros módulos: numerados, con letra grande, pocas ideas por diapositiva y dibujos sencillos.
 - Definir las fechas de publicación de los videos y dónde se publican. El calendario del flyer (23 al 27 de octubre) era para sesiones en vivo.
 - Corregir el README principal y los guiones para que todo diga lo mismo sobre cómo se mide el largo (hoy el código mide el lado mayor del rectángulo mínimo, no la longitud a lo largo de la curva).
@@ -97,7 +97,8 @@ El sitio ya está en un VPS de Hostinger con Ubuntu, Docker y Nginx, con el domi
 Se preparan a partir del trabajo de desarrollo.
 
 - [x] Guion del módulo 1 en tres videos: [`guion youtube/modulo-1-el-problema-y-las-bases`](guion%20youtube/modulo-1-el-problema-y-las-bases).
-- [ ] Guiones de los módulos 2, 3 y 4 (cada video tiene ya su carpeta vacía en `guion youtube`).
+- [x] Guiones del módulo 2 en cuatro videos: [`guion youtube/modulo-2-teoria-con-mas-detalle`](guion%20youtube/modulo-2-teoria-con-mas-detalle).
+- [ ] Guiones de los módulos 3 y 4 (cada video tiene ya su carpeta vacía en `guion youtube`).
 - [ ] Mazos por video.
 - [ ] Capturas del sitio (en `capturas/`, ya hay las del módulo 1).
 - [ ] Cuaderno de Colab para mostrar en el módulo 4: `entrenamiento/entrenar_mask_rcnn.ipynb`.

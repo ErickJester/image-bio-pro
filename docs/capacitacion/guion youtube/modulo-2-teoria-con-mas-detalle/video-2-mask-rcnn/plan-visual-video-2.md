@@ -48,6 +48,17 @@ Origen de las imágenes:
 - IoU de ejemplo: 100 y 100 px con 60 en común da 60 / 140 = 0.43; con 80 en común, 80 / 120 = 0.67.
 - Imagen de muestra: 1200 × 900; 46 cabezas por color; 41 contornos; 37 sobre cabezas; 4 sobre filamentos; unas 9 cabezas sin contorno.
 
+## Imágenes agregadas después de revisar el mazo
+
+El mazo tenía diapositivas solo con tarjetas y flechas. Se agregaron imágenes calculadas con el modelo real y una tesela de 512 × 512 de la imagen de muestra (esquina en 340, 190):
+
+- **Diapositiva 2:** una ilustración por versión (regiones al azar, un solo mapa, las mejores propuestas y los contornos rellenos). Son ilustraciones de la idea, no resultados de las redes originales.
+- **Diapositiva 3:** una imagen por etapa (mapa de la base, mapa de la pirámide, las 40 mejores propuestas, el recorte de 7 × 7 y los contornos finales).
+- **Diapositiva 4:** los cuadros de colores se cambiaron por mapas reales de cada nivel de la base y de la pirámide, sin escala exacta.
+- **Diapositiva 8:** un espermatozoide con la caja de una propuesta y su recorte de 7 × 7.
+- **Diapositiva 13:** una miniatura por pérdida. Las cuatro primeras llevan anclas y cajas dibujadas como ilustración; la última es la máscara de 28 × 28 real.
+- **Diapositiva 16:** cuatro miniaturas de las imágenes del video en la tarjeta del siguiente video.
+
 ## Decidido al armar el mazo
 
 - Los puntajes de la diapositiva 10 son los de tres contornos reales de la imagen de muestra: 0.99 y 0.93, sobre dos cabezas, y 0.30, sobre un filamento largo.
