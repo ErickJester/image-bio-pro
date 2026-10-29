@@ -4,7 +4,7 @@ BioImage-Repro UAM · Módulo 2 · Capacitación en video
 
 Continúa del video anterior. Empieza con la frase que lo une con el video anterior.
 
-*3,368 palabras, unos 19.2 min de habla*
+*3,719 palabras, unos 21.3 min de habla*
 
 [Diapositiva 1 · Datos, entrenamiento y validación]
 
@@ -12,7 +12,7 @@ Continúa del video anterior. Empieza con la frase que lo une con el video anter
 
 En el video anterior vimos que, gracias a la transferencia, una red de casi 44 millones de pesos se puede ajustar con muy pocas fotos. Esas pocas fotos son el tema de este video. Vemos de dónde salen, cómo se anotan, cómo se separan para entrenar y para comprobar, y cómo se lee un entrenamiento para saber si salió bien o no.
 
-Casi todo lo que sigue gira alrededor de una idea. Un modelo vale lo que valen sus datos y lo que vale la forma de medirlo. Si las etiquetas son descuidadas, el modelo aprende el descuido. Y si la prueba es débil, una cifra bonita no dice nada.
+Casi todo lo que sigue gira alrededor de una idea. Un modelo vale lo que valen sus datos y lo que vale la forma de medirlo. Si las etiquetas son descuidadas, el modelo aprende el descuido. Y si la prueba es débil, una cifra bonita no dice nada. En pantalla están las tres piezas del video, cada una con su imagen: una foto con su contorno, la curva de la pérdida de un entrenamiento y las zonas en que se divide una foto para apartar la validación.
 
 Vamos por partes. Primero, qué es un dato en nuestro problema y cuántos hacen falta. Después, la anotación, con su criterio. Luego, cómo se separan las fotos, cómo se entrena y qué se mide. Y al final, el sobreajuste, la gráfica de curvas y qué tan confiables son los números que tenemos. Los números de este video salen del cuaderno de entrenamiento que veremos en el módulo 4.
 
@@ -32,7 +32,7 @@ Hay una forma útil de contar los datos. La foto es la unidad de variedad: otra 
 
 > Idea central: No hay un número fijo. Depende de qué tan parecidas sean las fotos nuevas a las de entrenamiento y de qué tan difícil sea la tarea. Con transferencia se necesitan menos. La forma de saberlo es medir, con una validación honesta.
 
-La pregunta que todos hacen es cuántas fotos hacen falta. La respuesta honesta es que no hay un número fijo. Depende de tres cosas.
+La pregunta que todos hacen es cuántas fotos hacen falta. La respuesta honesta es que no hay un número fijo. Depende de tres cosas, que en pantalla llevan cada una su dibujo.
 
 La primera es qué tan variadas son las fotos con las que se va a usar el modelo. Si siempre son del mismo microscopio, con la misma tinción y la misma iluminación, hacen falta menos. Si cambian, hay que incluir esa variedad en el entrenamiento. La segunda es qué tan difícil es la tarea: contornear espermatozoides que se encima o se cruza pide más ejemplos que contar puntos aislados. Y la tercera es si se parte de una red preentrenada, como vimos en el video anterior. Eso baja mucho lo que hace falta.
 
@@ -50,6 +50,8 @@ El flujo es sencillo. Se crea una tarea con las fotos. Se define la etiqueta, qu
 
 Dibujar un contorno a mano es lento, y una foto densa trae más de cien. Por eso el proyecto tiene un pre-anotador, un script que propone el contorno de cada cabeza con técnicas clásicas de imagen, sin red neuronal. Su resultado se importa en CVAT como borrador y la persona lo corrige. Deja casi solo cabezas de verdad, pero se le pasan las más tenues, que se agregan a mano. Y en fotos con un solo espermatozoide marca puntos sueltos del fondo, así que ahí no se usa.
 
+En pantalla se ve, a la izquierda, lo que propone el pre-anotador sobre un espermatozoide de la imagen de muestra: un contorno en la cabeza y unos puntos sueltos sobre la cola, que habría que borrar. A la derecha, el mismo espermatozoide con su contorno ya corregido, como un polígono de pocos vértices. Ese contorno es el que calculó el modelo y se usa aquí como ejemplo; no es un dibujo hecho en CVAT.
+
 El borrador ahorra trabajo, pero tiene un riesgo. Si se acepta sin revisar, la red aprende los errores del borrador. Corregirlo es parte del trabajo, no un detalle.
 
 [Diapositiva 5 · El criterio de anotación]
@@ -58,9 +60,9 @@ El borrador ahorra trabajo, pero tiene un riesgo. Si se acepta sin revisar, la r
 
 En el módulo 1 dijimos que lo más delicado de anotar es el criterio. Ahora lo vemos con los casos concretos de nuestras fotos.
 
-Un espermatozoide en nuestro cuaderno se anota completo: la cabeza y el primer tramo de la cola. Eso fija lo que la red va a contornear, y también lo que el sitio va a medir. Pero quedan casos que alguien tiene que decidir. Una mancha roja difusa y fuera de foco, ¿cuenta? Una cabeza medio tapada por una cola, ¿se dibuja? Dos cabezas pegadas, ¿van en un contorno o en dos? Un espermatozoide cortado por el borde de la foto, ¿entra? Cada respuesta es una regla que la red aprende, y si dos personas contestan distinto, la red recibe señales que se contradicen.
+Un espermatozoide en nuestro cuaderno se anota completo: la cabeza y el primer tramo de la cola; en pantalla está un ejemplo con su contorno. Eso fija lo que la red va a contornear, y también lo que el sitio va a medir. Pero quedan casos que alguien tiene que decidir, y en pantalla están dibujados cuatro. Una mancha roja difusa y fuera de foco, ¿cuenta? Una cabeza medio tapada por una cola, ¿se dibuja? Dos cabezas pegadas, ¿van en un contorno o en dos? Un espermatozoide cortado por el borde de la foto, ¿entra? Cada respuesta es una regla que la red aprende, y si dos personas contestan distinto, la red recibe señales que se contradicen.
 
-Por eso se recomienda dos cosas. Un criterio escrito, de una o dos páginas, con ejemplos de cada caso. Y una persona del grupo con conocimiento biológico que valide las anotaciones. Una forma de medirlo es que dos personas anoten las mismas diez fotos y se compare con el IoU del video 2 qué tanto coinciden. Si coinciden poco, el criterio no está claro.
+Por eso se recomienda dos cosas. Un criterio escrito, de una o dos páginas, con ejemplos de cada caso. Y una persona del grupo con conocimiento biológico que valide las anotaciones. Una forma de medirlo es que dos personas anoten las mismas diez fotos y se compare con el IoU del video 2 qué tanto coinciden. En pantalla se ven dos contornos del mismo espermatozoide, uno de cada persona. Si coinciden poco, el criterio no está claro.
 
 Antes de entrenar, el cuaderno hace sus propias revisiones. Se detiene si falta una foto, si una foto no mide lo que dice el archivo o si no existe la etiqueta. Y dibuja recortes de entrenamiento con su contorno encima: si un contorno no coincide con su espermatozoide, el error está en los datos y conviene corregirlo antes de entrenar.
 
@@ -96,7 +98,7 @@ Es variedad artificial. Ayuda, pero no sustituye a fotos nuevas de verdad.
 
 El entrenamiento se hace en Google Colab, en una GPU gratuita, una Tesla T4. La configuración del perfil de fluorescencia es esta. Sesenta épocas. En cada época, 400 recortes de 512 por 512 píxeles, en lotes de 4. O sea, 100 pasos por época, que son los 100 pasos del calentamiento que vimos en el video anterior. El descenso del gradiente usa un momento de 0.9, que suaviza los pasos, y una tasa de aprendizaje de 0.005, la que corresponde a lotes de 4.
 
-Cada época tarda unos 0.6 minutos, así que las 60 duran alrededor de 36 minutos. Cada cinco épocas el cuaderno se detiene a validar, y si el AP50 mejora, guarda ese modelo como el mejor. Cada diez épocas guarda un archivo más grande, de unos 350 megabytes, que sirve para continuar si Colab se corta. Si pasa, basta volver a correr el cuaderno desde el principio y retoma en la última época guardada.
+Cada época tarda unos 0.6 minutos, así que las 60 duran alrededor de 36 minutos. A la derecha de las cifras, en pantalla, está la salida real del cuaderno: en cada época imprime la pérdida y el tiempo acumulado, y cada cinco, la validación. Se ven la época 1, con una pérdida de 1.39; la 5, con 0.70 y un AP50 de 0.857; y la 20, con 0.46 y un AP50 de 0.888. Cada cinco épocas el cuaderno se detiene a validar, y si el AP50 mejora, guarda ese modelo como el mejor. Cada diez épocas guarda un archivo más grande, de unos 350 megabytes, que sirve para continuar si Colab se corta. Si pasa, basta volver a correr el cuaderno desde el principio y retoma en la última época guardada.
 
 También hay un modo de prueba, que entrena dos épocas muy cortas, solo para comprobar que todo funciona. Es el que se muestra en el módulo 4.
 
@@ -106,7 +108,7 @@ Una consecuencia importante: el modelo que se exporta al sitio es el mejor segú
 
 > Idea central: Un acierto es una detección con IoU de 0.5 o más con un contorno etiquetado. Precisión es qué parte de lo marcado es correcto; exhaustividad, qué parte de lo etiquetado se encontró; F1 las combina. Con umbral 0.5, la validación da 60 aciertos de 75 marcas y 66 etiquetados.
 
-Para medir un modelo hay que decidir qué es un acierto. Usamos el IoU del video 2: una detección es un acierto si su contorno coincide al menos el 50 por ciento con uno etiquetado. Con eso se cuentan tres cosas: los aciertos, las marcas de más y los espermatozoides que se escaparon.
+Para medir un modelo hay que decidir qué es un acierto. Usamos el IoU del video 2: una detección es un acierto si su contorno coincide al menos el 50 por ciento con uno etiquetado. Con eso se cuentan tres cosas: los aciertos, las marcas de más y los espermatozoides que se escaparon. A la derecha hay un recorte de la imagen de muestra con los tres casos, solo para verlos: un contorno celeste sobre una cabeza es un acierto, uno naranja sobre un filamento es una marca falsa, y un círculo blanco rodea una cabeza que la red dejó sin contorno. Las cifras que siguen son otras: las de la validación del cuaderno.
 
 Veamos los números de la validación del cuaderno, con un umbral de seguridad de 0.5. Hay 66 espermatozoides etiquetados. La red marcó 75. De esas 75 marcas, 60 son aciertos y 15 son falsas. Y se escaparon 6 de los 66.
 
@@ -120,9 +122,9 @@ Las dos primeras medidas tiran en sentidos opuestos. Si se pide más seguridad, 
 
 > Idea central: El umbral de seguridad se elige con la validación: se prueban varios y se toma el de mejor F1. En el cuaderno de ejemplo sale 0.8, pero las diferencias son de uno o dos espermatozoides. El modelo del sitio guarda 0.9 y viene de otra corrida.
 
-Al final del entrenamiento, el cuaderno prueba varios umbrales de seguridad sobre la validación, de 0.3 a 0.9, y calcula las medidas para cada uno. En pantalla está la tabla.
+Al final del entrenamiento, el cuaderno prueba varios umbrales de seguridad sobre la validación, de 0.3 a 0.9, y calcula las medidas para cada uno. En pantalla están la tabla y, al lado, una gráfica con las tres medidas.
 
-Con 0.3, la red marca 79: la precisión es 0.76 y la exhaustividad, 0.91. Al subir el umbral, la precisión mejora y la exhaustividad se mantiene hasta 0.7, donde sigue en 0.91. Con 0.8 la red marca 70, con una precisión de 0.84 y una exhaustividad de 0.89. Con 0.9 marca 65, con una precisión de 0.86 y una exhaustividad de 0.85. El F1 más alto es el de 0.8, que da 0.868, y por eso el cuaderno elige ese valor.
+Con 0.3, la red marca 79: la precisión es 0.76 y la exhaustividad, 0.91. Al subir el umbral, la precisión mejora y la exhaustividad se mantiene hasta 0.7, donde sigue en 0.91. Con 0.8 la red marca 70, con una precisión de 0.84 y una exhaustividad de 0.89. Con 0.9 marca 65, con una precisión de 0.86 y una exhaustividad de 0.85. El F1 más alto es el de 0.8, que da 0.868, y por eso el cuaderno elige ese valor. En la gráfica se ve que el F1 sube despacio hasta 0.8 y baja un poco con 0.9.
 
 Miremos qué tan grande es la diferencia. Entre 0.5 y 0.9, la red pasa de 60 aciertos a 56. Son cuatro espermatozoides de 66. Con tan pocos ejemplos, una diferencia así puede venir del azar. El umbral elegido es una estimación, y el propio cuaderno lo avisa cuando la validación tiene menos de 50.
 
@@ -134,7 +136,7 @@ Una aclaración para no confundirse. El modelo que está hoy en el sitio guarda 
 
 Ahora sí, el sobreajuste. Es cuando la red aprende tan bien los datos de entrenamiento que se los sabe de memoria, y por eso falla con datos nuevos. Es el estudiante que se aprende las respuestas del examen pasado en lugar de entender el tema: saca diez en ese examen y reprueba el siguiente.
 
-Se reconoce porque las dos medidas se separan. La pérdida de entrenamiento, que mide el error con las fotos que la red ve, sigue bajando. Pero la medida de validación, que mira fotos que no vio, deja de mejorar o incluso empeora. Mientras las dos mejoran juntas, la red está aprendiendo. Cuando se separan, está memorizando.
+En pantalla hay un esquema, no son datos nuestros: una curva celeste que sigue bajando y una naranja que sube y se aplana. Se reconoce porque las dos medidas se separan. La pérdida de entrenamiento, que mide el error con las fotos que la red ve, sigue bajando. Pero la medida de validación, que mira fotos que no vio, deja de mejorar o incluso empeora. Mientras las dos mejoran juntas, la red está aprendiendo. Cuando se separan, está memorizando.
 
 Un riesgo mayor lo tienen las redes con muchos pesos y pocos datos, como la nuestra. Por eso se usan varias defensas, que ya conocemos. Más datos, y variados. El aumento de datos, que ofrece variaciones. La transferencia, que parte de una red que ya sabe ver y se mueve poco. Y guardar el mejor modelo según la validación, en lugar del último. Esa última es la que atrapa el sobreajuste cuando ya pasó: aunque el entrenamiento siga después de la época 20, el modelo guardado es el de la época 20.
 
@@ -160,7 +162,7 @@ La primera es que la validación sale de franjas de las mismas fotos de entrenam
 
 Un ejemplo extremo lo da el modelo de campo claro. Su validación tiene solo 2 espermatozoides, y por eso todas sus medidas dan 1.00. Un 1.00 es un número perfecto y no prueba nada. El propio cuaderno avisa que con menos de 10 espermatozoides no se puede elegir nada con la validación, y deja el umbral en 0.5.
 
-También se cuentan fotos completas. En dos fotos con pocas células, la red marcó de más: 11 donde hay 6 etiquetados y 16 donde hay 10. En las dos fotos densas quedó cerca, 119 contra 120 y 119 contra 122, pero esas fotos incluyen zonas con las que se entrenó, así que no prueban calidad.
+También se cuentan fotos completas, y en pantalla están como pares de barras: las etiquetadas y las detectadas. En dos fotos con pocas células, la red marcó de más: 11 donde hay 6 etiquetados y 16 donde hay 10. En las dos fotos densas quedó cerca, 119 contra 120 y 119 contra 122, pero esas fotos incluyen zonas con las que se entrenó, así que no prueban calidad.
 
 Lo que cambiaría la confianza son fotos nuevas de verdad, de otro día o de otro equipo, etiquetadas por alguien más. Hasta entonces, el sitio dice lo que es: un modelo preliminar, y sus resultados se revisan.
 
@@ -168,7 +170,7 @@ Lo que cambiaría la confianza son fotos nuevas de verdad, de otro día o de otr
 
 > Idea central: Mejorar el modelo es mejorar los datos: más fotos variadas, ejemplos sin espermatozoides para que aprenda a no marcar nada, validación con fotos nuevas y una corrida nueva que se compara con la anterior. El sitio no aprende de lo que suben los usuarios.
 
-¿Cómo se mejora el modelo? Casi siempre mejorando los datos, no la red. Hay cuatro pasos.
+¿Cómo se mejora el modelo? Casi siempre mejorando los datos, no la red. Hay cuatro pasos, y en pantalla cada uno lleva su esquema.
 
 Primero, reunir más fotos, y variadas: densas y escasas, con fibras, de distinta iluminación y de más de un día. La variedad pesa más que la cantidad. Segundo, agregar fotos sin espermatozoides, como de otros tejidos. El cuaderno tiene una opción para usar fotos sin etiquetas como ejemplos de que aquí no hay nada. Por defecto no las incluye, y hoy el modelo no tiene fotos así. De ahí que pueda marcar manchas o sombras.
 
@@ -180,7 +182,7 @@ Una aclaración sobre algo que se pregunta mucho. El sitio no aprende de las fot
 
 > Idea central: En el módulo 2 vimos cómo ve una red convolucional, cómo trabaja Mask R-CNN, cómo la transferencia permite entrenar con pocas fotos y cómo se anotan, separan y miden los datos. En el módulo 3, el sitio funcionando y el código.
 
-Cerramos el módulo 2 con un resumen. En este video vimos que un dato es una foto con el contorno de cada espermatozoide, y que no hay un número fijo de fotos: depende de la variedad y de cómo se mida. Vimos cómo se anota en CVAT, por qué el criterio es lo más delicado y cómo un borrador automático ayuda si se corrige. Vimos cómo se separan los datos y por qué, con cuatro fotos, la validación es débil. Vimos el aumento de datos, el entrenamiento en Colab, y las medidas de precisión, exhaustividad, F1 y AP50 con su ejemplo numérico. Vimos el umbral, el sobreajuste y la gráfica de curvas. Y vimos que las cifras actuales son preliminares y que mejorar el modelo es, sobre todo, mejorar los datos.
+Cerramos el módulo 2 con un resumen. Arriba, en pantalla, hay una imagen de cada uno de los cuatro videos. En este video vimos que un dato es una foto con el contorno de cada espermatozoide, y que no hay un número fijo de fotos: depende de la variedad y de cómo se mida. Vimos cómo se anota en CVAT, por qué el criterio es lo más delicado y cómo un borrador automático ayuda si se corrige. Vimos cómo se separan los datos y por qué, con cuatro fotos, la validación es débil. Vimos el aumento de datos, el entrenamiento en Colab, y las medidas de precisión, exhaustividad, F1 y AP50 con su ejemplo numérico. Vimos el umbral, el sobreajuste y la gráfica de curvas. Y vimos que las cifras actuales son preliminares y que mejorar el modelo es, sobre todo, mejorar los datos.
 
 Y de todo el módulo, lo que une los cuatro videos: un filtro que recorre la imagen, una red de cinco etapas que encuentra y contornea, una red preentrenada que ahorra fotos, y unas fotos bien anotadas y bien medidas.
 

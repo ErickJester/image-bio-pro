@@ -59,6 +59,22 @@ Origen de las imágenes:
 - La diapositiva 12 redibuja las curvas del video 3 en fondo oscuro y marca la época 20.
 - Las notas del orador de cada diapositiva resumen lo que dice el guion.
 
+## Imágenes agregadas al ajustar el mazo y el guion
+
+Se agregaron imágenes y esquemas a diez diapositivas, y el guion (las dos versiones) dice ahora lo que se ve en cada una. Las imágenes calculadas salen de la imagen de muestra del sitio; los dibujos son esquemas propios.
+
+- **1:** una imagen en cada tarjeta: un espermatozoide con su contorno, la curva de la pérdida y las zonas de una foto (entrenar, margen, validar).
+- **3:** un dibujo por factor (tres recortes con distinta luz, espermatozoides aislados contra encimados, y los filtros de una red preentrenada).
+- **4:** a la izquierda el borrador del pre-anotador (`scripts/preanotar.py`, función `detectar_cabezas`) sobre un espermatozoide de la imagen de muestra, y a la derecha el contorno corregido con sus vértices. El contorno corregido es el del modelo, usado como ejemplo.
+- **5:** el contorno completo (cabeza y primer tramo de cola) y un dibujo de dos contornos del mismo espermatozoide para el IoU entre personas.
+- **8:** la salida real del cuaderno de la corrida de ejemplo (épocas 1, 2, 5 y 20, con la pérdida, el tiempo y el AP50).
+- **9:** un recorte de la imagen de muestra con los tres casos (acierto, marca falsa y espermatozoide que se escapó), solo para verlos. Sus cifras no son las de la validación.
+- **10:** una gráfica de la precisión, la exhaustividad y el F1 según el umbral, con la tabla.
+- **13:** esquemas de las tres debilidades y los conteos de fotos completas como pares de barras.
+- **14:** un esquema por paso.
+- **15:** una imagen de cada video del módulo (filtros, contornos de la red, mapa de una red preentrenada y un polígono).
+- **11:** sigue con el esquema de dos curvas (no sale de los datos del proyecto); el guion lo dice.
+
 ## Pendiente de confirmar
 
 - **Documentos que se contradicen.** `docs/base-conocimiento/04-resultados.md` y `06-preguntas.md` describen el modelo de fluorescencia del sitio con AP50 0.888, umbral 0.8 y 66 espermatozoides en la validación, que son los de la corrida del cuaderno de ejemplo. El archivo `model/fluorescencia.pt` guarda AP50 0.9148 y umbral 0.9, y `docs/contexto-qa.md` dice AP50 0.91. Hay que decidir cuál corrida está en el servidor y corregir los documentos. El guion no afirma cuál es la del sitio.
