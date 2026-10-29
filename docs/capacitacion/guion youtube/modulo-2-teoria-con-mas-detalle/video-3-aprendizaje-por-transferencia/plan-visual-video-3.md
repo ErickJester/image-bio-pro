@@ -50,6 +50,8 @@ Origen de las imágenes:
 - La diapositiva 9 grafica la pérdida (épocas 1 a 46) y el AP50 (épocas 5 a 45) de la salida del cuaderno.
 - El mazo calcula lo congelado como 222,400 pesos (9,408 de la primera capa y 212,992 del primer bloque). Con las capas de normalización fijas, estas no cuentan como pesos.
 - Las notas del orador de cada diapositiva resumen lo que dice el guion.
+- La diapositiva 4 muestra, además de los 64 filtros, un mapa de cada uno de los cuatro bloques de la base (128, 64, 32 y 16 por lado) calculado con una tesela de la imagen de muestra, porque el guion dice "los filtros y los mapas que producen, de menor a mayor profundidad".
+- La diapositiva 6 lleva un dibujo propio, aunque el guion dice "una foto de ese tipo, con sus contornos". Para usar una foto de COCO hay que revisar la licencia de esa foto y poner su crédito; si no, cambiar la frase del guion por "un dibujo".
 
 ## Pendiente de confirmar
 

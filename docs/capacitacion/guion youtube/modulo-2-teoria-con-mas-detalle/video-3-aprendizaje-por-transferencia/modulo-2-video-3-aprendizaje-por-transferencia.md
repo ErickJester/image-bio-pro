@@ -4,7 +4,7 @@ BioImage-Repro UAM · Módulo 2 · Capacitación en video
 
 Continúa del video anterior. Empieza con la frase que lo une con el video anterior.
 
-*3,369 palabras, unos 19.3 min de habla*
+*3,377 palabras, unos 19.3 min de habla*
 
 [Diapositiva 1 · Mucha red y pocas fotos]
 
@@ -14,7 +14,7 @@ El video anterior terminó con una pregunta que quedó abierta. Mask R-CNN tiene
 
 La respuesta se llama aprendizaje por transferencia, o transfer learning en inglés. La idea cabe en una frase: en lugar de empezar con una red que no sabe nada, se empieza con una que ya aprendió a ver con otras fotos, y se le enseña solo lo que falta.
 
-En pantalla están los números que plantean el problema. Del lado izquierdo, una red con 43.9 millones de pesos. Del derecho, las fotos de las que disponemos: en el cuaderno de entrenamiento que usamos de ejemplo, cuatro fotos de fluorescencia con 258 espermatozoides etiquetados. Más adelante revisamos esos números con calma. Por ahora quedémonos con la desproporción: muchísimos pesos y muy pocos ejemplos.
+En pantalla están los números que plantean el problema. Del lado izquierdo, una red con 43.9 millones de pesos. Del derecho, nuestros datos, los del cuaderno de entrenamiento que usamos de ejemplo: cuatro fotos de fluorescencia con 258 espermatozoides etiquetados, de los que 163 se usan para entrenar y 64 para validar. Más adelante revisamos esos números con calma. Por ahora quedémonos con la desproporción: muchísimos pesos y muy pocos ejemplos.
 
 Vamos a ver tres cosas. Primero, por qué empezar de cero es difícil. Segundo, qué se reutiliza de la red que ya aprendió y qué se cambia. Y tercero, qué pasa cuando se entrena así, con números de un entrenamiento real, y dónde se queda corta la idea.
 

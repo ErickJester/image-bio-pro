@@ -12,7 +12,7 @@ El video anterior terminó con una pregunta. Mask R-CNN tiene casi 44 millones d
 
 La respuesta se llama aprendizaje por transferencia. En inglés, transfer learning. La idea cabe en una frase. En lugar de empezar con una red que no sabe nada, se empieza con una que ya aprendió a ver con otras fotos. Y solo se le enseña lo que falta.
 
-En pantalla están los números del problema. A la izquierda, una red con 43.9 millones de pesos. A la derecha, nuestras fotos. En el cuaderno de entrenamiento que usamos de ejemplo, son cuatro fotos de fluorescencia con 258 espermatozoides etiquetados. Luego revisamos esos números con calma. Por ahora quedémonos con la desproporción. Muchísimos pesos. Muy pocos ejemplos.
+En pantalla están los números del problema. A la izquierda, una red con 43.9 millones de pesos. A la derecha, nuestros datos, los del cuaderno de entrenamiento que usamos de ejemplo. Cuatro fotos de fluorescencia con 258 espermatozoides etiquetados. De ellos, 163 se usan para entrenar y 64 para validar. Luego revisamos esos números con calma. Por ahora quedémonos con la desproporción. Muchísimos pesos. Muy pocos ejemplos.
 
 Vamos a ver tres cosas. Primero, por qué empezar de cero es difícil. Segundo, qué se reutiliza de la red que ya aprendió y qué se cambia. Y tercero, qué pasa cuando se entrena así, con números de un entrenamiento real, y dónde se queda corta la idea.
 
