@@ -33,7 +33,7 @@ Este video no lleva mazo. Se graba la pantalla: el editor con el código, una te
 
 ## Comprobar antes de grabar
 
-- **Resultado de pytest.** El guion no dice cuántas pruebas hay ni cuántas pasan: se lee en pantalla el resultado del día. La documentación (`docs/base-conocimiento`) cita 33 pruebas con una omitida, pero desde entonces se agregaron pruebas (recuperar contraseña) y esa cifra no se debe repetir sin comprobarla. La prueba con los modelos reales se omite si no está `PROBAR_MODELOS=1`; es lo esperado.
+- **Resultado de pytest.** El guion no dice cuántas pruebas hay ni cuántas pasan: se lee en pantalla el resultado del día. La documentación (`docs/base-conocimiento`) cita 33 pruebas con una omitida, pero desde entonces se agregaron pruebas (recuperar contraseña) y esa cifra no se debe repetir sin comprobarla. La prueba con los modelos reales se omite si no está `PROBAR_MODELOS=1`; es lo esperado. El 29/10/2026, en este equipo, el resultado fue 39 pruebas recogidas: 38 pasaron y 1 se omitió.
 - **La petición sin token (tramo 6).** El guion dice que `fetch('/salir', {method: 'POST'})` sin token da 400 con la sesión abierta. Probarlo antes: debe responder 400 y la sesión debe seguir abierta.
 - **`flask --app run routes` (tramo 4).** Debe mostrar las 19 rutas propias más la de archivos estáticos. Si el número cambia, cambiar el guion.
 - **Líneas que nombra el guion.** Se comprobaron con el código de la versión 1.11.0 (tabla de abajo). Si cualquiera de esos archivos cambia, hay que volver a comprobarlas.
@@ -63,7 +63,7 @@ Este video no lleva mazo. Se graba la pantalla: el editor con el código, una te
 | `docker-compose.yml` | variables de correo 16 a 20 |
 | `Dockerfile` | `CMD` 23 |
 | `deploy/nginx.conf` | `client_max_body_size` 41; esperas 49 a 51 |
-| `tests/test_sistema.py` | fixture `app` 20 a 33 |
+| `tests/test_sistema.py` | fixture `app` 18 a 30 |
 | `tests/test_modelo.py` | prueba con los modelos reales 59 |
 
 ## Cosas que el guion dice con cuidado

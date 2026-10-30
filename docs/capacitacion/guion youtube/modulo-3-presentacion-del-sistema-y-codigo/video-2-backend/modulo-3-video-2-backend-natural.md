@@ -330,7 +330,7 @@ En las rutas, el CSV se entrega como respuesta en el momento, y el PDF se lee de
 
 > Idea central: Gunicorn corre con un proceso y cuatro hilos, para que los modelos se carguen una sola vez, y con tiempo máximo de 1,800 segundos, igual que Nginx. Las pruebas con pytest recorren el flujo completo sin los modelos, y comprueban que el sitio funcione, no que el conteo sea científicamente correcto.
 
-> En pantalla: Editor: la última línea de `Dockerfile` (23) y `deploy/nginx.conf`, líneas 41 y 49 a 51; después terminal: `python -m pytest`, y el editor en `tests/test_sistema.py` (fixture `app`, líneas 20 a 33) y en `tests/test_modelo.py` (línea 59).
+> En pantalla: Editor: la última línea de `Dockerfile` (23) y `deploy/nginx.conf`, líneas 41 y 49 a 51; después terminal: `python -m pytest`, y el editor en `tests/test_sistema.py` (fixture `app`, líneas 18 a 30) y en `tests/test_modelo.py` (línea 59).
 
 [Acción: Dockerfile, línea 23]
 
@@ -348,7 +348,7 @@ Esto es una decisión de simplicidad, y sus límites son claros. No hay una cola
 
 Y las pruebas. Con la orden python -m pytest se ejecutan todas. Este es el resultado de hoy.
 
-[Acción: tests/test_sistema.py, fixture app, líneas 20 a 33]
+[Acción: tests/test_sistema.py, fixture app, líneas 18 a 30]
 
 Las pruebas recorren el flujo completo con un cliente de pruebas de Flask, que simula un navegador. Una cuenta se registra, entra, sube una imagen, ve los resultados y descarga el CSV y el PDF. También comprueban lo que no debe pasar. Que un análisis ajeno dé 404. Que un formato no permitido se rechace. Que más de diez imágenes se rechacen. Que una redirección a otro sitio se bloquee. Que el enlace de recuperación solo sirva una vez.
 
