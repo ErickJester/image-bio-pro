@@ -2,10 +2,12 @@
 
 Plan para escribir los guiones de los cuatro videos del módulo 3 (videos 8 a 11 del curso). Está hecho leyendo el código del repositorio en la versión 1.11.0, la documentación en `docs/` y el README de capacitación. Los guiones de los videos 1 y 2 ya están hechos, en formato de pantalla; los videos 3 y 4 faltan.
 
+> **Cambio de orden (30 de octubre de 2026).** El backend abre el módulo y el sitio funcionando va al final. Orden actual: 1 Backend, 2 Inferencia con recortes, 3 Medición, escala y retos, 4 Frontend: el sitio funcionando. Los números 8 a 11 de abajo son los del curso. Los títulos y el orden del sitio (`_VIDEOS` en `app/sitio.py`) todavía siguen el orden anterior.
+
 ## Qué es el módulo
 
 - Es el primer módulo donde el sitio se ve funcionando y casi todo es código en pantalla. No hay taller de práctica: el código se muestra en demostración.
-- Cuatro videos de unos 20 minutos (unas 3,300 a 3,500 palabras cada uno). Cada uno abre con una frase que lo une con el anterior. El video 1 abre uniendo con el módulo 2.
+- Cuatro videos de unos 20 minutos (unas 3,300 a 3,500 palabras cada uno). Cada uno abre con una frase que lo une con el anterior. El video 1 (backend) abre el módulo, uniendo con el módulo 2, y el video 4 (el sitio funcionando) lo cierra.
 - Mismo formato que los módulos anteriores: guion humanizado y guion natural, cada uno con su Word; una guía de pantalla en lugar del plan visual y del mazo (el módulo se graba mostrando el sitio y el código mientras se habla; los bloques `> En pantalla:` del guion dicen qué se abre en cada tramo); y los datos del video para YouTube (título, descripción, capítulos).
 - Los títulos y las descripciones cortas ya están en el sitio (`app/sitio.py`, diccionario `_VIDEOS`, números 8 a 11): Frontend: el sitio funcionando; Backend; Inferencia con recortes; Medición, escala y retos. Los guiones deben usar esos títulos.
 
@@ -15,59 +17,26 @@ El README de capacitación lo deja pendiente. Se puede reutilizar, ya escrito, d
 
 | Material | Dónde está | Dónde vuelve |
 |---|---|---|
-| Python, Flask y servidor | Video 3 anterior, diapositivas 7, 8 y 10 | Video 2 (backend) |
-| Media y desviación estándar, con un ejemplo | Video 1 anterior, diapositiva 9 | Video 4 (medición) |
-| Dos tipos de imagen, dos modelos | Video 2 anterior, diapositiva 10 | Video 3 (inferencia) |
-| Entrenamiento aparte, inferencia en el servidor | Video 4 anterior, diapositiva 1 | Video 3 (inferencia) |
+| Python, Flask y servidor | Video 3 anterior, diapositivas 7, 8 y 10 | Video 1 (backend) |
+| Media y desviación estándar, con un ejemplo | Video 1 anterior, diapositiva 9 | Video 3 (medición) |
+| Dos tipos de imagen, dos modelos | Video 2 anterior, diapositiva 10 | Video 2 (inferencia) |
+| Entrenamiento aparte, inferencia en el servidor | Video 4 anterior, diapositiva 1 | Video 2 (inferencia) |
 | Colab y cómo se ve un cuaderno | Video 3 anterior, diapositivas 6 y 11 | Módulo 4, no aquí |
 
 ## Vista general
 
 | Video | Título | Qué es | Archivos que se muestran |
 |---|---|---|---|
-| 8 (módulo 3, video 1) | Frontend: el sitio funcionando | Sitio en demostración y después cómo está hecho | `app/templates/` (base, resultados, ia), `app/static/estilos.css`, `app/static/sitio.js` |
-| 9 (video 2) | Backend | Qué pasa desde que se sube una imagen hasta que se descargan los resultados | `app/__init__.py`, `app/analisis/rutas.py`, `app/cuentas.py`, `app/modelos.py`, `app/analisis/reportes.py`, `tests/` |
-| 10 (video 3) | Inferencia con recortes | Cómo el servidor usa el modelo | `app/analisis/modelo.py` |
-| 11 (video 4) | Medición, escala y retos | Del contorno a las medidas, la escala y lo que costó resolver | `app/analisis/medicion.py` |
+| 8 (módulo 3, video 1) | Backend | Qué pasa desde que se sube una imagen hasta que se descargan los resultados | `app/__init__.py`, `app/analisis/rutas.py`, `app/cuentas.py`, `app/modelos.py`, `app/analisis/reportes.py`, `tests/` |
+| 9 (video 2) | Inferencia con recortes | Cómo el servidor usa el modelo | `app/analisis/modelo.py` |
+| 10 (video 3) | Medición, escala y retos | Del contorno a las medidas, la escala y lo que costó resolver | `app/analisis/medicion.py` |
+| 11 (video 4) | Frontend: el sitio funcionando | Sitio en demostración y después cómo está hecho | `app/templates/` (base, resultados, ia), `app/static/estilos.css`, `app/static/sitio.js` |
 
-## Video 8: Frontend, el sitio funcionando
-
-**Objetivo:** que quien ve el video sepa usar el sitio completo y entienda con qué está hecha cada pantalla. Va en dos partes: unos 8 minutos de recorrido y 12 de código.
-
-**Frase de unión:** el módulo 2 terminó con una red y unos datos; ahora se ve para qué sirve todo eso en una página que cualquiera usa.
-
-**Diapositivas propuestas (16):**
-
-| N.º | Diapositiva | Qué se muestra | Pantallas existentes |
-|---|---|---|---|
-| 1 | De la teoría al sitio | Mapa del módulo 3 | |
-| 2 | Lo que ve el visitante | Inicio, Nosotros, Aliados, Infografías, Contacto | 01 a 06 |
-| 3 | Español e inglés | El selector y la traducción automática | 07 |
-| 4 | Crear la cuenta y entrar | Registro, inicio de sesión y recuperar la contraseña | 08 a 11 |
-| 5 | Analizar una imagen | Formatos, hasta 10 imágenes, errores, la espera | 12 a 14 |
-| 6 | Los resultados | Conteo, área media, desviación estándar y la imagen marcada | 15 a 17 |
-| 7 | Revisar a mano | Zoom, detalle al pasar el cursor y tabla por espermatozoide | 18 a 24 |
-| 8 | Varias imágenes, descargas e historial | Promedio, CSV, PDF y "Mis análisis" | 25 a 31 |
-| 9 | Cómo está hecho el frontend | Plantillas Jinja2, Bootstrap, una hoja de estilos y un archivo de JavaScript. Sin framework | |
-| 10 | La plantilla base | `base.html`: bloques, menú, mensajes (`get_flashed_messages`), pie | |
-| 11 | Una plantilla con datos | `resultados.html`: `for`, `if`, filtros como `sort`, `url_for` y el token CSRF de los formularios | |
-| 12 | La imagen con una zona por espermatozoide | El SVG con un polígono por contorno y el detalle de `sitio.js` (`iniciarDetalleEsperma`) | |
-| 13 | El visor con zoom | Ventana de Bootstrap con eventos del puntero (`iniciarVisorZoom`) | |
-| 14 | La gráfica | Chart.js con datos que el servidor mete con `tojson` | |
-| 15 | Detalles que importan | `aria-label`, la tabla como alternativa a la gráfica, `no-imprimir` y `notranslate` | |
-| 16 | Lo que vimos y lo que sigue | Resumen y puente al backend | |
-
-**Cifras comprobadas:** 15 plantillas en `app/templates`; `estilos.css` de 1,210 líneas; `sitio.js` de 273 líneas y `videos.js` de 86; Bootstrap 5.3.3 y Chart.js 4.4.1 desde CDN; hasta 10 imágenes por análisis y 300 MB por envío.
-
-**Preparar antes de grabar:**
-- Las 31 capturas de `docs/capacitacion/capturas` son del 19 de octubre. Desde entonces cambiaron el pie de página (v1.10), Videos e Infografías (v1.8) y apareció "¿Olvidaste tu contraseña?" (v1.11). Hay que repetir al menos las de inicio, el pie, la entrada y el menú, y agregar la de recuperar contraseña.
-- Decidir dónde se graba la demostración (ver "Decisiones").
-
-## Video 9: Backend
+## Video 8: Backend
 
 **Objetivo:** seguir una imagen desde que se sube hasta que se guardan sus resultados, y explicar por qué cada pieza está donde está.
 
-**Frase de unión:** el video anterior mostró lo que ve la persona; ahora se ve lo que pasa del otro lado.
+**Frase de unión:** el módulo 2 terminó con una red y unos datos, y un modelo por sí solo es un archivo que no hace nada; hace falta un sitio. Este video abre el módulo: presenta los cuatro videos y muestra el sitio por detrás, usándolo solo lo necesario. La demostración completa queda para el último video.
 
 **Diapositivas propuestas (14):**
 
@@ -92,7 +61,7 @@ El README de capacitación lo deja pendiente. Se puede reutilizar, ya escrito, d
 
 **Preparar antes de grabar:** correr `python -m pytest` en pantalla y anotar el resultado de ese día. La documentación dice 33 pruebas con 32 pasadas y 1 omitida, pero desde entonces se agregaron pruebas (recuperar contraseña); no repetir esa cifra sin comprobarla.
 
-## Video 10: Inferencia con recortes
+## Video 9: Inferencia con recortes
 
 **Objetivo:** que se entienda cómo `modelo.py` repite en el servidor lo que hizo el cuaderno, y por qué hay que mantenerlos iguales. Une con el módulo 2 (video 2 sobre Mask R-CNN y video 4 sobre validación).
 
@@ -121,7 +90,7 @@ El README de capacitación lo deja pendiente. Se puede reutilizar, ya escrito, d
 
 **Cuidado con los tiempos:** hay cifras de escritorio (unos 40 s por foto de 1792 en fluorescencia) y de Colab en CPU (unos 2.6 s por tesela). Del servidor real no hay medición. No dar un tiempo del VPS en el video hasta medirlo.
 
-## Video 11: Medición, escala y retos
+## Video 10: Medición, escala y retos
 
 **Objetivo:** mostrar cómo el código convierte un contorno en números, de qué depende la escala y qué dificultades tuvo el proyecto. Cierra el módulo.
 
@@ -148,20 +117,53 @@ El README de capacitación lo deja pendiente. Se puede reutilizar, ya escrito, d
 
 **Cifras comprobadas:** `PX_POR_MICRA` = 60; regla de 300 px = 5 µm; histograma de 10 intervalos; aviso con menos de 3 espermatozoides; área mínima de 20 píxeles solo en la detección provisional.
 
+## Video 11: Frontend, el sitio funcionando
+
+**Objetivo:** que quien ve el video sepa usar el sitio completo y entienda con qué está hecha cada pantalla. Es el último video del módulo 3. Va en dos partes: unos 8 minutos de recorrido y 12 de código.
+
+**Frase de unión:** el backend, el modelo y la medición ocurren por detrás; ahora se ve todo junto en el sitio que cualquiera usa. Cierra el módulo y apunta al módulo 4 (el cuaderno de Colab y el despliegue).
+
+**Diapositivas propuestas (16):**
+
+| N.º | Diapositiva | Qué se muestra | Pantallas existentes |
+|---|---|---|---|
+| 1 | De la teoría al sitio | Mapa del módulo 3 | |
+| 2 | Lo que ve el visitante | Inicio, Nosotros, Aliados, Infografías, Contacto | 01 a 06 |
+| 3 | Español e inglés | El selector y la traducción automática | 07 |
+| 4 | Crear la cuenta y entrar | Registro, inicio de sesión y recuperar la contraseña | 08 a 11 |
+| 5 | Analizar una imagen | Formatos, hasta 10 imágenes, errores, la espera | 12 a 14 |
+| 6 | Los resultados | Conteo, área media, desviación estándar y la imagen marcada | 15 a 17 |
+| 7 | Revisar a mano | Zoom, detalle al pasar el cursor y tabla por espermatozoide | 18 a 24 |
+| 8 | Varias imágenes, descargas e historial | Promedio, CSV, PDF y "Mis análisis" | 25 a 31 |
+| 9 | Cómo está hecho el frontend | Plantillas Jinja2, Bootstrap, una hoja de estilos y un archivo de JavaScript. Sin framework | |
+| 10 | La plantilla base | `base.html`: bloques, menú, mensajes (`get_flashed_messages`), pie | |
+| 11 | Una plantilla con datos | `resultados.html`: `for`, `if`, filtros como `sort`, `url_for` y el token CSRF de los formularios | |
+| 12 | La imagen con una zona por espermatozoide | El SVG con un polígono por contorno y el detalle de `sitio.js` (`iniciarDetalleEsperma`) | |
+| 13 | El visor con zoom | Ventana de Bootstrap con eventos del puntero (`iniciarVisorZoom`) | |
+| 14 | La gráfica | Chart.js con datos que el servidor mete con `tojson` | |
+| 15 | Detalles que importan | `aria-label`, la tabla como alternativa a la gráfica, `no-imprimir` y `notranslate` | |
+| 16 | Lo que vimos y lo que sigue | Resumen y puente al backend | |
+
+**Cifras comprobadas:** 15 plantillas en `app/templates`; `estilos.css` de 1,210 líneas; `sitio.js` de 273 líneas y `videos.js` de 86; Bootstrap 5.3.3 y Chart.js 4.4.1 desde CDN; hasta 10 imágenes por análisis y 300 MB por envío.
+
+**Preparar antes de grabar:**
+- Las 31 capturas de `docs/capacitacion/capturas` son del 19 de octubre. Desde entonces cambiaron el pie de página (v1.10), Videos e Infografías (v1.8) y apareció "¿Olvidaste tu contraseña?" (v1.11). Hay que repetir al menos las de inicio, el pie, la entrada y el menú, y agregar la de recuperar contraseña.
+- Decidir dónde se graba la demostración (ver "Decisiones").
+
 ## Cosas del código que el guion debe decir con cuidado
 
 1. **El color se calcula pero no se muestra.** `medir_cabeza` calcula `indice_color` y `asignar_grados` los reparte en 10 grados, y se guardan, pero ni la pantalla ni el CSV ni el PDF los muestran (indicación del cliente del 16 de octubre). El guion no debe decir que el sistema entrega el color. Conviene mencionarlo en una frase, con el código a la vista, para que no sorprenda.
 2. **Los nombres heredados.** En los datos guardados la lista de espermatozoides se llama `cabezas`, y la clase del modelo, "cabeza", aunque el contorno cubre la cabeza y el primer tramo de la cola. El código lo explica en un comentario; el video debe decirlo.
 3. **El largo.** Es el lado mayor del rectángulo mínimo del contorno, no la longitud a lo largo de la curva. El README principal aún dice otra cosa en algunos lugares (pendiente anotado en el README de capacitación).
 4. **La escala.** Es una constante provisional. La tabla de escalas y el mensaje a Saúl para pedir la calibración siguen pendientes (`docs/integracion-modelos.md`).
-5. **Los números del modelo.** Los documentos dicen AP50 0.888 y umbral 0.8 para el modelo del sitio, pero el archivo `model/fluorescencia.pt` guarda 0.9148 y 0.9. Si el video 10 dice un umbral, debe ser el del archivo (0.9).
+5. **Los números del modelo.** Los documentos dicen AP50 0.888 y umbral 0.8 para el modelo del sitio, pero el archivo `model/fluorescencia.pt` guarda 0.9148 y 0.9. Si el video 9 dice un umbral, debe ser el del archivo (0.9).
 6. **La calidad.** Las pruebas automáticas y la prueba de integración comprueban que el sitio usa bien el modelo, no la calidad científica. El guion lo dice así.
 
 ## Decisiones que hacen falta
 
 1. **Dónde se graba la demostración.** El sitio en producción está en la versión 1.0.0 y el repositorio va en la 1.11.0. Opciones: (a) actualizar el VPS antes de grabar (`git pull` y `docker compose up -d --build`) y grabar en `imagebiopro.cloud`; (b) grabar en la computadora con `python run.py`. La opción (a) muestra el sitio real, pero recuperar la contraseña exige configurar el correo en el servidor; con (b) se puede mostrar el aviso de "correo sin configurar".
 2. **Cuánto código se muestra en pantalla.** Propuesta: fragmentos de 8 a 15 líneas por diapositiva, con el nombre del archivo, y una captura del editor con el código completo solo cuando ayuda. No más de 8 fragmentos por video.
-3. **Si el video 8 se divide.** Con 8 minutos de recorrido más 12 de código, queda justo. Alternativa: dejar la demostración del sitio al principio del video 8 y pasar la parte de Chart.js y el visor de zoom a un recuadro opcional.
+3. **Si el video 11 se divide.** Con 8 minutos de recorrido más 12 de código, queda justo. Alternativa: dejar la demostración del sitio al principio del video 11 y pasar la parte de Chart.js y el visor de zoom a un recuadro opcional.
 4. **Los títulos de YouTube.** Siguen la numeración del curso (8 a 11). Hay que confirmar que los títulos del sitio (`_VIDEOS`) son los que se van a usar.
 
 ## Orden de trabajo propuesto
@@ -175,4 +177,4 @@ Un video a la vez, en este orden, con el mismo recorrido que en el módulo 2:
 5. Comprobar que las dos versiones traen las mismas cifras.
 6. Archivo `.txt` de YouTube, cuando exista el video grabado, para que los capítulos salgan de los tiempos reales.
 
-Los videos 9, 10 y 11 dependen poco entre sí, pero conviene escribirlos en orden: cada uno abre con una frase que lo une con el anterior y los tres usan las mismas cifras de `modelo.py` y `medicion.py`.
+Los videos 9 y 10 (inferencia y medición) usan las mismas cifras de `modelo.py` y `medicion.py`, y el video 11 (el sitio) se apoya en los tres anteriores, así que conviene escribirlos en orden.

@@ -1,32 +1,26 @@
-# Guion del módulo 3, video 1 de 4: Frontend, el sitio funcionando (versión natural)
+# Guion del módulo 3, video 4 de 4: Frontend, el sitio funcionando (versión natural)
 
 BioImage-Repro UAM · Módulo 3 · Capacitación en video
 
 Segunda versión, escrita para decirse en voz alta mientras se muestra la pantalla, sin mazo: frases cortas, ritmo de conversación, sin guiones largos. Empieza con la frase que lo une con el video anterior.
 
-*3,449 palabras, unos 19.7 min de habla*
+*3,446 palabras, unos 19.7 min de habla*
 
 Las líneas que empiezan con [Acción: …] no se leen en voz alta: marcan en qué frase se cambia de pantalla, se hace clic o se baja. El bloque En pantalla de cada tramo resume lo que se abre en él.
 
-[Pantalla 1 · De la teoría al sitio]
+[Pantalla 1 · El sitio completo]
 
-> Idea central: El módulo 2 terminó con un modelo entrenado y unos datos. Un archivo de modelo no hace nada por sí solo: el sitio lo pone al alcance de quien no programa. Este video tiene dos partes: un recorrido por el sitio y cómo está hecho el frontend, la parte que se ve.
+> Idea central: Este es el último video del módulo 3. Ya vimos lo que pasa por detrás, en el backend, el modelo y la medición. Ahora se ve todo junto en el sitio funcionando: un recorrido como lo ve una persona y cómo está hecho el frontend, la parte que se ve.
 
-> En pantalla: Empieza en el explorador de archivos, en la carpeta `model/`, con `fluorescencia.pt` a la vista: es el modelo del módulo 2, un archivo que por sí solo no hace nada. Cambia al navegador, con la página de inicio del sitio y sin sesión iniciada. Al nombrar los cuatro videos del módulo no hace falta mostrar nada más.
+> En pantalla: Navegador, con la página de inicio del sitio y sin sesión iniciada. No hace falta mostrar nada más mientras recuerdas los tres videos anteriores.
 
-[Acción: el explorador de archivos, en la carpeta model, con fluorescencia.pt a la vista]
+Este es el último video del módulo 3. En el primero vimos el backend: lo que pasa en el servidor cuando alguien sube una imagen. En el segundo, cómo el servidor usa el modelo con recortes de la foto. Y en el tercero, cómo se miden los contornos, de qué depende la escala y qué retos tuvo el proyecto. Todo eso ocurre por detrás, donde nadie lo ve.
 
-En el módulo 2 vimos cómo ve una red convolucional, cómo trabaja Mask R-CNN, cómo la transferencia ahorra fotos y cómo se anotan y se miden los datos. Todo eso termina en un archivo: el modelo entrenado, con casi 44 millones de pesos guardados.
+[Acción: navegador, en la página de inicio del sitio, sin sesión iniciada]
 
-Pero un archivo de modelo, solo, no hace nada.
+Hoy lo vemos todo junto, desde donde lo ve una persona. El sitio funcionando. Gracias al sitio, un modelo entrenado, que de otro modo sería solo un archivo, queda al alcance de quien no programa.
 
-[Acción: cambia al navegador, en la página de inicio del sitio, sin sesión iniciada]
-
-Hace falta una página donde alguien suba una foto y reciba números. De eso trata el módulo 3.
-
-Son cuatro videos. En este vemos el sitio funcionando y cómo está hecha la parte que se ve en el navegador. Eso se llama frontend. En el segundo, el backend: qué pasa del otro lado cuando se sube una imagen. En el tercero, cómo el servidor usa el modelo con recortes de la foto. Y en el cuarto, cómo se miden los contornos, de qué depende la escala y qué retos tuvo el proyecto.
-
-Hoy va en dos partes. Primero un recorrido, como lo haría alguien que entra por primera vez: el inicio, la cuenta, el análisis de una imagen, los resultados y las descargas. Después abrimos el código de esas pantallas en el editor, para ver con qué están hechas.
+Hoy va en dos partes. Primero un recorrido, como lo haría alguien que entra por primera vez: el inicio, la cuenta, el análisis de una imagen, los resultados y las descargas. Después abrimos el código de esas pantallas en el editor, para ver con qué están hechas. Esa parte se llama frontend. Es lo que corre en el navegador de cada persona.
 
 [Pantalla 2 · Lo que ve el visitante]
 
@@ -134,7 +128,7 @@ Cuando termina, el sitio muestra los resultados. Usemos la imagen de ejemplo.
 
 [Acción: señala el nombre, la fecha y el aviso azul de la escala]
 
-Arriba están tu nombre y la fecha. Y un aviso azul con la escala. Para estandarizar el tamaño, se usa la misma en todas las imágenes: 60 píxeles por micra. Esa escala es provisional. Su origen se explica en el cuarto video del módulo.
+Arriba están tu nombre y la fecha. Y un aviso azul con la escala. Para estandarizar el tamaño, se usa la misma en todas las imágenes: 60 píxeles por micra. Esa escala es provisional. Su origen lo vimos en el video anterior.
 
 [Acción: señala los datos del archivo y el aviso verde]
 
@@ -152,7 +146,7 @@ Debajo, en letra más chica, vienen los mismos datos en píxeles. El área media
 
 Más abajo, la distribución de tamaños. Es una gráfica de barras: cuántos espermatozoides caen en cada intervalo de área. Y al final, una tabla con una fila por espermatozoide. Su número, su área y su largo, en píxeles y en micras.
 
-Todos estos números salen del código, no de la red. Eso lo vemos en el último video del módulo.
+Todos estos números salen del código, no de la red. Eso lo vimos en el video de medición.
 
 [Pantalla 7 · Revisar a mano]
 
@@ -238,7 +232,7 @@ Bootstrap y Chart.js se cargan desde internet, de una red de distribución de ar
 
 Las plantillas son 15, en tres carpetas. Una plantilla base, y debajo ocho en la carpeta del sitio, cuatro en cuentas y dos en análisis. Con eso está todo.
 
-¿Por qué sin framework? Porque no hace falta. Casi todo el contenido se arma en el servidor, el JavaScript solo se usa para unos comportamientos puntuales, y un sitio así se entiende abriendo los archivos. Además, Flask corre en el mismo proceso de Python que el modelo, así que no hay una segunda aplicación que mantener. Eso lo vemos en los videos que siguen.
+¿Por qué sin framework? Porque no hace falta. Casi todo el contenido se arma en el servidor, el JavaScript solo se usa para unos comportamientos puntuales, y un sitio así se entiende abriendo los archivos. Además, Flask corre en el mismo proceso de Python que el modelo, así que no hay una segunda aplicación que mantener. Eso lo vimos en los videos anteriores.
 
 [Pantalla 10 · La plantilla base]
 
@@ -406,7 +400,7 @@ Son detalles pequeños. Pero la diferencia entre una página que funciona y una 
 
 [Pantalla 16 · Lo que vimos y lo que sigue]
 
-> Idea central: Vimos el sitio funcionando, de la cuenta a los resultados, y su frontend: plantillas con Jinja2, Bootstrap, JavaScript puntual y Chart.js. En el siguiente video, el backend: qué pasa del otro lado cuando se pulsa analizar.
+> Idea central: Vimos el sitio funcionando, de la cuenta a los resultados, y su frontend: plantillas con Jinja2, Bootstrap, JavaScript puntual y Chart.js. Con esto termina el módulo 3. En el módulo 4, el cuaderno de Colab con el que se entrena el modelo y el despliegue del sitio en la nube.
 
 > En pantalla: Vuelve al navegador, en el inicio del sitio, sin nada más abierto. Es la última pantalla mientras das el resumen y te despides.
 
@@ -418,6 +412,8 @@ Vimos el sitio como lo ve una persona. El inicio, el menú, el cambio de idioma,
 
 Y vimos con qué está hecho. Un frontend sin framework. Plantillas de Jinja2 que Flask llena con datos. Bootstrap para el diseño. Una hoja de estilos con variables. Y un JavaScript pequeño para las partes que cambian en el navegador: el idioma, el visor, el recuadro de detalle y la espera. Una plantilla base con bloques, que las demás extienden. Los datos de cada gráfica escritos con tojson. Y unos detalles de accesibilidad, de impresión y de celular.
 
-En el siguiente video cruzamos al otro lado. Cuando alguien pulsa analizar, el navegador manda las imágenes, y algo del otro lado las recibe, las revisa, las analiza, guarda los resultados y devuelve la página que acabamos de ver. Eso es el backend, y lo recorremos ruta por ruta.
+Con esto termina el módulo 3. Vimos el sitio por detrás, con el backend, el modelo y la medición. Y ahora lo vimos por delante, con su frontend.
+
+Falta lo que lo hace posible. Cómo se entrenó la red, y cómo se puso el sitio en internet para que cualquiera lo pueda visitar. Eso es el módulo 4: el cuaderno de Colab con el que se entrena el modelo, y el despliegue del sitio en la nube.
 
 Gracias por acompañarme.

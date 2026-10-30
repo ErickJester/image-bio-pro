@@ -1,4 +1,4 @@
-# Guía de pantalla del módulo 3, video 2: Backend
+# Guía de pantalla del módulo 3, video 1: Backend
 
 Este video no lleva mazo. Se graba la pantalla: el editor con el código, una terminal y el navegador con el sitio, mientras se habla. En el guion, cada bloque `> En pantalla:` resume qué se abre y qué se hace en ese tramo, y las líneas `[Acción: …]` dentro del texto marcan en qué frase se cambia de pantalla, se hace clic o se baja (no se leen en voz alta). Esta guía junta lo que hay que preparar antes de grabar y las cifras que el guion y la pantalla deben respetar. Si algo cambia en el código, hay que cambiar el guion (las dos versiones) y esta guía.
 

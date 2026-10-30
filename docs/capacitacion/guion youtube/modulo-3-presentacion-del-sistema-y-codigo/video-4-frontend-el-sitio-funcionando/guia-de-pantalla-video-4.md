@@ -1,4 +1,4 @@
-# Guía de pantalla del módulo 3, video 1: Frontend, el sitio funcionando
+# Guía de pantalla del módulo 3, video 4: Frontend, el sitio funcionando
 
 Este video no lleva mazo. Se graba la pantalla: el navegador con el sitio y el editor con el código, mientras se habla. En el guion, cada bloque `> En pantalla:` resume qué se abre y qué se hace en ese tramo, y las líneas `[Acción: …]` dentro del texto marcan en qué frase se cambia de pantalla, se hace clic o se baja (no se leen en voz alta). Esta guía junta lo que hay que preparar antes de grabar y las cifras que el guion y la pantalla deben respetar. Si algo cambia en el sitio o en el código, hay que cambiar el guion (las dos versiones) y esta guía.
 
@@ -11,7 +11,7 @@ Este video no lleva mazo. Se graba la pantalla: el navegador con el sitio y el e
 
 | N.º | Tramo | Dónde | Qué se hace |
 |---|---|---|---|
-| 1 | De la teoría al sitio | Explorador, navegador | Mostrar `model/fluorescencia.pt` y pasar al inicio del sitio |
+| 1 | El sitio completo | Navegador | Inicio del sitio, sin sesión, mientras se recuerdan los tres videos anteriores |
 | 2 | Lo que ve el visitante | Navegador | Bajar el inicio, abrir el menú y entrar a cada sección |
 | 3 | Español e inglés | Navegador | Cambiar a EN y volver a ES; señalar el nombre del proyecto |
 | 4 | Crear la cuenta y entrar | Navegador | Mi cuenta, recuperar contraseña y crear la cuenta de prueba |
@@ -29,6 +29,8 @@ Este video no lleva mazo. Se graba la pantalla: el navegador con el sitio y el e
 | 16 | Lo que vimos y lo que sigue | Navegador | Inicio del sitio mientras se resume |
 
 ## Antes de grabar
+
+- Entorno de Python y sitio encendido: se preparan como en la guía del video 1 (`../video-1-backend/guia-de-pantalla-video-1.md`, secciones Entorno de Python y Antes de grabar). Es el último video del módulo: la demostración usa el sitio completo.
 
 - Sitio con la versión actual del repositorio corriendo en local (`python run.py` o `docker compose up`), con una base de datos aparte y una cuenta de prueba nueva. El sitio de producción va atrás del repositorio (1.0.0 contra 1.11.0), así que no se usa para este video hasta actualizarlo. Mientras no se decida dónde se graba (ver `../../plan-modulo-3.md`), se graba en local.
 - Sin sesión iniciada al empezar: el tramo 4 crea la cuenta frente a la cámara. No usar correos ni nombres de personas reales.
@@ -66,7 +68,7 @@ El guion dice números de línea en pantalla. Se comprobaron con el código de l
 
 - El color de cada cabeza se calcula pero no se muestra en los resultados. El guion no habla de clasificar por color en pantalla.
 - La traducción al inglés es automática (traductor de Google); no es una traducción revisada.
-- La escala de 60 píxeles por micra es provisional. El guion remite al video 4 del módulo.
+- La escala de 60 píxeles por micra es provisional. El guion remite al video anterior del módulo (medición).
 - Si el sitio de producción va atrás del repositorio, la diferencia no se menciona en el video.
 - La consola (F12) solo se usa en el tramo 5, para dejar a la vista la cubierta de espera; hay que decir que es una forma de enseñarla y que no es algo que el visitante haga.
 - La cuenta de prueba se crea frente a la cámara: usar una contraseña de prueba, sin reutilizar ninguna real.

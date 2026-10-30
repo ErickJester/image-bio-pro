@@ -1,10 +1,10 @@
-# Guion del módulo 3, video 2 de 4: Backend
+# Guion del módulo 3, video 1 de 4: Backend
 
 BioImage-Repro UAM · Módulo 3 · Capacitación en video
 
-Se graba con la pantalla: el sitio y el código se muestran mientras hablas, sin mazo. Continúa del video anterior. Empieza con la frase que lo une con el video anterior.
+Se graba con la pantalla: el sitio y el código se muestran mientras hablas, sin mazo. Abre el módulo 3. Empieza con la frase que lo une con el módulo 2 y presenta el módulo.
 
-*5,391 palabras, unos 30.8 min de habla*
+*5,582 palabras, unos 31.9 min de habla*
 
 Las líneas que empiezan con [Acción: …] no se leen en voz alta: marcan en qué frase se cambia de pantalla, se hace clic o se baja. El bloque En pantalla de cada tramo resume lo que se abre en él.
 
@@ -23,9 +23,15 @@ El Python global de este equipo no trae las extensiones de Flask que usa el siti
 
 > En pantalla: Navegador con la cuenta de prueba ya iniciada y la pestaña de red de las herramientas de desarrollo (F12) abierta, con la opción de conservar el registro activa. Pulsa Probar con la imagen de ejemplo y señala las dos peticiones que salen: un POST a `/analizar/prueba` con respuesta 302 y un GET a `/resultados/N` con respuesta 200.
 
+Bienvenidos al módulo 3. En el módulo 2 vimos cómo ve una imagen una red convolucional, cómo trabaja Mask R-CNN, cómo la transferencia ahorra fotos y cómo se anotan y se miden los datos. Todo eso termina en un archivo, el modelo entrenado, con casi 44 millones de pesos guardados. Y un archivo de modelo, por sí solo, no hace nada. Hace falta un sitio donde alguien suba una foto y reciba números.
+
+De eso trata el módulo 3, y son cuatro videos. En este, el primero, vemos el backend: la parte del sitio que corre en el servidor, donde nadie la ve. En el segundo, cómo el servidor usa el modelo con recortes de la foto. En el tercero, cómo se miden los contornos, de qué depende la escala y qué retos tuvo el proyecto. Y en el cuarto, el último, el sitio funcionando, por fuera y por dentro. Esa es la parte que se ve en el navegador, y se llama frontend.
+
+Por eso hoy vamos a ver el sitio por detrás antes de recorrerlo completo. Lo vamos a usar solo lo necesario para ver qué ocurre al subir una imagen. La demostración completa, con calma, la dejamos para el final del módulo.
+
 [Acción: navegador con la cuenta de prueba iniciada; F12, pestaña de red, conservar el registro]
 
-En el video anterior vimos el sitio como lo ve una persona, y la parte que se ve en el navegador, el frontend. Hoy cruzamos al otro lado, al backend: el programa que corre en el servidor, donde nadie lo ve. Cuando alguien pulsa analizar pasan muchas cosas en pocos segundos, y casi ninguna se ve.
+Cuando alguien pulsa analizar pasan muchas cosas en pocos segundos, y casi ninguna se ve.
 
 Antes de seguir, dos palabras que vamos a usar todo el video. Una petición es lo que el navegador le manda al servidor: quiero esta página, o toma esta imagen. Una respuesta es lo que el servidor devuelve. Y las peticiones tienen un método. GET quiere decir pedir algo, como una página. POST quiere decir enviar datos, como una imagen o un formulario.
 
@@ -125,7 +131,7 @@ Una ruta es una dirección del sitio con la función que la atiende. Esta es la 
 
 Veamos cómo se escribe una. Esta línea con una arroba, @bp.route, es un decorador. Un decorador es una línea que se pone encima de una función para darle un comportamiento extra. Aquí, convierte la función en la respuesta de una dirección. Y la palabra bp es el blueprint al que pertenece.
 
-El sitio público tiene siete rutas: el inicio, Nosotros, Aliados, Infografías, Videos, Contacto y el aviso de privacidad. Son funciones cortas. Casi todas hacen una sola cosa: devolver una plantilla, la página con huecos que vimos en el video anterior. La excepción es Contacto, que además recibe el formulario y guarda el mensaje.
+El sitio público tiene siete rutas: el inicio, Nosotros, Aliados, Infografías, Videos, Contacto y el aviso de privacidad. Son funciones cortas. Casi todas hacen una sola cosa: devolver una plantilla, una página con huecos que el servidor llena con datos. Las plantillas las vemos a fondo en el último video del módulo. La excepción es Contacto, que además recibe el formulario y guarda el mensaje.
 
 [Acción: abre app/cuentas.py]
 
@@ -253,7 +259,7 @@ Usuario. Cada línea es una columna. El id es la llave primaria: un número úni
 
 [Acción: líneas 17 y 18: la relación]
 
-La relación de la línea 17 conecta cada usuario con sus análisis, y los ordena del más nuevo al más viejo. Es lo que usa la pantalla de Mis análisis.
+La relación de la línea 17 conecta cada usuario con sus análisis, y los ordena del más nuevo al más viejo. Es lo que usa la pantalla de Mis análisis, que lista los análisis de cada persona.
 
 [Acción: señala la clase Analisis, línea 27, y la propiedad resultados]
 
@@ -291,7 +297,7 @@ Después, un detalle de seguridad. En el disco, cada imagen se guarda con un nom
 
 [Acción: líneas 57 a 61: guardar, analizar y borrar]
 
-La línea 57 guarda la imagen. Y luego viene lo que dijimos en el video anterior: las imágenes no se conservan. Cada una se analiza dentro de un bloque try, y se borra en el finally. Un try y finally funciona así: el try intenta hacer algo, y el finally se ejecuta siempre, pase lo que pase. Si el análisis termina bien, se borra la imagen. Si falla, también. Así no queda ninguna imagen subida en el servidor.
+La línea 57 guarda la imagen. Y luego viene algo que importa para la privacidad: las imágenes no se conservan. Cada una se analiza dentro de un bloque try, y se borra en el finally. Un try y finally funciona así: el try intenta hacer algo, y el finally se ejecuta siempre, pase lo que pase. Si el análisis termina bien, se borra la imagen. Si falla, también. Así no queda ninguna imagen subida en el servidor.
 
 [Acción: líneas 66 a 73: analizar_prueba]
 
@@ -327,7 +333,7 @@ Y por último, no devuelve la página. Devuelve una redirección a la ruta de re
 
 Si la respuesta al POST fuera la página, al recargarla el navegador preguntaría si quieres reenviar el formulario. Y reenviar significaría analizar otra vez. Como la página es el resultado de un GET, recargar la muestra de nuevo, sin repetir el trabajo.
 
-Hay una consecuencia que se nota. El análisis se hace dentro de la misma petición, y el navegador espera. Por eso existe la cubierta de espera que vimos, y por eso el tiempo máximo es tan alto. No hay una cola de tareas aparte, que sería un programa que recibe los trabajos y los hace uno por uno por detrás. Es una decisión de simplicidad, y la vemos al final.
+Hay una consecuencia que se nota. El análisis se hace dentro de la misma petición, y el navegador espera. Por eso el sitio muestra una cubierta de espera mientras se analiza, que veremos en el último video, y por eso el tiempo máximo es tan alto. No hay una cola de tareas aparte, que sería un programa que recibe los trabajos y los hace uno por uno por detrás. Es una decisión de simplicidad, y la vemos al final.
 
 [Pantalla 11 · Cada quien ve lo suyo]
 
@@ -437,4 +443,4 @@ Vimos las protecciones. Las contraseñas se guardan como huella, que no se puede
 
 Vimos la base de datos con sus tres tablas. La ruta de análisis, que valida, guarda con un nombre generado y borra la imagen siempre. Y los reportes en CSV y PDF. Y vimos cómo corre todo en el servidor, y qué comprueban las pruebas y qué no.
 
-En el siguiente video entramos al modelo. En esta ruta, analizar le entrega la imagen a una función y recibe contornos. Qué pasa dentro de esa función, cómo se prepara la foto, cómo se corta en recortes y cómo se recogen las respuestas de la red, es el tema del tercer video. Gracias por acompañarme.
+En el siguiente video entramos al modelo. En esta ruta, analizar le entrega la imagen a una función y recibe contornos. Qué pasa dentro de esa función, cómo se prepara la foto, cómo se corta en recortes y cómo se recogen las respuestas de la red, es el tema del siguiente video. Gracias por acompañarme.

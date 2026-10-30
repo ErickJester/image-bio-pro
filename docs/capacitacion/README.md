@@ -56,12 +56,12 @@ Guiones de los 4 videos terminados en `guion youtube/modulo-2-teoria-con-mas-det
 
 ### Módulo 3. Presentación del sistema y código
 
-Guion del video 1 terminado en `guion youtube/modulo-3-presentacion-del-sistema-y-codigo/` (plan en `plan-modulo-3.md`); los videos 2 a 4 siguen pendientes. Aquí el sitio se presenta funcionando y, a partir de ahí, casi todo es código en pantalla.
+Guiones de los videos 1 (backend) y 4 (el sitio funcionando) terminados en `guion youtube/modulo-3-presentacion-del-sistema-y-codigo/` (plan en `plan-modulo-3.md`); los videos 2 y 3 siguen pendientes. El módulo empieza por lo que pasa por detrás, casi todo en código en pantalla, y el sitio se presenta funcionando hasta el último video.
 
-- Video 1, frontend (guion y guía de pantalla terminados; se graba la pantalla, sin mazo): se abre con el sitio funcionando (visitante, cuenta, análisis, resultados, descargas y "Mis análisis"; abrir una imagen marcada y revisar un contorno a mano) y se explica cómo está hecho, en código: plantillas Jinja2 (`app/templates`), Bootstrap, `estilos.css` y `sitio.js`, y la pantalla de resultados con el zoom y la gráfica. No hay framework de frontend.
-- Video 2, backend (guion y guía de pantalla terminados; se graba la pantalla, sin mazo): Flask, las rutas y qué pasa cuando se sube una imagen (`app/__init__.py`, `app/analisis/rutas.py`, cuentas y base de datos).
-- Video 3, inferencia, en código: la misma preparación que en el entrenamiento, recortes (teselas), juntar resultados y quitar repetidos. El modelo se carga una vez.
-- Video 4, medición y retos, en código: contorno, área, largo y escala (60 px = 1 µm en todas las imágenes, para estandarizar el tamaño; el largo en el código es el lado mayor del rectángulo mínimo que encierra el contorno). Retos y cómo se resolvieron: espermatozoides empalmados, falsos positivos y la escala.
+- Video 1, backend (guion y guía de pantalla terminados; se graba la pantalla, sin mazo): abre el módulo uniendo con el módulo 2 y presenta los cuatro videos. Flask, las rutas, las cuentas, la base de datos y qué pasa cuando se sube una imagen (`app/__init__.py`, `app/analisis/rutas.py`, cuentas y base de datos). El sitio se usa solo lo necesario para ver las peticiones.
+- Video 2, inferencia, en código: la misma preparación que en el entrenamiento, recortes (teselas), juntar resultados y quitar repetidos. El modelo se carga una vez.
+- Video 3, medición y retos, en código: contorno, área, largo y escala (60 px = 1 µm en todas las imágenes, para estandarizar el tamaño; el largo en el código es el lado mayor del rectángulo mínimo que encierra el contorno). Retos y cómo se resolvieron: espermatozoides empalmados, falsos positivos y la escala.
+- Video 4, frontend, el sitio funcionando (guion y guía de pantalla terminados; se graba la pantalla, sin mazo): cierra el módulo. Recorrido del sitio (visitante, cuenta, análisis, resultados, descargas y "Mis análisis"; abrir una imagen marcada y revisar un contorno a mano) y cómo está hecho, en código: plantillas Jinja2 (`app/templates`), Bootstrap, `estilos.css` y `sitio.js`, y la pantalla de resultados con el zoom y la gráfica. No hay framework de frontend.
 - Material que se quitó del módulo 1 y reaparece aquí: Python, Flask, servidor, media y desviación estándar, y los dos tipos de imagen con su modelo.
 
 ### Módulo 4. Código y despliegue
