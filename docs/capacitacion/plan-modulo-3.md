@@ -1,6 +1,6 @@
 # Plan del módulo 3: presentación del sistema y código
 
-Plan para escribir los guiones de los cuatro videos del módulo 3 (videos 8 a 11 del curso). Está hecho leyendo el código del repositorio en la versión 1.11.0, la documentación en `docs/` y el README de capacitación. El guion del video 1 ya está hecho, en formato de pantalla; los videos 2 a 4 faltan.
+Plan para escribir los guiones de los cuatro videos del módulo 3 (videos 8 a 11 del curso). Está hecho leyendo el código del repositorio en la versión 1.11.0, la documentación en `docs/` y el README de capacitación. Los guiones de los videos 1 y 2 ya están hechos, en formato de pantalla; los videos 3 y 4 faltan.
 
 ## Qué es el módulo
 
