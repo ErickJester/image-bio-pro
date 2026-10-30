@@ -56,9 +56,9 @@ Guiones de los 4 videos terminados en `guion youtube/modulo-2-teoria-con-mas-det
 
 ### Módulo 3. Presentación del sistema y código
 
-Guion pendiente. Aquí el sitio se presenta funcionando y, a partir de ahí, casi todo es código en pantalla.
+Guion del video 1 terminado en `guion youtube/modulo-3-presentacion-del-sistema-y-codigo/` (plan en `plan-modulo-3.md`); los videos 2 a 4 siguen pendientes. Aquí el sitio se presenta funcionando y, a partir de ahí, casi todo es código en pantalla.
 
-- Video 1, frontend: se abre con el sitio funcionando (visitante, cuenta, análisis, resultados, descargas y "Mis análisis"; abrir una imagen marcada y revisar un contorno a mano) y se explica cómo está hecho, en código: plantillas Jinja2 (`app/templates`), Bootstrap, `estilos.css` y `sitio.js`, y la pantalla de resultados con el zoom y la gráfica. No hay framework de frontend.
+- Video 1, frontend (guion, plan visual y mazo terminados): se abre con el sitio funcionando (visitante, cuenta, análisis, resultados, descargas y "Mis análisis"; abrir una imagen marcada y revisar un contorno a mano) y se explica cómo está hecho, en código: plantillas Jinja2 (`app/templates`), Bootstrap, `estilos.css` y `sitio.js`, y la pantalla de resultados con el zoom y la gráfica. No hay framework de frontend.
 - Video 2, backend: Flask, las rutas y qué pasa cuando se sube una imagen (`app/__init__.py`, `app/analisis/rutas.py`, cuentas y base de datos).
 - Video 3, inferencia, en código: la misma preparación que en el entrenamiento, recortes (teselas), juntar resultados y quitar repetidos. El modelo se carga una vez.
 - Video 4, medición y retos, en código: contorno, área, largo y escala (60 px = 1 µm en todas las imágenes, para estandarizar el tamaño; el largo en el código es el lado mayor del rectángulo mínimo que encierra el contorno). Retos y cómo se resolvieron: espermatozoides empalmados, falsos positivos y la escala.
