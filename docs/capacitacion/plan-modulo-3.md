@@ -1,6 +1,6 @@
 # Plan del módulo 3: presentación del sistema y código
 
-Plan para escribir los guiones de los cuatro videos del módulo 3 (videos 8 a 11 del curso). Está hecho leyendo el código del repositorio en la versión 1.11.0, la documentación en `docs/` y el README de capacitación. Los guiones de los videos 1, 2 y 4 ya están hechos, en formato de pantalla; el video 3 falta.
+Plan para escribir los guiones de los cuatro videos del módulo 3 (videos 8 a 11 del curso). Está hecho leyendo el código del repositorio en la versión 1.11.0, la documentación en `docs/` y el README de capacitación. Los guiones de los cuatro videos ya están hechos, en formato de pantalla.
 
 > **Cambio de orden (30 de octubre de 2026).** El backend abre el módulo y el sitio funcionando va al final. Orden actual: 1 Backend, 2 Inferencia con recortes, 3 Medición, escala y retos, 4 Frontend: el sitio funcionando. Los números 8 a 11 de abajo son los del curso. Los títulos y el orden del sitio (`_VIDEOS` en `app/sitio.py`) todavía siguen el orden anterior.
 
