@@ -1,12 +1,12 @@
 # Plan del módulo 3: presentación del sistema y código
 
-Plan para escribir los guiones de los cuatro videos del módulo 3 (videos 8 a 11 del curso). Está hecho leyendo el código del repositorio en la versión 1.11.0, la documentación en `docs/` y el README de capacitación. Todavía no hay guiones ni mazos.
+Plan para escribir los guiones de los cuatro videos del módulo 3 (videos 8 a 11 del curso). Está hecho leyendo el código del repositorio en la versión 1.11.0, la documentación en `docs/` y el README de capacitación. El guion del video 1 ya está hecho, en formato de pantalla; los videos 2 a 4 faltan.
 
 ## Qué es el módulo
 
 - Es el primer módulo donde el sitio se ve funcionando y casi todo es código en pantalla. No hay taller de práctica: el código se muestra en demostración.
 - Cuatro videos de unos 20 minutos (unas 3,300 a 3,500 palabras cada uno). Cada uno abre con una frase que lo une con el anterior. El video 1 abre uniendo con el módulo 2.
-- Mismo formato que los módulos anteriores: guion humanizado y guion natural, cada uno con su Word; un plan visual; un mazo; y los datos del video para YouTube (título, descripción, capítulos).
+- Mismo formato que los módulos anteriores: guion humanizado y guion natural, cada uno con su Word; una guía de pantalla en lugar del plan visual y del mazo (el módulo se graba mostrando el sitio y el código mientras se habla; los bloques `> En pantalla:` del guion dicen qué se abre en cada tramo); y los datos del video para YouTube (título, descripción, capítulos).
 - Los títulos y las descripciones cortas ya están en el sitio (`app/sitio.py`, diccionario `_VIDEOS`, números 8 a 11): Frontend: el sitio funcionando; Backend; Inferencia con recortes; Medición, escala y retos. Los guiones deben usar esos títulos.
 
 ## Material que se quitó del módulo 1 y vuelve aquí
@@ -171,9 +171,8 @@ Un video a la vez, en este orden, con el mismo recorrido que en el módulo 2:
 1. Guion humanizado, con las cifras comprobadas en el código.
 2. Guion natural.
 3. Word de los dos.
-4. Plan visual.
+4. Guía de pantalla (preparación, cifras y líneas de código que nombra el guion).
 5. Comprobar que las dos versiones traen las mismas cifras.
-6. Mazo (hay que decidir antes qué se pone en pantalla de cada fragmento de código).
-7. Archivo `.txt` de YouTube, cuando exista el video grabado, para que los capítulos salgan de los tiempos reales.
+6. Archivo `.txt` de YouTube, cuando exista el video grabado, para que los capítulos salgan de los tiempos reales.
 
 Los videos 9, 10 y 11 dependen poco entre sí, pero conviene escribirlos en orden: cada uno abre con una frase que lo une con el anterior y los tres usan las mismas cifras de `modelo.py` y `medicion.py`.
