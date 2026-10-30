@@ -4,27 +4,40 @@ BioImage-Repro UAM · Módulo 3 · Capacitación en video
 
 Se graba con la pantalla: el sitio y el código se muestran mientras hablas, sin mazo. Continúa del video anterior. Empieza con la frase que lo une con el video anterior.
 
-*3,611 palabras, unos 20.6 min de habla*
+*5,391 palabras, unos 30.8 min de habla*
 
 Las líneas que empiezan con [Acción: …] no se leen en voz alta: marcan en qué frase se cambia de pantalla, se hace clic o se baja. El bloque En pantalla de cada tramo resume lo que se abre en él.
 
+## Antes de grabar: el entorno de Python
+
+El Python global de este equipo no trae las extensiones de Flask que usa el sitio, así que hay que crear un entorno aparte, una sola vez. Un entorno virtual (venv) es una carpeta, `.venv`, con su propia copia de las bibliotecas del proyecto: lo que se instala ahí no cambia el Python global, que se usa en otros proyectos. Se crea con `--system-site-packages` para que reutilice lo que ya está instalado (Flask, OpenCV, NumPy, PyTorch, Matplotlib y Pillow) y solo se instale lo que falta.
+
+- `python -m venv --system-site-packages .venv` crea el entorno, en la carpeta del proyecto. La carpeta `.venv` ya está en `.gitignore`.
+- `.\.venv\Scripts\python.exe -m pip install flask-login==0.6.3 flask-sqlalchemy==3.1.1 flask-wtf==1.3.0 fpdf2==2.8.9 pytest` instala lo que falta.
+- `.\.venv\Scripts\Activate.ps1` activa el entorno en la terminal. Con él activo, en pantalla se ven `python run.py`, `flask --app run routes` y `python -m pytest` tal como los dice el guion. Si PowerShell bloquea el script por la política de ejecución, se usan las rutas completas, por ejemplo `.\.venv\Scripts\python.exe run.py`.
+- No se usa `pip install -r requirements.txt` en el Python global: fija versiones (por ejemplo `numpy==2.5.4`) que cambiarían las de otros proyectos.
+
 [Pantalla 1 · Qué pasa al subir una imagen]
 
-> Idea central: Al pulsar analizar, el navegador manda una orden y el servidor contesta con una redirección a la página de resultados. En medio hay un camino: Nginx, Gunicorn, Flask, el modelo, la medición, la base de datos y el PDF. Este video recorre ese camino, menos el modelo y la medición, que son los dos siguientes.
+> Idea central: Al pulsar analizar, el navegador manda una petición y el servidor contesta con una redirección a la página de resultados. En medio hay un camino: Nginx, Gunicorn, Flask, el modelo, la medición, la base de datos y el PDF. Este video recorre ese camino, menos el modelo y la medición, que son los dos siguientes.
 
 > En pantalla: Navegador con la cuenta de prueba ya iniciada y la pestaña de red de las herramientas de desarrollo (F12) abierta, con la opción de conservar el registro activa. Pulsa Probar con la imagen de ejemplo y señala las dos peticiones que salen: un POST a `/analizar/prueba` con respuesta 302 y un GET a `/resultados/N` con respuesta 200.
 
 [Acción: navegador con la cuenta de prueba iniciada; F12, pestaña de red, conservar el registro]
 
-En el video anterior vimos el sitio como lo ve una persona, y la parte que se ve en el navegador, el frontend. Hoy cruzamos al otro lado. Cuando alguien pulsa analizar pasan muchas cosas en pocos segundos, y casi ninguna se ve.
+En el video anterior vimos el sitio como lo ve una persona, y la parte que se ve en el navegador, el frontend. Hoy cruzamos al otro lado, al backend: el programa que corre en el servidor, donde nadie lo ve. Cuando alguien pulsa analizar pasan muchas cosas en pocos segundos, y casi ninguna se ve.
+
+Antes de seguir, dos palabras que vamos a usar todo el video. Una petición es lo que el navegador le manda al servidor: quiero esta página, o toma esta imagen. Una respuesta es lo que el servidor devuelve. Y las peticiones tienen un método. GET quiere decir pedir algo, como una página. POST quiere decir enviar datos, como una imagen o un formulario.
 
 [Acción: pulsa Probar con la imagen de ejemplo]
 
-Hagamos una prueba con la pestaña de red del navegador abierta. Al pulsar el botón aparecen dos peticiones que nos importan. La primera es un POST a analizar prueba, y su respuesta es un 302, que quiere decir redirigir. La segunda es un GET a resultados, con el número del análisis, y esa sí devuelve la página. El navegador manda la orden, el servidor trabaja, y le contesta: ve a esta otra dirección.
+Hagamos una prueba con la pestaña de red del navegador abierta, que muestra cada petición que sale. Al pulsar el botón aparecen dos que nos importan. La primera es un POST a analizar prueba, y su respuesta es un 302. Ese número es un código de estado, y el 302 quiere decir redirigir: el servidor no devuelve la página, devuelve una instrucción que dice, ve a esta otra dirección. La segunda es un GET a resultados, con el número del análisis, y esa sí devuelve la página, con un código 200, que quiere decir todo bien.
 
-Detrás de esas dos líneas hay un camino. El navegador habla con Nginx, que recibe las visitas desde internet. Nginx se las pasa a Gunicorn, el programa que ejecuta Python y atiende varias peticiones a la vez. Gunicorn llama a la aplicación Flask. Flask comprueba que la persona haya iniciado sesión y ejecuta la función de análisis. Esa función le da la imagen al modelo, recibe los contornos, mide, guarda los resultados en la base de datos, genera el PDF y manda al navegador a la página de resultados.
+Detrás de esas dos líneas hay un camino de cuatro programas. El navegador habla primero con Nginx, un servidor web: el programa que recibe las visitas desde internet y las protege con HTTPS, que es el candado del navegador. Nginx sabe entregar páginas, pero no sabe ejecutar Python. Por eso se las pasa a Gunicorn, un servidor de aplicaciones de Python, que sí sabe, y que atiende varias peticiones a la vez. Gunicorn llama a nuestra aplicación, hecha con Flask, un marco de trabajo para sitios web en Python. Flask comprueba que la persona haya iniciado sesión y ejecuta la función de análisis.
 
-Este video recorre ese camino por dentro. Vemos primero con qué se escribe, cómo se crea la aplicación y qué rutas tiene. Luego las cuentas y sus protecciones, la base de datos, la ruta de análisis, los reportes, y al final cómo se ejecuta todo y cómo se prueba. El modelo y la medición tienen su propio video cada uno.
+Esa función le da la imagen al modelo, recibe los contornos, mide, guarda los resultados en la base de datos, genera el PDF y manda al navegador a la página de resultados.
+
+Este video recorre ese camino por dentro. Primero, con qué se escribe, cómo se crea la aplicación y qué rutas tiene. Después las cuentas y sus protecciones, la base de datos, la ruta de análisis y los reportes. Y al final, cómo se ejecuta todo y cómo se prueba. El modelo y la medición tienen su propio video cada uno.
 
 [Pantalla 2 · Python y Flask]
 
@@ -34,19 +47,21 @@ Este video recorre ese camino por dentro. Vemos primero con qué se escribe, có
 
 [Acción: editor, requirements.txt]
 
-El backend está escrito en Python. Python es un lenguaje de programación con fama de ser fácil de leer, y domina la inteligencia artificial por las bibliotecas que se construyeron a su alrededor, que son colecciones de programas ya escritos para tareas comunes. Un proyecto como este no se escribe desde cero. Se combinan bibliotecas muy buenas y el trabajo propio está en unirlas con cuidado.
+El backend está escrito en Python, un lenguaje de programación con fama de ser fácil de leer. Y domina la inteligencia artificial por las bibliotecas que se construyeron a su alrededor. Una biblioteca es una colección de programas ya escritos para una tarea, que uno puede usar en lugar de escribirla desde cero. Un proyecto como este no se programa entero. Se combinan bibliotecas muy buenas, y el trabajo propio está en unirlas con cuidado.
 
-Aquí están las que usa el sitio, en el archivo requirements.txt. Flask es el marco de trabajo para hacer sitios web. Flask-Login lleva las sesiones. Flask-WTF protege los formularios. Flask-SQLAlchemy conecta con la base de datos. OpenCV, NumPy y Pillow trabajan con las imágenes. Matplotlib y fpdf2 hacen las gráficas y el PDF. Gunicorn es el servidor de Python. Y pytest corre las pruebas.
+Esta es la lista, en el archivo requirements.txt, que significa requisitos. Cada línea es una biblioteca con su versión, y el doble igual fija la versión exacta con la que se probó el sitio, para que mañana no cambie nada sin avisar.
+
+Flask es el marco de trabajo, la base del sitio. Flask-Login lleva las sesiones, es decir, recuerda quién entró. Flask-WTF protege los formularios. Flask-SQLAlchemy conecta con la base de datos. OpenCV, NumPy y Pillow trabajan con imágenes: leerlas, recorrerlas como tablas de números y medir contornos. Matplotlib dibuja gráficas y fpdf2 arma el PDF. Gunicorn es el servidor de aplicaciones que vimos. Y pytest corre las pruebas automáticas.
 
 [Acción: requirements-modelo.txt]
 
-PyTorch está en otro archivo, requirements-modelo.txt. Se instala aparte porque se baja de un repositorio especial, el de la versión para procesador, que es mucho más pequeña que la de tarjeta gráfica. El servidor no tiene tarjeta gráfica.
+PyTorch, la biblioteca de las redes neuronales, está en otro archivo, requirements-modelo.txt. Se instala aparte porque se baja de un repositorio especial, el de la versión para procesador, que es mucho más pequeña que la de tarjeta gráfica. El servidor no tiene tarjeta gráfica, y no la necesita para usar un modelo ya entrenado.
 
-¿Qué hace Flask? Una página web funciona con peticiones y respuestas. El navegador pide una dirección, el servidor decide qué hacer, hace el trabajo y devuelve una respuesta, normalmente una página. Con Flask uno indica qué dirección corresponde a qué función. Cuando alguien entra al inicio, se ejecuta esta función. Cuando alguien sube una imagen, se ejecuta aquella otra.
+¿Y qué hace Flask? Una página web funciona con peticiones y respuestas. Flask permite decir, con pocas líneas de código, qué dirección corresponde a qué función. Si alguien entra al inicio, se ejecuta esta. Si alguien sube una imagen, se ejecuta aquella otra.
 
 [Acción: abre run.py]
 
-Y como Flask está escrito en Python, puede llamar directamente a la red neuronal, que también está en Python. El sitio y el modelo viven en el mismo programa. El archivo run.py tiene dos líneas útiles: crea la aplicación y, si lo ejecutas, la enciende para probarla en tu computadora.
+Y como Flask está escrito en Python, puede llamar directamente a la red neuronal, que también está en Python. El sitio y el modelo viven en el mismo programa. El archivo run.py es el arranque en tu computadora. Su primera línea importa la función crear app, que vamos a ver ahora. La tercera la ejecuta y guarda la aplicación en una variable. Y las dos últimas dicen: si este archivo se ejecuta directamente, enciende el servidor de pruebas de Flask, en modo de desarrollo.
 
 [Pantalla 3 · Crear la aplicación]
 
@@ -56,25 +71,45 @@ Y como Flask está escrito en Python, puede llamar directamente a la red neurona
 
 [Acción: abre app/__init__.py, función crear_app, línea 9]
 
-El corazón del backend es una función, crear_app, en el archivo app/__init__.py. Hace cuatro cosas, y se leen de arriba abajo.
+El corazón del backend es una función. Se llama crear app y está en el archivo app/__init__.py. Una función que construye y devuelve la aplicación se llama, en programación, una fábrica. Haremos cuatro cosas, de arriba abajo.
+
+[Acción: línea 10: Flask(__name__, instance_relative_config=True)]
+
+La línea 10 es la que crea la aplicación: Flask, con el nombre del archivo, y una opción que le dice que use una carpeta llamada instance, para los archivos que cambian mientras el sitio funciona.
 
 [Acción: líneas 12 a 26: la configuración]
 
-Primero, la configuración. La clave secreta, que sirve para firmar las sesiones y los enlaces, sale de una variable de entorno. En el servidor, el archivo de composición se niega a arrancar si esa variable no está definida. El tamaño máximo de un envío es de 300 megabytes, el máximo de imágenes por análisis es 10, y están las rutas de las carpetas donde se guardan los PDF, las imágenes marcadas y las subidas temporales.
+Primero, la configuración, un conjunto de valores que controlan el sitio. En la línea 14 está la clave secreta. Sirve para firmar cosas, como la cookie de la sesión y los enlaces de recuperación, para que nadie pueda falsificarlos. No está escrita en el código: se lee de una variable de entorno, que es un valor que vive en el sistema y no en los archivos. Si no existe, se usa un valor de desarrollo, y en el servidor el archivo de composición se niega a arrancar si no la define.
+
+La línea 15 es la dirección de la base de datos: un archivo llamado imagebio.db dentro de instance. La línea 17 limita cada envío a 300 megabytes; si alguien manda más, Flask responde con un error 413. La línea 18 es la primera opción propia del proyecto: el máximo de diez imágenes por análisis. Y de la 22 a la 25 están las rutas de tres carpetas de trabajo: una para los PDF, una para las subidas temporales y una para las imágenes marcadas.
+
+[Acción: líneas 27 y 28: if config]
+
+La línea 27 permite sobrescribir cualquiera de esos valores al crear la aplicación. Eso usan las pruebas, como veremos.
 
 [Acción: líneas 30 a 32: las carpetas]
 
-Segundo, las carpetas. Todas viven dentro de una carpeta llamada instance, y la función las crea si no existen. Ahí también está la base de datos.
+Segundo, las carpetas. Este ciclo recorre las rutas y crea cada carpeta si no existe. La opción exist ok evita un error cuando la carpeta ya está.
 
-[Acción: líneas 34 a 39 y extensiones.py]
+[Acción: extensiones.py, líneas 1 a 3: los imports]
 
-Tercero, las extensiones. La base de datos, la protección de formularios y las sesiones se crean en un archivo aparte, extensiones.py, con tres líneas, y aquí se conectan a la aplicación. Se crean fuera para que cualquier archivo las pueda importar sin que se enreden.
+Tercero, las extensiones, que están en un archivo aparte, extensiones.py. Las tres primeras líneas son importaciones: traen de cada biblioteca la pieza que vamos a usar. Hay tres.
+
+[Acción: extensiones.py, líneas 5 a 7: las tres extensiones]
+
+La línea 5 crea db, la conexión con la base de datos, con SQLAlchemy. La línea 6 crea el administrador de sesiones, de Flask-Login. Y la línea 7 crea csrf, con CSRFProtect. CSRF son las siglas en inglés de falsificación de petición entre sitios, un ataque en el que una página ajena consigue que tu navegador mande una orden al sitio donde tienes la sesión abierta. CSRFProtect es lo que lo impide, y lo vemos completo en un tramo más adelante.
+
+Aquí solo se crean, vacías. Se crean en un archivo aparte para que cualquier otro archivo del proyecto pueda importarlas sin que se enreden unos con otros.
+
+[Acción: __init__.py, líneas 34 a 39: conectarlas a la aplicación]
+
+De vuelta en crear app, las líneas 34 a 36 conectan las tres a la aplicación, con el método init app. La 37 dice a qué ruta mandar a quien intente entrar a una página privada sin sesión, y la 38 y la 39 son el mensaje que verá.
 
 [Acción: líneas 41 a 48 y 54 y 55]
 
-Y cuarto, las secciones. El sitio se divide en tres blueprints, que son grupos de rutas: el sitio público, las cuentas y el análisis. Cada uno vive en su archivo. Al final, db.create_all crea las tablas si no existen. Con esto no hay herramienta de migraciones, así que si algún día cambia una tabla hay que cuidar la base que ya existe.
+Cuarto, las secciones. El sitio se divide en tres blueprints, que son grupos de rutas guardados cada uno en su archivo: el sitio público, las cuentas y el análisis. Se importan y se registran con register blueprint. Y en la línea 55, db.create all crea las tablas de la base de datos si todavía no existen. Ojo: no hay una herramienta de migraciones. Si algún día cambia una tabla, hay que cuidar la base que ya existe.
 
-¿Por qué una función y no una aplicación suelta? Porque las pruebas necesitan crear una aplicación nueva, con otra base de datos, otras carpetas y sin protección de formularios. Con una función, eso es llamarla con otra configuración.
+Falta explicar por qué esto es una función y no una aplicación suelta. Porque las pruebas necesitan crear una aplicación nueva, con otra base de datos, otras carpetas y sin la protección de formularios, para que sean rápidas. Con una función, eso es llamarla con otra configuración.
 
 [Pantalla 4 · Las rutas]
 
@@ -84,11 +119,13 @@ Y cuarto, las secciones. El sitio se divide en tres blueprints, que son grupos d
 
 [Acción: terminal, en la carpeta del proyecto: flask --app run routes]
 
-Esta es la lista completa de direcciones del sitio, que Flask arma a partir del código. Hay 19 rutas propias, más una que sirve los archivos estáticos como el CSS y las imágenes.
+Una ruta es una dirección del sitio con la función que la atiende. Esta es la lista completa, que Flask arma a partir del código. Cada fila dice la función, los métodos que acepta y la dirección. Hay 19 rutas propias, más una que sirve los archivos estáticos, como el CSS y las imágenes.
 
 [Acción: abre app/sitio.py y muestra los decoradores]
 
-El sitio público tiene siete: el inicio, Nosotros, Aliados, Infografías, Videos, Contacto y el aviso de privacidad. Son funciones cortas. Casi todas hacen una sola cosa: devolver una plantilla. La excepción es Contacto, que también recibe el formulario y guarda el mensaje.
+Veamos cómo se escribe una. Esta línea con una arroba, @bp.route, es un decorador. Un decorador es una línea que se pone encima de una función para darle un comportamiento extra. Aquí, convierte la función en la respuesta de una dirección. Y la palabra bp es el blueprint al que pertenece.
+
+El sitio público tiene siete rutas: el inicio, Nosotros, Aliados, Infografías, Videos, Contacto y el aviso de privacidad. Son funciones cortas. Casi todas hacen una sola cosa: devolver una plantilla, la página con huecos que vimos en el video anterior. La excepción es Contacto, que además recibe el formulario y guarda el mensaje.
 
 [Acción: abre app/cuentas.py]
 
@@ -98,9 +135,9 @@ Las cuentas tienen cinco: entrar, salir, perfil, olvidé mi contraseña y restab
 
 Y el análisis tiene siete: la página de inteligencia artificial, analizar, analizar la imagen de prueba, los resultados, la imagen marcada, el CSV y el PDF.
 
-Una ruta es una función con una línea encima, el decorador, que dice la dirección y los métodos que acepta. Entrar acepta GET, para mostrar el formulario, y POST, para recibirlo. Algunas direcciones llevan una parte variable, como el número del análisis. Escrita con int, Flask exige que sea un número y responde 404 si no lo es.
+Fíjate en los métodos. Entrar acepta GET, para mostrar el formulario, y POST, para recibir lo que se llenó. Analizar solo acepta POST, porque solo tiene sentido si se envía una imagen. Y algunas direcciones llevan una parte variable, como el número del análisis. Escrita con int entre signos de menor y mayor, Flask exige que sea un número entero, y responde 404, que quiere decir no encontrado, si no lo es.
 
-Y las rutas privadas llevan otro decorador, login_required: si la persona no ha iniciado sesión, Flask la manda a la pantalla de entrada. Son ocho: salir, perfil, analizar, la prueba, y las cuatro que muestran o descargan resultados.
+Las rutas privadas llevan además otro decorador, login_required, que significa inicio de sesión requerido. Si la persona no ha iniciado sesión, Flask la manda a la pantalla de entrada. Son ocho: salir, perfil, analizar, la prueba, y las cuatro que muestran o descargan resultados.
 
 [Pantalla 5 · Cuentas]
 
@@ -110,27 +147,37 @@ Y las rutas privadas llevan otro decorador, login_required: si la persona no ha 
 
 [Acción: abre cuentas.py, ruta entrar, línea 26]
 
-La ruta entrar sirve para dos cosas, iniciar sesión y crear cuenta, y distingue cuál por un campo oculto del formulario.
+La ruta entrar sirve para dos cosas: iniciar sesión y crear cuenta. Acepta GET y POST.
 
-[Acción: líneas 36 a 53: el registro]
+[Acción: líneas 31 a 34: leer el formulario]
 
-Para crear una cuenta hay una cadena de comprobaciones. Que no falte nada, que el correo tenga arroba, que la contraseña tenga al menos ocho caracteres y que el correo no exista ya. El correo se limpia y se pasa a minúsculas, para que Ana y ana sean la misma cuenta. Si todo está bien, se crea el usuario y entra de una vez.
+Si la petición es un POST, las líneas 32 a 34 leen lo que llegó del formulario. request.form es el conjunto de campos enviados. Un campo oculto, accion, dice cuál de los dos formularios se envió. Y al correo se le quitan los espacios con strip y se pasa a minúsculas con lower, para que Ana arroba ejemplo y ana arroba ejemplo sean la misma cuenta.
+
+[Acción: líneas 36 a 46: las comprobaciones del registro]
+
+Para crear una cuenta hay una cadena de comprobaciones. Que no falte ningún dato. Que el correo tenga una arroba. Que la contraseña tenga al menos ocho caracteres. Y que no exista ya una cuenta con ese correo. Si alguna falla, flash deja un aviso de color y la página se vuelve a mostrar.
+
+[Acción: líneas 47 a 53: crear el usuario]
+
+Si todo está bien, se crea el usuario. La línea 47 recorta el nombre a 120 caracteres y el correo a 254, que son los límites de las columnas de la base. La 48 guarda la contraseña, y ahora vemos cómo. La 49 agrega el usuario a la sesión de la base de datos y la 50, con commit, confirma el guardado: hasta ese momento, nada está guardado de verdad. La 51 inicia la sesión de esa persona, y la 53 la manda a la página a la que iba.
 
 [Acción: abre modelos.py, líneas 20 a 24]
 
-Lo importante es lo que no se guarda. La contraseña nunca se guarda. Se guarda una huella, que se calcula con una función de Werkzeug, y que no se puede deshacer. El campo se llama clave cifrada, aunque en rigor no es un cifrado, porque un cifrado se puede revertir y una huella no. Para saber si una contraseña es la correcta se calcula su huella y se compara con la guardada.
+Ahora, lo importante es lo que no se guarda. La contraseña nunca se guarda. Esta función de la línea 21 calcula una huella de la contraseña y guarda solo la huella. Una huella, que en programación se llama hash, es el resultado de una operación que va en un solo sentido: de la contraseña se obtiene la huella, pero de la huella no se puede volver a la contraseña. Además, la función agrega un dato aleatorio, para que dos personas con la misma contraseña tengan huellas distintas. El campo se llama clave cifrada, aunque en rigor no es un cifrado. Un cifrado se puede revertir. Una huella, no.
 
-[Acción: cuentas.py, líneas 55 a 59: el inicio de sesión]
+Para saber si una contraseña es correcta, la función de la línea 24 calcula la huella de lo que se escribió y la compara con la guardada.
 
-En el inicio de sesión pasa lo mismo. Si falla, el mensaje es siempre el mismo: correo o contraseña incorrectos, sin decir cuál de los dos. Así nadie puede usar el formulario para averiguar qué correos están registrados.
+[Acción: cuentas.py, líneas 54 a 59: el inicio de sesión]
+
+En el inicio de sesión se busca al usuario por su correo y se revisa la contraseña. Si todo va bien, login user inicia la sesión; y si la casilla de recordar viene marcada, la sesión dura más. Si algo falla, el mensaje es siempre el mismo: correo o contraseña incorrectos, sin decir cuál de los dos. Así nadie puede usar el formulario para averiguar qué correos están registrados.
 
 [Acción: modelos.py, línea 54]
 
-Para recordar quién entró se usa Flask-Login. Al iniciar sesión, deja una cookie firmada con la clave secreta. En cada petición, una función que se llama cargar usuario recibe el número guardado y busca a la persona en la base de datos. Eso es lo que hace que current user exista en el código y en las plantillas.
+Y para recordar quién entró se usa Flask-Login. Al iniciar sesión, deja en el navegador una cookie, un pequeño dato guardado por el sitio, firmada con la clave secreta. En cada petición, esta función, cargar usuario, recibe el número que viene en la cookie y busca a la persona en la base de datos. Eso es lo que hace que current user exista en el código y en las plantillas.
 
-[Acción: cuentas.py, línea 19]
+[Acción: cuentas.py, líneas 19 a 23: destino_seguro]
 
-Y un detalle de seguridad. Cuando alguien intenta entrar a una página privada, el sitio lo manda a iniciar sesión y, al terminar, lo regresa a donde iba. Esa dirección viaja en la dirección web, así que alguien podría armar un enlace que lleve a otro sitio. La función destino seguro solo acepta direcciones que empiecen con diagonal y no traigan dominio. Cualquier otra cosa lleva a la página de análisis.
+Y un detalle de seguridad. Cuando alguien intenta entrar a una página privada, el sitio lo manda a iniciar sesión y, al terminar, lo regresa a donde iba. Esa dirección viaja dentro de la dirección web, en un parámetro que se llama next. Así que alguien podría armar un enlace que, después de iniciar sesión, lleve a otro sitio. La función destino seguro lo evita: solo acepta direcciones que empiecen con diagonal y no traigan dominio. Cualquier otra cosa lleva a la página de análisis.
 
 [Pantalla 6 · Protección CSRF]
 
@@ -140,19 +187,19 @@ Y un detalle de seguridad. Cuando alguien intenta entrar a una página privada, 
 
 [Acción: editor, extensiones.py, y __init__.py línea 35]
 
-La protección CSRF ocupa dos líneas de código: se crea en extensiones.py y se enciende en crear_app. Y protege una cosa muy concreta.
+Volvamos a CSRF, que mencionamos hace un momento. Ocupa dos líneas de código: se crea en extensiones.py y se enciende con csrf punto init app, en la línea 35. Y protege algo muy concreto.
 
-Imagina que estás con la sesión iniciada en este sitio, y en otra pestaña abres una página maliciosa. Esa página puede hacer que tu navegador mande una orden al sitio, y tu navegador adjuntará tu sesión, porque así funcionan las cookies. El sitio vería una orden con una sesión válida y la cumpliría. Eso es un ataque de falsificación de petición entre sitios.
+Imagina que tienes la sesión iniciada en este sitio. En otra pestaña abres una página maliciosa. Esa página puede hacer que tu navegador mande una petición al sitio, por ejemplo, la de cerrar sesión o la de analizar algo. Y tu navegador adjunta tu cookie de sesión, porque así funcionan las cookies: se mandan solas a su sitio. El servidor ve una petición con una sesión válida y la cumple. Tú no la pediste, pero el servidor no lo sabe. Eso es un ataque de falsificación de petición entre sitios.
 
 [Acción: navegador, F12, pestaña Elementos: busca el campo oculto csrf_token en el formulario de salir]
 
-La defensa es el token. Cada formulario del sitio lleva este campo oculto, con un valor que el sitio genera para tu sesión y que una página ajena no puede conocer. Todo POST que llegue sin un token válido se rechaza antes de llegar a la función de la ruta.
+La defensa es un token. Un token es una cadena de caracteres que funciona como una llave de un solo propósito. Cada formulario del sitio lleva este campo oculto con un valor que el sitio genera para tu sesión. Una página ajena puede mandar la petición, pero no conoce ese valor. Todo POST que llegue sin un token válido se rechaza antes de llegar a la función de la ruta.
 
 [Acción: consola: fetch('/salir', {method: 'POST'}).then(r => r.status). Debe dar 400. Di que es una forma de comprobarlo y que no es algo que haga el visitante]
 
-Podemos comprobarlo. Desde la consola mando una petición para cerrar sesión, pero sin el token. La respuesta es 400, petición incorrecta, y la sesión sigue abierta.
+Podemos comprobarlo. Desde la consola del navegador, que es una forma de hacer peticiones a mano, mando una petición para cerrar sesión, pero sin el token. No es algo que haga un visitante: es solo una manera de probarlo. La respuesta es 400, petición incorrecta. Y la sesión sigue abierta.
 
-En las pruebas automáticas esta protección se apaga, porque no hay navegador que reciba el token. Es una de las configuraciones que cambia la función crear_app.
+En las pruebas automáticas esta protección se apaga, porque no hay un navegador que reciba el token. Es una de las configuraciones que cambia la función crear app.
 
 [Pantalla 7 · Recuperar la contraseña]
 
@@ -160,25 +207,33 @@ En las pruebas automáticas esta protección se apaga, porque no hay navegador q
 
 > En pantalla: Editor, `app/cuentas.py`: `_serializador`, `_token` y `_usuario_del_token` (78 a 95), `olvide` (98 a 117) y `restablecer` (120 a 137); después `app/correo.py` y el archivo `docker-compose.yml`, líneas 16 a 20.
 
-[Acción: cuentas.py, líneas 78 a 95]
+[Acción: cuentas.py, líneas 78 a 84: el serializador y el token]
 
 Recuperar la contraseña es la parte más delicada de las cuentas, y se resolvió con una idea sencilla: el enlace se firma, no se guarda.
 
-El enlace lleva un token que se arma con una biblioteca que se llama itsdangerous. Dentro del token van dos datos: el número del usuario y los últimos diez caracteres de la huella de su contraseña actual. Todo se firma con la clave secreta del sitio, y la firma lleva la hora.
+Un enlace de recuperación lleva un token, y este token se arma con una biblioteca que se llama itsdangerous, que significa podría ser peligroso. El serializador de la línea 78 convierte datos en un texto y los firma con la clave secreta del sitio. Firmar quiere decir calcular una marca que depende de los datos y de la clave. Si alguien cambia aunque sea una letra del token, la marca ya no coincide, y el sitio lo descarta. El parámetro salt es un texto que separa usos: un token hecho para recuperar contraseñas no sirve para ninguna otra cosa.
 
-Al abrir el enlace, el sitio verifica la firma, comprueba que no hayan pasado 3,600 segundos, una hora, y compara esos diez caracteres con los de la huella actual. Si la persona cambia su contraseña, la huella cambia, y el mismo enlace deja de servir. Por eso solo se puede usar una vez, sin que el sitio guarde ninguna lista de enlaces.
+Dentro del token van dos datos: el número del usuario y los últimos diez caracteres de la huella de su contraseña actual. Y la firma lleva también la hora en que se creó.
 
-[Acción: cuentas.py, líneas 98 a 117]
+[Acción: líneas 87 a 95: revisar el token]
 
-La pantalla de olvidé mi contraseña tiene dos decisiones. Una: la respuesta es la misma si el correo existe y si no. Siempre dice que, si está registrado, se manda un enlace. Así no se puede usar para descubrir quién tiene cuenta. Otra: si el envío falla, y solo entonces, avisa que no se pudo enviar y da el correo de contacto.
+Al abrir el enlace, el sitio hace tres comprobaciones. Que la firma sea válida. Que no hayan pasado 3,600 segundos, una hora. Y que esos diez caracteres coincidan con los de la huella actual. Si la persona cambia su contraseña, la huella cambia, y el mismo enlace deja de servir. Por eso solo se puede usar una vez, sin que el sitio guarde ninguna lista de enlaces.
 
-[Acción: abre correo.py]
+[Acción: cuentas.py, líneas 98 a 117: olvide]
 
-El envío está en un archivo aparte, correo.py. Usa smtplib, que viene con Python, se conecta al servidor de correo, activa el cifrado, inicia sesión con una contraseña de aplicación y manda el mensaje. Todos los datos salen de variables de entorno: servidor, puerto, usuario, remitente y clave. Si falta alguna, la función no intenta nada y devuelve falso.
+La pantalla de olvidé mi contraseña tiene dos decisiones. Una: la respuesta es la misma si el correo existe y si no. Siempre dice que, si está registrado, se manda un enlace. Así no sirve para descubrir quién tiene cuenta. La otra: si el envío falla, y solo entonces, avisa que no se pudo enviar y da el correo de contacto.
+
+[Acción: abre correo.py, líneas 11 a 13: configurado]
+
+El envío está en un archivo aparte, correo.py. Primero, una función revisa que existan tres variables de entorno: el servidor de correo, el usuario y la clave. Si falta alguna, no se intenta nada.
+
+[Acción: líneas 16 a 36: enviar]
+
+Después, la función enviar arma el mensaje con EmailMessage: asunto, remitente, destinatario y texto. Luego abre una conexión con smtplib, una biblioteca que viene con Python. SMTP es el protocolo con el que se envían correos. La conexión se cifra con starttls, para que el contenido no viaje a la vista. El inicio de sesión usa una contraseña de aplicación: una clave especial que el proveedor, en este caso Gmail, genera para que un programa pueda enviar correos sin usar tu contraseña personal. Y los espacios se quitan, porque Google la muestra en grupos de cuatro letras. Si algo sale mal, la función devuelve falso en lugar de romper la página.
 
 [Acción: docker-compose.yml, líneas 16 a 20]
 
-Esas variables llegan del archivo .env del servidor, a través del archivo de composición. El archivo .env no está en Git: ahí viven las claves.
+Esas variables llegan del archivo .env del servidor, a través del archivo de composición, que es el que arranca los contenedores. El archivo .env no está en Git, que es donde se guarda el código. Ahí viven las claves.
 
 [Pantalla 8 · La base de datos]
 
@@ -188,19 +243,23 @@ Esas variables llegan del archivo .env del servidor, a través del archivo de co
 
 [Acción: abre modelos.py]
 
-La base de datos es SQLite. No hay un servidor de base de datos aparte: es un archivo, imagebio.db, dentro de la carpeta instance. Para un sitio con pocos usuarios y un solo proceso, alcanza, y se respalda copiando un archivo.
+Una base de datos es donde un sitio guarda lo que no debe perderse: las cuentas, los análisis, los mensajes. La nuestra es SQLite. No hay un servidor de base de datos aparte: es un solo archivo, imagebio.db, dentro de la carpeta instance. Para un sitio con pocos usuarios y un solo proceso, alcanza, y se respalda copiando un archivo.
 
-Las tablas se definen como clases de Python, con SQLAlchemy. Una clase es una tabla y cada atributo es una columna. Hay tres.
+Las tablas se definen como clases de Python, con SQLAlchemy. Esa técnica se llama mapeo objeto relacional. Una clase es una tabla, y cada atributo es una columna. Así, el código trabaja con objetos de Python y la biblioteca traduce a la base de datos. Hay tres.
 
-[Acción: señala la clase Usuario, línea 10]
+[Acción: señala la clase Usuario, líneas 10 a 15]
 
-Usuario: nombre, correo, que es único y tiene índice, la huella de la contraseña y la fecha de creación.
+Usuario. Cada línea es una columna. El id es la llave primaria: un número único para cada fila. El nombre y la clave no pueden quedar vacíos. El correo es único, para que no haya dos cuentas iguales, y tiene un índice, que funciona como el índice de un libro: permite encontrar un correo rápido sin leer toda la tabla. Y la fecha de creación se llena sola con la hora del momento.
+
+[Acción: líneas 17 y 18: la relación]
+
+La relación de la línea 17 conecta cada usuario con sus análisis, y los ordena del más nuevo al más viejo. Es lo que usa la pantalla de Mis análisis.
 
 [Acción: señala la clase Analisis, línea 27, y la propiedad resultados]
 
-Analisis: de quién es, cuándo se hizo, el nombre del PDF y los resultados. Y aquí hay una decisión de diseño. Los resultados completos, con la lista de imágenes, sus contornos y sus medidas, se guardan en una sola columna de texto, como JSON. Hay una propiedad, resultados, que lo convierte otra vez en diccionario.
+Analisis. Dice de quién es, con una llave foránea, que es una columna que apunta a la llave de otra tabla, aquí la del usuario. También cuándo se hizo, el nombre del PDF y los resultados. Y aquí hay una decisión de diseño. Los resultados completos, con la lista de imágenes, sus contornos y sus medidas, se guardan en una sola columna de texto, en formato JSON. JSON es una forma de escribir datos como texto, con listas y diccionarios, que se puede guardar y volver a leer sin perder nada. La propiedad de la línea 37 hace esa lectura: convierte el texto otra vez en un diccionario de Python.
 
-¿Por qué así? Porque lo que importa es volver a mostrar el análisis igual que al hacerlo, y su forma cambia según las imágenes que haya. La contrapartida es que no se pueden hacer consultas sobre cada medida con SQL. Para este proyecto no hace falta.
+¿Por qué así? Porque lo que importa es volver a mostrar el análisis igual que al hacerlo, y su forma cambia según las imágenes que haya. La contrapartida es que no se pueden hacer consultas con SQL sobre cada medida. Para este proyecto no hace falta.
 
 [Acción: señala la clase Mensaje, línea 45]
 
@@ -208,7 +267,7 @@ Y Mensaje guarda lo que llega por el formulario de contacto.
 
 [Acción: explorador de archivos, carpeta instance]
 
-En la carpeta instance están la base de datos y las tres carpetas de trabajo: pdfs, marcadas y subidas. En el servidor, toda la carpeta es un volumen de Docker, para que reconstruir el sitio no borre los datos.
+En la carpeta instance están la base de datos y las tres carpetas de trabajo: pdfs, marcadas y subidas. En el servidor, toda la carpeta es un volumen de Docker, que es un espacio de almacenamiento que sobrevive aunque se reconstruya el sitio. Así, actualizar el programa no borra los datos.
 
 [Pantalla 9 · La ruta analizar]
 
@@ -216,25 +275,27 @@ En la carpeta instance están la base de datos y las tres carpetas de trabajo: p
 
 > En pantalla: Editor, `app/analisis/rutas.py`: la ruta `analizar` (líneas 33 a 63), con las validaciones (39 a 49), el nombre con `uuid` (51 a 56) y el `try/finally` (58 a 61); después `analizar_prueba` (66 a 73).
 
-[Acción: rutas.py, ruta analizar, línea 33]
+[Acción: rutas.py, ruta analizar, líneas 33 a 37]
 
-Llegamos a la ruta que hace el trabajo: analizar.
+Llegamos a la ruta que hace el trabajo. Es solo POST, y lleva login required. La línea 36 toma los archivos del campo imagenes, request.files, y se queda solo con los que traen nombre. La 37 lee el máximo de la configuración.
 
-[Acción: líneas 36 a 49: las validaciones]
+[Acción: líneas 39 a 49: las validaciones]
 
-Antes de hacer nada se valida. Que haya al menos una imagen, que no pasen del máximo de diez, y que todas tengan una extensión permitida: BMP, PNG, TIFF o JPG. Si algo falla, la función deja un aviso y regresa a la página de análisis. Y hay que decirlo con claridad: la comprobación mira el nombre del archivo, no su contenido. Si alguien sube un texto con extensión PNG, pasa esta validación y es la función de medición la que descubre que no se puede abrir como imagen y avisa.
+Antes de hacer nada se valida. Que haya al menos una imagen. Que no pasen del máximo de diez. Y que todas tengan una extensión permitida: BMP, PNG, TIFF o JPG. Si algo falla, flash deja un aviso y redirect regresa a la página de análisis.
+
+Y hay que decirlo con claridad. La comprobación mira el nombre del archivo, no su contenido. Si alguien sube un texto con extensión PNG, pasa esta validación. Es la función de medición la que descubre que no se puede abrir como imagen, y avisa.
 
 [Acción: líneas 51 a 56: el nombre generado]
 
 Después, un detalle de seguridad. En el disco, cada imagen se guarda con un nombre generado: un identificador aleatorio de la biblioteca uuid, el número de la imagen y la extensión. El nombre que puso la persona no se usa para guardar, solo para mostrar. Así nadie puede colar un nombre con rutas raras ni pisar el archivo de otro.
 
-[Acción: líneas 58 a 61: try y finally]
+[Acción: líneas 57 a 61: guardar, analizar y borrar]
 
-Luego viene lo que mencionamos en el video anterior: las imágenes no se conservan. Cada una se analiza dentro de un bloque try y se borra en el finally. El finally se ejecuta siempre, tanto si el análisis termina bien como si falla. Así no queda ninguna imagen subida en el servidor.
+La línea 57 guarda la imagen. Y luego viene lo que dijimos en el video anterior: las imágenes no se conservan. Cada una se analiza dentro de un bloque try, y se borra en el finally. Un try y finally funciona así: el try intenta hacer algo, y el finally se ejecuta siempre, pase lo que pase. Si el análisis termina bien, se borra la imagen. Si falla, también. Así no queda ninguna imagen subida en el servidor.
 
 [Acción: líneas 66 a 73: analizar_prueba]
 
-La ruta de la imagen de ejemplo hace lo mismo, pero con un archivo que ya está en el sitio. Reutiliza la misma función de análisis, y ahí se ve el beneficio de separar las piezas.
+La ruta de la imagen de ejemplo hace lo mismo, pero con un archivo que ya está en el sitio, en la carpeta static. Reutiliza la misma función de análisis. Ahí se ve el beneficio de separar las piezas.
 
 [Pantalla 10 · Guardar y mostrar]
 
@@ -244,29 +305,29 @@ La ruta de la imagen de ejemplo hace lo mismo, pero con un archivo que ya está 
 
 [Acción: rutas.py, _guardar_y_mostrar, línea 81]
 
-Con las imágenes ya analizadas, entra _guardar_y_mostrar.
+Con las imágenes ya analizadas, entra _guardar_y_mostrar. El guion bajo del inicio es una costumbre de Python: indica que es una función de uso interno de este archivo.
 
 [Acción: líneas 82 a 90: el diccionario]
 
-Primero arma el diccionario de resultados. Lleva la lista de imágenes y el promedio entre ellas. Y dos banderas: si el análisis fue provisional, porque faltaban los modelos y se usó la detección por color, y si fue hecho con el modelo, que el sitio llama preliminar. De eso depende qué avisos muestra la página.
+Primero arma el diccionario de resultados, que es una colección de datos con nombre. Lleva la lista de imágenes y el promedio entre ellas. Y dos banderas. Una dice si el análisis fue provisional, porque faltaban los modelos y se usó la detección por color. La otra dice si se hizo con el modelo, que el sitio llama preliminar. De eso depende qué avisos muestra la página.
 
 [Acción: líneas 91 a 93]
 
-Segundo, lo guarda. Crea un registro de Analisis con el número de la persona y el diccionario convertido a JSON, y lo confirma, con commit. Al confirmar, la base le asigna su número.
+Segundo, lo guarda. Crea un registro de Analisis con el número de la persona y el diccionario convertido a texto JSON, con json dumps, y lo confirma con commit. Al confirmar, la base le asigna su número.
 
 [Acción: líneas 96 a 101]
 
-Tercero, el PDF. Se llama con ese número, se guarda en la carpeta de PDF con el nombre analisis, el número y la extensión, y se anota el nombre en el registro, con un segundo commit.
+Tercero, el PDF. Se genera con ese número, se guarda en la carpeta de PDF con el nombre analisis, el número y la extensión, y se anota el nombre en el registro, con un segundo commit.
 
 [Acción: línea 103]
 
-Y por último, no devuelve la página. Devuelve una redirección a la ruta de resultados. Es lo que vimos en la pestaña de red: un POST con respuesta 302 y luego un GET. Es un patrón muy usado y tiene una razón práctica.
+Y por último, no devuelve la página. Devuelve una redirección a la ruta de resultados. Es lo que vimos en la pestaña de red: un POST con respuesta 302, y luego un GET. Es un patrón muy usado, y tiene una razón práctica.
 
 [Acción: navegador: recarga la página de resultados con F5]
 
-Si la respuesta al POST fuera la página, al recargarla el navegador preguntaría si quieres reenviar el formulario, y reenviar significaría analizar otra vez. Como la página es el resultado de un GET, recargar la muestra de nuevo, sin repetir el trabajo.
+Si la respuesta al POST fuera la página, al recargarla el navegador preguntaría si quieres reenviar el formulario. Y reenviar significaría analizar otra vez. Como la página es el resultado de un GET, recargar la muestra de nuevo, sin repetir el trabajo.
 
-Además, hay una consecuencia que se nota: el análisis se hace dentro de la misma petición. El navegador espera. Por eso existe la cubierta de espera que vimos, y por eso el tiempo máximo es tan alto. No hay una cola de tareas aparte. Es una decisión de simplicidad, y lo vemos al final.
+Hay una consecuencia que se nota. El análisis se hace dentro de la misma petición, y el navegador espera. Por eso existe la cubierta de espera que vimos, y por eso el tiempo máximo es tan alto. No hay una cola de tareas aparte, que sería un programa que recibe los trabajos y los hace uno por uno por detrás. Es una decisión de simplicidad, y la vemos al final.
 
 [Pantalla 11 · Cada quien ve lo suyo]
 
@@ -276,15 +337,15 @@ Además, hay una consecuencia que se nota: el análisis se hace dentro de la mis
 
 [Acción: rutas.py, _analisis_propio, línea 106]
 
-Todas las rutas que muestran o descargan un análisis empiezan igual, con una función corta: _analisis_propio. Busca el análisis por su número. Si no existe, o si es de otra persona, responde 404.
+Todas las rutas que muestran o descargan un análisis empiezan igual, con una función corta: _analisis_propio. Busca el análisis por su número. Si no existe, o si es de otra persona, responde 404, con la función abort.
 
 [Acción: navegador: cambia el número del análisis en la dirección por uno de otra cuenta o que no exista]
 
-Fíjate en el código: 404, no 403. Un 403 diría que ese análisis existe, pero que no es tuyo. Un 404 dice lo mismo en los dos casos: no hay nada aquí. Así no se puede recorrer los números para averiguar cuántos análisis hay.
+Fíjate en el código: 404, no 403. Un 403 quiere decir prohibido, y diría que ese análisis existe, pero que no es tuyo. Un 404 dice lo mismo en los dos casos: aquí no hay nada. Así nadie puede recorrer los números para averiguar cuántos análisis hay.
 
 [Acción: editor, rutas.py, líneas 122 a 129]
 
-Lo mismo con las imágenes marcadas. La ruta recibe el nombre del archivo, pero antes arma el conjunto de nombres permitidos, que son las dos copias marcadas de cada imagen de ese análisis. Si el nombre pedido no está en ese conjunto, 404. Y para servir el archivo usa send_from_directory, que además impide salirse de la carpeta con rutas como punto punto diagonal.
+Lo mismo con las imágenes marcadas. La ruta recibe el nombre del archivo, pero antes arma el conjunto de nombres permitidos: las dos copias marcadas de cada imagen de ese análisis. Si el nombre pedido no está en ese conjunto, 404. Y para servir el archivo usa send from directory, que además impide salirse de la carpeta con rutas como punto punto diagonal, un truco para llegar a archivos que no deberían verse.
 
 Es una regla de oro: nunca confiar en lo que llega en la dirección. Siempre se verifica de quién es y qué se pidió.
 
@@ -296,61 +357,69 @@ Es una regla de oro: nunca confiar en lo que llega en la dirección. Siempre se 
 
 [Acción: abre reportes.py, generar_csv, línea 18]
 
-Los reportes están en el archivo reportes.py. El CSV es la pieza más simple: se escribe en memoria, con el módulo csv de Python, una fila de encabezados y una fila por espermatozoide: imagen, número, área y largo en píxeles, y área y largo en micras.
+Los reportes están en el archivo reportes.py. El CSV es la pieza más simple. CSV quiere decir valores separados por comas: un texto en el que cada fila es una línea y las columnas se separan con comas, y que se abre en cualquier hoja de cálculo. Aquí se escribe en memoria, con el módulo csv de Python: una fila de encabezados y una fila por espermatozoide. Imagen, número, área y largo en píxeles, y área y largo en micras.
 
 [Acción: línea 28: la marca de orden de bytes]
 
-Hay un detalle en la última línea: antes del texto se agrega un carácter invisible, la marca de orden de bytes. Sirve para que Excel abra el archivo con la codificación correcta y los acentos no salgan rotos.
+Hay un detalle en la última línea. Antes del texto se agrega un carácter invisible, la marca de orden de bytes, que en inglés se llama BOM. Sirve para que Excel abra el archivo con la codificación correcta, y los acentos no salgan rotos.
 
-El CSV no se guarda. Se genera cada vez que alguien lo descarga, a partir de los resultados guardados, y la respuesta lleva una cabecera que le dice al navegador que es una descarga.
+El CSV no se guarda. Se genera cada vez que alguien lo descarga, a partir de los resultados guardados. Y la respuesta lleva una cabecera que le dice al navegador que es una descarga, no una página.
 
 [Acción: línea 8 y líneas 36 a 50]
 
-El PDF es otra cosa. Se genera una vez, al terminar el análisis. Usa fpdf2, y las gráficas las dibuja matplotlib. Fíjate en la línea 8: el modo Agg le dice a matplotlib que dibuje sin ventana, porque el servidor no tiene pantalla. La gráfica se dibuja en memoria como una imagen PNG y se inserta en la página.
+El PDF es otra cosa. Se genera una vez, al terminar el análisis. Usa fpdf2, y las gráficas las dibuja matplotlib. Fíjate en la línea 8. El modo Agg le dice a matplotlib que dibuje sin ventana, porque el servidor no tiene pantalla. La gráfica se dibuja en memoria como una imagen PNG, y se inserta en la página.
 
 [Acción: líneas 31 a 33: _texto]
 
-Y una limitación que viene de las fuentes básicas del PDF: solo aceptan el alfabeto latín-1. Los acentos, la eñe, la micra y el cuadrado pasan sin problema. Pero cualquier carácter fuera de ese conjunto se cambia por un signo de interrogación. Es lo que hace la función _texto.
+Y una limitación que viene de las fuentes básicas del PDF. Solo aceptan el alfabeto latín-1, que es un conjunto de caracteres de las lenguas de Europa occidental. Los acentos, la eñe, la micra y el cuadrado pasan sin problema. Pero cualquier carácter fuera de ese conjunto se cambia por un signo de interrogación. Eso es lo que hace la función _texto.
 
 [Acción: líneas 87 a 131: generar_pdf]
 
-El PDF lleva lo mismo que la pantalla: el usuario, la fecha, la nota de la escala, el aviso rojo si fue provisional, una página por imagen y, si hay varias, la gráfica del promedio.
+El PDF lleva lo mismo que la pantalla. El usuario, la fecha, la nota de la escala, el aviso rojo si fue provisional, una página por imagen y, si hay varias, la gráfica del promedio.
 
 [Acción: rutas.py, líneas 132 a 150]
 
-En las rutas, el CSV se entrega como respuesta en el momento y el PDF se lee de la carpeta con send_from_directory. Los dos exigen sesión y pasan por la comprobación de que el análisis sea tuyo.
+En las rutas, el CSV se entrega como respuesta en el momento, y el PDF se lee de la carpeta con send from directory. Los dos exigen sesión, y los dos pasan por la comprobación de que el análisis sea tuyo.
 
 [Pantalla 13 · Un proceso, cuatro hilos y las pruebas]
 
 > Idea central: Gunicorn corre con un proceso y cuatro hilos, para que los modelos se carguen una sola vez, y con tiempo máximo de 1,800 segundos, igual que Nginx. Las pruebas con pytest recorren el flujo completo sin los modelos, y comprueban que el sitio funcione, no que el conteo sea científicamente correcto.
 
-> En pantalla: Editor: la última línea de `Dockerfile` (23) y `deploy/nginx.conf`, líneas 41 y 49 a 51; después terminal: `python -m pytest`, y el editor en `tests/test_sistema.py` (fixture `app`, líneas 18 a 30) y en `tests/test_modelo.py` (línea 59).
+> En pantalla: Editor: la última línea de `Dockerfile` (23) y `deploy/nginx.conf`, líneas 41 y 49 a 51; después terminal: `python -m pytest`, y el editor en `tests/test_sistema.py` (líneas 55 a 58, fixture `app` 18 a 30 y análisis completo 82 a 108) y en `tests/test_modelo.py` (línea 59).
 
 [Acción: Dockerfile, línea 23]
 
-Para cerrar, cómo se ejecuta todo. Esta es la orden con la que arranca el sitio en el servidor: Gunicorn, con un proceso, que se llama worker, y cuatro hilos.
+Para cerrar, cómo se ejecuta todo y cómo se prueba. El Dockerfile es la receta con la que se arma el contenedor del sitio, y su última línea es la orden con la que arranca: Gunicorn, con un worker y cuatro hilos. Un worker es un proceso, un programa en marcha. Un hilo es una línea de trabajo dentro de ese proceso.
 
-¿Por qué solo uno? Porque cada modelo ocupa unos 176 megabytes en memoria, y varios procesos los duplicarían. Con un proceso, los modelos se cargan una sola vez. Los cuatro hilos permiten que el resto del sitio siga respondiendo mientras un análisis usa el procesador.
+¿Por qué solo un proceso? Porque cada modelo ocupa unos 176 megabytes en memoria, y varios procesos los duplicarían. Con uno solo, los modelos se cargan una vez. Y los cuatro hilos permiten que el resto del sitio siga respondiendo mientras un análisis usa el procesador.
 
-El tiempo máximo es de 1,800 segundos, media hora, porque analizar diez imágenes grandes con los modelos puede tardar varios minutos. Nginx tiene el mismo número en sus tiempos de espera, y un límite de 300 megabytes por envío, igual que Flask.
+El tiempo máximo, que en la orden se llama timeout, es de 1,800 segundos, media hora. Porque analizar diez imágenes grandes con los modelos puede tardar varios minutos.
 
 [Acción: nginx.conf, líneas 41 y 49 a 51]
 
-Esta es una decisión de simplicidad, y sus límites son claros. No hay una cola de tareas: mientras un análisis corre, otro tiene que esperar su turno, y la persona ve la cubierta de espera. Con pocas personas a la vez, funciona. Si el uso creciera mucho, el siguiente paso sería sacar el análisis a una cola con procesos aparte.
+Nginx tiene los mismos números: una espera máxima de 1,800 segundos y un límite de 300 megabytes por envío, igual que Flask. Si uno de los tres fuera menor, cortaría el análisis antes que los demás.
+
+Esto es una decisión de simplicidad, y sus límites son claros. No hay una cola de tareas. Mientras un análisis corre, otro tiene que esperar su turno, y la persona ve la cubierta de espera. Con pocas personas a la vez, funciona. Si el uso creciera mucho, el siguiente paso sería sacar el análisis a una cola, con procesos aparte.
 
 [Acción: terminal: python -m pytest. Lee el resultado de ese día]
 
-Y las pruebas. Con la orden python -m pytest se ejecutan todas, y este es el resultado de hoy.
+Y las pruebas. Una prueba automática es una función que ejecuta una parte del sitio y comprueba que haga lo esperado, para que cada cambio se pueda verificar en segundos. Con la orden python -m pytest se ejecutan todas. Este es el resultado de hoy.
+
+[Acción: tests/test_sistema.py, líneas 55 a 58: una prueba sencilla]
+
+Veamos una. Se llama prueba analizar requiere sesión. Usa un cliente de pruebas, que simula un navegador sin abrir uno. Manda un POST a analizar sin haber iniciado sesión, y afirma, con assert, dos cosas: que la respuesta sea un 302, una redirección, y que lleve a la pantalla de entrar. Si el código cambiara y dejara pasar a alguien sin cuenta, esta prueba fallaría.
 
 [Acción: tests/test_sistema.py, fixture app, líneas 18 a 30]
 
-Las pruebas recorren el flujo completo con un cliente de pruebas de Flask, que simula un navegador. Una cuenta se registra, entra, sube una imagen, ve los resultados y descarga el CSV y el PDF. También comprueban lo que no debe pasar: que un análisis ajeno dé 404, que un formato no permitido se rechace, que más de diez imágenes se rechacen, que una redirección a otro sitio se bloquee, que el enlace de recuperación solo sirva una vez.
+Antes de cada prueba, pytest ejecuta una preparación que se llama fixture, y esta crea la aplicación. Usa crear app con una configuración especial: una base de datos y carpetas temporales, para no tocar las reales, y sin protección de formularios, porque no hay navegador que reciba el token. Y la línea de arriba le dice que los modelos no existen, para que el análisis use la detección provisional, rápida y sin PyTorch.
 
-Para que sean rápidas, el entorno de pruebas se crea sin los modelos, con una base de datos temporal y sin protección de formularios.
+[Acción: tests/test_sistema.py, líneas 82 a 108: el análisis completo]
+
+Con esa base, hay pruebas más grandes. Una registra una cuenta, sube dos imágenes, abre los resultados y descarga el CSV y el PDF. Otras comprueban lo que no debe pasar: que un análisis ajeno dé 404, que un formato no permitido se rechace, que más de diez imágenes se rechacen, que una redirección a otro sitio se bloquee y que el enlace de recuperación solo sirva una vez.
 
 [Acción: tests/test_modelo.py, línea 59]
 
-Y hay que decir lo que no comprueban. No dicen si el conteo es correcto ni si la medición es buena. Comprueban que el sitio usa bien lo que le entrega el modelo. La prueba con los modelos reales existe, pero solo corre si se pide con una variable y si los archivos están. La calidad científica se evalúa aparte, con las imágenes anotadas, y es parte del trabajo con el cliente.
+Y hay que decir lo que no comprueban. No dicen si el conteo es correcto, ni si la medición es buena. Comprueban que el sitio usa bien lo que le entrega el modelo. La prueba con los modelos reales existe, pero solo corre si se pide con una variable y si los archivos están. La calidad científica se evalúa aparte, con las imágenes anotadas, y es parte del trabajo con el cliente.
 
 [Pantalla 14 · Lo que vimos y lo que sigue]
 
@@ -362,10 +431,10 @@ Y hay que decir lo que no comprueban. No dicen si el conteo es correcto ni si la
 
 Un resumen.
 
-Vimos el camino que sigue una imagen. Nginx recibe la petición, Gunicorn la pasa a Flask, y Flask la dirige a una función según la dirección. Vimos cómo se crea la aplicación con una función, y cómo se organizan sus 19 rutas en tres secciones.
+Vimos el camino que sigue una imagen. Nginx recibe la petición, Gunicorn la pasa a Flask, y Flask la dirige a una función según la dirección. Vimos cómo se crea la aplicación con una función fábrica, y cómo se organizan sus 19 rutas en tres secciones.
 
-Vimos las protecciones. Las contraseñas se guardan como huella. El error de inicio de sesión no revela nada. Los formularios llevan un token contra la falsificación de peticiones. El enlace de recuperación se firma, dura una hora y se vuelve inútil al cambiar la contraseña. Cada persona ve solo lo suyo, y todo lo que llega en la dirección se verifica.
+Vimos las protecciones. Las contraseñas se guardan como huella, que no se puede deshacer. El error de inicio de sesión no revela nada. Los formularios llevan un token contra la falsificación de peticiones entre sitios. El enlace de recuperación se firma, dura una hora y se vuelve inútil al cambiar la contraseña. Cada persona ve solo lo suyo, y todo lo que llega en la dirección se verifica.
 
-Vimos la base de datos con sus tres tablas, la ruta de análisis, que valida, guarda con un nombre generado y borra la imagen siempre, y los reportes en CSV y PDF. Y vimos cómo corre todo en el servidor, y qué comprueban las pruebas y qué no.
+Vimos la base de datos con sus tres tablas. La ruta de análisis, que valida, guarda con un nombre generado y borra la imagen siempre. Y los reportes en CSV y PDF. Y vimos cómo corre todo en el servidor, y qué comprueban las pruebas y qué no.
 
 En el siguiente video entramos al modelo. En esta ruta, analizar le entrega la imagen a una función y recibe contornos. Qué pasa dentro de esa función, cómo se prepara la foto, cómo se corta en recortes y cómo se recogen las respuestas de la red, es el tema del tercer video. Gracias por acompañarme.

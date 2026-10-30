@@ -21,11 +21,20 @@ Este video no lleva mazo. Se graba la pantalla: el editor con el código, una te
 | 13 | Un proceso, cuatro hilos y las pruebas | Editor, terminal | `Dockerfile`, `nginx.conf`, `python -m pytest` y los archivos de pruebas |
 | 14 | Lo que vimos y lo que sigue | Navegador | Página de resultados mientras se resume |
 
+## Entorno de Python
+
+El Python global de este equipo no trae las extensiones de Flask que usa el sitio, así que hay que crear un entorno aparte, una sola vez. Un entorno virtual (venv) es una carpeta, `.venv`, con su propia copia de las bibliotecas del proyecto: lo que se instala ahí no cambia el Python global, que se usa en otros proyectos. Se crea con `--system-site-packages` para que reutilice lo que ya está instalado (Flask, OpenCV, NumPy, PyTorch, Matplotlib y Pillow) y solo se instale lo que falta.
+
+- `python -m venv --system-site-packages .venv` crea el entorno, en la carpeta del proyecto. La carpeta `.venv` ya está en `.gitignore`.
+- `.\.venv\Scripts\python.exe -m pip install flask-login==0.6.3 flask-sqlalchemy==3.1.1 flask-wtf==1.3.0 fpdf2==2.8.9 pytest` instala lo que falta.
+- `.\.venv\Scripts\Activate.ps1` activa el entorno en la terminal. Con él activo, en pantalla se ven `python run.py`, `flask --app run routes` y `python -m pytest` tal como los dice el guion. Si PowerShell bloquea el script por la política de ejecución, se usan las rutas completas, por ejemplo `.\.venv\Scripts\python.exe run.py`.
+- No se usa `pip install -r requirements.txt` en el Python global: fija versiones (por ejemplo `numpy==2.5.4`) que cambiarían las de otros proyectos.
+
 ## Antes de grabar
 
 - Sitio con la versión actual del repositorio corriendo en local (`python run.py` o `docker compose up`), con una cuenta de prueba nueva y sin datos de personas reales. El sitio de producción va atrás del repositorio (1.0.0 contra 1.11.0), así que no se usa para este video.
-- Dependencias del proyecto instaladas en el entorno de la terminal, incluido `pytest`. Las órdenes `flask --app run routes` y `python -m pytest` se corren en la carpeta del proyecto. Comprobar las dos antes de grabar.
-- Navegador con la cuenta de prueba ya iniciada para el tramo 1, a 1440 px de ancho y zoom al 100 %. Abrir F12 en la pestaña de red con la opción de conservar el registro (el 302 y el 200 se ven en la misma lista).
+- Entorno de Python creado y activado en la terminal (sección anterior). Las órdenes `flask --app run routes` y `python -m pytest` se corren en la carpeta del proyecto. Comprobar las dos antes de grabar.
+- Navegador con la cuenta de prueba ya iniciada para el tramo 1, a 1440 px de ancho y zoom al 100 %. Abrir las herramientas con F12 o Ctrl+Mayús+I, ir a la pestaña Red (si no se ve, está detrás del botón » del panel), marcar «Conservar registro» (Preserve log) y agregar la columna Método con clic derecho en el encabezado de la tabla (el 302 y el 200 se ven en la misma lista; el filtro Doc deja solo las páginas).
 - Editor con las pestañas abiertas en el orden en que se usan: `requirements.txt`, `requirements-modelo.txt`, `run.py`, `app/__init__.py`, `app/extensiones.py`, `app/sitio.py`, `app/cuentas.py`, `app/modelos.py`, `app/correo.py`, `app/analisis/rutas.py`, `app/analisis/reportes.py`, `docker-compose.yml`, `Dockerfile`, `deploy/nginx.conf`, `tests/test_sistema.py` y `tests/test_modelo.py`. Letra grande y números de línea visibles. No mostrar el archivo `.env`.
 - Para el tramo 11, una segunda cuenta de prueba con un análisis, para usar su número en la dirección; si no, un número que no exista.
 - Para el tramo 8, la carpeta `instance` del entorno de grabación, ya con la base de datos, `pdfs`, `marcadas` y `subidas` creadas por haber corrido un análisis.
@@ -53,17 +62,17 @@ Este video no lleva mazo. Se graba la pantalla: el editor con el código, una te
 
 | Archivo | Líneas |
 |---|---|
-| `app/__init__.py` | `crear_app` 9; configuración 12 a 26; carpetas 30 a 32; extensiones 34 a 39 (CSRF 35); blueprints 41 a 48; `create_all` 54 y 55 |
-| `app/extensiones.py` | completo (7 líneas) |
-| `app/cuentas.py` | `destino_seguro` 19; `entrar` 26; registro 36 a 53; inicio de sesión 55 a 59; token 78 a 95; `olvide` 98 a 117; `restablecer` 120 a 137 |
-| `app/modelos.py` | `Usuario` 10; huella 20 a 24; `Analisis` 27; `Mensaje` 45; cargador de usuario 54 |
-| `app/correo.py` | completo (36 líneas) |
-| `app/analisis/rutas.py` | `analizar` 33 a 63 (validaciones 39 a 49; nombre 51 a 56; `try/finally` 58 a 61); `analizar_prueba` 66 a 73; `_guardar_y_mostrar` 81 a 103; `_analisis_propio` 106 a 111; `imagen_marcada` 122 a 129; CSV y PDF 132 a 150 |
+| `app/__init__.py` | `crear_app` 9; `Flask(...)` 10; configuración 12 a 26 (clave 14, base 15, envío 17, imágenes 18); `if config` 27 y 28; carpetas 30 a 32; extensiones 34 a 39 (CSRF 35); blueprints 41 a 48; `create_all` 54 y 55 |
+| `app/extensiones.py` | completo (7 líneas): importaciones 1 a 3; las tres extensiones 5 a 7 |
+| `app/cuentas.py` | `destino_seguro` 19 a 23; `entrar` 26; formulario 31 a 34; comprobaciones 36 a 46; crear usuario 47 a 53; inicio de sesión 54 a 59; token 78 a 95 (serializador y token 78 a 84); `olvide` 98 a 117; `restablecer` 120 a 137 |
+| `app/modelos.py` | `Usuario` 10 a 15; relación 17 y 18; huella 20 a 24; `Analisis` 27 (propiedad `resultados` 37); `Mensaje` 45; cargador de usuario 54 |
+| `app/correo.py` | completo (36 líneas): `configurado` 11 a 13; `enviar` 16 a 36 |
+| `app/analisis/rutas.py` | `analizar` 33 a 63 (arranque 33 a 37; validaciones 39 a 49; nombre 51 a 56; guardar y `try/finally` 57 a 61); `analizar_prueba` 66 a 73; `_guardar_y_mostrar` 81 a 103; `_analisis_propio` 106 a 111; `imagen_marcada` 122 a 129; CSV y PDF 132 a 150 |
 | `app/analisis/reportes.py` | `generar_csv` 18 a 28; Agg 8; `_texto` 31 a 33; `_grafica_barras` 36 a 50; `generar_pdf` 87 a 131 |
 | `docker-compose.yml` | variables de correo 16 a 20 |
 | `Dockerfile` | `CMD` 23 |
 | `deploy/nginx.conf` | `client_max_body_size` 41; esperas 49 a 51 |
-| `tests/test_sistema.py` | fixture `app` 18 a 30 |
+| `tests/test_sistema.py` | prueba sencilla 55 a 58; fixture `app` 18 a 30; análisis completo 82 a 108 |
 | `tests/test_modelo.py` | prueba con los modelos reales 59 |
 
 ## Cosas que el guion dice con cuidado
