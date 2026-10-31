@@ -1,0 +1,7 @@
+{
+    "python.terminal.useEnvFile": true,
+    "files.exclude": {
+        "**/.claude": true,
+        "**/CLAUDE.md": true
+    }
+}

@@ -2,7 +2,12 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.11.0.
+**En producción: 1.0.0.** El repositorio va en 1.11.1.
+
+## 1.11.1 (30 de octubre de 2026)
+
+- Configuración: `requirements-modelo.txt` ya no dice que PyTorch es opcional, porque el sitio necesita los modelos para analizar.
+- Las instrucciones del proyecto para el desarrollo pasan a `.claude/CLAUDE.md` y se agrega `.vscode/settings.json` para el editor.
 
 ## 1.11.0 (28 de octubre de 2026)
 
