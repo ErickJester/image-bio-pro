@@ -66,7 +66,7 @@ Guiones de los cuatro videos terminados en `guion youtube/modulo-3-presentacion-
 
 ### Módulo 4. Código y despliegue
 
-Guion pendiente. Cierra el código y lleva el sitio a internet.
+Plan en [`plan-modulo-4.md`](plan-modulo-4.md). Guiones de los cuatro videos terminados (cuaderno de Colab en dos videos, despliegue en la nube, y Nginx, dominio, HTTPS y cierre). Faltan las grabaciones y confirmar en Colab y en el servidor lo que aquí no se pudo probar. Cierra el código y lleva el sitio a internet.
 
 - Videos 1 y 2, el cuaderno de Colab, en código (`entrenamiento/entrenar_mask_rcnn.ipynb`; el cuaderno se quitó del módulo 1 y se retoma aquí). Se muestra con `MODO_PRUEBA = True`, sin correr el entrenamiento completo. Reparto propuesto, por confirmar contra el cuaderno real: el video 1 va del entorno y la configuración hasta preparar las imágenes y los recortes (leer las etiquetas, separar entrenamiento y validación); el video 2 va de construir la red a partir de una ya entrenada hasta entrenar, ver los resultados y exportar el modelo.
 - Videos 3 y 4, **despliegue en la nube y cierre** (el video 3 llega hasta Docker Compose; el 4 va de Nginx al cierre). Es contenido vivido en el proyecto, con ejemplos reales:
@@ -98,7 +98,7 @@ Se preparan a partir del trabajo de desarrollo.
 
 - [x] Guion del módulo 1 en tres videos: [`guion youtube/modulo-1-el-problema-y-las-bases`](guion%20youtube/modulo-1-el-problema-y-las-bases).
 - [x] Guiones del módulo 2 en cuatro videos: [`guion youtube/modulo-2-teoria-con-mas-detalle`](guion%20youtube/modulo-2-teoria-con-mas-detalle).
-- [ ] Guiones de los módulos 3 y 4 (cada video tiene ya su carpeta vacía en `guion youtube`).
+- [x] Guiones de los módulos 3 y 4 (cada video con su guion en dos versiones, Word y guía de pantalla en `guion youtube`).
 - [ ] Mazos por video.
 - [ ] Capturas del sitio (en `capturas/`, ya hay las del módulo 1).
 - [ ] Cuaderno de Colab para mostrar en el módulo 4: `entrenamiento/entrenar_mask_rcnn.ipynb`.

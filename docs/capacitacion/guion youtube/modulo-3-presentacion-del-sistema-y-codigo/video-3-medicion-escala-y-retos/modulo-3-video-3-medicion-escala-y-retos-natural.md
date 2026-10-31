@@ -4,7 +4,7 @@ BioImage-Repro UAM · Módulo 3 · Capacitación en video
 
 Segunda versión, escrita para decirse en voz alta mientras se muestra la pantalla, sin mazo: frases cortas, ritmo de conversación, sin guiones largos. Empieza con la frase que lo une con el video anterior.
 
-*4,785 palabras, unos 27.3 min de habla*
+*4,793 palabras, unos 27.4 min de habla*
 
 Las líneas que empiezan con [Acción: …] no se leen en voz alta: marcan en qué frase se cambia de pantalla, se hace clic o se baja. El bloque En pantalla de cada tramo resume lo que se abre en él.
 
@@ -68,13 +68,13 @@ Un detalle pequeño, pero muestra algo importante: el área cuenta píxeles, no 
 
 > Idea central: Las medidas salen en píxeles. Para pasarlas a micras, el código usa una sola constante, PX_POR_MICRA, que vale 60: el largo se divide entre 60, y el área, entre 60 al cuadrado. La imagen marcada trae una regla de 300 píxeles, que son 5 micras.
 
-> En pantalla: Editor, `medicion.py`: líneas 37 a 40 y 134 y 135. Después, otra vez la salida del comando A, para hacer la cuenta.
+> En pantalla: Editor, `medicion.py`: líneas 38 a 40 y 134 y 135. Después, otra vez la salida del comando A, para hacer la cuenta.
 
-[Acción: líneas 37 a 40: la constante PX_POR_MICRA]
+[Acción: líneas 38 a 40: la constante PX_POR_MICRA]
 
 Un píxel no mide nada por sí solo. Cuánto mide en la realidad depende de cómo se tomó la foto. Para pasar de píxeles a micras hace falta una escala. Una micra, o micrómetro, es la milésima parte de un milímetro. Es la unidad natural para algo tan pequeño como una célula. Se escribe µm.
 
-La línea 40 dice PX por micra igual a 60. Son 60 píxeles por cada micra. Los comentarios de arriba cuentan de dónde sale: de una indicación del cliente, por chat, el 16 de octubre de 2026. Una raya de 300 píxeles equivale a 5 micras. Y 300 entre 5 son 60.
+La línea 40 dice PX por micra igual a 60. Son 60 píxeles por cada micra. Los comentarios de arriba cuentan de dónde sale: de una indicación del laboratorio, por chat, el 16 de octubre de 2026. Una raya de 300 píxeles equivale a 5 micras. Y 300 entre 5 son 60.
 
 El comentario también dice que, por ahora, es una sola constante para todas las imágenes, y que más adelante la escala se leería de la raya de cada imagen. Y trae una palabra clave: provisional, sin calibrar. Calibrar es comprobar contra algo cuya medida se conoce. Aquí todavía no se hizo.
 
@@ -88,9 +88,9 @@ Con el rectángulo del comando A. Sesenta píxeles de largo, entre 60, es una mi
 
 [Pantalla 4 · Una escala provisional]
 
-> Idea central: La escala no se puede sacar de las fotos, porque no traen barra de escala ni regla impresa. Por eso es una constante provisional. Con ella, la imagen de ejemplo da cabezas de menos de una micra, que no es creíble. Las micras del sitio son aproximadas, y el sitio lo dice.
+> Idea central: La escala no se puede sacar de las fotos, porque no traen barra de escala ni regla impresa. Se habló con el laboratorio y de ahí salió un valor de partida, una constante provisional. Con ella, la imagen de ejemplo da cabezas de menos de una micra, que no es creíble. Las micras del sitio son aproximadas, y el sitio lo dice.
 
-> En pantalla: Terminal, comando B (el análisis de la imagen de ejemplo). Después `docs/integracion-modelos.md`, sección «Escala en micras», líneas 36 a 51.
+> En pantalla: Terminal, comando B (el análisis de la imagen de ejemplo).
 
 [Acción: terminal: comando B, el análisis de la imagen de ejemplo]
 
@@ -98,13 +98,11 @@ Veamos qué sale con la imagen de ejemplo del sitio. Este comando la analiza y m
 
 Luego el área en píxeles: media de 301.8, mínimo de 179 y máximo de 455. Y el largo en píxeles: media de 28.62. En micras, el largo medio es de 0.48. Menos de media micra.
 
-Aquí hay que detenerse. Una cabeza de espermatozoide mide varias micras de largo. Y el contorno, además, incluye un pedazo de cola, así que debería salir más largo, no más corto. Un resultado de media micra no es creíble. Dicho de otra forma: con esta escala, esta imagen no sale en micras reales. No sabemos con qué ajuste se tomó la imagen de ejemplo, ni si tiene la misma escala que las fotos del cliente. Lo que sí sabemos es que la escala del código es provisional. Por eso el sitio no la presenta como una calibración.
+Aquí hay que detenerse. Una cabeza de espermatozoide mide varias micras de largo. Y el contorno, además, incluye un pedazo de cola, así que debería salir más largo, no más corto. Un resultado de media micra no es creíble. Dicho de otra forma: con esta escala, esta imagen no sale en micras reales. No sabemos con qué ajuste se tomó la imagen de ejemplo, ni si tiene la misma escala que las fotos del laboratorio. Lo que sí sabemos es que la escala del código es provisional. Por eso el sitio no la presenta como una calibración.
 
-[Acción: abre docs/integracion-modelos.md, sección «Escala en micras», líneas 36 a 51]
+¿Por qué no se puede sacar la escala de las fotos? Porque las fotos del laboratorio no traen barra de escala ni regla impresa, y los archivos BMP tampoco guardan una medida. De la imagen sola no se puede deducir cuánto mide un píxel, salvo que supongas el tamaño de algo. Y aquí no se debe suponer nada del espermatozoide.
 
-La documentación explica por qué no se puede sacar la escala de las fotos. Las fotos del cliente no traen barra de escala ni regla impresa, y los archivos BMP tampoco guardan una medida. De la imagen sola no se puede deducir cuánto mide un píxel, salvo que supongas el tamaño de algo. Y aquí no se debe suponer nada del espermatozoide.
-
-De qué depende de verdad la escala: del aumento del objetivo del microscopio, que es de 40 veces; del tamaño del sensor de la cámara y de cualquier adaptador; y de la resolución a la que se guarda la foto. Las fotos del cliente vienen en dos tamaños, de 1,792 y de 3,584 píxeles de ancho. Si son del mismo campo con distinta resolución, cada una necesita su propio valor, y el de la grande sería el doble. Esa es una pregunta abierta.
+Por eso se habló con el laboratorio, y de ahí salió el valor de partida de 60 píxeles por micra. Es un valor de trabajo, no una medición hecha con una regla en su microscopio. Porque la escala depende de verdad del aumento del objetivo del microscopio, que es de 40 veces; del tamaño del sensor de la cámara y de cualquier adaptador; y de la resolución a la que se guarda la foto. Las fotos del laboratorio vienen en dos tamaños, de 1,792 y de 3,584 píxeles de ancho. Si son del mismo campo con distinta resolución, cada una necesita su propio valor, y el de la grande sería el doble. Esa es una pregunta abierta, y queda por aclarar con ellos.
 
 La solución propuesta es una tabla de escalas en un archivo de configuración, con los píxeles por micra de cada resolución, que se edita sin tocar el código. Y obtener cada valor de lo más confiable a lo menos. Una foto de una regla de calibración, que se llama micrómetro de platina, tomada con ese microscopio y esa cámara. O la calibración del programa de la cámara. O un cálculo con la ficha técnica de la cámara. Eso está planteado. No está hecho.
 
@@ -220,13 +218,11 @@ Una última cosa de esta parte. Para el detalle que sale al pasar el mouse sobre
 
 > Idea central: Los espermatozoides juntos o encimados son el primer reto. Un umbral de color los funde en una sola mancha, y por eso quedó solo como respaldo. Con la red el problema cambia, pero no desaparece: en zonas amontonadas repite, parte o se salta contornos. Los conteos son aproximados.
 
-> En pantalla: `docs/base-conocimiento/03-decisiones.md`, líneas 12 y 13. Editor, `medicion.py`, líneas 67 a 98. Terminal, comando E. `docs/base-conocimiento/05-limitaciones.md`, línea 6.
-
-[Acción: docs/base-conocimiento/03-decisiones.md, líneas 12 y 13: «Un umbral simple no bastaba»]
+> En pantalla: Editor, `medicion.py`, líneas 67 a 98. Terminal, comando E.
 
 Llegamos a los retos. Son cuatro, y son lo que más costó resolver. El primero: separar y contar bien.
 
-Lo primero que se intentó fue lo más simple, un umbral de color. Un umbral es un valor de corte: todo píxel más brillante que ese valor es parte de una célula, y el resto es fondo. Esta nota de las decisiones explica por qué no bastó. Tres razones. Las colas y las manchas también brillan. Las células encimadas se funden en una sola mancha. Y el brillo cambia con la iluminación de cada foto.
+Lo primero que se intentó fue lo más simple, un umbral de color. Un umbral es un valor de corte: todo píxel más brillante que ese valor es parte de una célula, y el resto es fondo. No bastó, por tres razones. Las colas y las manchas también brillan. Las células encimadas se funden en una sola mancha. Y el brillo cambia con la iluminación de cada foto.
 
 [Acción: medicion.py, líneas 67 a 98: detectar_cabezas]
 
@@ -238,21 +234,17 @@ Luego aplica tres filtros. Descarta lo que mida menos de 20 píxeles, que es rui
 
 Con la imagen de ejemplo da 45. El modelo dio 41. Esa diferencia no dice cuál tiene la razón. Dice que dos métodos distintos, mirando la misma foto, no cuentan igual. En esta foto las cabezas están bastante separadas. El problema serio aparece cuando se juntan.
 
-[Acción: docs/base-conocimiento/05-limitaciones.md, línea 6: conteos aproximados con células juntas]
-
-Con los modelos el problema cambia, pero no se va. La documentación lo dice sin rodeos: en zonas con muchos espermatozoides juntos, el modelo puede repetir un contorno, partir uno en dos o no encontrar algunos. Contra los repetidos hay tres defensas, que vimos en el video anterior: descartar lo que toca el borde interno de una tesela, quitar repetidos con el IoU y el filtro de contenido. Ayudan. No son perfectas. Por eso los conteos del sitio son aproximados.
+Con los modelos el problema cambia, pero no se va. Hay que decirlo sin rodeos: en zonas con muchos espermatozoides juntos, el modelo puede repetir un contorno, partir uno en dos o no encontrar algunos. Contra los repetidos hay tres defensas, que vimos en el video anterior: descartar lo que toca el borde interno de una tesela, quitar repetidos con el IoU y el filtro de contenido. Ayudan. No son perfectas. Por eso los conteos del sitio son aproximados.
 
 [Pantalla 10 · Reto 2: falsos positivos]
 
 > Idea central: La red siempre contesta, aunque no haya un espermatozoide: marca fibras, manchas y núcleos con puntajes altos. No se le enseñó con ejemplos negativos qué no marcar. El código tiene un solo freno: si no encuentra nada, dice que no pudo analizar.
 
-> En pantalla: `docs/base-conocimiento/05-limitaciones.md`, línea 7. Editor, `medicion.py`, líneas 259 a 265.
-
-[Acción: docs/base-conocimiento/05-limitaciones.md, línea 7: sin ejemplos negativos]
+> En pantalla: Editor, `medicion.py`, líneas 259 a 265.
 
 El segundo reto son los falsos positivos. Un falso positivo es algo que el sistema marca como espermatozoide y no lo es. Ya hablamos de esto en el módulo 2, en el video de Mask R-CNN. Recuerda el ejemplo. Con un recorte de una foto de células con núcleos fluorescentes, sin ningún espermatozoide, el modelo marcó un núcleo con 0.96 y un trozo de fibra con 1.00. Un puntaje alto no garantiza que sea un espermatozoide.
 
-¿Por qué pasa? La documentación lo resume en una frase: sin ejemplos negativos. Un ejemplo negativo es una foto, o un pedazo de foto, donde la respuesta correcta es que no hay nada que marcar. Los modelos se entrenaron con cuatro fotos por tipo, todas con espermatozoides. Nunca vieron una fibra o un núcleo con la etiqueta de que eso no es. Y por eso, ante algo brillante y compacto, tienden a marcarlo.
+¿Por qué pasa? Se resume en una frase: sin ejemplos negativos. Un ejemplo negativo es una foto, o un pedazo de foto, donde la respuesta correcta es que no hay nada que marcar. Los modelos se entrenaron con cuatro fotos por tipo, todas con espermatozoides. Nunca vieron una fibra o un núcleo con la etiqueta de que eso no es. Y por eso, ante algo brillante y compacto, tienden a marcarlo.
 
 [Acción: medicion.py, líneas 259 a 265: el único freno del código]
 
@@ -264,11 +256,9 @@ Está en la lista de trabajo futuro: agregar ejemplos negativos al entrenamiento
 
 > Idea central: El largo es el lado mayor del rectángulo mínimo, no la longitud de la curva, y el contorno incluye la cabeza y parte de la cola. Además, en la imagen de ejemplo cuatro contornos son colas marcadas como si fueran espermatozoides, y ellas solas multiplican por casi cuatro la desviación del largo.
 
-> En pantalla: `docs/base-conocimiento/05-limitaciones.md`, línea 9. Terminal, comando F de la guía y, otra vez, la salida del comando B.
+> En pantalla: Terminal, comando F de la guía y, otra vez, la salida del comando B.
 
-[Acción: docs/base-conocimiento/05-limitaciones.md, línea 9: el largo no es la longitud de la curva]
-
-El tercer reto es qué significa largo. La documentación lo aclara. El largo no es la longitud de la curva. Es el lado mayor del rectángulo mínimo del contorno. Y el contorno incluye la cabeza y parte de la cola, no solo la cabeza. Por eso en pantalla, CSV y PDF se cambió cabeza por espermatozoide.
+El tercer reto es qué significa largo, y conviene aclararlo. El largo no es la longitud de la curva. Es el lado mayor del rectángulo mínimo del contorno. Y el contorno incluye la cabeza y parte de la cola, no solo la cabeza. Por eso en pantalla, CSV y PDF se cambió cabeza por espermatozoide.
 
 Hay una decisión pendiente: cambiar el largo a la longitud de la curva. Mientras no se decida, el largo sirve para comparar un espermatozoide con otro, pero no es la medida de la cola ni del espermatozoide completo.
 
@@ -282,7 +272,7 @@ Recuerda el largo de la imagen de ejemplo: media de 28.62 y desviación de 16.72
 
 [Acción: vuelve a la salida del comando B: la línea del largo en micras]
 
-Con la escala, ese máximo es 1.46 micras y el mínimo, 0.25. Dos números en micras que parecen medidas, y que dependen de una escala provisional y de si el contorno es una cabeza o una cola. Es el cuidado que pide la documentación en sus riesgos: un resultado numérico puede parecer más exacto de lo que es.
+Con la escala, ese máximo es 1.46 micras y el mínimo, 0.25. Dos números en micras que parecen medidas, y que dependen de una escala provisional y de si el contorno es una cabeza o una cola. Es un cuidado que hay que tener: un resultado numérico puede parecer más exacto de lo que es.
 
 Una observación. El filtro de alargamiento, el de más de 5 a 1, existe en la detección provisional, pero no en el camino del modelo. Lo que vemos aquí sugiere que algo parecido ayudaría. Es una mejora posible. No está hecha.
 
@@ -290,7 +280,7 @@ Una observación. El filtro de alargamiento, el de más de 5 a 1, existe en la d
 
 > Idea central: Las fotos traen sus propias dificultades: dos tipos con dos modelos, formatos con compresión que cambian el resultado, y fotos grandes que tardan. Con la misma foto, el conteo pasó de 41 en PNG a 45, 49 y 45 en JPG de distinta calidad.
 
-> En pantalla: Editor, `medicion.py`, líneas 47 y 249 a 252. Terminal, comando G de la guía. `docs/integracion-modelos.md`, líneas 29 y 30, y línea 68.
+> En pantalla: Editor, `medicion.py`, líneas 47 y 249 a 252. Terminal, comando G de la guía.
 
 [Acción: medicion.py, líneas 47 y 249 a 252: los formatos]
 
@@ -304,29 +294,25 @@ BMP, PNG y TIFF guardan la foto tal cual, sin pérdida. JPG guarda una versión 
 
 El PNG da 41 espermatozoides. El JPG de calidad 95 da 45. El de 75 da 49. Y el de 50, 45. La misma foto, cuatro conteos. No hay una tendencia limpia: no es que menos calidad dé siempre más o siempre menos. Simplemente cambia. Un experimento con una sola imagen no es un estudio. Pero alcanza para ver por qué existe el aviso, y por qué conviene subir BMP, PNG o TIFF.
 
-[Acción: docs/integracion-modelos.md, líneas 29 y 30, y la decisión 2 de la línea 68]
-
 Y están las fotos grandes. En fluorescencia, una foto de 1,792 píxeles de ancho se corta en 20 teselas, como vimos, y una de 3,584, en 63. Cada tesela pasa por la red, en procesador y sin tarjeta gráfica, así que cada foto tarda decenas de segundos. Del servidor real todavía no hay una medición.
 
-¿Cómo se resolvió? El cliente pidió poder subir 10 imágenes a la vez y ver una barra de progreso. Se mantuvieron las dos cosas, con tiempos de espera altos, de 1,800 segundos en Gunicorn y en Nginx, y con análisis de uno en uno. Si en el servidor real diez imágenes tardan demasiado, el plan es limitar cuántas se suben, o pasar el análisis a segundo plano. Eso falta medirlo.
+¿Cómo se resolvió? El laboratorio pidió poder subir 10 imágenes a la vez y ver una barra de progreso. Se mantuvieron las dos cosas, con tiempos de espera altos, de 1,800 segundos en Gunicorn y en Nginx, y con análisis de uno en uno. Si en el servidor real diez imágenes tardan demasiado, el plan es limitar cuántas se suben, o pasar el análisis a segundo plano. Eso falta medirlo.
 
 [Pantalla 13 · Lo que no se mide y lo que falta]
 
 > Idea central: Hay cosas que el código calcula y no muestra, como el color. Hay cosas que no mide, como el espermatozoide de cabeza a cola. Y hay cosas que faltan: calibrar la escala, avisar de imágenes ajenas, medir en el servidor y validar con fotos nuevas. El sitio mide. La lectura científica es del grupo de investigación.
 
-> En pantalla: Editor, `medicion.py`, líneas 31 a 35 y 125 y 126. `docs/base-conocimiento/05-limitaciones.md`, líneas 20 a 27.
+> En pantalla: Editor, `medicion.py`, líneas 31 a 35 y 125 y 126.
 
 [Acción: medicion.py, líneas 31 a 35 y 125 y 126: el color]
 
 Antes de cerrar, lo que no se ve. El código calcula el color de cada espermatozoide. En la línea 126, el índice de color es el verde entre la suma de rojo y verde, promediado sobre todos los píxeles del contorno. Cero es rojo puro y 0.5 es amarillo. Y las líneas 31 a 35 reparten ese índice en diez grados, del más rojo al más amarillo.
 
-Pero el color ya no se muestra. En el plan de integración se decidió seguir guardándolo y dejar de mostrarlo en resultados, CSV y PDF. Está declarado, sin usar, por si hace falta más adelante.
+Pero el color ya no se muestra. Se decidió seguir guardándolo y dejar de mostrarlo en resultados, CSV y PDF. Está declarado, sin usar, por si hace falta más adelante.
 
-[Acción: docs/base-conocimiento/05-limitaciones.md, líneas 20 a 27: trabajo futuro]
+Y lo que falta. Medir el tiempo y la memoria en el servidor real. Reunir más imágenes, variadas y bien etiquetadas, con ejemplos negativos, y volver a entrenar. Validar con fotos que la red nunca haya visto. Medir de cabeza a cola. Avisar si la imagen no parece de espermatozoides. Quizá cambiar el largo a la longitud de la curva. Y, como extensión fuera del alcance actual, comparar control contra tratamiento.
 
-Y lo que falta, según el propio proyecto. Medir el tiempo y la memoria en el servidor real. Reunir más imágenes, variadas y bien etiquetadas, con ejemplos negativos, y volver a entrenar. Validar con fotos que la red nunca haya visto. Medir de cabeza a cola. Avisar si la imagen no parece de espermatozoides. Quizá cambiar el largo a la longitud de la curva. Y, como extensión fuera del alcance actual, comparar control contra tratamiento.
-
-A esa lista se suma la calibración de la escala, que vimos antes. Y yo agregaría una cosa, por lo que vimos hoy: descartar los contornos muy alargados que da el modelo. Pero ojo con la última línea de la documentación sobre los límites. El sitio mide. La lectura científica es del grupo de investigación.
+A esa lista se suma la calibración de la escala, que vimos antes. Y yo agregaría una cosa, por lo que vimos hoy: descartar los contornos muy alargados que da el modelo. Pero ojo con un límite. El sitio mide. La lectura científica es del grupo de investigación.
 
 [Pantalla 14 · Lo que vimos y lo que sigue]
 
@@ -338,7 +324,7 @@ A esa lista se suma la calibración de la escala, que vimos antes. Y yo agregar�
 
 Un resumen.
 
-La red localiza y el código mide. Del contorno salen dos medidas: el área, que son los píxeles de la máscara, y el largo, que es el lado mayor del rectángulo mínimo. Las dos salen en píxeles, y se pasan a micras con una escala provisional de 60 píxeles por micra. Esa escala no sale de las fotos. Viene de una indicación del cliente, y con ella la imagen de ejemplo da cabezas de menos de una micra. Por eso las micras son aproximadas.
+La red localiza y el código mide. Del contorno salen dos medidas: el área, que son los píxeles de la máscara, y el largo, que es el lado mayor del rectángulo mínimo. Las dos salen en píxeles, y se pasan a micras con una escala provisional de 60 píxeles por micra. Esa escala no sale de las fotos. Viene de una indicación del laboratorio, y con ella la imagen de ejemplo da cabezas de menos de una micra. Por eso las micras son aproximadas.
 
 Después, el resumen: media, desviación estándar, mínimo y máximo. El histograma de 10 intervalos, en píxeles. Los tres estados: ok, aviso y no analizada. Y la imagen marcada, con sus contornos numerados y su regla de 300 píxeles.
 
