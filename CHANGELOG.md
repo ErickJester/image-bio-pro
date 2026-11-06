@@ -2,7 +2,11 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.13.0.
+**En producción: 1.0.0.** El repositorio va en 1.13.1.
+
+## 1.13.1 (6 de noviembre de 2026)
+
+- Ruta de navegación (Inicio › página): pasa a una píldora con icono de casa, flechas como separador y la página actual resaltada en azul. El HTML es ahora un `<nav>` con lista en las 19 páginas que la usan.
 
 ## 1.13.0 (6 de noviembre de 2026)
 

@@ -3,7 +3,7 @@
 {% block titulo %}Cuentas{% endblock %}
 
 {% block contenido %}
-  <div class="migas"><a href="{{ url_for('admin.panel') }}">Administración</a> &rsaquo; Cuentas</div>
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('admin.panel') }}">Administración</a></li><li aria-current="page"><span>Cuentas</span></li></ol></nav>
   <h1 class="titulo-pagina">Cuentas</h1>
   <div class="table-responsive">
     <table class="table align-middle">

@@ -333,16 +333,76 @@ header .logo-proyecto {
 
 /* ---------- Contenido ---------- */
 
+/* Ruta de navegación: píldoras con separador en flecha, casa en el inicio y la página actual resaltada */
 .migas {
+  margin: var(--e3) 0 var(--e2);
+}
+
+.migas ol {
+  list-style: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 0;
+  margin: 0;
+  padding: 6px 8px;
+  background: var(--cristal-fuerte);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(10, 31, 68, 0.08);
   font-size: 1rem;
-  color: var(--color-muted-foreground);
-  margin: var(--e3) 0 var(--e1);
+  line-height: 1.2;
+}
+
+.migas li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.migas li + li::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin: 0 6px 0 2px;
+  border-top: 2px solid var(--color-secondary);
+  border-right: 2px solid var(--color-secondary);
+  transform: rotate(45deg);
+}
+
+.migas a,
+.migas li > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
 }
 
 .migas a {
-  color: var(--color-muted-foreground);
-  display: inline-block;
-  padding: 4px 0;
+  color: var(--color-institucional);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.migas a:hover,
+.migas a:focus-visible {
+  background: var(--color-muted);
+  color: var(--color-institucional-oscuro);
+}
+
+.migas li:first-child a::before {
+  content: "";
+  width: 1.05em;
+  height: 1.05em;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11l9-8 9 8'/%3E%3Cpath d='M5 10v10h5v-6h4v6h5V10'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11l9-8 9 8'/%3E%3Cpath d='M5 10v10h5v-6h4v6h5V10'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.migas li[aria-current="page"] > span {
+  background: var(--color-institucional);
+  color: var(--color-on-institucional);
+  font-weight: 700;
 }
 
 .enlace-bloque {

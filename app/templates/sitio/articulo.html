@@ -3,7 +3,7 @@
 {% block titulo %}{{ articulo.titulo }}{% endblock %}
 
 {% block contenido %}
-  <div class="migas"><a href="{{ url_for('sitio.inicio') }}">Inicio</a> &rsaquo; <a href="{{ url_for('sitio.articulos') }}">Artículos</a> &rsaquo; {{ articulo.titulo }}</div>
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('sitio.inicio') }}">Inicio</a></li><li><a href="{{ url_for('sitio.articulos') }}">Artículos</a></li><li aria-current="page"><span>{{ articulo.titulo }}</span></li></ol></nav>
   <h1 class="titulo-pagina mb-1">{{ articulo.titulo }}</h1>
   <p class="leyenda">{{ articulo.creado.strftime('%d/%m/%Y') }}{% if not articulo.publicado %} · Borrador (solo lo ves tú){% endif %}</p>
   <div class="cuerpo-articulo">{{ articulo.cuerpo | markdown_seguro }}</div>

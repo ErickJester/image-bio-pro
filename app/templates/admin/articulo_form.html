@@ -4,7 +4,7 @@
 
 {% block contenido %}
   {% set v = form if form else {} %}
-  <div class="migas"><a href="{{ url_for('admin.articulos') }}">Artículos</a> &rsaquo; {{ 'Editar' if articulo.id else 'Nuevo' }}</div>
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('admin.articulos') }}">Artículos</a></li><li aria-current="page"><span>{{ 'Editar' if articulo.id else 'Nuevo' }}</span></li></ol></nav>
   <h1 class="titulo-pagina">{{ 'Editar artículo' if articulo.id else 'Nuevo artículo' }}</h1>
 
   <form method="post">

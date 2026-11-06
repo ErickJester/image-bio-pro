@@ -3,7 +3,7 @@
 {% block titulo %}Artículos{% endblock %}
 
 {% block contenido %}
-  <div class="migas"><a href="{{ url_for('admin.panel') }}">Administración</a> &rsaquo; Artículos</div>
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('admin.panel') }}">Administración</a></li><li aria-current="page"><span>Artículos</span></li></ol></nav>
   <h1 class="titulo-pagina">Artículos</h1>
   <p><a class="btn btn-ibp" href="{{ url_for('admin.articulo_nuevo') }}">Nuevo artículo</a></p>
   {% if articulos %}

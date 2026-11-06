@@ -3,7 +3,7 @@
 {% block titulo %}Nosotros{% endblock %}
 
 {% block contenido %}
-  <div class="migas"><a href="{{ url_for('sitio.inicio') }}">Inicio</a> &rsaquo; Nosotros</div>
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('sitio.inicio') }}">Inicio</a></li><li aria-current="page"><span>Nosotros</span></li></ol></nav>
   <h1 class="titulo-pagina">Nosotros</h1>
 
   <figure class="foto-equipo">

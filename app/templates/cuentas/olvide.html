@@ -3,7 +3,7 @@
 {% block titulo %}Recuperar contraseña{% endblock %}
 
 {% block contenido %}
-  <div class="migas"><a href="{{ url_for('sitio.inicio') }}">Inicio</a> &rsaquo; <a href="{{ url_for('cuentas.entrar') }}">Iniciar sesión</a> &rsaquo; Recuperar contraseña</div>
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('sitio.inicio') }}">Inicio</a></li><li><a href="{{ url_for('cuentas.entrar') }}">Iniciar sesión</a></li><li aria-current="page"><span>Recuperar contraseña</span></li></ol></nav>
   <h1 class="titulo-pagina">¿Olvidaste tu contraseña?</h1>
 
   <div class="row">

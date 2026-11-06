@@ -3,7 +3,7 @@
 {% block titulo %}Mi perfil{% endblock %}
 
 {% block contenido %}
-  <div class="migas"><a href="{{ url_for('sitio.inicio') }}">Inicio</a> &rsaquo; Mi perfil</div>
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('sitio.inicio') }}">Inicio</a></li><li aria-current="page"><span>Mi perfil</span></li></ol></nav>
   <h1 class="titulo-pagina mb-1">{{ current_user.nombre }}</h1>
   <p class="leyenda">{{ current_user.correo }}{% if current_user.es_admin %} · Administrador{% endif %}</p>
 

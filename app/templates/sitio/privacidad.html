@@ -3,7 +3,7 @@
 {% block titulo %}Aviso de privacidad{% endblock %}
 
 {% block contenido %}
-  <div class="migas"><a href="{{ url_for('sitio.inicio') }}">Inicio</a> &rsaquo; Aviso de privacidad</div>
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('sitio.inicio') }}">Inicio</a></li><li aria-current="page"><span>Aviso de privacidad</span></li></ol></nav>
   <h1 class="titulo-pagina">Aviso de privacidad 2026</h1>
 
   <div style="max-width: 800px">
