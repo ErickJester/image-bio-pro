@@ -109,12 +109,12 @@ def subir():
                     rechazadas.append(f"{original} ({motivo})")
                     continue
                 db.session.add(ImagenBanco(usuario_id=current_user.id, archivo=nombre, nombre_original=original,
-                                           tamanio=tamanio, autoriza_entrenamiento=True, **datos))
+                                           tamanio=tamanio, autoriza_entrenamiento=True, estado="pendiente", **datos))
                 guardadas += 1
             db.session.commit()
             if guardadas:
-                flash(f"Se guardaron {guardadas} imagen{'' if guardadas == 1 else 'es'} en el banco. Gracias por aportarlas.",
-                      "success")
+                flash(f"Se recibieron {guardadas} imagen{'' if guardadas == 1 else 'es'}. Quedan pendientes de aprobación "
+                      "por parte del equipo del proyecto. Gracias por aportarlas.", "success")
             if rechazadas:
                 flash("No se guardaron: " + "; ".join(rechazadas) + ".", "danger")
             if guardadas and not rechazadas:

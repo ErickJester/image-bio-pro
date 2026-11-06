@@ -1,0 +1,7 @@
+{% if i.estado == 'aprobada' %}
+  <span class="badge text-bg-success">Aprobada</span>
+{% elif i.estado == 'rechazada' %}
+  <span class="badge text-bg-danger">Rechazada</span>
+{% else %}
+  <span class="badge text-bg-secondary">Pendiente de aprobación</span>
+{% endif %}

@@ -6,7 +6,7 @@
   <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('sitio.inicio') }}">Inicio</a></li><li aria-current="page"><span>Banco de imágenes</span></li></ol></nav>
   <h1 class="titulo-pagina">Banco de imágenes</h1>
 
-  <p style="max-width: 800px">Aporta fotografías de microscopía del sistema reproductivo para formar el banco de imágenes del proyecto. Cada imagen queda registrada con tu nombre, la fecha de carga y los datos que escribas aquí. Si subes varias a la vez, comparten los mismos datos. Para imágenes con datos distintos, haz un envío por cada grupo.</p>
+  <p class="texto-justificado" style="max-width: 800px">Aporta fotografías de microscopía del sistema reproductivo para formar el banco de imágenes del proyecto. Cada imagen queda registrada con tu nombre, la fecha de carga y los datos que escribas aquí. Si subes varias a la vez, comparten los mismos datos. Para imágenes con datos distintos, haz un envío por cada grupo.</p>
 
   <form method="post" enctype="multipart/form-data" class="mb-5" style="max-width: 720px">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -22,7 +22,7 @@
     </div>
 
     <fieldset class="mt-4">
-      <legend class="h6">¿La imagen se tomó durante un experimento?</legend>
+      <legend>¿La imagen se tomó durante un experimento?</legend>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="experimento" id="exp-si" value="si" required
                {% if form.get('experimento') == 'si' %}checked{% endif %}>
@@ -63,7 +63,7 @@
   {% if mias %}
     <div class="table-responsive">
       <table class="table table-sm align-middle">
-        <thead><tr><th>Fecha</th><th>Archivo</th><th>Especie</th><th>Órgano</th><th>Tinción</th><th>Experimento</th></tr></thead>
+        <thead><tr><th>Fecha</th><th>Archivo</th><th>Especie</th><th>Órgano</th><th>Tinción</th><th>Experimento</th><th>Estado</th></tr></thead>
         <tbody>
           {% for i in mias %}
             <tr>
@@ -73,6 +73,7 @@
               <td>{{ i.organo }}</td>
               <td>{{ i.tincion }}</td>
               <td>{{ 'Sí · ' + i.comite if i.experimento else 'No' }}</td>
+              <td>{% include 'banco/_estado.html' %}</td>
             </tr>
           {% endfor %}
         </tbody>

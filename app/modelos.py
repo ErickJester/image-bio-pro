@@ -75,6 +75,8 @@ class ImagenBanco(db.Model):
     experimento = db.Column(db.Boolean, default=False, nullable=False)
     comite = db.Column(db.String(80), default="", nullable=False)   # número del comité de cuidado y uso de animales
     autoriza_entrenamiento = db.Column(db.Boolean, default=False, nullable=False)
+    # "pendiente" al subirla; una persona administradora la pasa a "aprobada" o "rechazada"
+    estado = db.Column(db.String(20), default="pendiente", nullable=False)
 
 
 class SolicitudCalendario(db.Model):

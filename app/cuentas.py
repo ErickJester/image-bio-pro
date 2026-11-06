@@ -72,7 +72,8 @@ def salir():
 @bp.route("/perfil")
 @login_required
 def perfil():
-    return render_template("cuentas/perfil.html", analisis=current_user.analisis.all())
+    return render_template("cuentas/perfil.html", analisis=current_user.analisis.all(),
+                           imagenes_banco=current_user.imagenes_banco.all())
 
 
 @bp.route("/perfil/clave", methods=["POST"])

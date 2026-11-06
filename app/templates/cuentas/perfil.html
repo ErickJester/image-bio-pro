@@ -32,6 +32,27 @@
     <p>Todavía no tienes análisis. <a href="{{ url_for('analisis.ia') }}">Analiza una imagen</a>.</p>
   {% endif %}
 
+  <div class="titulo-bloque"><span>Mis imágenes del banco</span></div>
+  {% if imagenes_banco %}
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <thead><tr><th>Fecha</th><th>Archivo</th><th>Especie</th><th>Estado</th></tr></thead>
+        <tbody>
+          {% for i in imagenes_banco %}
+            <tr>
+              <td>{{ i.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+              <td class="notranslate">{{ i.nombre_original }}</td>
+              <td>{{ i.especie }}</td>
+              <td>{% include 'banco/_estado.html' %}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>Todavía no has aportado imágenes. <a href="{{ url_for('banco.subir') }}">Aportar al banco</a>.</p>
+  {% endif %}
+
   <div class="titulo-bloque"><span>Cambiar contraseña</span></div>
   <form method="post" action="{{ url_for('cuentas.cambiar_clave') }}" class="mb-4" style="max-width: 24rem">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">

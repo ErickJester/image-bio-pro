@@ -533,6 +533,13 @@ h1.titulo-pagina {
   border: 1.5px solid var(--color-secondary);
 }
 
+/* Casillas y botones de opción: el texto queda separado del control y las preguntas pesan como las etiquetas */
+.form-check { padding-left: 2.2em; min-height: 1.6em; }
+.form-check .form-check-input { margin-left: -2.2em; margin-top: 0.15em; }
+.form-check-inline { margin-right: 1.75rem; }
+fieldset legend { float: none; width: auto; font-family: var(--fuente-texto); font-size: 1.125rem; font-weight: 600; margin-bottom: 8px; }
+.texto-justificado { text-align: justify; hyphens: auto; }
+
 .form-check-input:checked {
   background-color: var(--color-accent);
   border-color: var(--color-accent);

@@ -23,6 +23,7 @@ from app.modelos import Articulo, ImagenBanco, SolicitudCalendario, Usuario
 bp = Blueprint("admin", __name__, url_prefix="/admin")
 
 ROLES = ("usuario", "admin")
+ESTADOS_BANCO = ("pendiente", "aprobada", "rechazada")
 EXTENSIONES_IMAGEN = {"png", "jpg", "jpeg", "gif", "webp"}
 LIMITE_IMAGEN = 5 * 1024 * 1024
 
@@ -111,9 +112,27 @@ def solicitudes_calendario():
 @solo_admin
 def banco():
     from app.banco import GB, usado_en_banco
-    lista = ImagenBanco.query.order_by(ImagenBanco.fecha.desc()).all()
-    return render_template("admin/banco.html", imagenes=lista, usado_gb=usado_en_banco() / GB,
+    filtro = request.args.get("estado")
+    consulta = ImagenBanco.query
+    if filtro in ESTADOS_BANCO:
+        consulta = consulta.filter_by(estado=filtro)
+    lista = consulta.order_by(ImagenBanco.fecha.desc()).all()
+    conteo = {e: ImagenBanco.query.filter_by(estado=e).count() for e in ESTADOS_BANCO}
+    return render_template("admin/banco.html", imagenes=lista, filtro=filtro, conteo=conteo, usado_gb=usado_en_banco() / GB,
                            limite_gb=current_app.config["BANCO_LIMITE_GB"])
+
+
+@bp.route("/banco/<int:imagen_id>/estado", methods=["POST"])
+@solo_admin
+def banco_estado(imagen_id):
+    imagen = db.get_or_404(ImagenBanco, imagen_id)
+    estado = request.form.get("estado")
+    if estado not in ESTADOS_BANCO:
+        abort(400)
+    imagen.estado = estado
+    db.session.commit()
+    flash(f"La imagen {imagen.id} quedó como {estado}.", "success")
+    return redirect(url_for("admin.banco", estado=request.form.get("filtro") or None))
 
 
 @bp.route("/banco/<int:imagen_id>/archivo")
@@ -131,12 +150,12 @@ def banco_csv():
     salida = io.StringIO()
     escritor = csv.writer(salida)
     escritor.writerow(["id", "fecha", "archivo", "nombre_original", "mb", "cuenta", "nombre", "institucion",
-                       "especie", "organo", "tincion", "experimento", "comite", "autoriza_entrenamiento"])
+                       "especie", "organo", "tincion", "experimento", "comite", "autoriza_entrenamiento", "estado"])
     for i in ImagenBanco.query.order_by(ImagenBanco.id).all():
         escritor.writerow([i.id, i.fecha.strftime("%Y-%m-%d %H:%M"), i.archivo, i.nombre_original,
                            round(i.tamanio / 1048576, 2), i.usuario.correo, i.nombre, i.institucion, i.especie,
                            i.organo, i.tincion, "si" if i.experimento else "no", i.comite,
-                           "si" if i.autoriza_entrenamiento else "no"])
+                           "si" if i.autoriza_entrenamiento else "no", i.estado])
     return Response("﻿" + salida.getvalue(), mimetype="text/csv",
                     headers={"Content-Disposition": "attachment; filename=banco_de_imagenes.csv"})
 

@@ -490,3 +490,21 @@ def test_banco_admin_ve_descarga_y_exporta(app, cliente):
     csv_texto = cliente.get("/admin/banco/exportar.csv").get_data(as_text=True)
     assert "Epid" in csv_texto and "bea@ejemplo.com" in csv_texto
     assert otro.get("/admin/banco").status_code == 403
+
+
+def test_banco_imagen_nueva_queda_pendiente_y_el_admin_la_aprueba(app, cliente):
+    from app.modelos import ImagenBanco
+    registrar(cliente)
+    subir_banco(cliente)
+    assert "Pendiente de aprobación" in cliente.get("/banco/").get_data(as_text=True)
+    assert "Pendiente de aprobación" in cliente.get("/perfil").get_data(as_text=True)
+    with app.app_context():
+        assert ImagenBanco.query.one().estado == "pendiente"
+    admin = app.test_client()
+    entrar_como_admin(app, admin)
+    assert admin.get("/admin/banco?estado=aprobada").status_code == 200
+    assert admin.post("/admin/banco/1/estado", data={"estado": "inventado"}).status_code == 400
+    admin.post("/admin/banco/1/estado", data={"estado": "aprobada"})
+    assert "Aprobada" in cliente.get("/perfil").get_data(as_text=True)
+    assert ",aprobada" in admin.get("/admin/banco/exportar.csv").get_data(as_text=True)
+    assert cliente.post("/admin/banco/1/estado", data={"estado": "rechazada"}).status_code == 403

@@ -87,5 +87,11 @@ def crear_app(config=None):
         if "rol" not in columnas:
             db.session.execute(db.text("ALTER TABLE usuario ADD COLUMN rol VARCHAR(20) NOT NULL DEFAULT 'usuario'"))
             db.session.commit()
+        if "imagen_banco" in db.inspect(db.engine).get_table_names():
+            columnas_banco = [c["name"] for c in db.inspect(db.engine).get_columns("imagen_banco")]
+            if "estado" not in columnas_banco:
+                db.session.execute(db.text(
+                    "ALTER TABLE imagen_banco ADD COLUMN estado VARCHAR(20) NOT NULL DEFAULT 'pendiente'"))
+                db.session.commit()
 
     return app

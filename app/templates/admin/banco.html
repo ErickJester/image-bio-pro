@@ -5,12 +5,20 @@
 {% block contenido %}
   <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('admin.panel') }}">Administración</a></li><li aria-current="page"><span>Banco de imágenes</span></li></ol></nav>
   <h1 class="titulo-pagina">Banco de imágenes</h1>
-  <p>{{ imagenes | length }} imagen{{ '' if imagenes | length == 1 else 'es' }}. Espacio usado: {{ '%.2f' | format(usado_gb) }} GB de {{ '%.0f' | format(limite_gb) }} GB permitidos.</p>
-  <p><a class="btn btn-ibp" href="{{ url_for('admin.banco_csv') }}">Exportar tabla (CSV)</a></p>
+  <p>Espacio usado: {{ '%.2f' | format(usado_gb) }} GB de {{ '%.0f' | format(limite_gb) }} GB permitidos.</p>
+
+  <div class="mb-3 d-flex flex-wrap gap-2 align-items-center">
+    <a class="btn btn-sm {{ 'btn-ibp' if not filtro else 'btn-outline-secondary' }}" href="{{ url_for('admin.banco') }}">Todas ({{ conteo.values() | sum }})</a>
+    <a class="btn btn-sm {{ 'btn-ibp' if filtro == 'pendiente' else 'btn-outline-secondary' }}" href="{{ url_for('admin.banco', estado='pendiente') }}">Pendientes ({{ conteo.pendiente }})</a>
+    <a class="btn btn-sm {{ 'btn-ibp' if filtro == 'aprobada' else 'btn-outline-secondary' }}" href="{{ url_for('admin.banco', estado='aprobada') }}">Aprobadas ({{ conteo.aprobada }})</a>
+    <a class="btn btn-sm {{ 'btn-ibp' if filtro == 'rechazada' else 'btn-outline-secondary' }}" href="{{ url_for('admin.banco', estado='rechazada') }}">Rechazadas ({{ conteo.rechazada }})</a>
+    <a class="btn btn-sm btn-outline-secondary ms-auto" href="{{ url_for('admin.banco_csv') }}">Exportar tabla (CSV)</a>
+  </div>
+
   {% if imagenes %}
     <div class="table-responsive">
       <table class="table table-sm align-middle">
-        <thead><tr><th>#</th><th>Fecha</th><th>Cuenta</th><th>Nombre</th><th>Institución</th><th>Especie</th><th>Órgano</th><th>Tinción</th><th>Experimento</th><th></th></tr></thead>
+        <thead><tr><th>#</th><th>Fecha</th><th>Cuenta</th><th>Nombre</th><th>Institución</th><th>Especie</th><th>Órgano</th><th>Tinción</th><th>Experimento</th><th>Estado</th><th></th></tr></thead>
         <tbody>
           {% for i in imagenes %}
             <tr>
@@ -23,13 +31,23 @@
               <td>{{ i.organo }}</td>
               <td>{{ i.tincion }}</td>
               <td>{{ 'Sí · ' + i.comite if i.experimento else 'No' }}</td>
-              <td class="text-end"><a href="{{ url_for('admin.banco_archivo', imagen_id=i.id) }}">Descargar ({{ '%.1f' | format(i.tamanio / 1048576) }} MB)</a></td>
+              <td>{% include 'banco/_estado.html' %}</td>
+              <td class="text-end">
+                <a href="{{ url_for('admin.banco_archivo', imagen_id=i.id) }}">Descargar ({{ '%.1f' | format(i.tamanio / 1048576) }} MB)</a>
+                <form class="d-flex gap-1 justify-content-end mt-1" method="post" action="{{ url_for('admin.banco_estado', imagen_id=i.id) }}">
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                  <input type="hidden" name="filtro" value="{{ filtro or '' }}">
+                  {% if i.estado != 'aprobada' %}<button class="btn btn-sm btn-ibp" name="estado" value="aprobada" type="submit">Aprobar</button>{% endif %}
+                  {% if i.estado != 'rechazada' %}<button class="btn btn-sm btn-outline-danger" name="estado" value="rechazada" type="submit">Rechazar</button>{% endif %}
+                  {% if i.estado != 'pendiente' %}<button class="btn btn-sm btn-outline-secondary" name="estado" value="pendiente" type="submit">Pendiente</button>{% endif %}
+                </form>
+              </td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
   {% else %}
-    <p>Todavía no hay imágenes en el banco.</p>
+    <p>No hay imágenes en esta vista.</p>
   {% endif %}
 {% endblock %}

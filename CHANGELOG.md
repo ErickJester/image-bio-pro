@@ -2,7 +2,13 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.14.0.
+**En producción: 1.0.0.** El repositorio va en 1.14.1.
+
+## 1.14.1 (6 de noviembre de 2026)
+
+- Banco de imágenes: toda imagen nueva queda "Pendiente de aprobación". Una persona administradora la aprueba, la rechaza o la regresa a pendiente desde Administración → Banco de imágenes, donde también hay filtros por estado. Columna nueva `estado` en `imagen_banco`, que se agrega sola a las bases anteriores, y columna `estado` en el CSV.
+- El estado de cada imagen se ve en la página del banco y en Mi perfil, en la nueva sección "Mis imágenes del banco".
+- Formularios: el texto de introducción del banco va justificado, las casillas y botones de opción dejan espacio con su texto y las preguntas tienen el mismo tamaño que las etiquetas.
 
 ## 1.14.0 (6 de noviembre de 2026)
 
