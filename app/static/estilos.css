@@ -327,8 +327,8 @@ header .logo-proyecto {
 }
 
 .menu-principal .nav-link.active {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
+  background: var(--color-institucional);
+  color: var(--color-on-institucional);
 }
 
 /* ---------- Contenido ---------- */
