@@ -1335,3 +1335,26 @@ body {
 .cuerpo-articulo blockquote { border-left: 4px solid var(--color-primary); padding-left: 1rem; color: var(--color-muted-foreground); }
 
 .mapa { width: 100%; height: 220px; border: 0; border-radius: var(--radio); }
+
+/* Equipo: cada tarjeta ocupa tres filas de una cuadrícula compartida (foto, nombre, datos), así las fotos, los nombres
+   y los datos quedan a la misma altura aunque un nombre ocupe dos o tres líneas */
+.equipo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--e3);
+}
+
+.equipo .aliado {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  margin-bottom: var(--e4);
+}
+
+.equipo .aliado h3 { align-self: start; }
+.equipo .aliado p { align-self: start; text-align: left; }
+
+@media (min-width: 768px) {
+  .equipo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

@@ -2,7 +2,12 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.13.1.
+**En producción: 1.0.0.** El repositorio va en 1.13.2.
+
+## 1.13.2 (6 de noviembre de 2026)
+
+- Nosotros: las tarjetas del equipo comparten filas de una cuadrícula, así que fotos, nombres y datos quedan a la misma altura aunque un nombre ocupe varias líneas.
+- Nosotros: se reencuadran las fotos de la Dra. Laura Olivia Arvizu Tovar, la Dra. Patricia Mora Medina y el Dr. Xelhua Elihut Marcos Benítez.
 
 ## 1.13.1 (6 de noviembre de 2026)
 

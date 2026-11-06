@@ -119,14 +119,14 @@ ALIADOS = [
         'Universidad Nacional Autónoma de México',
         'Investigador Nacional Nivel II del SNI',
     ]},
-    {"nombre": 'Dra. Laura Olivia Arvizu Tovar', "foto": 'aliados/laura-olivia-arvizu-tovar.jpg', "scholar": None, "lineas": [
+    {"nombre": 'Dra. Laura Olivia Arvizu Tovar', "foto": 'aliados/laura-olivia-arvizu-tovar.jpg', "pos": "0% 50%", "scholar": None, "lineas": [
         'Colaboradora',
         'Departamento de Medicina Preventiva y Salud Pública',
         'Facultad de Medicina Veterinaria y Zootecnia',
         'Universidad Nacional Autónoma de México',
         'Candidata a Investigadora Nacional del SNI',
     ]},
-    {"nombre": 'Dra. Patricia Mora Medina', "foto": 'aliados/patricia-mora-medina.jpg', "scholar": None, "lineas": [
+    {"nombre": 'Dra. Patricia Mora Medina', "foto": 'aliados/patricia-mora-medina.jpg', "pos": "50% 42%", "scholar": None, "lineas": [
         'Colaboradora',
         'Departamento de Ciencias Pecuarias',
         'Facultad de Estudios Superiores Cuautitlán',
@@ -140,7 +140,7 @@ ALIADOS = [
         'Universidad Nacional Autónoma de México',
         'Investigadora Nacional Nivel I del SNI',
     ]},
-    {"nombre": 'Dr. Xelhua Elihut Marcos Benítez', "foto": 'aliados/xelhua-elihut-marcos-benitez.jpg', "scholar": None, "lineas": [
+    {"nombre": 'Dr. Xelhua Elihut Marcos Benítez', "foto": 'aliados/xelhua-elihut-marcos-benitez.jpg', "pos": "50% 100%", "scholar": None, "lineas": [
         'Colaboradora',
         'Unidad de Innovación y Desarrollo Farmacéutico. Centro Interdisciplinario de Medicina Predictiva, ITEMS',
         'Instituto Tecnológico y de Estudios Superiores de Monterrey',
