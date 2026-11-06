@@ -2,7 +2,13 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.13.2.
+**En producción: 1.0.0.** El repositorio va en 1.13.3.
+
+## 1.13.3 (6 de noviembre de 2026)
+
+- ¿Qué es BioImage-Repro UAM?: la introducción explica con palabras más sencillas las dos secciones de la plataforma, sin "frontend" ni "backend".
+- Nosotros: Pérez con acento en Luis Enrique Pérez Caltzontzin, cargos con la misma mayúscula (Profesor-Investigador), "M. en C." en Juan Isaac Chávez Corona y "Dra." en Xelhua Elihut Marcos Benítez.
+- Nosotros: la foto de la Dra. Patricia Mora Medina se muestra completa, con franjas a los lados, para no cortar el rostro.
 
 ## 1.13.2 (6 de noviembre de 2026)
 

@@ -48,7 +48,7 @@ ALIADOS = [
         'División de Ciencias Biológicas y de la Salud',
         'Universidad Autónoma Metropolitana Unidad Iztapalapa',
     ]},
-    {"nombre": 'Luis Enrique Perez Caltzontzin', "foto": 'aliados/luis-enrique-perez-caltzontzin.jpg', "scholar": None, "lineas": [
+    {"nombre": 'Luis Enrique Pérez Caltzontzin', "foto": 'aliados/luis-enrique-perez-caltzontzin.jpg', "scholar": None, "lineas": [
         'Logística y coordinador de actividades de difusión',
         'Estudiante de posgrado',
         'Departamento de Producción Agrícola y Animal UAM-X',
@@ -80,14 +80,14 @@ ALIADOS = [
     ]},
     {"nombre": 'M. en C. Adrián Emmanuel Iglesias Reyes', "foto": 'aliados/adrian-emmanuel-iglesias-reyes.jpg', "scholar": None, "lineas": [
         'Colaborador',
-        'Profesor-investigador',
+        'Profesor-Investigador',
         'Departamento de Producción Agrícola y Animal UAM-X',
         'División de Ciencias Biológicas y de la Salud',
     ]},
     {"nombre": 'Dra. Marcela Vergara Onofre', "foto": 'aliados/marcela-vergara-onofre.png', "scholar": None, "lineas": [
         'Colaboradora',
         'Coordinadora de la Maestría en Ciencias Agropecuarias',
-        'Profesora-investigadora',
+        'Profesora-Investigadora',
         'Departamento de Producción Agrícola y Animal UAM-X',
         'División de Ciencias Biológicas y de la Salud',
         'Investigadora Nacional Nivel I del SNI',
@@ -95,12 +95,12 @@ ALIADOS = [
     {"nombre": 'Dr. Juan José Pérez Rivero Cruz y Celis', "foto": 'aliados/juan-jose-perez-rivero-cruz-y-celis.jpg', "scholar": None, "lineas": [
         'Colaborador',
         'Presidente de la Asociación Mexicana de Epidemiología Veterinaria A.C. (AMEV)',
-        'Profesor-investigador',
+        'Profesor-Investigador',
         'Departamento de Producción Agrícola y Animal UAM-X',
         'División de Ciencias Biológicas y de la Salud',
         'Investigador Nacional Nivel II del SNI',
     ]},
-    {"nombre": 'MC Juan Isaac Chávez Corona', "foto": 'aliados/juan-isaac-chavez-corona.jpg', "scholar": None, "lineas": [
+    {"nombre": 'M. en C. Juan Isaac Chávez Corona', "foto": 'aliados/juan-isaac-chavez-corona.jpg', "scholar": None, "lineas": [
         'Colaborador',
         'Estudiante de posgrado',
         'Facultad de Medicina Veterinaria y Zootecnia, UNAM',
@@ -126,7 +126,7 @@ ALIADOS = [
         'Universidad Nacional Autónoma de México',
         'Candidata a Investigadora Nacional del SNI',
     ]},
-    {"nombre": 'Dra. Patricia Mora Medina', "foto": 'aliados/patricia-mora-medina.jpg', "pos": "50% 42%", "scholar": None, "lineas": [
+    {"nombre": 'Dra. Patricia Mora Medina', "foto": 'aliados/patricia-mora-medina.jpg', "ajuste": "contain", "scholar": None, "lineas": [
         'Colaboradora',
         'Departamento de Ciencias Pecuarias',
         'Facultad de Estudios Superiores Cuautitlán',
@@ -140,7 +140,7 @@ ALIADOS = [
         'Universidad Nacional Autónoma de México',
         'Investigadora Nacional Nivel I del SNI',
     ]},
-    {"nombre": 'Dr. Xelhua Elihut Marcos Benítez', "foto": 'aliados/xelhua-elihut-marcos-benitez.jpg', "pos": "50% 100%", "scholar": None, "lineas": [
+    {"nombre": 'Dra. Xelhua Elihut Marcos Benítez', "foto": 'aliados/xelhua-elihut-marcos-benitez.jpg', "pos": "50% 100%", "scholar": None, "lineas": [
         'Colaboradora',
         'Unidad de Innovación y Desarrollo Farmacéutico. Centro Interdisciplinario de Medicina Predictiva, ITEMS',
         'Instituto Tecnológico y de Estudios Superiores de Monterrey',

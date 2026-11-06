@@ -1358,3 +1358,6 @@ body {
 @media (min-width: 768px) {
   .equipo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+
+/* Foto que no debe recortarse: se muestra completa y queda con franjas a los lados */
+.aliado img.ajuste-contain { object-fit: contain; background: var(--color-muted); }
