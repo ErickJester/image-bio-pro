@@ -18,6 +18,8 @@ class Usuario(UserMixin, db.Model):
 
     analisis = db.relationship("Analisis", backref="usuario", lazy="dynamic",
                                order_by="Analisis.fecha.desc()")
+    imagenes_banco = db.relationship("ImagenBanco", backref="usuario", lazy="dynamic",
+                                     order_by="ImagenBanco.fecha.desc()")
 
     @property
     def es_admin(self):
@@ -55,6 +57,24 @@ class Mensaje(db.Model):
     correo = db.Column(db.String(254), nullable=False)
     texto = db.Column(db.Text, nullable=False)
     fecha = db.Column(db.DateTime, default=datetime.now, nullable=False)
+
+
+class ImagenBanco(db.Model):
+    """Imagen aportada al banco de imágenes reproductivas, con los datos que pide el proyecto."""
+    id = db.Column(db.Integer, primary_key=True)
+    usuario_id = db.Column(db.Integer, db.ForeignKey("usuario.id"), nullable=False, index=True)
+    fecha = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    archivo = db.Column(db.String(80), nullable=False)          # nombre generado en instance/banco
+    nombre_original = db.Column(db.String(200), nullable=False)
+    tamanio = db.Column(db.Integer, nullable=False)             # bytes
+    nombre = db.Column(db.String(120), nullable=False)          # quién la aporta, tal como lo escribió
+    institucion = db.Column(db.String(200), nullable=False)
+    especie = db.Column(db.String(120), nullable=False)
+    organo = db.Column(db.String(120), nullable=False)
+    tincion = db.Column(db.String(120), nullable=False)
+    experimento = db.Column(db.Boolean, default=False, nullable=False)
+    comite = db.Column(db.String(80), default="", nullable=False)   # número del comité de cuidado y uso de animales
+    autoriza_entrenamiento = db.Column(db.Boolean, default=False, nullable=False)
 
 
 class SolicitudCalendario(db.Model):

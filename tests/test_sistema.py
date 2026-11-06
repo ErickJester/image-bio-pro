@@ -26,6 +26,7 @@ def app(tmp_path, monkeypatch):
         "CARPETA_PDF": str(tmp_path / "pdfs"),
         "CARPETA_SUBIDAS": str(tmp_path / "subidas"),
         "CARPETA_MARCADAS": str(tmp_path / "marcadas"),
+        "CARPETA_BANCO": str(tmp_path / "banco"),
     })
     return app
 
@@ -409,3 +410,83 @@ def test_equipo_y_menu_nuevos(cliente):
     assert "Dra. Sheila Irais Pe" in pagina and "Xelhua Elihut Marcos" in pagina
     inicio = cliente.get("/").get_data(as_text=True)
     assert "BIOIMAGE" not in inicio and "Plataforma web con inteligencia artificial" in inicio
+
+
+# --- Banco de imágenes ---------------------------------------------------------------
+
+DATOS_BANCO = {"nombre": "Ana", "institucion": "UAM-I", "especie": "Rata", "organo": "Epidídimo",
+               "tincion": "Fluorescencia", "experimento": "no", "autorizo": "on"}
+
+
+def subir_banco(cliente, imagenes=None, **cambios):
+    datos = dict(DATOS_BANCO, **cambios)
+    datos = {k: v for k, v in datos.items() if v is not None}
+    if imagenes is None:
+        imagenes = [(imagen_bytes(PRUEBA, "png"), "uno.png")]
+    datos["imagenes"] = imagenes
+    return cliente.post("/banco/", data=datos, content_type="multipart/form-data")
+
+
+def test_banco_requiere_sesion(cliente):
+    respuesta = cliente.get("/banco/")
+    assert respuesta.status_code == 302 and "/entrar" in respuesta.headers["Location"]
+
+
+def test_banco_guarda_imagen_con_sus_datos(app, cliente):
+    from app.modelos import ImagenBanco
+    registrar(cliente)
+    assert subir_banco(cliente, experimento="si", comite="CICUAL-2026-14").status_code == 302
+    with app.app_context():
+        fila = ImagenBanco.query.one()
+        assert (fila.especie, fila.experimento, fila.comite) == ("Rata", True, "CICUAL-2026-14")
+        assert os.path.exists(os.path.join(app.config["CARPETA_BANCO"], fila.archivo))
+    assert b"uno.png" in cliente.get("/banco/").data
+
+
+@pytest.mark.parametrize("cambios,texto", [
+    ({"experimento": "si"}, "comité"),
+    ({"especie": ""}, "Especie"),
+    ({"autorizo": None}, "autorizar"),
+    ({"experimento": None}, "experimento"),
+])
+def test_banco_valida_los_datos(app, cliente, cambios, texto):
+    from app.modelos import ImagenBanco
+    registrar(cliente)
+    respuesta = subir_banco(cliente, **cambios)
+    assert texto in respuesta.get_data(as_text=True)
+    with app.app_context():
+        assert ImagenBanco.query.count() == 0
+
+
+def test_banco_rechaza_archivos_que_no_son_imagen(app, cliente):
+    from app.modelos import ImagenBanco
+    registrar(cliente)
+    falso = (io.BytesIO(b"esto no es una imagen"), "foto.png")
+    respuesta = subir_banco(cliente, imagenes=[falso])
+    assert "no es una imagen válida" in respuesta.get_data(as_text=True)
+    with app.app_context():
+        assert ImagenBanco.query.count() == 0
+    assert os.listdir(app.config["CARPETA_BANCO"]) == []
+
+
+def test_banco_respeta_el_tope_de_espacio(app, cliente):
+    from app.modelos import ImagenBanco
+    app.config["BANCO_LIMITE_GB"] = 0.000001
+    registrar(cliente)
+    respuesta = subir_banco(cliente)
+    assert "no tiene espacio" in respuesta.get_data(as_text=True)
+    with app.app_context():
+        assert ImagenBanco.query.count() == 0
+
+
+def test_banco_admin_ve_descarga_y_exporta(app, cliente):
+    otro = app.test_client()
+    registrar(otro, "bea@ejemplo.com")
+    subir_banco(otro)
+    assert cliente.get("/admin/banco").status_code == 302
+    entrar_como_admin(app, cliente)
+    assert b"bea@ejemplo.com" in cliente.get("/admin/banco").data
+    assert cliente.get("/admin/banco/1/archivo").status_code == 200
+    csv_texto = cliente.get("/admin/banco/exportar.csv").get_data(as_text=True)
+    assert "Epid" in csv_texto and "bea@ejemplo.com" in csv_texto
+    assert otro.get("/admin/banco").status_code == 403

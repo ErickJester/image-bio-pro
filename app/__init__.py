@@ -25,24 +25,30 @@ def crear_app(config=None):
         CARPETA_MARCADAS=os.path.join(app.instance_path, "marcadas"),
         # Imágenes que los administradores suben a los artículos
         CARPETA_ARTICULOS=os.path.join(app.instance_path, "articulos"),
+        # Banco de imágenes: se guarda en el disco del servidor (50 GB). Topes en GB; ver docs/despliegue.md
+        CARPETA_BANCO=os.path.join(app.instance_path, "banco"),
+        BANCO_LIMITE_GB=float(os.environ.get("BANCO_LIMITE_GB", "30")),
+        BANCO_MARGEN_GB=float(os.environ.get("BANCO_MARGEN_GB", "5")),
+        BANCO_MAX_POR_ENVIO=20,
     )
     if config:
         app.config.update(config)
 
     for carpeta in (app.instance_path, app.config["CARPETA_PDF"], app.config["CARPETA_SUBIDAS"],
-                    app.config["CARPETA_MARCADAS"], app.config["CARPETA_ARTICULOS"]):
+                    app.config["CARPETA_MARCADAS"], app.config["CARPETA_ARTICULOS"], app.config["CARPETA_BANCO"]):
         os.makedirs(carpeta, exist_ok=True)
 
     db.init_app(app)
     csrf.init_app(app)
     login_manager.init_app(app)
     login_manager.login_view = "cuentas.entrar"
-    login_manager.login_message = "Inicia sesión para analizar imágenes."
+    login_manager.login_message = "Inicia sesión para continuar."
     login_manager.login_message_category = "info"
 
     from app import modelos  # noqa: F401  (registra las tablas)
     from app.admin import bp as bp_admin, crear_admins, html_seguro
     from app.analisis.rutas import bp as bp_analisis
+    from app.banco import bp as bp_banco
     from app.cuentas import bp as bp_cuentas
     from app.sitio import bp as bp_sitio
 
@@ -50,6 +56,7 @@ def crear_app(config=None):
     app.register_blueprint(bp_cuentas)
     app.register_blueprint(bp_analisis)
     app.register_blueprint(bp_admin)
+    app.register_blueprint(bp_banco)
     app.cli.add_command(crear_admins)
     app.jinja_env.filters["markdown_seguro"] = html_seguro
 

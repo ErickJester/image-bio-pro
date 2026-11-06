@@ -21,5 +21,10 @@
       <p>{{ total_calendario }} correo{{ '' if total_calendario == 1 else 's' }} para enviar la invitación.</p>
       <a class="btn btn-ibp" href="{{ url_for('admin.solicitudes_calendario') }}">Ver correos</a>
     </div>
+    <div class="col-md-6">
+      <h2 class="h4">Banco de imágenes</h2>
+      <p>{{ total_banco }} imagen{{ '' if total_banco == 1 else 'es' }} aportada{{ '' if total_banco == 1 else 's' }}. Consulta los datos, descarga las imágenes y exporta la tabla.</p>
+      <a class="btn btn-ibp" href="{{ url_for('admin.banco') }}">Ver banco</a>
+    </div>
   </div>
 {% endblock %}

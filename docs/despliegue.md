@@ -80,6 +80,22 @@ docker compose up -d --build
 
 Los modelos (`.pt`) y el archivo `.env` no están en Git: no cambian con `git pull`.
 
+## 4.1 Banco de imágenes y espacio en disco
+
+Las imágenes que las personas aportan al banco se guardan en el volumen de datos (`instance/banco/`), en el mismo disco del servidor (50 GB). El sitio protege el disco con dos topes, que se cambian en el archivo `.env`:
+
+- `BANCO_LIMITE_GB`: espacio máximo del banco. Por omisión, 30.
+- `BANCO_MARGEN_GB`: espacio libre que debe quedar siempre en el disco para el sistema, Docker y los modelos. Por omisión, 5.
+
+Cuando se alcanza alguno, el sitio rechaza las imágenes nuevas y avisa. Para revisar el espacio:
+
+```bash
+docker compose exec web du -sh /srv/imagebio/instance/banco
+df -h /
+```
+
+Mil imágenes BMP de unos 10 a 20 MB ocupan de 10 a 20 GB. Si el banco crece más, hay que ampliar el disco o pasar las imágenes a un almacenamiento externo.
+
 ## 5. Respaldo de los datos
 
 ```bash

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block titulo %}Banco de imágenes{% endblock %}
+
+{% block contenido %}
+  <nav class="migas" aria-label="Ruta de navegación"><ol><li><a href="{{ url_for('sitio.inicio') }}">Inicio</a></li><li aria-current="page"><span>Banco de imágenes</span></li></ol></nav>
+  <h1 class="titulo-pagina">Banco de imágenes</h1>
+
+  <p style="max-width: 800px">Aporta fotografías de microscopía del sistema reproductivo para formar el banco de imágenes del proyecto. Cada imagen queda registrada con tu nombre, la fecha de carga y los datos que escribas aquí. Si subes varias a la vez, comparten los mismos datos. Para imágenes con datos distintos, haz un envío por cada grupo.</p>
+
+  <form method="post" enctype="multipart/form-data" class="mb-5" style="max-width: 720px">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <div class="row g-3">
+      {% for campo, etiqueta, largo in campos %}
+        <div class="col-md-6">
+          <label class="form-label" for="{{ campo }}">{{ etiqueta }}</label>
+          <input class="form-control" id="{{ campo }}" name="{{ campo }}" maxlength="{{ largo }}" required
+                 value="{{ form.get(campo, current_user.nombre if campo == 'nombre' else '') }}">
+        </div>
+      {% endfor %}
+    </div>
+
+    <fieldset class="mt-4">
+      <legend class="h6">¿La imagen se tomó durante un experimento?</legend>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="experimento" id="exp-si" value="si" required
+               {% if form.get('experimento') == 'si' %}checked{% endif %}>
+        <label class="form-check-label" for="exp-si">Sí</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="experimento" id="exp-no" value="no"
+               {% if form.get('experimento') == 'no' %}checked{% endif %}>
+        <label class="form-check-label" for="exp-no">No</label>
+      </div>
+    </fieldset>
+
+    <div class="mt-3" id="bloque-comite" hidden>
+      <label class="form-label" for="comite">Número de aceptación del comité interno de cuidado y uso de animales</label>
+      <input class="form-control" id="comite" name="comite" maxlength="80" value="{{ form.get('comite', '') }}">
+    </div>
+
+    <div class="mt-4">
+      <label class="form-label" for="imagenes">Imágenes (BMP, PNG, TIFF o JPG; hasta {{ maximo }} por envío y 60 MB cada una)</label>
+      <input class="form-control" id="imagenes" name="imagenes" type="file" multiple required
+             accept=".bmp,.png,.tif,.tiff,.jpg,.jpeg">
+    </div>
+
+    <div class="form-check mt-4">
+      <input class="form-check-input" type="checkbox" id="autorizo" name="autorizo" required
+             {% if form.get('autorizo') %}checked{% endif %}>
+      <label class="form-check-label" for="autorizo">
+        Autorizo el uso de las imágenes que cargue para entrenar y mejorar el modelo de inteligencia artificial de
+        <span class="notranslate">BioImage-Repro UAM</span>, así como su almacenamiento y registro en las condiciones del
+        <a href="{{ url_for('sitio.privacidad') }}" target="_blank">aviso de privacidad</a>.
+      </label>
+    </div>
+
+    <button class="btn btn-ibp mt-4" type="submit">Subir al banco</button>
+  </form>
+
+  <div class="titulo-bloque"><span>Mis imágenes aportadas</span></div>
+  {% if mias %}
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <thead><tr><th>Fecha</th><th>Archivo</th><th>Especie</th><th>Órgano</th><th>Tinción</th><th>Experimento</th></tr></thead>
+        <tbody>
+          {% for i in mias %}
+            <tr>
+              <td>{{ i.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+              <td class="notranslate">{{ i.nombre_original }}</td>
+              <td>{{ i.especie }}</td>
+              <td>{{ i.organo }}</td>
+              <td>{{ i.tincion }}</td>
+              <td>{{ 'Sí · ' + i.comite if i.experimento else 'No' }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>Todavía no has aportado imágenes.</p>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  (function () {
+    const si = document.getElementById('exp-si'), no = document.getElementById('exp-no');
+    const bloque = document.getElementById('bloque-comite'), comite = document.getElementById('comite');
+    function ajustar() {
+      const pide = si.checked;
+      bloque.hidden = !pide;
+      comite.required = pide;
+    }
+    si.addEventListener('change', ajustar);
+    no.addEventListener('change', ajustar);
+    ajustar();
+  })();
+</script>
+{% endblock %}

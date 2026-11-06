@@ -2,7 +2,15 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.13.4.
+**En producción: 1.0.0.** El repositorio va en 1.14.0.
+
+## 1.14.0 (6 de noviembre de 2026)
+
+- Banco de imágenes (`/banco/`): las personas con cuenta aportan fotografías con nombre, institución, especie, órgano reproductivo, tipo de tinción y, si fue en un experimento, el número de aceptación del comité de cuidado y uso de animales. Piden autorización para entrenar el modelo; sin ella no se guarda nada. Se aceptan BMP, PNG, TIFF y JPG, hasta 20 por envío y 60 MB cada una, y se comprueba que el archivo sea de verdad una imagen.
+- Las imágenes se guardan en el disco del servidor (`instance/banco/`). Hay un tope del banco (`BANCO_LIMITE_GB`, 30 por omisión) y un margen de disco libre (`BANCO_MARGEN_GB`, 5 por omisión). Tabla nueva `imagen_banco`.
+- Administración: el panel tiene "Banco de imágenes", con los datos de cada imagen, el espacio usado, descarga de cada archivo y exportación de la tabla en CSV.
+- Menú: nueva opción "Banco de imágenes".
+- Documentos: requisitos RF-54 a RF-57, README y guía de despliegue con el espacio en disco.
 
 ## 1.13.4 (6 de noviembre de 2026)
 

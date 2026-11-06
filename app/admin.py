@@ -8,13 +8,17 @@ from functools import wraps
 import bleach
 import click
 import markdown
-from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, url_for
+import csv
+import io
+
+from flask import (Blueprint, Response, abort, current_app, flash, redirect, render_template, request,
+                   send_from_directory, url_for)
 from flask.cli import with_appcontext
 from flask_login import current_user, login_required
 from markupsafe import Markup
 
 from app.extensiones import db
-from app.modelos import Articulo, SolicitudCalendario, Usuario
+from app.modelos import Articulo, ImagenBanco, SolicitudCalendario, Usuario
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
 
@@ -69,7 +73,8 @@ def html_seguro(texto):
 def panel():
     return render_template("admin/panel.html", total_usuarios=Usuario.query.count(),
                            total_articulos=Articulo.query.count(),
-                           total_calendario=SolicitudCalendario.query.count())
+                           total_calendario=SolicitudCalendario.query.count(),
+                           total_banco=ImagenBanco.query.count())
 
 
 @bp.route("/usuarios")
@@ -100,6 +105,40 @@ def cambiar_rol(usuario_id):
 def solicitudes_calendario():
     lista = SolicitudCalendario.query.order_by(SolicitudCalendario.fecha.desc()).all()
     return render_template("admin/calendario.html", solicitudes=lista)
+
+
+@bp.route("/banco")
+@solo_admin
+def banco():
+    from app.banco import GB, usado_en_banco
+    lista = ImagenBanco.query.order_by(ImagenBanco.fecha.desc()).all()
+    return render_template("admin/banco.html", imagenes=lista, usado_gb=usado_en_banco() / GB,
+                           limite_gb=current_app.config["BANCO_LIMITE_GB"])
+
+
+@bp.route("/banco/<int:imagen_id>/archivo")
+@solo_admin
+def banco_archivo(imagen_id):
+    imagen = db.get_or_404(ImagenBanco, imagen_id)
+    return send_from_directory(current_app.config["CARPETA_BANCO"], imagen.archivo, as_attachment=True,
+                               download_name=f"{imagen.id}_{imagen.nombre_original}")
+
+
+@bp.route("/banco/exportar.csv")
+@solo_admin
+def banco_csv():
+    """Una fila por imagen con todos sus datos, para armar el conjunto de entrenamiento."""
+    salida = io.StringIO()
+    escritor = csv.writer(salida)
+    escritor.writerow(["id", "fecha", "archivo", "nombre_original", "mb", "cuenta", "nombre", "institucion",
+                       "especie", "organo", "tincion", "experimento", "comite", "autoriza_entrenamiento"])
+    for i in ImagenBanco.query.order_by(ImagenBanco.id).all():
+        escritor.writerow([i.id, i.fecha.strftime("%Y-%m-%d %H:%M"), i.archivo, i.nombre_original,
+                           round(i.tamanio / 1048576, 2), i.usuario.correo, i.nombre, i.institucion, i.especie,
+                           i.organo, i.tincion, "si" if i.experimento else "no", i.comite,
+                           "si" if i.autoriza_entrenamiento else "no"])
+    return Response("﻿" + salida.getvalue(), mimetype="text/csv",
+                    headers={"Content-Disposition": "attachment; filename=banco_de_imagenes.csv"})
 
 
 # --- Artículos ---------------------------------------------------------------------

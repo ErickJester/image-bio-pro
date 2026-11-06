@@ -118,6 +118,17 @@ Además del audio, se usa la descripción de lo que el cliente dibujó en la piz
 | RF-52 | El sitio ofrece una o unas pocas imágenes de prueba para que cualquiera pruebe sin subir las suyas, y descargue su PDF. Es una función de la etapa beta; en producción se deja una sola. | "que el usuario pruebe esa imagen… y ya descargue su propio PDF" [66:16]; "una funcionalidad temporal… ya después… nada más la dejemos con una sola" [66:42] |
 | RF-53 | El pie de página lleva el aviso de privacidad 2026 y la licencia Creative Commons Attribution Non Commercial, y se parece al menú: Nosotros, Aliados, Contacto, etc. El texto lo da el cliente cuando el esqueleto esté listo. | "Consulte nuestro aviso de privacidad 2026… Creative Commons Attribution, Non Commercial… Eso es muy importante para nosotros" [69:49]; "ya nada más es meterle letra" [70:21] |
 
+### Banco de imágenes
+
+| ID | Requisito | Lo que se dijo |
+|---|---|---|
+| RF-54 | El sitio tiene un apartado "Banco de imágenes" para que las personas con cuenta aporten fotografías del sistema reproductivo. Se planea reunir hasta 1000. | Documento de correcciones del cliente (6 de noviembre de 2026): "El proyecto consiste en crear un banco de imágenes… Se planea cargar hasta 1000 imágenes" |
+| RF-55 | Por cada envío se piden: nombre, institución, especie, órgano reproductivo y tipo de tinción. Si la imagen se tomó en un experimento, también el número de aceptación del comité interno de cuidado y uso de animales. | Mismo documento |
+| RF-56 | La persona debe autorizar el uso de sus imágenes para entrenar y mejorar el modelo; sin la autorización no se guardan. Cada imagen queda registrada con su nombre y la fecha de carga. | Aviso de privacidad del mismo documento |
+| RF-57 | Las imágenes del banco se guardan en el disco del servidor (50 GB), con un tope configurable y un margen libre. Quien tenga rol de administrador las ve con sus datos, las descarga y exporta la tabla en CSV. | Decisión del 6 de noviembre de 2026: usar el disco del servidor en lugar de un servicio de nube |
+
+RF-47 sigue vigente para el análisis: las imágenes que se suben a analizar se borran al terminar. Solo las que se aportan al banco se conservan.
+
 ### No funcionales y restricciones nuevas
 
 | ID | Requisito | Lo que se dijo |
