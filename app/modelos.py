@@ -13,9 +13,15 @@ class Usuario(UserMixin, db.Model):
     correo = db.Column(db.String(254), unique=True, nullable=False, index=True)
     clave_cifrada = db.Column(db.String(256), nullable=False)
     creado = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    # "usuario" (puede analizar) o "admin" (además administra cuentas y artículos)
+    rol = db.Column(db.String(20), default="usuario", nullable=False)
 
     analisis = db.relationship("Analisis", backref="usuario", lazy="dynamic",
                                order_by="Analisis.fecha.desc()")
+
+    @property
+    def es_admin(self):
+        return self.rol == "admin"
 
     def poner_clave(self, clave):
         self.clave_cifrada = generate_password_hash(clave)
@@ -51,10 +57,31 @@ class Mensaje(db.Model):
     fecha = db.Column(db.DateTime, default=datetime.now, nullable=False)
 
 
+class SolicitudCalendario(db.Model):
+    """Correos de quienes piden la invitación al calendario de uso del microscopio de fluorescencia."""
+    id = db.Column(db.Integer, primary_key=True)
+    correo = db.Column(db.String(254), nullable=False)
+    fecha = db.Column(db.DateTime, default=datetime.now, nullable=False)
+
+
 class Contador(db.Model):
     """Contadores del sitio. Hoy solo cuenta visitantes: una persona cuenta una vez por sesión del navegador."""
     clave = db.Column(db.String(40), primary_key=True)
     valor = db.Column(db.Integer, default=0, nullable=False)
+
+
+class Articulo(db.Model):
+    """Artículo del blog. El cuerpo se escribe en Markdown y se limpia al mostrarlo."""
+    id = db.Column(db.Integer, primary_key=True)
+    titulo = db.Column(db.String(200), nullable=False)
+    slug = db.Column(db.String(220), unique=True, nullable=False, index=True)
+    resumen = db.Column(db.String(400), default="", nullable=False)
+    cuerpo = db.Column(db.Text, default="", nullable=False)
+    publicado = db.Column(db.Boolean, default=False, nullable=False)
+    creado = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    actualizado = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
+    autor_id = db.Column(db.Integer, db.ForeignKey("usuario.id"))
+    autor = db.relationship("Usuario")
 
 
 @login_manager.user_loader

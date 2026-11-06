@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %}Calendario del microscopio{% endblock %}
+
+{% block contenido %}
+  <div class="migas"><a href="{{ url_for('admin.panel') }}">Administración</a> &rsaquo; Calendario del microscopio</div>
+  <h1 class="titulo-pagina">Correos para el calendario</h1>
+  {% if solicitudes %}
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead><tr><th>Correo</th><th>Fecha</th></tr></thead>
+        <tbody>
+          {% for s in solicitudes %}
+            <tr><td class="notranslate">{{ s.correo }}</td><td>{{ s.fecha.strftime('%d/%m/%Y %H:%M') }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>Todavía nadie ha dejado su correo.</p>
+  {% endif %}
+{% endblock %}

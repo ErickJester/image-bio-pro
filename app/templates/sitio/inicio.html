@@ -11,10 +11,11 @@
       <div class="col-lg-7">
         <h1 class="notranslate">BioImage-Repro UAM</h1>
         <p class="intro">El modelo analiza imágenes de microscopía de fluorescencia y genera un reporte del conteo celular, analiza la distribución de los tamaños celulares y genera el análisis estadístico para el campo observado en la imagen.</p>
+        <p class="mb-3">Hay dos modelos: uno para imágenes de <b>fluorescencia</b> (fondo oscuro) y otro para imágenes de <b>campo claro</b> (fondo claro). La plataforma elige el modelo según la fotografía. Ambos son preliminares y están en entrenamiento.</p>
         <a class="btn btn-ibp" href="{{ url_for('analisis.ia') }}">Analizar una imagen</a>
       </div>
       <div class="col-lg-5">
-        <div class="ph" style="height: 280px">[imagen principal]</div>
+        <img class="img-fluid rounded" src="{{ url_for('static', filename='muestras/resultado-inicio.jpg') }}" alt="Imagen de microscopía de fluorescencia con cada espermatozoide detectado, marcado y numerado" width="1200" height="900">
       </div>
     </div>
   </section>

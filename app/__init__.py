@@ -23,12 +23,14 @@ def crear_app(config=None):
         CARPETA_SUBIDAS=os.path.join(app.instance_path, "subidas"),
         # Copias reducidas con las cabezas marcadas, para volver a ver un análisis (RF-48)
         CARPETA_MARCADAS=os.path.join(app.instance_path, "marcadas"),
+        # Imágenes que los administradores suben a los artículos
+        CARPETA_ARTICULOS=os.path.join(app.instance_path, "articulos"),
     )
     if config:
         app.config.update(config)
 
-    for carpeta in (app.instance_path, app.config["CARPETA_PDF"],
-                    app.config["CARPETA_SUBIDAS"], app.config["CARPETA_MARCADAS"]):
+    for carpeta in (app.instance_path, app.config["CARPETA_PDF"], app.config["CARPETA_SUBIDAS"],
+                    app.config["CARPETA_MARCADAS"], app.config["CARPETA_ARTICULOS"]):
         os.makedirs(carpeta, exist_ok=True)
 
     db.init_app(app)
@@ -39,6 +41,7 @@ def crear_app(config=None):
     login_manager.login_message_category = "info"
 
     from app import modelos  # noqa: F401  (registra las tablas)
+    from app.admin import bp as bp_admin, crear_admins, html_seguro
     from app.analisis.rutas import bp as bp_analisis
     from app.cuentas import bp as bp_cuentas
     from app.sitio import bp as bp_sitio
@@ -46,6 +49,9 @@ def crear_app(config=None):
     app.register_blueprint(bp_sitio)
     app.register_blueprint(bp_cuentas)
     app.register_blueprint(bp_analisis)
+    app.register_blueprint(bp_admin)
+    app.cli.add_command(crear_admins)
+    app.jinja_env.filters["markdown_seguro"] = html_seguro
 
     @app.before_request
     def contar_visitante():
@@ -69,5 +75,10 @@ def crear_app(config=None):
 
     with app.app_context():
         db.create_all()
+        # Bases creadas antes de los roles no tienen la columna: se agrega sin perder datos
+        columnas = [c["name"] for c in db.inspect(db.engine).get_columns("usuario")]
+        if "rol" not in columnas:
+            db.session.execute(db.text("ALTER TABLE usuario ADD COLUMN rol VARCHAR(20) NOT NULL DEFAULT 'usuario'"))
+            db.session.commit()
 
     return app

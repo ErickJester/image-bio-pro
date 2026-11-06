@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %}Artículos{% endblock %}
+
+{% block contenido %}
+  <div class="migas"><a href="{{ url_for('admin.panel') }}">Administración</a> &rsaquo; Artículos</div>
+  <h1 class="titulo-pagina">Artículos</h1>
+  <p><a class="btn btn-ibp" href="{{ url_for('admin.articulo_nuevo') }}">Nuevo artículo</a></p>
+  {% if articulos %}
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead><tr><th>Título</th><th>Estado</th><th>Actualizado</th><th></th></tr></thead>
+        <tbody>
+          {% for a in articulos %}
+            <tr>
+              <td>{{ a.titulo }}</td>
+              <td>{{ 'Publicado' if a.publicado else 'Borrador' }}</td>
+              <td>{{ a.actualizado.strftime('%d/%m/%Y %H:%M') }}</td>
+              <td class="text-end">
+                <a href="{{ url_for('sitio.articulo', slug=a.slug) }}">Ver</a> ·
+                <a href="{{ url_for('admin.articulo_editar', articulo_id=a.id) }}">Editar</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>Todavía no hay artículos.</p>
+  {% endif %}
+{% endblock %}

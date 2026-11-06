@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block titulo %}{{ 'Editar artículo' if articulo.id else 'Nuevo artículo' }}{% endblock %}
+
+{% block contenido %}
+  {% set v = form if form else {} %}
+  <div class="migas"><a href="{{ url_for('admin.articulos') }}">Artículos</a> &rsaquo; {{ 'Editar' if articulo.id else 'Nuevo' }}</div>
+  <h1 class="titulo-pagina">{{ 'Editar artículo' if articulo.id else 'Nuevo artículo' }}</h1>
+
+  <form method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="mb-3">
+      <label class="form-label" for="titulo">Título</label>
+      <input class="form-control" id="titulo" name="titulo" maxlength="200" required
+             value="{{ v.get('titulo', articulo.titulo or '') }}">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="resumen">Resumen (aparece en el listado)</label>
+      <textarea class="form-control" id="resumen" name="resumen" rows="2" maxlength="400">{{ v.get('resumen', articulo.resumen or '') }}</textarea>
+    </div>
+    <div class="mb-2">
+      <label class="form-label" for="cuerpo">Texto del artículo</label>
+      <textarea class="form-control font-monospace" id="cuerpo" name="cuerpo" rows="18">{{ v.get('cuerpo', articulo.cuerpo or '') }}</textarea>
+      <div class="form-text">
+        Formato: <code>## Subtítulo</code>, <code>**negritas**</code>, <code>*cursivas*</code>,
+        <code>- lista</code>, <code>[texto](https://enlace)</code>. Para una imagen, usa el botón de abajo.
+      </div>
+    </div>
+    <div class="mb-3">
+      <input type="file" id="imagen" accept=".png,.jpg,.jpeg,.gif,.webp" class="form-control" style="max-width: 24rem; display: inline-block">
+      <button type="button" class="btn btn-outline-secondary" id="subir">Subir imagen e insertarla</button>
+      <span id="estado-imagen" class="ms-2 text-muted" role="status"></span>
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="publicado" name="publicado"
+             {% if (v.get('publicado') if form else articulo.publicado) %}checked{% endif %}>
+      <label class="form-check-label" for="publicado">Publicado (visible para todas las personas)</label>
+    </div>
+    <button class="btn btn-ibp" type="submit">Guardar</button>
+  </form>
+
+  {% if articulo.id %}
+    <form method="post" action="{{ url_for('admin.articulo_borrar', articulo_id=articulo.id) }}" class="mt-4"
+          onsubmit="return confirm('¿Borrar este artículo? No se puede deshacer.');">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="btn btn-outline-danger" type="submit">Borrar artículo</button>
+    </form>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.getElementById('subir').addEventListener('click', async () => {
+    const archivo = document.getElementById('imagen').files[0];
+    const estado = document.getElementById('estado-imagen');
+    if (!archivo) { estado.textContent = 'Elige una imagen primero.'; return; }
+    const datos = new FormData();
+    datos.append('imagen', archivo);
+    datos.append('csrf_token', document.querySelector('input[name=csrf_token]').value);
+    estado.textContent = 'Subiendo…';
+    try {
+      const r = await fetch({{ url_for('admin.subir_imagen') | tojson }}, {method: 'POST', body: datos});
+      const j = await r.json();
+      if (!r.ok) { estado.textContent = j.error || 'No se pudo subir.'; return; }
+      const t = document.getElementById('cuerpo');
+      t.value = t.value.slice(0, t.selectionStart) + '\n\n' + j.markdown + '\n\n' + t.value.slice(t.selectionEnd);
+      estado.textContent = 'Imagen insertada. Cambia «descripción» por un texto que la describa.';
+    } catch (e) { estado.textContent = 'No se pudo subir.'; }
+  });
+</script>
+{% endblock %}

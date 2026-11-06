@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block titulo %}Administración{% endblock %}
+
+{% block contenido %}
+  <div class="migas"><a href="{{ url_for('sitio.inicio') }}">Inicio</a> &rsaquo; Administración</div>
+  <h1 class="titulo-pagina">Administración</h1>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <h2 class="h4">Cuentas</h2>
+      <p>{{ total_usuarios }} cuenta{{ '' if total_usuarios == 1 else 's' }}. Consulta quién se registró y da o quita el rol de administrador.</p>
+      <a class="btn btn-ibp" href="{{ url_for('admin.usuarios') }}">Ver cuentas</a>
+    </div>
+    <div class="col-md-6">
+      <h2 class="h4">Artículos</h2>
+      <p>{{ total_articulos }} artículo{{ '' if total_articulos == 1 else 's' }}. Escribe, edita, publica o borra artículos del blog.</p>
+      <a class="btn btn-ibp" href="{{ url_for('admin.articulos') }}">Ver artículos</a>
+    </div>
+    <div class="col-md-6">
+      <h2 class="h4">Calendario del microscopio</h2>
+      <p>{{ total_calendario }} correo{{ '' if total_calendario == 1 else 's' }} para enviar la invitación.</p>
+      <a class="btn btn-ibp" href="{{ url_for('admin.solicitudes_calendario') }}">Ver correos</a>
+    </div>
+  </div>
+{% endblock %}

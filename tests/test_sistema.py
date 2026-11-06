@@ -47,7 +47,7 @@ def imagen_bytes(ruta, formato):
 
 
 @pytest.mark.parametrize("url", ["/", "/nosotros", "/aliados", "/infografias", "/videos", "/ia",
-                                 "/contacto", "/entrar", "/aviso-de-privacidad"])
+                                 "/contacto", "/entrar", "/aviso-de-privacidad", "/articulos", "/calendario"])
 def test_paginas_publicas(cliente, url):
     assert cliente.get(url).status_code == 200
 
@@ -311,3 +311,101 @@ def test_contador_de_visitantes_cuenta_una_vez_por_sesion(app):
     otro = app.test_client()
     html = otro.get("/nosotros").get_data(as_text=True)
     assert "Visitantes: 2" in html
+
+
+# --- Roles, administración y artículos ---------------------------------------------
+
+def entrar_como_admin(app, cliente, correo="admin@ejemplo.com"):
+    from app.extensiones import db
+    from app.modelos import Usuario
+    with app.app_context():
+        u = Usuario(nombre="Admin", correo=correo, rol="admin")
+        u.poner_clave("secreta123")
+        db.session.add(u)
+        db.session.commit()
+    return cliente.post("/entrar", data={"accion": "entrar", "correo": correo, "clave": "secreta123"})
+
+
+def test_usuario_normal_no_entra_a_administracion(cliente):
+    registrar(cliente)
+    for url in ("/admin/", "/admin/usuarios", "/admin/articulos", "/admin/articulos/nuevo"):
+        assert cliente.get(url).status_code == 403
+    assert cliente.post("/admin/usuarios/1/rol", data={"rol": "admin"}).status_code == 403
+
+
+def test_sin_sesion_administracion_pide_entrar(cliente):
+    respuesta = cliente.get("/admin/usuarios")
+    assert respuesta.status_code == 302 and "/entrar" in respuesta.headers["Location"]
+
+
+def test_admin_promueve_y_no_se_quita_a_si_mismo(app, cliente):
+    from app.modelos import Usuario
+    otro = app.test_client()
+    registrar(otro, "bea@ejemplo.com")
+    entrar_como_admin(app, cliente)
+    assert b"bea@ejemplo.com" in cliente.get("/admin/usuarios").data
+    with app.app_context():
+        bea = Usuario.query.filter_by(correo="bea@ejemplo.com").first().id
+        yo = Usuario.query.filter_by(correo="admin@ejemplo.com").first().id
+    cliente.post(f"/admin/usuarios/{bea}/rol", data={"rol": "admin"})
+    cliente.post(f"/admin/usuarios/{yo}/rol", data={"rol": "usuario"})
+    with app.app_context():
+        assert Usuario.query.get(bea).es_admin
+        assert Usuario.query.get(yo).es_admin
+    assert otro.get("/admin/").status_code == 200
+
+
+def test_articulos_borrador_publicado_y_limpieza(app, cliente):
+    entrar_como_admin(app, cliente)
+    cliente.post("/admin/articulos/nuevo", data={
+        "titulo": "Cómo medimos", "resumen": "Resumen",
+        "cuerpo": "## Hola\n\n<script>alert(1)</script>\n\n[x](javascript:alert(1)) **negrita**"})
+    publico = app.test_client()
+    assert publico.get("/articulos/como-medimos").status_code == 404
+    assert b"C\xc3\xb3mo medimos" not in publico.get("/articulos").data
+    assert b"<strong>negrita</strong>" in cliente.get("/articulos/como-medimos").data
+    cliente.post("/admin/articulos/1/editar", data={
+        "titulo": "Cómo medimos", "cuerpo": "## Hola\n\n<script>alert(1)</script>\n\n[x](javascript:alert(1))",
+        "publicado": "on"})
+    pagina = publico.get("/articulos/como-medimos").get_data(as_text=True)
+    assert "<script>alert" not in pagina and "javascript:" not in pagina
+    assert "Cómo medimos" in publico.get("/articulos").get_data(as_text=True)
+
+
+def test_cambiar_clave(cliente):
+    registrar(cliente)
+    cliente.post("/perfil/clave", data={"actual": "mala", "nueva": "nueva12345", "nueva2": "nueva12345"})
+    cliente.post("/salir")
+    assert cliente.post("/entrar", data={"accion": "entrar", "correo": "ana@ejemplo.com",
+                                         "clave": "secreta123"}).status_code == 302
+    cliente.post("/perfil/clave", data={"actual": "secreta123", "nueva": "nueva12345", "nueva2": "nueva12345"})
+    cliente.post("/salir")
+    assert cliente.post("/entrar", data={"accion": "entrar", "correo": "ana@ejemplo.com",
+                                         "clave": "nueva12345"}).status_code == 302
+
+
+def test_comando_crear_admins(app, tmp_path):
+    from app.modelos import Usuario
+    app.config["ARCHIVO_ADMINS"] = str(tmp_path / "admins.txt")
+    resultado = app.test_cli_runner().invoke(args=["crear-admins"])
+    assert resultado.exit_code == 0
+    with app.app_context():
+        correos = {u.correo for u in Usuario.query.filter_by(rol="admin")}
+    assert correos == {"id634296@gmail.com", "sanchezmxjoseluis@gmail.com"}
+    assert os.path.exists(tmp_path / "admins.txt")
+    assert "secreta" not in resultado.output
+
+
+def test_calendario_guarda_correo_y_lo_ve_el_admin(app, cliente):
+    publico = app.test_client()
+    assert publico.post("/calendario", data={"correo": "malo"}).status_code == 200
+    assert publico.post("/calendario", data={"correo": "Luz@Ejemplo.com"}).status_code == 302
+    entrar_como_admin(app, cliente)
+    assert b"luz@ejemplo.com" in cliente.get("/admin/calendario").data
+
+
+def test_equipo_y_menu_nuevos(cliente):
+    pagina = cliente.get("/aliados").get_data(as_text=True)
+    assert "Dra. Sheila Irais Pe" in pagina and "Xelhua Elihut Marcos" in pagina
+    inicio = cliente.get("/").get_data(as_text=True)
+    assert "BIOIMAGE" not in inicio and "Plataforma web con inteligencia artificial" in inicio

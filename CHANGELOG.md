@@ -2,7 +2,20 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.12.0.
+**En producción: 1.0.0.** El repositorio va en 1.13.0.
+
+## 1.13.0 (6 de noviembre de 2026)
+
+- Nombre unificado: "BioImage-Repro UAM" en la cabecera (sin mayúsculas), el bloque de infografías y el PDF. El subtítulo pasa a minúsculas.
+- Inicio: imagen principal con un análisis de ejemplo y un párrafo que aclara que hay dos modelos (fluorescencia y campo claro), ambos preliminares.
+- Menú: "Nosotros" pasa a "¿Qué es BioImage-Repro UAM?", "Aliados" pasa a "Nosotros" y se agregan "Artículos" y "Calendario del microscopio".
+- Nosotros: 18 personas con los cargos y el orden del documento del cliente y 11 fotos nuevas. Salen tres personas que no estaban en esa lista.
+- Contacto: mapa de la UAM Iztapalapa. Aviso de privacidad con el texto sobre uso, registro y conservación de imágenes.
+- Calendario del microscopio: formulario para dejar el correo y recibir la invitación. Tabla nueva `solicitud_calendario`.
+- Roles: las cuentas son `usuario` o `admin`. Columna nueva `rol` en `usuario`, que se agrega sola a las bases anteriores. El comando `flask --app run crear-admins` crea a los dos administradores iniciales con contraseñas de prueba guardadas en `instance/admins_iniciales.txt`.
+- Administración (`/admin`): lista de cuentas con botón para dar o quitar el rol de administrador, correos del calendario y gestión de artículos.
+- Artículos (blog): listado público y editor en Markdown con subida de imágenes para administradores. Tabla nueva `articulo`. Dependencias nuevas: Markdown y bleach.
+- Mi perfil: cambio de contraseña.
 
 ## 1.12.0 (3 de noviembre de 2026)
 

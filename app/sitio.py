@@ -1,8 +1,10 @@
 """Páginas informativas: inicio, nosotros, aliados, infografías, videos, contacto."""
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import (Blueprint, abort, current_app, flash, redirect, render_template, request,
+                   send_from_directory, url_for)
+from flask_login import current_user
 
 from app.extensiones import db
-from app.modelos import Mensaje
+from app.modelos import Articulo, Mensaje, SolicitudCalendario
 
 bp = Blueprint("sitio", __name__)
 
@@ -10,49 +12,140 @@ bp = Blueprint("sitio", __name__)
 LOREM = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor "
          "incididunt ut labore et dolore magna aliqua.")
 
-# Personas del proyecto, tal como las entregó el cliente (documento del 24 de octubre de 2026).
-# foto: ruta dentro de app/static (fotos cuadradas en app/static/aliados); None = marcador de posición.
-# scholar: dirección del perfil de Google Scholar de la persona; None = sin enlace.
+# Personas del proyecto, en el orden y con los datos del documento de correcciones del cliente.
+# foto: ruta dentro de app/static (aliados/); sin-foto.svg = silueta. scholar: perfil de Google Scholar; None = sin enlace.
 ALIADOS = [
-    {"nombre": "Dra. Sheila Irais Peña Corona", "foto": "aliados/sheila-irais-pena-corona.jpg", "scholar": None, "lineas": [
-        "Responsable y líder del proyecto BioImage-Repro UAM",
-        "Profesora Asociada de Carrera Nivel D de Tiempo Completo",
-        "Departamento de Biología de la Reproducción",
-        "División de Ciencias Biológicas y de la Salud",
-        "Nivel I del SNII"]},
-    {"nombre": "Dr. Saúl Jiménez Jiménez", "foto": "aliados/sin-foto.svg", "scholar": None, "lineas": [
-        "Responsable del sitio web y del modelo de IA alojados en BioImage-Repro UAM",
-        "PostDoc SECIHTI en la UAM-Iztapalapa",
-        "Departamento de Química",
-        "Departamento de Fisicoquímica de superficies",
-        "División de Ciencias Básicas e Ingeniería",
-        "Candidato SNII"]},
-    {"nombre": "Dra. Edith Arenas Ríos", "foto": "aliados/edith-arenas-rios.jpg", "scholar": None, "lineas": [
-        "Directora de la División de Ciencias Biológicas y de la Salud",
-        "Nivel I del SNII"]},
-    {"nombre": "Dra. María del Rosario Tarragó Castellanos", "foto": "aliados/rosario-tarrago-castellanos.jpg", "scholar": None, "lineas": [
-        "Jefa del Departamento de Biología de la Reproducción",
-        "División de Ciencias Biológicas y de la Salud",
-        "Nivel I del SNII"]},
-    {"nombre": "Dr. Juan Villegas Cortez", "foto": "aliados/juan-villegas-cortez.jpg", "scholar": None, "lineas": [
-        "Colaborador",
-        "Profesor Titular de Carrera Nivel C de Tiempo Completo",
-        "Departamento de Sistemas",
-        "División de Ciencias Básicas e Ingeniería",
-        "Nivel I del SNII"]},
-    {"nombre": "Dr. Juan Isaac Chavez Corona", "foto": None, "scholar": None, "lineas": [
-        "Colaborador",
-        "Estudiante de doctorado en ciencias Químicas en la UNAM",
-        "Departamento de Farmacia"]},
-    {"nombre": "Dr. Roberto Carlos Lazzarini Lechuga", "foto": "aliados/roberto-carlos-lazzarini-lechuga.jpg", "scholar": None, "lineas": ["Colaborador"]},
-    {"nombre": "Dr. Jorge Eduardo Vieyra Durán", "foto": "aliados/jorge-eduardo-vieyra-duran.jpg", "scholar": None, "lineas": ["Colaborador"]},
-    {"nombre": "Gerardo Mejia Hernandez", "foto": "aliados/gerardo-mejia-hernandez.jpeg", "scholar": None, "lineas": ["Colaborador"]},
-    {"nombre": "Biól. Isaac Emanuel Mani Arellano", "foto": "aliados/isaac-emanuel-mani-arellano.jpeg", "scholar": None, "lineas": ["Colaborador", "Estudiante"]},
-    {"nombre": "Luis Enrique Perez Caltzontzin", "foto": "aliados/luis-enrique-perez-caltzontzin.jpg", "scholar": None, "lineas": ["Logística y coordinador de actividades de difusión"]},
+    {"nombre": 'Dra. Sheila Irais Peña Corona', "foto": 'aliados/sheila-irais-pena-corona.jpg', "scholar": None, "lineas": [
+        'Responsable y líder del proyecto BioImage-Repro UAM',
+        'Profesora-Investigadora',
+        'Departamento de Biología de la Reproducción',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+        'Investigadora Nacional Nivel I del SNI',
+    ]},
+    {"nombre": 'Dr. Saúl Jiménez Jiménez', "foto": 'aliados/sin-foto.svg', "scholar": None, "lineas": [
+        'Responsable del desarrollo del sitio web y del modelo de inteligencia artificial de BioImage-Repro UAM',
+        'Investigador posdoctoral SECIHTI en la Universidad Autónoma Metropolitana, Unidad Iztapalapa',
+        'Departamento de Química',
+        'División de Ciencias Básicas e Ingeniería',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+        'Candidato a Investigador Nacional del SNI',
+    ]},
+    {"nombre": 'Dra. Edith Arenas Ríos', "foto": 'aliados/edith-arenas-rios.jpg', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Directora de la División de Ciencias Biológicas y de la Salud',
+        'Profesora-Investigadora',
+        'Departamento de Biología de la Reproducción',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+        'Investigadora Nacional Nivel II del SNI',
+    ]},
+    {"nombre": 'Dra. María del Rosario Tarragó Castellanos', "foto": 'aliados/rosario-tarrago-castellanos.jpg', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Jefa del Departamento de Biología de la Reproducción',
+        'Profesora-Investigadora',
+        'Departamento de Biología de la Reproducción',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+    ]},
+    {"nombre": 'Luis Enrique Perez Caltzontzin', "foto": 'aliados/luis-enrique-perez-caltzontzin.jpg', "scholar": None, "lineas": [
+        'Logística y coordinador de actividades de difusión',
+        'Estudiante de posgrado',
+        'Departamento de Producción Agrícola y Animal UAM-X',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Xochimilco',
+    ]},
+    {"nombre": 'Dr. Roberto Carlos Lazzarini Lechuga', "foto": 'aliados/roberto-carlos-lazzarini-lechuga.jpg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Profesor-Investigador',
+        'Departamento de Biología de la Reproducción',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+        'Investigador Nacional Nivel I del SNI',
+    ]},
+    {"nombre": 'Dr. Jorge Eduardo Vieyra Durán', "foto": 'aliados/jorge-eduardo-vieyra-duran.jpg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Profesor-Investigador',
+        'Departamento de Biología de la Reproducción',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+    ]},
+    {"nombre": 'Dra. María del Socorro Imelda Retana Márquez', "foto": 'aliados/maria-del-socorro-imelda-retana-marquez.jpg', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Profesora-Investigadora',
+        'Departamento de Biología de la Reproducción',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+        'Investigadora Nacional Nivel II del SNI',
+    ]},
+    {"nombre": 'M. en C. Adrián Emmanuel Iglesias Reyes', "foto": 'aliados/adrian-emmanuel-iglesias-reyes.jpg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Profesor-investigador',
+        'Departamento de Producción Agrícola y Animal UAM-X',
+        'División de Ciencias Biológicas y de la Salud',
+    ]},
+    {"nombre": 'Dra. Marcela Vergara Onofre', "foto": 'aliados/marcela-vergara-onofre.png', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Coordinadora de la Maestría en Ciencias Agropecuarias',
+        'Profesora-investigadora',
+        'Departamento de Producción Agrícola y Animal UAM-X',
+        'División de Ciencias Biológicas y de la Salud',
+        'Investigadora Nacional Nivel I del SNI',
+    ]},
+    {"nombre": 'Dr. Juan José Pérez Rivero Cruz y Celis', "foto": 'aliados/juan-jose-perez-rivero-cruz-y-celis.jpg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Presidente de la Asociación Mexicana de Epidemiología Veterinaria A.C. (AMEV)',
+        'Profesor-investigador',
+        'Departamento de Producción Agrícola y Animal UAM-X',
+        'División de Ciencias Biológicas y de la Salud',
+        'Investigador Nacional Nivel II del SNI',
+    ]},
+    {"nombre": 'MC Juan Isaac Chávez Corona', "foto": 'aliados/juan-isaac-chavez-corona.jpg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Estudiante de posgrado',
+        'Facultad de Medicina Veterinaria y Zootecnia, UNAM',
+    ]},
+    {"nombre": 'Dra. Dinorah Vargas Estrada', "foto": 'aliados/dinorah-vargas-estrada.png', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Departamento de Fisiología y Farmacología',
+        'Facultad de Medicina Veterinaria y Zootecnia',
+        'Universidad Nacional Autónoma de México',
+        'Investigadora Nacional Nivel II del SNI',
+    ]},
+    {"nombre": 'Dr. Gerardo Leyva Gómez', "foto": 'aliados/gerardo-leyva-gomez.jpg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Departamento de Farmacia',
+        'Facultad de Química',
+        'Universidad Nacional Autónoma de México',
+        'Investigador Nacional Nivel II del SNI',
+    ]},
+    {"nombre": 'Dra. Laura Olivia Arvizu Tovar', "foto": 'aliados/laura-olivia-arvizu-tovar.jpg', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Departamento de Medicina Preventiva y Salud Pública',
+        'Facultad de Medicina Veterinaria y Zootecnia',
+        'Universidad Nacional Autónoma de México',
+        'Candidata a Investigadora Nacional del SNI',
+    ]},
+    {"nombre": 'Dra. Patricia Mora Medina', "foto": 'aliados/patricia-mora-medina.jpg', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Departamento de Ciencias Pecuarias',
+        'Facultad de Estudios Superiores Cuautitlán',
+        'Universidad Nacional Autónoma de México',
+        'Investigadora Nacional Nivel I del SNI',
+    ]},
+    {"nombre": 'Dra. María Josefa Bernad Bernad', "foto": 'aliados/maria-josefa-bernad-bernad.png', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Departamento de Farmacia',
+        'Facultad de Química',
+        'Universidad Nacional Autónoma de México',
+        'Investigadora Nacional Nivel I del SNI',
+    ]},
+    {"nombre": 'Dr. Xelhua Elihut Marcos Benítez', "foto": 'aliados/xelhua-elihut-marcos-benitez.jpg', "scholar": None, "lineas": [
+        'Colaboradora',
+        'Unidad de Innovación y Desarrollo Farmacéutico. Centro Interdisciplinario de Medicina Predictiva, ITEMS',
+        'Instituto Tecnológico y de Estudios Superiores de Monterrey',
+    ]},
 ]
-
-# Los colaboradores van al final; el orden dentro de cada grupo es el de la lista.
-ALIADOS.sort(key=lambda a: a["lineas"][0] == "Colaborador")
 
 INFOGRAFIAS = [
     {"numero": i, "titulo": f"Título de la infografía {i}", "imagen": None, "texto": LOREM}
@@ -140,6 +233,40 @@ def contacto():
         flash("Gracias, recibimos tu mensaje.", "success")
         return redirect(url_for("sitio.contacto"))
     return render_template("sitio/contacto.html", form={})
+
+
+@bp.route("/calendario", methods=["GET", "POST"])
+def calendario():
+    if request.method == "POST":
+        direccion = request.form.get("correo", "").strip().lower()
+        if "@" not in direccion or len(direccion) > 254:
+            flash("Escribe un correo electrónico válido.", "warning")
+            return render_template("sitio/calendario.html", form=request.form)
+        db.session.add(SolicitudCalendario(correo=direccion))
+        db.session.commit()
+        flash("Gracias. Te enviaremos la invitación al calendario.", "success")
+        return redirect(url_for("sitio.calendario"))
+    return render_template("sitio/calendario.html", form={})
+
+
+@bp.route("/articulos")
+def articulos():
+    lista = Articulo.query.filter_by(publicado=True).order_by(Articulo.creado.desc()).all()
+    return render_template("sitio/articulos.html", articulos=lista)
+
+
+@bp.route("/articulos/<slug>")
+def articulo(slug):
+    art = Articulo.query.filter_by(slug=slug).first_or_404()
+    # Los borradores solo los ve quien administra
+    if not art.publicado and not (current_user.is_authenticated and current_user.es_admin):
+        abort(404)
+    return render_template("sitio/articulo.html", articulo=art)
+
+
+@bp.route("/articulos/imagen/<nombre>")
+def imagen_articulo(nombre):
+    return send_from_directory(current_app.config["CARPETA_ARTICULOS"], nombre)
 
 
 @bp.route("/aviso-de-privacidad")

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cuentas{% endblock %}
+
+{% block contenido %}
+  <div class="migas"><a href="{{ url_for('admin.panel') }}">Administración</a> &rsaquo; Cuentas</div>
+  <h1 class="titulo-pagina">Cuentas</h1>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead><tr><th>Nombre</th><th>Correo</th><th>Registro</th><th>Rol</th><th></th></tr></thead>
+      <tbody>
+        {% for u in usuarios %}
+          <tr>
+            <td class="notranslate">{{ u.nombre }}</td>
+            <td class="notranslate">{{ u.correo }}</td>
+            <td>{{ u.creado.strftime('%d/%m/%Y') }}</td>
+            <td>{{ 'Administrador' if u.es_admin else 'Usuario' }}</td>
+            <td class="text-end">
+              {% if u.id != current_user.id %}
+                <form method="post" action="{{ url_for('admin.cambiar_rol', usuario_id=u.id) }}">
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                  {% if u.es_admin %}
+                    <input type="hidden" name="rol" value="usuario">
+                    <button class="btn btn-sm btn-outline-secondary" type="submit">Quitar administrador</button>
+                  {% else %}
+                    <input type="hidden" name="rol" value="admin">
+                    <button class="btn btn-sm btn-ibp" type="submit">Hacer administrador</button>
+                  {% endif %}
+                </form>
+              {% else %}
+                <span class="text-muted">Tu cuenta</span>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -75,6 +75,24 @@ def perfil():
     return render_template("cuentas/perfil.html", analisis=current_user.analisis.all())
 
 
+@bp.route("/perfil/clave", methods=["POST"])
+@login_required
+def cambiar_clave():
+    actual = request.form.get("actual", "")
+    nueva = request.form.get("nueva", "")
+    if not current_user.revisar_clave(actual):
+        flash("La contraseña actual no es correcta.", "danger")
+    elif len(nueva) < LARGO_MINIMO_CLAVE:
+        flash(f"La contraseña nueva debe tener al menos {LARGO_MINIMO_CLAVE} caracteres.", "warning")
+    elif nueva != request.form.get("nueva2", ""):
+        flash("Las dos contraseñas nuevas no coinciden.", "warning")
+    else:
+        current_user.poner_clave(nueva)
+        db.session.commit()
+        flash("Tu contraseña quedó cambiada.", "success")
+    return redirect(url_for("cuentas.perfil"))
+
+
 def _serializador():
     return URLSafeTimedSerializer(current_app.config["SECRET_KEY"], salt="restablecer-clave")
 

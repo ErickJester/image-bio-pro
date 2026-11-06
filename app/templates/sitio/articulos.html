@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block titulo %}Artículos{% endblock %}
+
+{% block contenido %}
+  <div class="migas"><a href="{{ url_for('sitio.inicio') }}">Inicio</a> &rsaquo; Artículos</div>
+  <h1 class="titulo-pagina">Artículos</h1>
+  {% if articulos %}
+    {% for a in articulos %}
+      <article class="mb-4 pb-3 border-bottom">
+        <h2 class="h4"><a href="{{ url_for('sitio.articulo', slug=a.slug) }}">{{ a.titulo }}</a></h2>
+        <p class="leyenda mb-1">{{ a.creado.strftime('%d/%m/%Y') }}</p>
+        {% if a.resumen %}<p class="mb-0">{{ a.resumen }}</p>{% endif %}
+      </article>
+    {% endfor %}
+  {% else %}
+    <p>Pronto publicaremos artículos aquí.</p>
+  {% endif %}
+{% endblock %}

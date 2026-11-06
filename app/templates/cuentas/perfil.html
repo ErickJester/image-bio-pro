@@ -5,7 +5,7 @@
 {% block contenido %}
   <div class="migas"><a href="{{ url_for('sitio.inicio') }}">Inicio</a> &rsaquo; Mi perfil</div>
   <h1 class="titulo-pagina mb-1">{{ current_user.nombre }}</h1>
-  <p class="leyenda">{{ current_user.correo }}</p>
+  <p class="leyenda">{{ current_user.correo }}{% if current_user.es_admin %} · Administrador{% endif %}</p>
 
   <div class="titulo-bloque"><span>Mis análisis</span></div>
   {% if analisis %}
@@ -31,4 +31,22 @@
   {% else %}
     <p>Todavía no tienes análisis. <a href="{{ url_for('analisis.ia') }}">Analiza una imagen</a>.</p>
   {% endif %}
+
+  <div class="titulo-bloque"><span>Cambiar contraseña</span></div>
+  <form method="post" action="{{ url_for('cuentas.cambiar_clave') }}" class="mb-4" style="max-width: 24rem">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="mb-3">
+      <label class="form-label" for="actual">Contraseña actual</label>
+      <input class="form-control" id="actual" name="actual" type="password" required autocomplete="current-password">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="nueva">Contraseña nueva (mínimo 8 caracteres)</label>
+      <input class="form-control" id="nueva" name="nueva" type="password" required minlength="8" autocomplete="new-password">
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="nueva2">Repite la contraseña nueva</label>
+      <input class="form-control" id="nueva2" name="nueva2" type="password" required minlength="8" autocomplete="new-password">
+    </div>
+    <button class="btn btn-ibp" type="submit">Cambiar contraseña</button>
+  </form>
 {% endblock %}
