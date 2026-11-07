@@ -2,7 +2,11 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.14.3.
+**En producción: 1.0.0.** El repositorio va en 1.15.0.
+
+## 1.15.0 (7 de noviembre de 2026)
+
+- Videos: ya se reproducen en la página los videos 1 al 7 y el 9, 10 y 11 del curso, con los enlaces del canal de YouTube del proyecto. Siguen como marcador el 8 (Frontend), el 12 y el 13 (Colab) y el 14 y el 15 (despliegue y Nginx), hasta que se suban.
 
 ## 1.14.3 (7 de noviembre de 2026)
 

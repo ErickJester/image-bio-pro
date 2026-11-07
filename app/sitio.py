@@ -203,9 +203,18 @@ _VIDEOS = {
 }
 # Videos ya subidos a YouTube: número del curso -> id. Los que no están salen como marcador de posición.
 _YOUTUBE = {
-    # 1: "ucNXMX2AXAg",
-    # 2: "5LMw9Kyl1j4",
-    # 3: "pqSKnbEho38",
+    1: "E-9dxZuzjfo",
+    2: "LKBKOLCvSGg",
+    3: "2AC0oi0U-MQ",
+    4: "rsh43GSyneU",
+    5: "OKmHKvYBvMI",
+    6: "zd_Ul6SEx2E",
+    7: "rCiC6avhBK0",
+    # 8: aún no está subido (Frontend)
+    9: "2Kq_CUiQVC4",
+    10: "1_W0mlBD5CI",
+    11: "pk5Tp5gFV1c",
+    # 12 a 15: aún no están subidos
 }
 # (nombre de la sección, nombre corto para la pestaña, [(número, módulo del curso), ...])
 _SECCIONES = [
