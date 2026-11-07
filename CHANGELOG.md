@@ -2,7 +2,13 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.14.1.
+**En producción: 1.0.0.** El repositorio va en 1.14.2.
+
+## 1.14.2 (7 de noviembre de 2026)
+
+- Nosotros: se restauran el Dr. Juan Villegas Cortez, Gerardo Mejía Hernández (ahora con acentos) y el Biól. Isaac Emanuel Mani Arellano, que se habían quitado por error al aplicar la lista del documento de correcciones.
+- Nosotros: nuevos colaboradores, el Dr. Noé Salinas Arreortúa (con foto) y el Dr. Gerardo Blancas Flores (con el icono de perfil sin foto).
+- Nosotros: enlaces de Google Académico del Dr. Saúl Jiménez Jiménez y de la Dra. Sheila Irais Peña Corona.
 
 ## 1.14.1 (6 de noviembre de 2026)
 

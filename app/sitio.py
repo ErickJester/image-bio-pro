@@ -15,7 +15,7 @@ LOREM = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmo
 # Personas del proyecto, en el orden y con los datos del documento de correcciones del cliente.
 # foto: ruta dentro de app/static (aliados/); sin-foto.svg = silueta. scholar: perfil de Google Scholar; None = sin enlace.
 ALIADOS = [
-    {"nombre": 'Dra. Sheila Irais Peña Corona', "foto": 'aliados/sheila-irais-pena-corona.jpg', "scholar": None, "lineas": [
+    {"nombre": 'Dra. Sheila Irais Peña Corona', "foto": 'aliados/sheila-irais-pena-corona.jpg', "scholar": 'https://scholar.google.es/citations?user=GbcyYMUAAAAJ&hl=es', "lineas": [
         'Responsable y líder del proyecto BioImage-Repro UAM',
         'Profesora-Investigadora',
         'Departamento de Biología de la Reproducción',
@@ -23,7 +23,7 @@ ALIADOS = [
         'Universidad Autónoma Metropolitana Unidad Iztapalapa',
         'Investigadora Nacional Nivel I del SNI',
     ]},
-    {"nombre": 'Dr. Saúl Jiménez Jiménez', "foto": 'aliados/sin-foto.svg', "scholar": None, "lineas": [
+    {"nombre": 'Dr. Saúl Jiménez Jiménez', "foto": 'aliados/sin-foto.svg', "scholar": 'https://scholar.google.com/citations?user=agAT9vQAAAAJ&hl=es', "lineas": [
         'Responsable del desarrollo del sitio web y del modelo de inteligencia artificial de BioImage-Repro UAM',
         'Investigador posdoctoral SECIHTI en la Universidad Autónoma Metropolitana, Unidad Iztapalapa',
         'Departamento de Química',
@@ -77,6 +77,21 @@ ALIADOS = [
         'División de Ciencias Biológicas y de la Salud',
         'Universidad Autónoma Metropolitana Unidad Iztapalapa',
         'Investigadora Nacional Nivel II del SNI',
+    ]},
+    {"nombre": 'Dr. Noé Salinas Arreortúa', "foto": 'aliados/noe-salinas-arreortua.jpg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Profesor-Investigador',
+        'Departamento de Ciencias de la Salud',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+    ]},
+    {"nombre": 'Dr. Gerardo Blancas Flores', "foto": 'aliados/sin-foto.svg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Profesor-Investigador',
+        'Departamento de Ciencias de la Salud',
+        'División de Ciencias Biológicas y de la Salud',
+        'Universidad Autónoma Metropolitana Unidad Iztapalapa',
+        'Investigador Nacional Nivel I del SNI',
     ]},
     {"nombre": 'M. en C. Adrián Emmanuel Iglesias Reyes', "foto": 'aliados/adrian-emmanuel-iglesias-reyes.jpg', "scholar": None, "lineas": [
         'Colaborador',
@@ -144,6 +159,20 @@ ALIADOS = [
         'Colaboradora',
         'Unidad de Innovación y Desarrollo Farmacéutico. Centro Interdisciplinario de Medicina Predictiva, ITEMS',
         'Instituto Tecnológico y de Estudios Superiores de Monterrey',
+    ]},
+    {"nombre": 'Dr. Juan Villegas Cortez', "foto": 'aliados/juan-villegas-cortez.jpg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Profesor Titular de Carrera Nivel C de Tiempo Completo',
+        'Departamento de Sistemas',
+        'División de Ciencias Básicas e Ingeniería',
+        'Nivel I del SNII',
+    ]},
+    {"nombre": 'Gerardo Mejía Hernández', "foto": 'aliados/gerardo-mejia-hernandez.jpeg', "scholar": None, "lineas": [
+        'Colaborador',
+    ]},
+    {"nombre": 'Biól. Isaac Emanuel Mani Arellano', "foto": 'aliados/isaac-emanuel-mani-arellano.jpeg', "scholar": None, "lineas": [
+        'Colaborador',
+        'Estudiante',
     ]},
 ]
 
