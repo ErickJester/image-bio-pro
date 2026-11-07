@@ -170,7 +170,7 @@ ALIADOS = [
     {"nombre": 'Gerardo Mejía Hernández', "foto": 'aliados/gerardo-mejia-hernandez.jpeg', "scholar": None, "lineas": [
         'Colaborador',
     ]},
-    {"nombre": 'Biól. Isaac Emanuel Mani Arellano', "foto": 'aliados/isaac-emanuel-mani-arellano.jpeg', "scholar": None, "lineas": [
+    {"nombre": 'Biól. Isaac Emanuel Mani Arellano', "foto": 'aliados/isaac-emanuel-mani-arellano.jpeg', "pos": "50% 75%", "scholar": None, "lineas": [
         'Colaborador',
         'Estudiante',
     ]},

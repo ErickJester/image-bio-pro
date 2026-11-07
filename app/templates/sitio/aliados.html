@@ -20,8 +20,10 @@
           <div class="ph" style="aspect-ratio: 1 / 1">[foto]</div>
         {% endif %}
         <h3 class="notranslate">{{ aliado.nombre }}</h3>
-        <p class="small mb-0">{% for linea in aliado.lineas %}{{ linea }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
-        {% if aliado.scholar %}<p class="small mt-1 mb-0"><a href="{{ aliado.scholar }}" target="_blank" rel="noopener">Google Académico</a></p>{% endif %}
+        <div class="datos">
+          <p class="small mb-0">{% for linea in aliado.lineas %}{{ linea }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+          {% if aliado.scholar %}<p class="small mt-1 mb-0"><a href="{{ aliado.scholar }}" target="_blank" rel="noopener">Google Académico</a></p>{% endif %}
+        </div>
       </div>
     {% endfor %}
   </div>

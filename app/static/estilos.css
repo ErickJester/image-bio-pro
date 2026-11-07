@@ -1360,7 +1360,7 @@ body {
 }
 
 .equipo .aliado h3 { align-self: start; }
-.equipo .aliado p { align-self: start; text-align: left; }
+.equipo .aliado .datos { align-self: start; text-align: left; }
 
 @media (min-width: 768px) {
   .equipo { grid-template-columns: repeat(4, minmax(0, 1fr)); }

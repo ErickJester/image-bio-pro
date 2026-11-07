@@ -2,7 +2,12 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.14.2.
+**En producción: 1.0.0.** El repositorio va en 1.14.3.
+
+## 1.14.3 (7 de noviembre de 2026)
+
+- Nosotros: el enlace de Google Académico ya no se encima con los datos de la persona; los datos y el enlace van en un solo bloque de la tarjeta.
+- Nosotros: la foto de Isaac Emanuel Mani Arellano se reencuadra para que su rostro quede al centro.
 
 ## 1.14.2 (7 de noviembre de 2026)
 
