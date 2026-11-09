@@ -245,11 +245,14 @@ def test_contorno_simple_guarda_puntos_dentro_de_la_foto():
 
 def test_videos_del_curso(cliente):
     html = cliente.get("/videos").get_data(as_text=True)
-    assert html.count('class="video-item"') == 15          # los 15 videos del curso
-    assert html.count('role="tab"') == 2                   # dos secciones: red neuronal y sitio web
+    assert html.count('class="video-item"') == 13          # los 13 videos del curso
+    assert 'role="tab"' not in html                        # una sola lista, sin pestañas por sección
+    assert html.count('<ol class="video-lista">') == 1
+    numeros = [int(n) for n in re.findall(r'data-numero="(\d+)"', html)]
+    assert numeros == list(range(1, 14))                   # en el orden del curso
     assert 'id="video-marco"' in html and "videos.js" in html
     from app import sitio
-    assert html.count('data-youtube="') == 15              # todos llevan el atributo, vacío si aún no hay video
+    assert html.count('data-youtube="') == 13             # todos llevan el atributo, vacío si aún no hay video
     for youtube_id in sitio._YOUTUBE.values():             # los videos activados salen con su id, una vez
         assert html.count('data-youtube="%s"' % youtube_id) == 1
 

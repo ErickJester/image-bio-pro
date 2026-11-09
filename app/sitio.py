@@ -181,7 +181,7 @@ INFOGRAFIAS = [
     for i in range(1, 9)
 ]
 
-# Videos del curso en dos secciones. Cada video lleva su número en el curso (1 a 15) y el módulo al que
+# Videos del curso en una sola lista. Cada video lleva su número en el curso (1 a 13) y el módulo al que
 # pertenece. youtube_id es lo que va después de "watch?v="; None = marcador de posición hasta subir el video
 # (los ids están en _YOUTUBE).
 _VIDEOS = {
@@ -198,8 +198,6 @@ _VIDEOS = {
     11: ("Medición, escala y retos", "Contorno, área, largo y escala, y cómo se resolvieron los retos."),
     12: ("Cuaderno de Colab, primera parte", "Del entorno a la preparación de las imágenes y los recortes."),
     13: ("Cuaderno de Colab, segunda parte", "Construir la red, entrenar, ver los resultados y exportar el modelo."),
-    14: ("Despliegue en la nube", "El servidor, la clave SSH, Docker y Docker Compose."),
-    15: ("Nginx, dominio y HTTPS", "Cómo recibe visitas el sitio, el dominio, el certificado y el cierre."),
 }
 # Videos ya subidos a YouTube: número del curso -> id. Los que no están salen como marcador de posición.
 _YOUTUBE = {
@@ -214,20 +212,14 @@ _YOUTUBE = {
     9: "2Kq_CUiQVC4",
     10: "1_W0mlBD5CI",
     11: "pk5Tp5gFV1c",
-    # 12 a 15: aún no están subidos
+    12: "9VOrJSpsPYc",
+    13: "bUT8k8DIGzk",
 }
-# (nombre de la sección, nombre corto para la pestaña, [(número, módulo del curso), ...])
-_SECCIONES = [
-    ("Desarrollo de la red neuronal convolucional", "Red neuronal",
-     [(1, 1), (2, 1), (3, 1), (4, 2), (5, 2), (6, 2), (7, 2), (12, 4), (13, 4)]),
-    ("Desarrollo del sitio web", "Sitio web",
-     [(8, 3), (9, 3), (10, 3), (11, 3), (14, 4), (15, 4)]),
-]
+# Módulo del curso al que pertenece cada video, en el orden del curso.
+_MODULO = {1: 1, 2: 1, 3: 1, 4: 2, 5: 2, 6: 2, 7: 2, 8: 3, 9: 3, 10: 3, 11: 3, 12: 4, 13: 4}
 VIDEOS = [
-    {"nombre": nombre, "corto": corto,
-     "videos": [{"numero": n, "modulo": m, "titulo": _VIDEOS[n][0], "texto": _VIDEOS[n][1], "youtube_id": _YOUTUBE.get(n)}
-                for n, m in lista]}
-    for nombre, corto, lista in _SECCIONES
+    {"numero": n, "modulo": _MODULO[n], "titulo": _VIDEOS[n][0], "texto": _VIDEOS[n][1], "youtube_id": _YOUTUBE.get(n)}
+    for n in sorted(_VIDEOS)
 ]
 
 
@@ -253,8 +245,7 @@ def infografias():
 
 @bp.route("/videos")
 def videos():
-    total_videos = sum(len(g["videos"]) for g in VIDEOS)
-    return render_template("sitio/videos.html", videos=VIDEOS, total_videos=total_videos)
+    return render_template("sitio/videos.html", videos=VIDEOS, total_videos=len(VIDEOS))
 
 
 @bp.route("/contacto", methods=["GET", "POST"])

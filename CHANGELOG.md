@@ -2,7 +2,13 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.15.0.
+**En producción: 1.0.0.** El repositorio va en 1.16.0.
+
+## 1.16.0 (8 de noviembre de 2026)
+
+- Videos: la lista del curso ya no se divide en "Red neuronal" y "Sitio web"; son una sola lista en el orden del curso, y el encabezado del reproductor dice el módulo y el número de video.
+- Videos: se cargan el 12 y el 13 (cuaderno de Colab, primera y segunda parte) con sus enlaces de YouTube.
+- Videos: se quitan de la lista el 14 (despliegue en la nube) y el 15 (Nginx, dominio y HTTPS). El curso queda en 13 videos; solo el 8 (Frontend) sigue como marcador.
 
 ## 1.15.0 (7 de noviembre de 2026)
 

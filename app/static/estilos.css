@@ -1106,37 +1106,6 @@ body {
   flex: 1 1 150px;
 }
 
-.pestanas-modulo {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: var(--e2);
-}
-
-.pestana-modulo {
-  min-height: 44px;
-  padding: 0 var(--e2);
-  font-family: var(--fuente-texto);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-foreground);
-  background: transparent;
-  border: 1.5px solid var(--color-secondary);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background-color 150ms ease-out;
-}
-
-.pestana-modulo:hover {
-  background: var(--color-muted);
-}
-
-.pestana-modulo[aria-selected="true"] {
-  background: var(--color-foreground);
-  color: var(--color-card);
-  border-color: var(--color-foreground);
-}
-
 .video-lista {
   list-style: none;
   margin: 0;
