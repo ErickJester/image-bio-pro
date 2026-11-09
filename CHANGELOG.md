@@ -2,7 +2,11 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.16.1.
+**En producción: 1.0.0.** El repositorio va en 1.16.2.
+
+## 1.16.2 (8 de noviembre de 2026)
+
+- Videos: "Frontend: el sitio funcionando" pasa a ser el último de la lista (el 13) y ya se reproduce con su enlace de YouTube. Los videos de Backend, inferencia, medición y Colab suben un lugar, del 8 al 12. Todos los videos de la lista ya tienen enlace.
 
 ## 1.16.1 (8 de noviembre de 2026)
 

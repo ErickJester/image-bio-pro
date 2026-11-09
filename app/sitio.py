@@ -192,12 +192,12 @@ _VIDEOS = {
     5: ("Mask R-CNN", "La red que usa el sistema, explicada en lenguaje sencillo."),
     6: ("Aprendizaje por transferencia", "Cómo aprovechar una red entrenada para otra cosa."),
     7: ("Datos y entrenamiento", "Anotación, entrenamiento y validación, sobreajuste y curvas."),
-    8: ("Frontend: el sitio funcionando", "Cómo se ve y cómo está hecho el sitio: plantillas, Bootstrap y la pantalla de resultados."),
-    9: ("Backend", "Flask, las rutas y qué pasa cuando se sube una imagen."),
-    10: ("Inferencia con recortes", "Cómo se usa el modelo: recortes, juntar resultados y quitar repetidos."),
-    11: ("Medición, escala y retos", "Contorno, área, largo y escala, y cómo se resolvieron los retos."),
-    12: ("Cuaderno de Colab, primera parte", "Del entorno a la preparación de las imágenes y los recortes."),
-    13: ("Cuaderno de Colab, segunda parte", "Construir la red, entrenar, ver los resultados y exportar el modelo."),
+    8: ("Backend", "Flask, las rutas y qué pasa cuando se sube una imagen."),
+    9: ("Inferencia con recortes", "Cómo se usa el modelo: recortes, juntar resultados y quitar repetidos."),
+    10: ("Medición, escala y retos", "Contorno, área, largo y escala, y cómo se resolvieron los retos."),
+    11: ("Cuaderno de Colab, primera parte", "Del entorno a la preparación de las imágenes y los recortes."),
+    12: ("Cuaderno de Colab, segunda parte", "Construir la red, entrenar, ver los resultados y exportar el modelo."),
+    13: ("Frontend: el sitio funcionando", "Cómo se ve y cómo está hecho el sitio: plantillas, Bootstrap y la pantalla de resultados."),
 }
 # Videos ya subidos a YouTube: número del curso -> id. Los que no están salen como marcador de posición.
 _YOUTUBE = {
@@ -208,15 +208,15 @@ _YOUTUBE = {
     5: "OKmHKvYBvMI",
     6: "zd_Ul6SEx2E",
     7: "rCiC6avhBK0",
-    # 8: aún no está subido (Frontend)
-    9: "2Kq_CUiQVC4",
-    10: "1_W0mlBD5CI",
-    11: "pk5Tp5gFV1c",
-    12: "9VOrJSpsPYc",
-    13: "bUT8k8DIGzk",
+    8: "2Kq_CUiQVC4",
+    9: "1_W0mlBD5CI",
+    10: "pk5Tp5gFV1c",
+    11: "9VOrJSpsPYc",
+    12: "bUT8k8DIGzk",
+    13: "zF_eI5GyA1I",
 }
-# Módulo del curso al que pertenece cada video, en el orden del curso.
-_MODULO = {1: 1, 2: 1, 3: 1, 4: 2, 5: 2, 6: 2, 7: 2, 8: 3, 9: 3, 10: 3, 11: 3, 12: 4, 13: 4}
+# Módulo del curso al que pertenece cada video, en el orden de la lista.
+_MODULO = {1: 1, 2: 1, 3: 1, 4: 2, 5: 2, 6: 2, 7: 2, 8: 3, 9: 3, 10: 3, 11: 4, 12: 4, 13: 3}
 VIDEOS = [
     {"numero": n, "modulo": _MODULO[n], "titulo": _VIDEOS[n][0], "texto": _VIDEOS[n][1], "youtube_id": _YOUTUBE.get(n)}
     for n in sorted(_VIDEOS)
