@@ -2,7 +2,11 @@
 
 Las reglas para numerar las versiones están en [`docs/versionado.md`](docs/versionado.md). Cada commit de `main` que cambia el sitio es una versión. Los que solo tocan guiones, mazos o documentos no llevan versión.
 
-**En producción: 1.0.0.** El repositorio va en 1.16.0.
+**En producción: 1.0.0.** El repositorio va en 1.16.1.
+
+## 1.16.1 (8 de noviembre de 2026)
+
+- Cabecera en celular: los logos del proyecto y de la UAM se hacen más chicos y quedan simétricos, uno a cada lado de "BioImage-Repro UAM", y el lema va centrado debajo. En tableta y escritorio no cambia.
 
 ## 1.16.0 (8 de noviembre de 2026)
 

@@ -1049,11 +1049,20 @@ body {
 }
 
 @media (max-width: 767px) {
-  .logo { padding-top: 64px; }
-  .logo .logo-proyecto { width: 56px; }
-  .logo-uam { top: 12px; left: 18px; height: 46px; }
-  .logo .nombre { font-size: 1.5rem; }
-  .logo .lema { font-size: 1rem; }
+  /* Celular: logo del proyecto a la izquierda y de la UAM a la derecha del nombre, simétricos; lema centrado debajo */
+  .logo { position: relative; padding: 14px 0 var(--e2); }
+  .logo a { display: block; }
+  .logo .logo-proyecto { position: absolute; top: 14px; left: 14px; width: 44px; }
+  .logo-uam { top: 14px; left: auto; right: 14px; height: 44px; }
+  .logo .nombre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 68px;
+    font-size: 1.5rem;
+  }
+  .logo .lema { padding: 0 var(--e2); margin-top: 10px; font-size: 1rem; text-align: center; }
   h1.titulo-pagina { font-size: 2.125rem; }
   .portada h1 { font-size: 2.5rem; }
   .capitulo { padding: var(--e3) var(--e2); }
